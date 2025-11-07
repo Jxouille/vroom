@@ -1,0 +1,95 @@
+@import url(https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap);
+
+* {
+    font-family: 'Inter';
+}
+
+body{
+    margin: 0 auto;
+}
+
+header.header{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25); /* plus large et plus sombre */
+}
+header.header img{
+    width: 150px;
+}
+
+section.top-page {
+    background: url('../images/image de fond.jpg');      
+    background-size: cover;                  
+    height: 80vh;   
+}
+  
+/* page de bienvenue (landing page) */
+
+.big-title{
+    color: white;
+    font-size: 80px;
+    font-weight: 100;
+    padding: 20px 50px;
+}
+
+/* Menu de navigation */
+nav.nav{
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    width: 400px;
+    margin-left: 30px;
+}
+
+nav.nav li {
+    color: rgb(5, 108, 70);
+}
+
+.search-trips {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    margin: 20px 50px;
+    border-radius: 15px;
+    flex-wrap: wrap;
+}
+
+.search-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.search-item img {
+    width: 40px;
+    margin-bottom: 5px;
+}
+
+.search-item input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 150px;
+    text-align: center;
+}
+
+.search-button {
+    background-color: rgb(5, 108, 70);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background-color: rgb(3, 80, 55);
+}
+
+
