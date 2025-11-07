@@ -3,4 +3,3 @@ git status pour voir l'état de ton commit
 git add tonFichier pour ajouter le fichier au commit (t'utilise la petite etoile * pour tout ajouter)
 git commit -m "ton message pour expliquer les changement" 
 git push pour envoyer tes fichiers (NE JAMAIS GIT FORCE)
-test
