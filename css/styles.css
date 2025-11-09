@@ -19,7 +19,7 @@ body {
 section.top-page {
     /* Remplacer le chemin par votre image réelle */
     background: url('../images/image de fond.jpg') no-repeat center center/cover;      
-    height: 90vh; /* Hauteur pour couvrir l'écran initial */
+    height: 95vh; /* Hauteur pour couvrir l'écran initial */
     position: relative; /* Référence pour le positionnement de .intro-box */
     display: flex;
     flex-direction: column;
@@ -48,7 +48,7 @@ header.header img {
     justify-content: center;
     align-items: center;
     flex-grow: 1; /* Permet de prendre l'espace restant */
-    padding-bottom: 100px; /* Réserve l'espace pour la barre de recherche */
+    padding-bottom: 0; /* Réserve l'espace pour la barre de recherche */
 }
 
 /* ---------------------------------- */
@@ -56,11 +56,12 @@ header.header img {
 /* ---------------------------------- */
 .intro-box {
     /* Dimensions et fond semi-transparent */
-    max-width: 750px;
-    padding: 60px 50px;
+    max-width: 650px;
+    padding: 40px 50px;
     border-radius: 12px;
     text-align: center;
     color: white; 
+    margin: 0;
 
     /* --- L'effet de flou clé --- */
     background-color: rgba(0, 0, 0, 0.4); /* Fond noir semi-transparent */
@@ -71,15 +72,15 @@ header.header img {
 }
 
 .intro-box h1 {
-    font-size: 2.5em;
-    font-weight: 700;
-    margin-bottom: 20px;
-    line-height: 1.2;
+    font-size: 1em;
+    margin-bottom: 30px;
+    font-weight: 100;
+    line-height: 1.6;
 }
 
 .intro-box p {
-    font-size: 1.1em;
-    margin-bottom: 40px;
+    font-size: 1em;
+    margin-bottom: 30px;
     line-height: 1.6;
 }
 
@@ -129,27 +130,27 @@ header.header img {
     position: absolute; /* Positionnement par rapport à .top-page */
     bottom: 0; 
     left: 50%;
-    transform: translate(-50%, 50%); /* Décalage de 50% vers le bas pour chevaucher */
+    transform: translate(-50%, 40%); /* Décalage de 50% vers le bas pour chevaucher */
     z-index: 10; /* Assure que la barre est au-dessus de tout */
 
     /* Style du conteneur */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    width: 90%;
+    max-width: 1050px;
+    width: 95%;
     background-color: white;
-    padding: 20px 30px;
-    border-radius: 15px;
+    padding: 15px 30px;
+    border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .search-item {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
     padding-right: 20px;
-    border-right: 1px solid #eee; /* Séparateur visuel */
+    border-right: none; /* Séparateur visuel */
 }
 
 .search-item:last-of-type {
@@ -167,7 +168,7 @@ header.header img {
     outline: none;
     font-size: 1em;
     color: #333;
-    width: 120px; /* Taille pour les champs */
+    width: 100px; /* Taille pour les champs */
 }
 
 .search-button {
