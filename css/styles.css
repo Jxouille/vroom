@@ -1,95 +1,187 @@
-@import url(https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
+/* Réinitialisation de base */
 * {
-    font-family: 'Inter';
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
 }
 
-body{
-    margin: 0 auto;
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #f0f0f0; /* Couleur de fond pour le reste de la page */
 }
 
-header.header{
+/* ---------------------------------- */
+/* SECTION PRINCIPALE (HEADER + FOND) */
+/* ---------------------------------- */
+section.top-page {
+    /* Remplacer le chemin par votre image réelle */
+    background: url('../images/image de fond.jpg') no-repeat center center/cover;      
+    height: 90vh; /* Hauteur pour couvrir l'écran initial */
+    position: relative; /* Référence pour le positionnement de .intro-box */
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------------------------------- */
+/* HEADER */
+/* ---------------------------------- */
+header.header {
     display: flex;
     align-items: center;
-    background-color: white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25); /* plus large et plus sombre */
+    padding: 20px 50px;
+    /* Rendre le header transparent ou le placer sur l'image si besoin */
+    background-color: transparent; 
 }
-header.header img{
+header.header img {
     width: 150px;
 }
 
-section.top-page {
-    background: url('../images/image de fond.jpg');      
-    background-size: cover;                  
-    height: 80vh;   
+/* ---------------------------------- */
+/* Conteneur pour centrer le texte/boutons */
+/* ---------------------------------- */
+.landing-content {
+    /* Utilisez Flexbox pour centrer le contenu verticalement */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; /* Permet de prendre l'espace restant */
+    padding-bottom: 100px; /* Réserve l'espace pour la barre de recherche */
 }
-  
-/* page de bienvenue (landing page) */
 
-.big-title{
+/* ---------------------------------- */
+/* BLOC FLOUTÉ CENTRAL (.intro-box) */
+/* ---------------------------------- */
+.intro-box {
+    /* Dimensions et fond semi-transparent */
+    max-width: 750px;
+    padding: 60px 50px;
+    border-radius: 12px;
+    text-align: center;
+    color: white; 
+
+    /* --- L'effet de flou clé --- */
+    background-color: rgba(0, 0, 0, 0.4); /* Fond noir semi-transparent */
+    backdrop-filter: blur(10px); /* L'effet de flou appliqué à l'arrière-plan */
+    -webkit-backdrop-filter: blur(10px); /* Compatibilité */
+
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.intro-box h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.intro-box p {
+    font-size: 1.1em;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+/* Conteneur des boutons */
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Styles des boutons (Vert et Blanc) */
+.button {
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    white-space: nowrap; 
+    font-size: 1.05em;
+}
+
+.button-primary {
+    background-color: #00875A; 
     color: white;
-    font-size: 80px;
-    font-weight: 100;
-    padding: 20px 50px;
+    border: 2px solid #00875A;
 }
 
-/* Menu de navigation */
-nav.nav{
+.button-primary:hover {
+    background-color: #006b47;
+}
+
+.button-secondary {
+    background-color: white;
+    color: #00875A; 
+    border: 2px solid white;
+}
+
+.button-secondary:hover {
+    background-color: #f0f0f0;
+}
+
+/* ---------------------------------- */
+/* BARRE DE RECHERCHE (.search-trips) */
+/* ---------------------------------- */
+.search-trips {
+    position: absolute; /* Positionnement par rapport à .top-page */
+    bottom: 0; 
+    left: 50%;
+    transform: translate(-50%, 50%); /* Décalage de 50% vers le bas pour chevaucher */
+    z-index: 10; /* Assure que la barre est au-dessus de tout */
+
+    /* Style du conteneur */
     display: flex;
     justify-content: space-between;
-    list-style: none;
-    width: 400px;
-    margin-left: 30px;
-}
-
-nav.nav li {
-    color: rgb(5, 108, 70);
-}
-
-.search-trips {
-    display: flex;
-    justify-content: space-around;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    margin: 20px 50px;
+    max-width: 1200px;
+    width: 90%;
+    background-color: white;
+    padding: 20px 30px;
     border-radius: 15px;
-    flex-wrap: wrap;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .search-item {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    margin: 10px;
+    gap: 8px;
+    padding-right: 20px;
+    border-right: 1px solid #eee; /* Séparateur visuel */
+}
+
+.search-item:last-of-type {
+    border-right: none;
+    padding-right: 0;
 }
 
 .search-item img {
-    width: 40px;
-    margin-bottom: 5px;
+    width: 24px; /* Icônes plus petites et alignées */
 }
 
 .search-item input {
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    width: 150px;
-    text-align: center;
+    padding: 10px 0;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #333;
+    width: 120px; /* Taille pour les champs */
 }
 
 .search-button {
-    background-color: rgb(5, 108, 70);
+    background-color: #00875A;
     color: white;
-    padding: 12px 20px;
+    padding: 15px 30px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 600;
     transition: background-color 0.3s;
+    font-size: 1.05em;
 }
 
 .search-button:hover {
-    background-color: rgb(3, 80, 55);
+    background-color: #006b47;
 }
-
-
