@@ -1,5 +1,10 @@
-git statusgit pull pour récupérer les données partager 
+git log pour voir ce qu'il s'est passé 
+git status pour voir ce que vous changez dans votre commit
+git pull pour récupérer les données partager 
 git status pour voir l'état de ton commit 
 git add tonFichier pour ajouter le fichier au commit (t'utilise la petite etoile * pour tout ajouter)
 git commit -m "ton message pour expliquer les changement" 
 git push pour envoyer tes fichiers (NE JAMAIS GIT FORCE)
+
+#REGLES 
+On nomme bien les éléments (donc tout attacher en mode toutAttacher ou tout_attacher) ca vaut pour les images, les noms de dossiers, tout !
