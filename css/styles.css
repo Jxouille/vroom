@@ -58,7 +58,7 @@ body {
 /* ---------------------------------- */
 section.top-page {
     /* Remplacer le chemin par votre image réelle */
-    background: url('../images/image de fond.jpg') no-repeat center center/cover;      
+    background: url('../image/image de fond.jpg') no-repeat center center/cover;      
     height: 95vh; /* Hauteur pour couvrir l'écran initial */
     position: relative; /* Référence pour le positionnement de .intro-box */
     display: flex;
