@@ -177,7 +177,7 @@ header.header img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1050px;
+    max-width: 1200px;
     width: 95%;
     background-color: white;
     padding: 15px 30px;
@@ -208,7 +208,7 @@ header.header img {
     outline: none;
     font-size: 1em;
     color: #333;
-    width: 100px; /* Taille pour les champs */
+    width: 185px; /* Taille pour les champs */
 }
 
 .search-button {
