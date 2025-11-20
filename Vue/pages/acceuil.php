@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vroom - Covoiturage</title>
+    <link rel="stylesheet" href="css/styles.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <img src="image/vroom_logo_sans_fond.png" class="nav-logo" alt="Logo Vroom">
+    <ul class="nav-links">
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">Réserver</a></li>
+        <li><a href="#">Publier</a></li>
+    </ul>
+    </nav>
+
+    <section class="top-page">
+        
+        <div class="landing-content">
+            
+            <div class="intro-box">
+                <h1>Voyagez ensemble, économisez et protégez la planète</h1>
+                <p>VROOM rend le covoiturage simple, économique et écologique. Partagez vos trajets, réduisez votre empreinte carbone et voyagez pour moins cher.</p>
+                <div class="buttons-container">
+                    <a href="#" class="button button-primary">Trouver un trajet →</a>
+                    <a href="#" class="button button-secondary">Proposer un trajet</a> 
+                </div>
+            </div>
+            </div>
+
+        <section class="search-trips">
+            <div class="search-item">
+                <img src="image/Date.png" alt="Date de départ">
+                <input type="text" placeholder="jj/mm/aaaa">
+            </div>
+            <div class="search-item">
+                <img src="image/position.png" alt="Lieu de départ">
+                <input type="text" placeholder="Lieu de départ">
+            </div>
+            <div class="search-item">
+                <img src="image/position.png" alt="Lieu d'arrivée">
+                <input type="text" placeholder="Lieu d'arrivée">
+            </div>
+            <div class="search-item">
+                <img src="image/nombre_de_personnes.png" alt="Nombre de personnes">
+                <input type="number" min="1" placeholder="Nombre de personnes">
+            </div>
+            <button class="search-button">Rechercher</button>
+        </section>
+        </section>
+
+
+</body>
+</html>
+
