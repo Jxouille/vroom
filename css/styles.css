@@ -36,9 +36,11 @@
 
 .nav-links a {
     text-decoration: none;
-    color: #044a33;
+    color: #858585;
     font-weight: 600;
     font-size: 18px;
+    font-family: inter;
+    font-weight: 100;
 }
 
 .nav-links a:hover {
@@ -230,7 +232,7 @@ header.header img {
     text-align: center;
     margin-bottom: 30px;
     padding-top: 50px;
-    font-family: "semi bold";
+    font-family: inter;
     color: #009966;
     font-weight: normal;
 }
@@ -242,7 +244,6 @@ header.header img {
     align-items: center;
     flex-wrap: wrap;  /*permet de passer à la ligne si nécessaire */
     padding: 20px;
-    background-color: #ffffff;
     margin: 50px;
     width: auto;
 }
@@ -270,7 +271,8 @@ h3 {
     margin-top: 15px;
     margin-bottom: 10px;
     color: #000000;
-    font-family: sans-serif;
+    font-family: inter;
+    font-weight: 100;
     
 }
 
@@ -279,3 +281,50 @@ h3 {
     height: 35px;
     margin-top: 15px;
 }
+
+.texte-fonctionnement {
+    text-align: center;
+    margin-bottom: 60px;
+    padding-top: 20px;
+    font-family: inter;
+    color: #009966;
+    font-weight: normal;
+}
+
+.fonctionnement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;  /*permet de passer à la ligne si nécessaire */
+    background-color: #ddf8eb;
+    width: auto;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.fonctionnement-item {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    text-align: center;
+    max-width: 250px; /* largeur maximale pour chaque élément*/
+    height: 220px;
+    margin: 20px;
+   
+}
+
+.icone-fonctionnement {
+    width: 35px;
+    height: 35px;
+    margin-top: 15px;
+}
+
+.texte-explicatif {
+    text-align: center;
+    margin-bottom: 60px;
+    padding-top: 20px;
+    font-family: inter;
+    color: #009966;
+    font-weight: normal;
+}
+
