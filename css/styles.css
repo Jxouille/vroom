@@ -252,11 +252,11 @@ header.header img {
     flex-direction: column;
     align-items:center;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 15px;
     max-width: 250px; /* largeur maximale pour chaque élément*/
     background-color: rgb(255, 255, 255);
     border: 0.5px solid #378959;
-    
+    height: 200px;
    
 }
 
@@ -272,4 +272,10 @@ h3 {
     color: #000000;
     font-family: sans-serif;
     
+}
+
+.icone {
+    width: 35px;
+    height: 35px;
+    margin-top: 15px;
 }
