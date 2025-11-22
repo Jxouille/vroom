@@ -24,10 +24,13 @@
     display: block;
 }
 .icone {
-    width: 64px;
-    height: 64px;
+    width: 70px;
+    height: 70px;
     display: block;
     margin: 0 auto;
+    position: relative;
+    top: -20px;
+    
 }
 .form_position {
     height: 50vh;
@@ -41,6 +44,9 @@
     border: 0.5px solid #378959;
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* effet d'ombre au survol */
+    margin-top: -20px;
+    position: relative;
+    top: -20px; /* translation vers le haut */
 }
 
 .petit-texte {
@@ -48,6 +54,14 @@
     color: #646a68;
     font-size: medium
 }
+
+.header-login {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    top: -30px;
+}
+
 h2 {
     text-align: center;
     color: #36a579;
@@ -108,10 +122,21 @@ body {
 
 .creation-compte h3 {
     text-align: center;
-    color: #36a579;
+    color: #646a68;
     margin-top: 20px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 150;
+}
+
+.retour-accueil {
+    text-align: center;
+    color: #36a579;
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 150;
+    position: relative;
+    top: -15px;
+    
 }
 
 .input-group {
