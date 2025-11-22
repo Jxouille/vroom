@@ -1,12 +1,17 @@
 .logo_position {
-    display: flex;
+   /* display: flex;
     flex-direction: column;       /* active flex */
-    justify-content: center;     /* centre horizontalement */
-    align-items: center;
+    /*justify-content: center;     /* centre horizontalement */
+   /* align-items: center;
     height: auto;                /* adapte la hauteur au contenu */
-    margin: 0;                   /* supprime les marges par défaut */
-    padding: 0;
-    position: relative;
+    /*margin: 0;                   /* supprime les marges par défaut */
+    /*padding: 0;
+    position: relative;*/
+    left: 0;                        /* Met le logo à gauche */
+    top: 0;                         /* Met le logo en haut */   
+    display: flex;                  /* active flex */   
+    padding: 0 40px;                /* espace intérieur gauche et droite */
+    position: relative;             /* Référence pour le positionnement absolu */
 }
 
 /* réduit la taille du logo (image) */
@@ -16,7 +21,12 @@
     height: auto;
     display: block;
 }
-
+.icone {
+    width: 64px;
+    height: 64px;
+    display: block;
+    margin: 0 auto;
+}
 .form_position {
     height: 40vh;
     width: 30vw;
@@ -32,7 +42,7 @@
 }
 h2 {
     text-align: center;
-    color: #378959;
+    color: #36a579;
     margin-bottom: 20px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 100;
@@ -40,7 +50,7 @@ h2 {
 
 h3 {
     text-align: center;
-    color: #378959;
+    color: #36a579;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 150;
@@ -50,7 +60,7 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    background-color: #e8f6eb; /* Couleur de fond pour le reste de la page */
+    background-color: #f3faf4; /* Couleur de fond pour le reste de la page */
 }
 
 .id {
@@ -63,39 +73,48 @@ body {
     font-weight: normal;
 }
 
+.mdp-oublié {
+    margin-left: 148px;
+    font-weight: normal;
+    color: #36a579;
+    text-decoration: none;
+}
+
 /* Bouton de connexion */
 
 .button {
-    background-color: #378959;
+    background-color: #149268; 
     color: white;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: normal;
+    width: 400px;
 }
 
 .creation-compte h3 {
     text-align: center;
-    color: #378959;
+    color: #36a579;
     margin-top: 20px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 150;
 }
 
 .input-group {
-    width: 100%;
+    width: 400px;
     padding: 8px;
     margin: 5px 0 15px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    background-color: rgb(200, 200, 200);
 }
 
 a {
     text-decoration: none;
-    color: #378959;
+    color: #36a579;
 }
 
 a:hover {

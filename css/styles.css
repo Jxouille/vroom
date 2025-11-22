@@ -281,9 +281,9 @@ h3 {
 
 .texte-fonctionnement {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     padding-top: 20px;
-    font-family: inter;
+    font-family: Arial, Helvetica, sans-serif;
     color: #009966;
     font-weight: normal;
 }
