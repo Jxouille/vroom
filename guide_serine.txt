@@ -21,8 +21,10 @@ git commit -m "ajout de formulaire"
 git add *
 git commit -m "ajout de bouton connexions"
 
-et une fois que la fonctionnalité est terminer on fait 
-git push origin/master
+et vous faite 
+git push serine/login
+
+et aprés pour tout fusioner on fais un pull request sur github directement 
 
 
 
