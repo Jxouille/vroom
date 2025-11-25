@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vroom - Covoiturage</title>
-    <link rel="stylesheet" href="css/styles.css"> 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../Ressources/CSS/styles.css"> 
 </head>
 <body>
     <nav class="navbar">
@@ -34,7 +33,7 @@
         <section class="search-trips">
             <div class="search-item">
                 <img src="image/Date.png" alt="Date de départ">
-                <input type="text" placeholder="jj/mm/aaaa">
+                <input type="date" placeholder="jj/mm/aaaa">
             </div>
             <div class="search-item">
                 <img src="image/position.png" alt="Lieu de départ">
@@ -52,6 +51,92 @@
         </section>
         </section>
 
+        <div class="texte-intro">
+            <h2>Pourquoi choisir VROOM ?</h2>
+            <a>Le covoiturage qui fait du bien à votre portefeuile et à la planète</h3>
+        </div>
+
+    <section class = "avantages">
+        <section class="avantages-item">
+            <img src="image/feuille.png" alt="" class="icone">
+            <h3>Écologique</h3>
+            <p>Réduisez votre empreinte carbone jusqu'à 75% en partageant vos trajets</p>
+        </section>
+
+        <section class="avantages-item">
+            <img src="image/portefeuille.png" alt="" class="icone">
+            <h3>Économique</h3>
+            <p>Divisez vos frais de route par le nombre de passagers et économisez</p>
+        </section>
+
+        <section class="avantages-item">
+            <img src="image/gens.png" alt="" class="icone">
+            <h3>Convivial</h3>
+            <p>Rencontrez de nouvelles personnes et partagez des moments agréables</p>
+        </section>
+
+        <section class="avantages-item">
+            <img src="image/bouclier.png" alt="" class="icone">
+            <h3>Sécurisé</h3>
+            <p>Profils vérifiés et système de notation pour voyager en toute confiance</p>
+        </section>
+    </section>
+
+        <div class="texte-fonctionnement">
+            <h2>Comment ça marche ?</h2>
+            <a>Covoiturer n'a jamais été aussi simple</a>
+        </div>
+
+    <section class="fonctionnement">
+        <section class="fonctionnement-item">
+            <img src="image/rechercher.png" alt="" class="icone-fonctionnement">
+            <h3>Recherchez</h3>
+            <p>Trouvez un trajet qui correspond à vos besoins parmi des miliers d'options</p>
+        </section>
+
+        <section class="fonctionnement-item">
+            <img src="image/message.png" alt="" class="icone-fonctionnement">
+            <h3>Réservez</h3>
+            <p>Contactez le conducteur et réserver votre place en quelques clics</p>
+        </section>
+
+        <section class="fonctionnement-item">
+            <img src="image/voiture.png" alt="" class="icone-fonctionnement">
+            <h3>Partagez</h3>
+            <p>Profitez du trajet, faites des économies et réduisez votre impact environnemental</p>
+        </section>
+    </section>
+        
+    <section class="texte-explicatif">
+            <h2>Trajets populaires</h2>
+            <a>Découvrez les trajets les plus demandés cette semaine</a>
+    </section>
+
+    <section class="trajet-populaire">
+        <section class="trajet-item">
+            <div class="avatar">MD</div>
+            <h3>Paris </h3>
+            <h3>Lyon</h3>
+            <p>Départ : 15 août 2024</p>
+            <p>Prix : 20€</p>
+        </section>
+
+        <section class="trajet-item">
+            <div class="avatar">TL</div>
+            <h3>Bordeaux</h3>
+            <h3>Toulouse</h3>
+            <p>Départ : 22 août 2024</p>
+            <p>Prix : 22€</p>
+        </section>
+
+        <section class="trajet-item">
+            <div class="avatar">SM</div>
+            <h3>Marseille</h3>
+            <h3>Nice</h3>
+            <p>Départ : 20 août 2024</p>
+            <p>Prix : 18€</p>
+        </section>
+    </section>
 
 </body>
 </html>
