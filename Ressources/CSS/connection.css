@@ -1,35 +1,164 @@
 .logo_position {
-    display: flex;
+   /* display: flex;
     flex-direction: column;       /* active flex */
-    justify-content: center;     /* centre horizontalement */
-    align-items: center;
+    /*justify-content: center;     /* centre horizontalement */
+   /* align-items: center;
     height: auto;                /* adapte la hauteur au contenu */
-    margin: 0;                   /* supprime les marges par défaut */
-    padding: 0;
+    /*margin: 0;                   /* supprime les marges par dÃ©faut */
+    /*padding: 0;
+    position: relative;*/
+
+
+    left: 0;                        /* Met le logo Ã  gauche */
+    top: 0;                         /* Met le logo en haut */   
+    display: flex;                  /* active flex */   
+    padding: 0 40px;                /* espace intÃ©rieur gauche et droite */
+    position: relative;             /* RÃ©fÃ©rence pour le positionnement absolu */
 }
 
-/* réduit la taille du logo (image) */
+/* rÃ©duit la taille du logo (image) */
 .logo_position img {
     width: 10%;    /* ajuster pour rendre le logo plus petit/plus grand */
     max-width: 100%;
     height: auto;
     display: block;
 }
+.icone {
+    width: 70px;
+    height: 70px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top: -20px;
+    
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 500px;
+    margin: 0px auto;
+    border: 0.5px solid #378959;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* effet d'ombre au survol */
+     border-radius: 15px;
 
-.form_position {
-    height: 25vh;
-    width: 25vw;
-    background-color: #03973eff;
+}
+.form_content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    padding: 50px;
+    /* margin-top: -20px;*/ 
+    position: relative;
+    /* top: -20px; translation vers le haut */
 }
 
-h2,
+.petit-texte {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #646a68;
+    font-size: medium
+}
+
+.header-login {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    top: -30px;
+}
+
+h2 {
+    text-align: center;
+    color: #36a579;
+    margin-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
+}
+
 h3 {
     text-align: center;
-    color: green;
+    color: #36a579;
     margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 150;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #f3faf4; /* Couleur de fond pour le reste de la page */
+}
+
+.id {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    color: #646a68;
+    
+}   
+
+.mdp {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    color: #646a68;
+
+}
+
+.mdp-oubliÃ© {
+    margin-left: 148px;
+    font-weight: normal;
+    color: #36a579;
+    text-decoration: none;
+}
+
+/* Bouton de connexion */
+
+.button {
+    background-color: #149268; 
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    width: 400px;
+}
+
+.creation-compte h3 {
+    text-align: center;
+    color: #646a68;
+    margin-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 150;
+}
+
+.retour-accueil {
+    text-align: center;
+    color: #36a579;
+    margin-top: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 150;
+}
+
+.input-group {
+    width: 400px;
+    padding: 8px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: rgb(200, 200, 200);
+}
+
+a {
+    text-decoration: none;
+    color: #36a579;
+}
+
+a:hover {
+     color: #38c06c; /* couleur au survol */
 }

@@ -127,7 +127,7 @@
             <p>Prix : 18€</p>
         </section>
     </section>
-
+<?php require "../footer.php";?>
 </body>
 </html>
 
