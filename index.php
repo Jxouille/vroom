@@ -1,2 +1,2 @@
-require './router.php';
-require './views/layout.php';
+
+require './Vue/layout.php';
