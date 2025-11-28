@@ -1,2 +1,1 @@
-
-require './Vue/layout.php';
+require __DIR__ . '/vue/layout.php';
