@@ -1,2 +1,3 @@
-require './router.php';
-require './views/layout.php';
+<?php
+include "Vue/pages/acceuil.php";
+?>

@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vroom - Covoiturage</title>
-    <link rel="stylesheet" href="../../Ressources/CSS/commun.css"> 
-    <link rel="stylesheet" href="../../Ressources/CSS/connection.css">
+    <link rel="stylesheet" href="css/page_login.css">
 </head>
 <?php require "../header.php";?>
 <body>

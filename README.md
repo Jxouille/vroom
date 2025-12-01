@@ -13,7 +13,7 @@ git status pour voir ce qui a changer dans ton commit
 Pour travailler en équipe il est nécessaire de chacun avoir sa branch pour sa 
 fonctionnalité 
 
-git checkout -b nomBranch pour créer votre branch et etre automatiquement dessus 
+git checkout -b nomBranch pour créer votre branch et etre automatiquement dessus (les branch emeric, serine, myanh, benjamin, axel) on déja été créer 
 git checkout nomBranch pour se deplacer sur une branch 
 
 exemple :
@@ -28,8 +28,7 @@ git commit -m "ajout de formulaire"
 git add *
 git commit -m "ajout de bouton connexions"
 
-et une fois que la fonctionnalité est terminer on fait 
-git push origin/master
+et une fois que la fonctionnalité est terminer on verra ensemble.
 
 
 
