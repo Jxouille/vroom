@@ -30,7 +30,11 @@ git commit -m "ajout de bouton connexions"
 
 et une fois que la fonctionnalité est terminer on verra ensemble.
 
+git pull
 
+git add .
+git commit -m 'message'
+git push 
 
 
 
