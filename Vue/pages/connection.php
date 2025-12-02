@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <link rel="stylesheet" href="css/page_login.css">
+    <link rel="stylesheet" href="../../Ressources/CSS/commun.css"> 
+    <link rel="stylesheet" href="../../Ressources/CSS/connection.css">
 </head>
+<?php require "../header.php";?>
 <body>
-    <div class ="logo_position"><img src="image/vroom_logo_sans_fond.png" alt="Logo Vroom"></div>
     <div class="pos">
-
         <section class="header-login">
-            <img src="image/FeuilleLogin2.png" alt="" class="icone">
+            <img src="../../Ressources/Image/FeuilleLogin2.png" alt="" class="icone">
             <h2>Bienvenue sur VROOM</h2>
             <h3>Connectez-vous pour continuer votre voyage écologique</h3><br> 
         </section>
@@ -33,7 +33,7 @@
         </div>
     </div>
     <div class="retour-accueil">
-        <h3><a href="#">← Retour à l'accueil</a></h3>
+        <h3><a href="acceuil.php">← Retour à l'accueil</a></h3>
     </div>
 
     
