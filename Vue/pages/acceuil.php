@@ -6,7 +6,6 @@
     <title>Vroom - Covoiturage</title>
     <link rel="stylesheet" href="../../Ressources/CSS/commun.css"> 
     <link rel="stylesheet" href="../../Ressources/CSS/acceuil.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <?php require "../header.php";?>
 <body>
@@ -17,7 +16,7 @@
                 <p>VROOM rend le covoiturage simple, économique et écologique. Partagez vos trajets, réduisez votre empreinte carbone et voyagez pour moins cher.</p>
                 <div class="buttons-container">
                     <a href="#" class="button button-primary">Trouver un trajet →</a>
-                    <a href="#" class="button button-secondary">Proposer un trajet</a> 
+                    <a href="publie_trajet.php" class="button button-secondary">Proposer un trajet</a> 
                 </div>
             </div>
             </div>
