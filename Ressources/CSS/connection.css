@@ -1,158 +1,141 @@
-.logo_position {
-   /* display: flex;
-    flex-direction: column;       /* active flex */
-    /*justify-content: center;     /* centre horizontalement */
-   /* align-items: center;
-    height: auto;                /* adapte la hauteur au contenu */
-    /*margin: 0;                   /* supprime les marges par dÃ©faut */
-    /*padding: 0;
-    position: relative;*/
-
-
-    left: 0;                        /* Met le logo Ã  gauche */
-    top: 0;                         /* Met le logo en haut */   
-    display: flex;                  /* active flex */   
-    padding: 0 40px;                /* espace intÃ©rieur gauche et droite */
-    position: relative;             /* RÃ©fÃ©rence pour le positionnement absolu */
+/* Conteneur général de la page */
+.page-container {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+padding-top: 40px;
+box-sizing: border-box;
 }
 
-/* rÃ©duit la taille du logo (image) */
-.logo_position img {
-    width: 10%;    /* ajuster pour rendre le logo plus petit/plus grand */
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-.icone {
-    width: 70px;
-    height: 70px;
-    display: block;
-    margin: 0 auto;
-    position: relative;
-    top: -20px;
-    
-}
-.form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 500px;
-    margin: 0px auto;
-    border: 0.5px solid #378959;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* effet d'ombre au survol */
-    border-radius: 15px;
-
-}
-.form_content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 50px;
-    /* margin-top: -20px;*/ 
-    position: relative;
-    /* top: -20px; translation vers le haut */
+/* Bloc qui contient le header + le formulaire */
+.pos {
+width: 100%;
+max-width: 420px;
+margin: 0 auto;
 }
 
-.petit-texte {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #646a68;
-    font-size: medium
-}
-
+/* Header de la page de login */
 .header-login {
-    text-align: center;
-    margin-bottom: 20px;
-    position: relative;
-    top: -30px;
+text-align: center;
+margin-bottom: 20px;
 }
 
+.icone {
+width: 70px;
+height: 70px;
+margin: 0 auto 10px auto;
+}
+
+/* Conteneur du formulaire */
+.form_position {
+width: 100%;
+}
+
+/* Style du bloc formulaire (car ton HTML n’a pas de class="form") */
+.form_position form {
+width: 100%;
+max-width: 420px;
+background-color: #fff;
+border: 1px solid #378959;
+padding: 25px;
+margin-top: 10px;
+border-radius: 15px;
+box-shadow: 0 0 10px rgba(0,0,0,0.15);
+box-sizing: border-box;
+}
+
+/* Texte d’introduction */
+.petit-texte {
+font-family: Arial, Helvetica, sans-serif;
+color: #646a68;
+font-size: 14px;
+margin-bottom: 15px;
+}
+
+/* Titres */
 h2 {
-    text-align: center;
-    color: #36a579;
-    margin-bottom: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 100;
+text-align: center;
+color: #36a579;
+margin-bottom: 10px;
+font-family: Arial, Helvetica, sans-serif;
+font-weight: 400;
 }
 
 h3 {
-    text-align: center;
-    color: #36a579;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 150;
+text-align: center;
+color: #36a579;
+font-family: Arial, Helvetica, sans-serif;
+font-weight: 400;
 }
 
-
-
-.id {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: normal;
-    color: #646a68;
-    
-}   
-
+/* Labels */
+.id,
 .mdp {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: normal;
-    color: #646a68;
-
+display: block;
+font-family: Arial, Helvetica, sans-serif;
+font-weight: normal;
+color: #646a68;
+margin-bottom: 5px;
 }
 
-.mdp-oubliÃ© {
-    margin-left: 148px;
-    font-weight: normal;
-    color: #36a579;
-    text-decoration: none;
+/* Lien “mot de passe oublié” : correction du nom de classe */
+.mdp-oublié {
+float: right;
+text-decoration: none;
+color: #36a579;
+font-size: 12px;
+}
+
+/* Champs de saisie */
+.input-group {
+width: 100%;
+padding: 8px;
+margin: 5px 0 20px 0;
+border: 1px solid #ccc;
+border-radius: 4px;
+background-color: rgb(230, 230, 230);
+box-sizing: border-box;
 }
 
 /* Bouton de connexion */
-
 .button {
-    background-color: #149268; 
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: normal;
-    width: 400px;
+background-color: #149268;
+color: white;
+padding: 12px;
+width: 100%;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 14px;
 }
 
+/* Texte création de compte */
 .creation-compte h3 {
-    text-align: center;
-    color: #646a68;
-    margin-top: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 150;
+text-align: center;
+color: #646a68;
+margin-top: 20px;
+font-family: Arial, Helvetica, sans-serif;
+font-weight: 400;
 }
 
+/* Lien retour accueil */
 .retour-accueil {
-    text-align: center;
-    color: #36a579;
-    margin-top: 50px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 150;
+text-align: center;
+color: #36a579;
+margin-top: 30px;
+font-family: Arial, Helvetica, sans-serif;
+font-weight: 400;
 }
 
-.input-group {
-    width: 400px;
-    padding: 8px;
-    margin: 5px 0 15px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    background-color: rgb(200, 200, 200);
-}
-
+/* Liens généraux */
 a {
-    text-decoration: none;
-    color: #36a579;
+text-decoration: none;
+color: #36a579;
 }
 
 a:hover {
-     color: #38c06c; /* couleur au survol */
+color: #38c06c;
 }
