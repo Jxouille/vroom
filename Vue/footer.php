@@ -1,10 +1,8 @@
 <footer>
     <div class="footer-container">
-
-        <div class="footer-column logo">
-            <h2>LOGO<br>VROOM</h2>
+        <div class="footer-column">
+            <img src="../../Ressources/Image/vroom_logo_sans_fond.png"  alt="Logo Vroom">
         </div>
-
         <div class="footer-column">
             <h3>En savoir plus</h3>
             <ul>
