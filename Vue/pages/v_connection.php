@@ -2,8 +2,6 @@
 <html lang="fr">
 <head>
     <link rel="stylesheet" href="css/page_login.css">
-     <link rel="stylesheet" href="../../Ressources/CSS/commun.css"> 
-    <link rel="stylesheet" href="../../Ressources/CSS/connection.css">
 </head>
 <?php require "../header.php";?>
 <body>
