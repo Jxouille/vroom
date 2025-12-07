@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../Ressources/CSS/commun.css">
-    <link rel="stylesheet" href="../../Ressources/CSS/inscription.css">
-</head>
-
-<?php include "../header.php";?>
+<?php require "../head_&_header.php";?>
 
 <body>
     <div class="box1">
