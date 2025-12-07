@@ -1,9 +1,45 @@
-# vroom
+# ------ REGLES DE CODE --------
+
+1. Communiquer COMMUNIQUER et communiquer (ce qui est important on repete 3 fois :>>) donc mettre les commentaire sur les parties de code  'compliquer'
+2. Les noms de class ou d'attribut doivent etre tous en francais.
+3. On nomme bien les éléments (donc tout attacher en mode toutAttacher ou tout_attacher) ca vaut pour les images, les noms de dossiers, tout !
+    ex: logo_vroom.png
+
+# --------- COMMANDE GIT ---------
+
+# Avant de travailler 
+>> git pull
+
+# Une fois fini de travailler
+>> git add .
+>> git commit -m 'message'
+>> git push 
+
+# Git Cheatsheet 
+>> git log : pour voir ce qu'il s'est passé
+>> git status : pour voir ce que vous changez dans votre commit
+>> git pull : pour récupérer les données partager 
+>> git status : pour voir l'état de ton commit 
+>> git add : tonFichier pour ajouter le fichier au commit (t'utilise la petite etoile * pour tout ajouter)
+>> git commit -m "ton message pour expliquer les changement" 
+>> git push : pour envoyer tes fichiers (NE JAMAIS GIT FORCE)
+>> git checkout nomBranch : pour aller sur une branch
 
 # Lien video MVC
 https://laconsole.dev/formations/php/design-pattern-mvc#impl%C3%A9menter-le-mvc--3-grandes-couches
 
+# ---- Répartition des pages ------
 
+v_inscription.php : Benjamin
+
+Mettez votre pages  
+
+
+
+
+
+
+# ------ NOTE SERINE --------
 # Les bases de GIT
 Bienvenue sur le guide github de l'équipe.
 
@@ -22,32 +58,15 @@ git checkout origin/master
 git pull 
 git checkout serine/login
 *code*
-git add *
-git commit -m "ajout de formulaire"
+>> git add *
+>> git commit -m "ajout de formulaire"
 *code*
-git add *
-git commit -m "ajout de bouton connexions"
+>> git add *
+>> git commit -m "ajout de bouton connexions"
 
 et une fois que la fonctionnalité est terminer on verra ensemble.
 
-git pull
-
-git add .
-git commit -m 'message'
-git push 
+# ---- FIN NOTE SERINE -------
 
 
 
-
-
-git log pour voir ce qu'il s'est passé 
-git status pour voir ce que vous changez dans votre commit
-git pull pour récupérer les données partager 
-git status pour voir l'état de ton commit 
-git add tonFichier pour ajouter le fichier au commit (t'utilise la petite etoile * pour tout ajouter)
-git commit -m "ton message pour expliquer les changement" 
-git push pour envoyer tes fichiers (NE JAMAIS GIT FORCE)
-git checkout nomBranch pour aller sur une branch
-
-#REGLES 
-On nomme bien les éléments (donc tout attacher en mode toutAttacher ou tout_attacher) ca vaut pour les images, les noms de dossiers, tout !
