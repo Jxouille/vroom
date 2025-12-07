@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+.box1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #EFEFEF; 
+}
+
+.box2{
+    width: 30%;
+    height: 80%;
+    background-color: #FFFFFF; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    border-radius: 10px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style pour la boite blanche du formulaire */
+.form-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+/* Style des champs de saisie */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+    color: #555;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* Style du bouton */
+button {
+    background-color: #42D372; 
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #33a157ff; /* Un peu plus foncé au survol */
+}
