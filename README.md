@@ -8,7 +8,7 @@
 # --------- COMMANDE GIT ---------
 
 # Avant de travailler 
->> git pull
+>> git pull origin master (quand vous êtes sur votre branch)
 
 # Une fois fini de travailler
 >> git add .
