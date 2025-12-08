@@ -55,6 +55,14 @@
         .footer-section ul li a:hover {
             text-decoration: underline;
         }
+        .footer-contact a {
+            color: white;             /* Met la couleur du texte en blanc */
+            text-decoration: none;    /* Supprime le soulignement par défaut */
+        }
+
+        .footer-contact a:hover {
+             text-decoration: underline; 
+        }
 
         /* Styles spécifiques pour le contact */
         .footer-contact p {

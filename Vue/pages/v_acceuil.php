@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vroom - Covoiturage</title>
-    <link rel="stylesheet" href="../../Ressources/CSS/commun.css"> 
-    <link rel="stylesheet" href="../../Ressources/CSS/acceuil.css">
-</head>
-<?php require "../header.php";?>
+
+<?php require "../head_&_header.php";?>
+
 <body>
     <section class="top-page">
         <div class="landing-content">
@@ -127,7 +120,9 @@
             <p>Prix : 18€</p>
         </section>
     </section>
-<?php require "../footer.php";?>
+
+<?php include "../footer.php";?>
+
 </body>
 </html>
 

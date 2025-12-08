@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -38,9 +39,9 @@
                 <h4>Contact</h4>
                 <p>10 rue de Vanves, 92130,</p>
                 <p>Issy-les-Moulineaux</p>
-                <p>Email : contact@vroom.com</p>
+                <p>Email : <a href="mailto:contact@vroom.com">contact@vroom.com</a></p>                
                 <p>Horaires : lundi - vendredi,</p>
-                <p>8h - 18h</p>
+                <p>De 8h00 à 18h00</p>
             </div>
 
         </div>
