@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <link rel="stylesheet" href="../../Ressources/CSS/commun.css"> 
-    <link rel="stylesheet" href="../../Ressources/CSS/connection.css">
-</head>
-<?php require "../header.php";?>
+<?php require "../head_&_header.php";?>
 <body>
     <div class="pos">
         <section class="header-login">
@@ -38,4 +32,5 @@
 
     
 </body>
+<?php include "../footer.php";?>
 </html>
