@@ -4,7 +4,7 @@
         <div class="form-container">
             <h2>Inscription</h2>
             <form action="" method="" onsubmit="">
-                
+
                 <div class="input-group">
                     <label for="nom">Nom</label>
                     <input type="name" id="nom" name="nom" required placeholder="Macron">
@@ -35,7 +35,6 @@
                 <button type="submit">S'inscrire</button>
             </form>
         </div>
-
 </body>
 <?php include "../footer.php";?>
 </html>
