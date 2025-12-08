@@ -1,0 +1,199 @@
+/* -------------------------------------- */
+/* 1. Conteneur Principal : .detail-trajet */
+/* -------------------------------------- */
+.detail-trajet {   
+    /* Largeur maximale pour que la boîte ne prenne pas toute la page sur de grands écrans */
+    max-width: 800px;
+    /* Centrer la boîte sur la page */
+    margin: 50px auto; 
+    /* Fond légèrement coloré pour le contraste */
+    background-color: #ffffff; 
+    /* Ajoute une belle ombre pour donner un effet de "carte" */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    /* Coins légèrement arrondis pour un look plus doux */
+    border-radius: 12px;
+    /* S'assurer que le contenu a de l'espace à l'intérieur */
+    padding: 30px; 
+    /* Définit la police de base pour tout le contenu */
+    font-family: Arial, sans-serif;
+    /* Optionnel : Ajoute une bordure subtile */
+    border: 1px solid #e0e0e0;
+}
+
+/* -------------------------------------- */
+/* 2. En-tête de la Section : .header-trajet */
+/* -------------------------------------- */
+.header-trajet {
+    /* Bordure visuelle pour séparer l'en-tête du contenu */
+    border-bottom: 2px solid #007bff; 
+    /* Espace sous la bordure */
+    padding-bottom: 20px; 
+    /* Espace au-dessus de la section */
+    margin-bottom: 20px; 
+    /* Utiliser Flexbox pour aligner l'icône et le texte */
+    display: flex;
+    /* Aligner les éléments verticalement au centre */
+    align-items: center; 
+}
+
+/* Style du titre principal H2 */
+.header-trajet h2 {
+    color: #007bff; /* Couleur primaire (Bleu) */
+    font-size: 2em; /* Taille du titre principal */
+    margin: 0; /* Supprimer les marges par défaut pour un meilleur alignement */
+}
+
+/* Style du sous-titre H3 de l'en-tête */
+.header-trajet h3 {
+    color: #6c757d; /* Couleur secondaire (Gris) */
+    font-size: 1.1em;
+    font-weight: normal; /* Sous-titre moins gras */
+    margin: 0; /* Supprimer les marges par défaut */
+    /* Ajoute un petit espace à gauche du texte pour ne pas coller à l'icône */
+    padding-left: 15px; 
+}
+
+/* -------------------------------------- */
+/* 3. Icône dans l'En-tête */
+/* -------------------------------------- */
+.header-trajet .icone {
+    /* Donne une taille fixe à l'icône */
+    width: 60px;
+    height: 60px;
+    /* Assure que l'image est bien ronde si elle doit l'être */
+    border-radius: 50%;
+    /* Espace après l'icône */
+    margin-right: 15px; 
+    /* Ajoute une légère bordure pour la faire ressortir */
+    border: 2px solid #007bff; 
+    /* Assure que l'image est bien ajustée */
+    object-fit: cover;
+}
+
+/* -------------------------------------- */
+/* 4. Zone d'Information : .info-trajet */
+/* -------------------------------------- */
+
+/* Style pour tous les titres d'information H3 dans cette section */
+.info-trajet h3 {
+    color: #343a40; /* Couleur sombre pour les titres de section */
+    font-size: 1.4em;
+    /* Marge supérieure pour séparer clairement les sections */
+    margin-top: 25px; 
+    margin-bottom: 8px;
+    /* Ajoute une petite ligne décorative */
+    border-left: 4px solid #28a745; /* Couleur verte pour l'aspect écologique/positif */
+    padding-left: 10px; /* Espace entre la ligne et le texte */
+}
+
+/* -------------------------------------- */
+/* 5. Lien entre Départ et Arrivée */
+/* -------------------------------------- */
+.itineraire {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.lien-trajet {
+    /* Petite colonne de points bleus */
+    width: 6px;
+    height: 72px;
+    background-image: radial-gradient(circle at 50% 50%, #007bff 50%, transparent 51%);
+    background-repeat: repeat-y;
+    background-size: 6px 12px;
+    margin: 5px 0;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
+/* -------------------------------------- */
+/* Itinéraire détaillé: points verts + ligne */
+/* -------------------------------------- */
+.itineraire-detailed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.stop-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 420px;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #6c757d;
+    flex: 0 0 14px;
+}
+
+.dot.green {
+    background-color: #28a745;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 0 2px rgba(40,167,69,0.12);
+}
+
+.stop-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stop-type {
+    margin: 0;
+    font-weight: 600;
+    color: #343a40;
+}
+
+.time {
+    margin: 0;
+    color: #6c757d;
+}
+
+.address {
+    margin: 2px 0 0 0;
+    color: #495057;
+    font-size: 0.95em;
+}
+
+.connector {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.vertical-line {
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(#28a745, #28a745);
+    border-radius: 2px;
+    position: relative;
+}
+
+.duration {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    background: #ffffff;
+    padding: 4px 8px;
+    border-radius: 12px;
+    border: 1px solid rgba(40,167,69,0.15);
+    font-weight: 600;
+    color: #28a745;
+}
+
+/* Petite adaptation pour petits écrans */
+@media (max-width: 480px) {
+    .stop-row, .connector { max-width: 320px; }
+}
