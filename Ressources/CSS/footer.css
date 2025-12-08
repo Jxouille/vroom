@@ -1,0 +1,76 @@
+.footer {
+            background-color: #0b5345; /* Vert foncé, couleur dominante */
+            color: white;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            position: fixed;
+            padding: 40px 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .footer-content {
+            display: flex; /* Utilisation de Flexbox pour aligner les colonnes */
+            justify-content: space-around; /* Espace entre les blocs */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+    
+        .footer-logo img {
+            max-width: 100%; /* Assure que l'image ne dépasse pas la largeur du conteneur */
+            height: 250px;    /* Définit une hauteur fixe pour l'image */
+            width: auto;     /* Maintient les proportions */
+        }   
+
+        .footer-section {
+            flex: 1; /* Chaque section prend une part de l'espace */
+            min-width: 180px; /* Pour éviter un rétrécissement excessif */
+        }
+
+        .footer-section h4 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #5d9d88; /* Soulignement léger pour les titres */
+            padding-bottom: 5px;
+            color: #f7f7f7;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-section ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Styles spécifiques pour le contact */
+        .footer-contact p {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+        }
+
+        /* Media Query pour les petits écrans (mobile) */
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column; /* Les blocs passent en colonne */
+                gap: 30px; /* Espace vertical entre les blocs */
+            }
+
+            .footer-logo {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        }
