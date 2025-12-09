@@ -38,18 +38,25 @@
 
 header{
     width: 100%;
-    height: 100px;
-    display: flex;
-    background-color: #00875A;
-    align-items: center;
-    flex-direction: row;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    flex-direction: row;
+    background-color: #00875A;
+    
 }
-
 
 /* Barre de nav fixe */
 header img {
     width: 70px;   /* taille du logo */
+}
+.header-content {
+    width: 60%;   /* taille de la barre de navigation */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
 }
 .nav-main {
     display: flex;
@@ -62,24 +69,63 @@ header img {
 .nav-profile {
     margin-right: 20px;
     list-style-type: none;
-    margin: 0;
-    padding: 0;
 }
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 130px;
-  background-color: #f1f1f1;
-  height: 100%; /* Full height */
-  position: fixed; /* Make it stick, even on scroll */
-  overflow: auto; /* Enable scrolling if the sidenav has too much content */
+.nav-profile img {
+    width: 40px;   /* taille de l'icône profil */
+    border-radius: 50%; /* rendre l'image circulaire */
+}   
+/* Style des liens du menu déroulant */
+.nav-profile li:hover ul a {
+    background: #f3f3f3;
+    color: #2f3036;
+    height: 40px;
+    line-height: 40px;
 }
+/* État au survol des liens du menu déroulant */
+.nav-profile li:hover ul a:hover {
+    background: #19c589;
+    color: #fff;
+}
+/* Masquer les liens du menu déroulant jusqu'à ce qu'ils soient nécessaires */
+.nav-profile li ul {
+    display: none;
+}
+/* Rendre les liens du menu déroulant verticaux */
+.nav-profile ul li {
+    display: block;
+    float: none;
+}
+.nav-profile ul li a {
+    width: auto;
+    min-width: 100px;
+    padding: 0 20px;
+}
+/* Afficher le menu déroulant au survol */
+.nav-profile img:hover + .hidden, .hidden:hover {
+    display: block;
+}   
+/*Hide checkbox*/
+input[type=checkbox]{
+    display: none;
+}
+/*Show menu when invisible checkbox is checked*/
+input[type=checkbox]:checked ~ #nav-profile{
+    display: block;
+}   
+.show-menu {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    color: #fff;
+    background: #19c589;
+    text-align: center;
+    padding: 10px 0;
+    display: none;
+}
+
 header nav a { 
     color: #333;
     font-weight: 600;
     font-size: 18px;
-    z-index: 2;
     justify-content: space-around;
     text-decoration: none;
 }
@@ -97,45 +143,57 @@ body{
 /*___________________________________*/
 
 footer {
-    margin-top: 50px;
+    background-color: #0b5345; /* Vert foncé, couleur dominante */
+    padding: 40px 20px;
     width: 100%;
-    background-color: #004d3c; /* Dark green like the screenshot */
 }
-
-.footer-container {
-    margin: 50px auto;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+.footer-content {
+    display: flex; /* Utilisation de Flexbox pour aligner les colonnes */
+    justify-content: space-around; /* Espace entre les blocs */
+    max-width: 1200px;
+    margin: 0 auto;
 }
-
-.footer-column {
-    flex: 1;
-    min-width: 200px;
-    margin: 10px 20px;
+.footer-logo img {
+    max-width: 100%; /* Assure que l'image ne dépasse pas la largeur du conteneur */
+    height: 250px;    /* Définit une hauteur fixe pour l'image */
+    width: 400;     /* Maintient les proportions */
+}   
+.footer-section {
+    min-width: 180px; /* Pour éviter un rétrécissement excessif */
 }
-.footer-column img {
-    width: 200px;
-    align-items: center;
-}
-.footer-column h3 {
+.footer-section h4 {
     font-size: 16px;
-    margin-bottom: 12px;
-    font-weight: bold;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #5d9d88; /* Soulignement léger pour les titres */
+    padding-bottom: 5px;
 }
-.footer-column ul {
+.footer-section ul {
     list-style: none;
 }
-.footer-column ul li {
+.footer-section ul li {
     margin-bottom: 8px;
     font-size: 14px;
 }
-.footer-column a {
-    color: white;
+.footer-section ul li a {
     text-decoration: none;
+    color: #f1f1f1;
 }
-
-.footer-column a:hover {
+.footer-section ul li a:hover {
     text-decoration: underline;
 }
 
+.footer-section p {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column; /* Les blocs passent en colonne */
+        gap: 30px; /* Espace vertical entre les blocs */
+    }
+    .footer-logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}

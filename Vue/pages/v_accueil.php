@@ -124,6 +124,6 @@
 
 </body>
 
-<?php include "../footer.php";?>
+<?php require "../footer.php";?>
 </html>
 
