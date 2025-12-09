@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,7 +12,7 @@
         <div class="footer-content">
             
             <div class="footer-logo">
-                <img src="../../Ressources/Image/vroom_logo_sans_fond.png" alt="Logo VROOM" class="logo-image"/>;
+                <img src="../../Ressources/Image/vroom_logo_sans_fond.png" alt="Logo VROOM" class="logo-image"/>
             </div>
             
             <div class="footer-section">
