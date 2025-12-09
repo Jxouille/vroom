@@ -48,3 +48,32 @@ body { background-color: #f6f7f9; }
 /* Inline input style when editing */
 .inline-input { width:100%; box-sizing:border-box; padding:8px 10px; border:1px solid #ddd; border-radius:6px; }
 
+/* Theme variables + subtle polish */
+:root{
+	--primary:#007bff;
+	--accent:#28a745;
+	--muted:#6c757d;
+	--surface:#ffffff;
+	--shadow: 0 8px 30px rgba(17,24,39,0.06);
+}
+
+.info-card { transition: transform .28s ease, box-shadow .28s ease; }
+.info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+
+.edit-btn, .save-small, .cancel-small, .btn-link { transition: background-color .18s ease, color .18s ease, transform .12s ease; }
+.edit-btn:hover { transform: translateY(-2px); }
+.save-small:hover { transform: translateY(-2px); }
+.cancel-small:hover { transform: translateY(-2px); }
+
+.avatar.large { transition: transform .35s cubic-bezier(.2,.9,.2,1); }
+.avatar.large:hover { transform: scale(1.04); }
+
+/* Fade-in animation on load */
+.animate .info-card { opacity:0; transform: translateY(8px); }
+.animate.show .info-card { opacity:1; transform: translateY(0); transition: all .4s cubic-bezier(.2,.9,.2,1); }
+
+/* Smooth field-row hover */
+.field-row { transition: background-color .18s ease; }
+.field-row:hover { background-color: rgba(0,0,0,0.02); }
+
+

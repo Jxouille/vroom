@@ -102,6 +102,8 @@
     <script>
     // Inline edit helper: toggles a field between display and edit mode
     document.addEventListener('DOMContentLoaded', function() {
+        // trigger gentle animations
+        var wrap = document.querySelector('.main-wrapper'); if (wrap) { wrap.classList.add('animate'); setTimeout(function(){ wrap.classList.add('show'); }, 50); }
         function createInput(value, field) {
             var input = document.createElement('input');
             input.type = (field === 'age') ? 'number' : 'text';
