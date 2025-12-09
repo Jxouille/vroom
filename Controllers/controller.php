@@ -18,9 +18,7 @@ function actionChercherTrajets(){
 
 }
 
-function actionBen(){
-	$nom = monNom();
-	require("Views/benj.php");
-}
+
+
 
 ?>
