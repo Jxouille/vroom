@@ -14,12 +14,14 @@ $css_chemin  = "../../Ressources/CSS/" . $nom_ce_fichier . ".css";
 <header>
     <nav>
         <img src="../../Ressources/Image/vroom_logo_sans_fond.png"  alt="Logo Vroom">
-        <a href="#">Accueil</a>
-        <a href="#">Réserver</a>
-        <a href="#">Publier</a>
-        <a href="#">À propos</a>
-        <a href="#">Contact</a>
-        <a href="connection.php" class="button-header">Se connecter</a>
+        <a href="v_accueil.php">Accueil</a>
+        <a href="v_recherche_trajet.php">Réserver</a>
+        <a href="v_publie_trajet.php">Publier</a>
+        <a href="v_mes_trajets.php">Mes trajets</a>
+        <a href="v_messagerie.php">Messagerie</a>
+        <a href="v_profile.php">Profil</a>
+        <a href="v_connection.php" class="button-header">Se connecter</a>
+        <a href="v_inscription.php" class="button-header secondary">S'inscrire</a>
     </nav>
 </header>
 
