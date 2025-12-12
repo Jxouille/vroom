@@ -14,7 +14,7 @@ html, body {
 
 /* ---------- Page & conteneur principal ---------- */
 body {
-    background-color: #eef9f2; /* Fond menthe clair */
+    background-color: #eef9f2; 
     padding: 40px 20px;
 }
 
@@ -36,7 +36,7 @@ body {
 
 /* header (titre + sous-texte) */
 .page-header {
-    /* AJOUT : S'assurer que le header ne soit pas trop collé au haut de la page si un autre header existe */
+    /* AJOUT : S'assurer que le header ne soit pas trop collé au haut de la page */
     margin-top: 0px; 
     margin-bottom: 20px;
     text-align: left;
@@ -45,7 +45,7 @@ body {
 .page-header h2 {
     margin: 0 0 6px;
     font-size: 18px;
-    color: #0f6b4a; /* vert foncé */
+    color: #0f6b4a;
     font-weight: 700;
 }
 .page-header p {
