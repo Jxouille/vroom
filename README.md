@@ -8,7 +8,7 @@
 # --------- COMMANDE GIT ---------
 
 # Avant de travailler 
->> git pull
+>> git pull origin master (quand vous êtes sur votre branch)
 
 # Une fois fini de travailler
 >> git add .
@@ -31,6 +31,7 @@ https://laconsole.dev/formations/php/design-pattern-mvc#impl%C3%A9menter-le-mvc-
 # ---- Répartition des pages ------
 
 v_inscription.php : Benjamin
+v_detail_trajet.php : Axel
 
 Mettez votre pages  
 

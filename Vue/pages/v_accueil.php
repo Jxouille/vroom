@@ -121,8 +121,9 @@
         </section>
     </section>
 
-<?php include "../footer.php";?>
 
 </body>
+
+<?php require "../footer.php";?>
 </html>
 
