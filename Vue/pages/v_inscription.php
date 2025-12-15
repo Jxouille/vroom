@@ -1,8 +1,4 @@
 
-<?php $nom_ce_fichier = substr(basename($_SERVER['PHP_SELF']), 2, -4);
-include "../head_&_header.php";
-?>
-
 <body> 
         <div class="form-container">
             <h2>Inscription</h2>
@@ -39,7 +35,5 @@ include "../head_&_header.php";
             </form>
         </div>
 </body>
-<?php include "../footer.php";?>
-</html>
 
 

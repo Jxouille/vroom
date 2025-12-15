@@ -1,9 +1,6 @@
-<?php require "../head_&_header.php";?>
+
 
 <body>
-
-
-
     <div class="main-wrapper">
     <div class="page-container">
         

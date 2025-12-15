@@ -1,4 +1,4 @@
-<?php require "../head_&_header.php";?>
+
 
 <body>
 

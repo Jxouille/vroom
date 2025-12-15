@@ -1,5 +1,5 @@
 
-<?php require "../head_&_header.php";?>
+
 
 <body>
     <section class="top-page">
@@ -124,6 +124,5 @@
 
 </body>
 
-<?php require "../footer.php";?>
-</html>
+
 

@@ -1,16 +1,3 @@
-<?php
-$nom_ce_fichier = substr(basename($_SERVER['PHP_SELF']), 2, -4);
-$css_chemin  = "../../Ressources/CSS/" . $nom_ce_fichier . ".css";
-?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vroom - <?php echo "Page " . $nom_ce_fichier; ?> </title>
-    <link rel="stylesheet" href="../../Ressources/CSS/commun.css"> 
-    <link rel="stylesheet" href="<?php echo $css_chemin; ?>">
-</head>
 <header>
     <div class="header-content">  
         <img src="../../Ressources/Image/logo_ver2.png"  alt="Logo Vroom">
