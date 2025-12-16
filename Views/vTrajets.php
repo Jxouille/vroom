@@ -141,7 +141,7 @@ $trajets = [
                 <div class="prix"><?= htmlspecialchars($t["prix"]) ?> €</div>
                 <span class="prix-info">Par personne<br>2 places</span>
 
-                <button class="btn-reserver">Réserver</button>
+                <button class="btn-reserver">Voir plus</button>
             </div>
 
         </div>

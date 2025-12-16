@@ -3,6 +3,7 @@
 :root {
   --couleurVerte: #28a745;
   --couleurVerteFonce: #1f7e36;
+  --couleurRouge:#dc3545;
   --texteGris: #6d7c82;
   --titreNoir: #222;
   --fondClair: #ffffff;
@@ -51,7 +52,7 @@
     margin-right: 25px;
 }
 
-.auth .connexion,
+.auth .connexion, .auth .deconnexion,
 .auth .inscription {
     text-decoration: none;
     padding: 8px 16px;
@@ -69,6 +70,17 @@
 
 .auth .connexion:hover {
     background-color: #28a745;
+    color: white;
+}
+
+/* Deconnexion */
+.auth .deconnexion {
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+.auth .deconnexion:hover {
+    background-color: #dc3545;
     color: white;
 }
 
