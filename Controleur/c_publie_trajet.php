@@ -1,7 +1,7 @@
 <?php
 #require_once __DIR__ . '/../Modele/annonces.php';
 
-class c_annonce {
+class c_publie_trajet {
 
     /**
      * Affiche une annonce
@@ -22,46 +22,19 @@ class c_annonce {
         #}
 
         // Variables pour head.php
-        $title = "Détail du trajet";
-        $css   = "detail_trajet.css";
+        $title = "Publier un trajet";
+        $css   = "publier_trajet.css";
 
         require __DIR__ . '/../Vue/head.php';
         require __DIR__ . '/../Vue/header.php';
-        require __DIR__ . '/../Vue/pages/v_detail_trajet.php';
+        require __DIR__ . '/../Vue/pages/v_publie_trajet.php';
         require __DIR__ . '/../Vue/footer.php';
     }
-}
-
-class c_detail_trajet {
 
     /**
-     * Affiche une annonce
+     * Publie une nouvelle annonce
      */
-    public function afficher(): void {
-
-        // Sécurité : vérifier l'ID
-        #if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
-        #    header("Location: index.php?page=accueil");
-        #    exit;
-        #}
-
-        #$annonce = Annonces::get((int) $_GET['id']);
-
-        #if (!$annonce) {
-        #    header("Location: index.php?page=accueil");
-        #    exit;
-        #}
-
-        // Variables pour head.php
-        $title = "Détail du trajet";
-        $css   = "detail_trajet.css";
-
-        require __DIR__ . '/../Vue/head.php';
-        require __DIR__ . '/../Vue/header.php';
-        require __DIR__ . '/../Vue/pages/v_detail_trajet.php';
-        require __DIR__ . '/../Vue/footer.php';
-    }
-     public function publier(): void {
+    public function publier(): void {
 
         // Protection basique
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -81,5 +54,3 @@ class c_detail_trajet {
         exit;
     }
 }
-
-?>

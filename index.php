@@ -104,8 +104,8 @@ switch ($page) {
 
     // Annonces
     case 'annonce':
-        require 'Controleur/c_annonce.php';
-        $controller = new c_annonce();
+        require 'Controleur/c_detail_trajet.php';
+        $controller = new c_detail_trajet();
         if ($action === 'publier') {
             $controller->publier();
         } else {
