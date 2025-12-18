@@ -1,15 +1,13 @@
 <?php
-require_once __DIR__ . '/../Model/reservations.php';
+#require_once __DIR__ . '/../Model/reservations.php';
 
 class c_reservation {
 
     public function afficher(int $id): void {
-        $resa = Reservations::get($id);
-        if (!$resa) {
-            header("Location: index.php?page=accueil");
-            exit;
-        }
-
+        #if (!$resa) {
+        #    header("Location: index.php?page=accueil");
+        #    exit;
+        #}
         $title = "Réservation";
         $css = "reservation.css";
 

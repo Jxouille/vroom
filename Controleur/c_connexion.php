@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../Model/utilisateur.php';
+#require_once __DIR__ . '/../Model/utilisateur.php';
 
 class c_connexion {
 

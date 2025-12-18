@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../Model/favoris.php';
+#require_once __DIR__ . '/../Model/favoris.php';
 
 class c_favoris {
 

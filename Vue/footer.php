@@ -7,18 +7,18 @@
         <div class="footer-section">
             <h4>En savoir plus</h4>
             <ul>
-                    <li><a href="v_contact.php">Aide et contact</a></li>
-                    <li><a href="v_contact.php">FAQ</a></li>
-                    <li><a href="v_accueil.php">Presse</a></li>
+                    <li><a href="index.php?page=accueil">Aide et contact</a></li>
+                    <li><a href="index.php?page=accueil">FAQ</a></li>
+                    <li><a href="index.php?page=accueil">Presse</a></li>
                     <li><a href="#">CGU</a></li>
             </ul>
         </div>
         <div class="footer-section">
             <h4>Informations</h4>
             <ul>
-                <li><a href="v_vroom.php">Qui sommes-nous ?</a></li>
-                <li><a href="v_vroom.php">Comment fonctionne Vroom ?</a></li>
-                <li><a href="v_nos_offres.php">Nos bons plans</a></li>
+                <li><a href="index.php?page=accueil">Qui sommes-nous ?</a></li>
+                <li><a href="index.php?page=accueil">Comment fonctionne Vroom ?</a></li>
+                <li><a href="index.php?page=accueil">Nos bons plans</a></li>
             </ul>
         </div>
         <div class="footer-section">

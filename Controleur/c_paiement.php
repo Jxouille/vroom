@@ -5,16 +5,16 @@ require_once __DIR__ . '/../Model/reservations.php';
 class c_paiement {
 
     public function afficher(int $id_reservation): void {
-        if (!isset($_SESSION['user_id'])) {
-            header("Location: index.php?page=connexion");
-            exit;
-        }
+        #if (!isset($_SESSION['user_id'])) {
+        #    header("Location: index.php?page=connexion");
+        #    exit;
+        #}
 
         $reservation = Reservations::get($id_reservation);
-        if (!$reservation) {
-            header("Location: index.php?page=mes_reservations");
-            exit;
-        }
+        #if (!$reservation) {
+        #    header("Location: index.php?page=mes_reservations");
+        #    exit;
+        #}
 
         $title = "Paiement";
         $css = "paiement.css";

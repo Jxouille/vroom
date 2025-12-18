@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../Modele/annonces.php';
+#require_once __DIR__ . '/../Modele/annonces.php';
 
 class c_annonce {
 
@@ -9,17 +9,17 @@ class c_annonce {
     public function afficher(): void {
 
         // Sécurité : vérifier l'ID
-        if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
-            header("Location: index.php?page=accueil");
-            exit;
-        }
+        #if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
+        #    header("Location: index.php?page=accueil");
+        #    exit;
+        #}
 
-        $annonce = Annonces::get((int) $_GET['id']);
+        #$annonce = Annonces::get((int) $_GET['id']);
 
-        if (!$annonce) {
-            header("Location: index.php?page=accueil");
-            exit;
-        }
+        #if (!$annonce) {
+        #    header("Location: index.php?page=accueil");
+        #    exit;
+        #}
 
         // Variables pour head.php
         $title = "Annonce";

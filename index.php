@@ -20,6 +20,12 @@ switch ($page) {
         $controller->afficher();
         break;
 
+    case 'recherche_trajet':
+        require 'Controleur/c_recherche_trajet.php';
+        $controller = new c_recherche_trajet();
+        $controller->afficher();
+        break;
+        
     // Connexion
     case 'connexion':
         require 'Controleur/c_connexion.php';

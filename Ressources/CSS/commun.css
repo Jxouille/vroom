@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
+:root {
+  --couleurVerte: #28a745;
+  --couleurVerteFonce: #1f7e36;
+  --texteGris: #6d7c82;
+  --titreNoir: #222;
+  --fondClair: #ffffff;
+  --ombre: rgba(0,0,0,0.10);
+  --ombreHover: rgba(0,0,0,0.18);
+}
 /* Réinitialisation de base */
 * {
     font-family: 'Inter', sans-serif;
@@ -43,7 +51,7 @@ header{
     align-items: center;
     justify-content:space-around;
     flex-direction: row;
-    background-color: #00875A;
+    background-color:var(--fondClair);
     
 }
 
@@ -115,22 +123,21 @@ input[type=checkbox]:checked ~ #nav-profile{
 .show-menu {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-decoration: none;
-    color: #fff;
-    background: #19c589;
+    background: var(--fondClair);
     text-align: center;
     padding: 10px 0;
     display: none;
 }
 
 header nav a { 
-    color: #333;
+    color: var(--texteGris);
     font-weight: 600;
     font-size: 18px;
     justify-content: space-around;
     text-decoration: none;
 }
 header a:hover {
-    color:#07b532;      /* couleur au survol */
+    color:var(--titreNoir);      /* couleur au survol */
 }
 /*___________________________________*/
 
@@ -143,7 +150,7 @@ body{
 /*___________________________________*/
 
 footer {
-    background-color: #0b5345; /* Vert foncé, couleur dominante */
+    background-color: var(--couleurVerteFonce); /* Vert foncé, couleur dominante */
     padding: 40px 20px;
     width: 100%;
 }
