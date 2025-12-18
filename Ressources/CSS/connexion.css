@@ -1,36 +1,24 @@
 .logo_position {
-   /* display: flex;
-    flex-direction: column;       /* active flex */
-    /*justify-content: center;     /* centre horizontalement */
-   /* align-items: center;
-    height: auto;                /* adapte la hauteur au contenu */
-    /*margin: 0;                   /* supprime les marges par dÃ©faut */
-    /*padding: 0;
-    position: relative;*/
-
-
-    left: 0;                        /* Met le logo Ã  gauche */
-    top: 0;                         /* Met le logo en haut */   
     display: flex;                  /* active flex */   
     padding: 0 40px;                /* espace intÃ©rieur gauche et droite */
-    position: relative;             /* RÃ©fÃ©rence pour le positionnement absolu */
 }
 
 /* rÃ©duit la taille du logo (image) */
 .logo_position img {
     width: 10%;    /* ajuster pour rendre le logo plus petit/plus grand */
-    max-width: 100%;
-    height: auto;
-    display: block;
 }
 .icone {
     width: 70px;
     height: 70px;
     display: block;
     margin: 0 auto;
-    position: relative;
-    top: -20px;
     
+}
+.form_position {
+    display: flex;
+    justify-content: center; /* centre horizontalement */
+    align-items: center;     /* centre verticalement */
+    margin-top: 50px;       /* espace au-dessus du formulaire */
 }
 .form {
     display: flex;
@@ -39,7 +27,6 @@
     justify-content: center;
     height: 100%;
     width: 500px;
-    margin: 0px auto;
     border: 0.5px solid #378959;
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* effet d'ombre au survol */
@@ -63,7 +50,7 @@
     font-size: medium
 }
 
-.header-login {
+.titre-login {
     text-align: center;
     margin-bottom: 20px;
     position: relative;

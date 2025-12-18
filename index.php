@@ -25,6 +25,34 @@ switch ($page) {
         $controller = new c_recherche_trajet();
         $controller->afficher();
         break;
+
+    case 'publie_trajet':
+        require 'Controleur/c_publie_trajet.php';
+        $controller = new c_publie_trajet();
+        if ($action === 'publier') {
+            $controller->publier();
+        } else {
+            $controller->afficher();
+        }
+        break;
+    case 'detail_trajet':
+        require 'Controleur/c_detail_trajet.php';
+        $controller = new c_detail_trajet();
+        $controller->afficher();
+        break;
+
+    case 'reservation':
+        require 'Controleur/c_reservation.php';
+        $controller = new c_reservation();
+        $id = $_GET['id'] ?? null;
+        $controller->afficher($id);
+        break;
+
+    case 'mes_documents':
+        require 'Controleur/c_mes_documents.php';
+        $controller = new c_mes_documents();
+        $controller->afficher();
+        break;
         
     // Connexion
     case 'connexion':
@@ -41,23 +69,25 @@ switch ($page) {
     case 'inscription':
         require 'Controleur/c_inscription.php';
         $controller = new c_inscription();
-        if ($action === 'enregistrer') {
-            $controller->enregistrer();
-        } else {
-            $controller->afficher();
-        }
+        #if ($action === 'enregistrer') {
+        #    $controller->enregistrer();
+        #} else {
+        #    $controller->afficher();
+        #}
+        $controller->afficher();
         break;
 
     // Profil
     case 'profil':
         require 'Controleur/c_profil.php';
         $controller = new c_profil();
-        if ($action === 'modifier') {
-            $controller->modifier();
-        } else {
-            $id = $_GET['id'] ?? null;
-            $controller->afficher($id);
-        }
+        #if ($action === 'modifier') {
+        #    $controller->modifier();
+        #} else {
+        #    $id = $_GET['id'] ?? null;
+        #    $controller->afficher($id);
+        #}
+        $controller->afficher();
         break;
 
     // Messages

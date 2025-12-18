@@ -150,7 +150,7 @@ body{
 /*___________________________________*/
 
 footer {
-    background-color: var(--couleurVerteFonce); /* Vert foncé, couleur dominante */
+    background-color: var(--texteGris); /* Vert foncé, couleur dominante */
     padding: 40px 20px;
     width: 100%;
 }

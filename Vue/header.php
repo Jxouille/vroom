@@ -13,9 +13,10 @@
                 <ul classe="hidden">
                     <li><a href="index.php?page=mes_trajets">Mes trajets</a></li>
                     <li><a href="index.php?page=messagerie">Messagerie</a></li>
-                    <li><a href="index.php?page=profile">Mon compte</a></li> 
+                    <li><a href="index.php?page=profil">Mon compte</a></li> 
+                    <li><a href="index.php?page=mes_documents">Mes documents</a></li> 
                     <li><a href="index.php?page=connexion" class="button-header">Se connecter</a></li> 
-                    <li><a href="index.php?page=inscription" class="button-header secondary">S'inscrire</a></li> 
+                    <li><a href="index.php?page=inscription" class="button-header">S'inscrire</a></li> 
                 </ul>
         </nav>
     </div>
