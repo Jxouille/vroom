@@ -20,7 +20,6 @@
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
-
             <div>
                 <label for="telephone" class="id">Téléphone</label><br>
                 <input type="text" id="telephone" name="telephone" required class="input-group"><br><br>

@@ -85,7 +85,7 @@ switch ($page) {
         #    $controller->modifier();
         #} else {
         #    $id = $_GET['id'] ?? null;
-        #    $controller->afficher($id);
+        #   $controller->afficher($id);
         #}
         $controller->afficher();
         break;
