@@ -17,6 +17,7 @@ switch ($page) {
     case 'accueil':
         require 'Controleur/c_accueil.php';
         $controller = new c_accueil();
+        
         $controller->afficher();
         break;
 

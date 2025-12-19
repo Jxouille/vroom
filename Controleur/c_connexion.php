@@ -36,4 +36,15 @@ class c_connexion {
         exit;
     }
 }
+class c_mdp_oblie {
+    public function afficher(): void {
+        $title = "Mot de passe oblier";
+        $css = "mdp_oblie.css";
+        require __DIR__ . '/../Vue/head.php';
+        require __DIR__ . '/../Vue/header.php';
+        require __DIR__ . '/../Vue/pages/v_mdp_oblie.php';
+        require __DIR__ . '/../Vue/footer.php';
+    }
+}
 ?>
+
