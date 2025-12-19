@@ -162,8 +162,7 @@ footer {
 }
 .footer-logo img {
     max-width: 100%; /* Assure que l'image ne dépasse pas la largeur du conteneur */
-    height: 250px;    /* Définit une hauteur fixe pour l'image */
-    width: 400;     /* Maintient les proportions */
+    height: 100px; 
 }   
 .footer-section {
     min-width: 180px; /* Pour éviter un rétrécissement excessif */

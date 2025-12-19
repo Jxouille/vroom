@@ -153,7 +153,10 @@
                 <p class="price">25€/pers</p>
             </div>
 
-            <button class="ride-btn">Réserver</button>
+            <button class="ride-btn"
+                onclick="window.location.href='index.php?page=detail_trajet'">
+                Réserver
+            </button>
         </div>
 
         <!-- CARD 2 -->
@@ -178,7 +181,10 @@
                 <p class="price">15€/pers</p>
             </div>
 
-            <button class="ride-btn">Réserver</button>
+            <button class="ride-btn"
+                onclick="window.location.href='index.php?page=detail_trajet'">
+                Réserver
+            </button>
         </div>
 
         <!-- CARD 3 -->
@@ -203,10 +209,17 @@
                 <p class="price">18€/pers</p>
             </div>
 
-            <button class="ride-btn">Réserver</button>
+            <button class="ride-btn"
+                onclick="window.location.href='index.php?page=detail_trajet'">
+                Réserver
+            </button>
         </div>
 
     </div>
-    <button class="all-rides-btn" >Voir tous les trajets</button>
+    <button class="all-rides-btn"
+        onclick="window.location.href='index.php?page=recherche_trajet'">
+        Voir tous les trajets
+    </button>
+
 </section>
-</body>
+</body> 
