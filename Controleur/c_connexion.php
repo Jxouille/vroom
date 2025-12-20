@@ -1,5 +1,5 @@
 <?php
-#require_once __DIR__ . '/../Model/utilisateur.php';
+require_once __DIR__ . '/../Modele/utilisateur.php';
 
 class c_connexion {
 
@@ -32,7 +32,7 @@ class c_connexion {
 
     public function deconnexion(): void {
         session_destroy();
-        header("Location: index.php?page=connexion");
+        header("Location: index.php?page=accueil");
         exit;
     }
 }
