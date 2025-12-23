@@ -7,8 +7,8 @@
     <div class="form_position">
         <form action="index.php?page=connexion&action=verifier" method="POST">
             <div class="petit-texte">
-                <p>Connexion</p>
-                <p>Entrez vos identifiants pour accéder à votre compte</p>
+                <p>Mot de passe oblier</p>
+                <p>Entrez votre email pour rétialiser votre mot de passe</p>
             </div>
          <!-- Messages d'erreur -->
             <?php if (isset($_GET['error'])): ?>
@@ -23,13 +23,10 @@
             <div>
                 <label for="telephone" class="id">Téléphone</label><br>
                 <input type="text" id="telephone" name="telephone" required class="input-group"><br><br>
-                <label for="mot_de_passe" class="mdp">
-                    Mot de passe
-                    <a href="#" class="mdp-oublié">Mot de passe oublié ?</a>
-                </label><br>
-                <input type="password" id="mot_de_passe" name="mot_de_passe" required class="input-group"><br><br>
-
-                <button type="submit" class="button">→ Se connecter</button>
+                <button type="submit" class="button">→ Envoyer</button>
+            </div>
+            <div class="creation-compte">
+                <h3>Se connecter avec un autre compte ? <a href="index.php?page=connexion">Se connecter</a></h3>
             </div>
             <div class="creation-compte">
                 <h3>Pas encore de compte ? <a href="index.php?page=inscription">Inscrivez-vous</a></h3>

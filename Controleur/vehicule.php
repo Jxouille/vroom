@@ -1,17 +1,16 @@
 <?php
-require_once __DIR__ . '/../Model/vehicules.php';
+#require_once __DIR__ . '/../Model/vehicules.php';
 
 
 class c_vehicule {
 
     public function afficher(int $id): void {
-        $vehicule = Vehicules::get($id);
-        if (!$vehicule) {
-            header("Location: index.php?page=mes_vehicules");
-            exit;
-        }
+        #if (!$vehicule) {
+        #    header("Location: index.php?page=mes_vehicules");
+        #    exit;
+        #}
 
-        $photos = PhotosVehicule::getAll($id);
+        #$photos = PhotosVehicule::getAll($id);
 
         $title = "Véhicule";
         $css = "vehicule.css";

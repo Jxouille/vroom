@@ -17,9 +17,44 @@ switch ($page) {
     case 'accueil':
         require 'Controleur/c_accueil.php';
         $controller = new c_accueil();
+        
         $controller->afficher();
         break;
 
+    case 'recherche_trajet':
+        require 'Controleur/c_trajet.php';
+        $controller = new c_recherche_trajet();
+        $controller->afficher();
+        break;
+
+    case 'publie_trajet':
+        require 'Controleur/c_trajet.php';
+        $controller = new c_publie_trajet();
+        if ($action === 'publier') {
+            $controller->publier();
+        } else {
+            $controller->afficher();
+        }
+        break;
+    case 'detail_trajet':
+        require 'Controleur/c_trajet.php';
+        $controller = new c_detail_trajet();
+        $controller->afficher();
+        break;
+
+    case 'reservation':
+        require 'Controleur/c_reservation.php';
+        $controller = new c_reservation();
+        $id = $_GET['id'] ?? null;
+        $controller->afficher($id);
+        break;
+
+    case 'mes_documents':
+        require 'Controleur/c_profil.php';
+        $controller = new c_mes_documents();
+        $controller->afficher();
+        break;
+        
     // Connexion
     case 'connexion':
         require 'Controleur/c_connexion.php';
@@ -40,6 +75,7 @@ switch ($page) {
         } else {
             $controller->afficher();
         }
+        $controller->afficher();
         break;
 
     // Profil
@@ -50,13 +86,14 @@ switch ($page) {
             $controller->modifier();
         } else {
             $id = $_GET['id'] ?? null;
-            $controller->afficher($id);
+           $controller->afficher($id);
         }
+        $controller->afficher();
         break;
 
     // Messages
     case 'messages':
-        require 'Controleur/c_messages.php';
+        require 'Controleur/c_profil.php';
         $controller = new c_messages();
         if ($action === 'envoyer') {
             $controller->envoyer();
@@ -68,8 +105,8 @@ switch ($page) {
 
     // Annonces
     case 'annonce':
-        require 'Controleur/c_annonce.php';
-        $controller = new c_annonce();
+        require 'Controleur/c_trajet.php';
+        $controller = new c_detail_trajet();
         if ($action === 'publier') {
             $controller->publier();
         } else {
@@ -79,7 +116,7 @@ switch ($page) {
 
     // Favoris
     case 'favoris':
-        require 'Controleur/c_favoris.php';
+        require 'Controleur/c_profil.php';
         $controller = new c_favoris();
         if ($action === 'ajouter') {
             $controller->ajouter();

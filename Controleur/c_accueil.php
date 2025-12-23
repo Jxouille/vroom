@@ -10,7 +10,7 @@ class c_accueil {
         #$annonces = Annonces::all();
 
         require __DIR__ . '/../Vue/head.php';
-        require __DIR__ . '/../vue/header.php';
+        require __DIR__ . '/../Vue/header.php';
         require __DIR__ . '/../Vue/pages/v_accueil.php';
         require __DIR__ . '/../Vue/footer.php';
     }

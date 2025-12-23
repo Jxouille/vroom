@@ -2,20 +2,21 @@
     <div class="header-content">  
         <img src="../../Ressources/Image/logo_ver2.png"  alt="Logo Vroom">
         <nav class="nav-main">
-            <a href="v_accueil.php">Accueil</a>
-            <a href="v_recherche_trajet.php">Réserver</a>
-            <a href="v_publie_trajet.php">Publier</a>
+            <a href="index.php?page=accueil">Accueil</a>
+            <a href="index.php?page=recherche_trajet">Chercher un trajet </a>
+            <a href="index.php?page=publie_trajet">Publier</a>
         </nav>
         <nav class="nav-profile">
             <label for="show-menu" class="show-menu">Show Menu</label>
             <input type="checkbox" id="show-menu" role="button">
                 <img src="../../Ressources/Image/person_icon.png"  alt="Logo Vroom">
                 <ul classe="hidden">
-                    <li><a href="v_mes_trajets.php">Mes trajets</a></li>
-                    <li><a href="v_messagerie.php">Messagerie</a></li>
-                    <li><a href="v_profile.php">Mon compte</a></li> 
-                    <li><a href="v_connection.php" class="button-header">Se connecter</a></li> 
-                    <li><a href="v_inscription.php" class="button-header secondary">S'inscrire</a></li> 
+                    <li><a href="index.php?page=mes_trajets">Mes trajets</a></li>
+                    <li><a href="index.php?page=messagerie">Messagerie</a></li>
+                    <li><a href="index.php?page=profil">Mon compte</a></li> 
+                    <li><a href="index.php?page=mes_documents">Mes documents</a></li> 
+                    <li><a href="index.php?page=connexion" class="button-header">Se connecter</a></li> 
+                    <li><a href="index.php?page=inscription" class="button-header">S'inscrire</a></li> 
                 </ul>
         </nav>
     </div>
