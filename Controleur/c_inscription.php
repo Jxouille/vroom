@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../Modele/utilisateur.php';
+#require_once __DIR__ . '/../Modele/utilisateur.php';
 
 class c_inscription {
 

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../Model/utilisateur.php';
+require_once __DIR__ . '/../Modele/utilisateur.php';
 
 class c_connexion {
 
@@ -32,8 +32,19 @@ class c_connexion {
 
     public function deconnexion(): void {
         session_destroy();
-        header("Location: index.php?page=connexion");
+        header("Location: index.php?page=accueil");
         exit;
     }
 }
+class c_mdp_oblie {
+    public function afficher(): void {
+        $title = "Mot de passe oblier";
+        $css = "mdp_oblie.css";
+        require __DIR__ . '/../Vue/head.php';
+        require __DIR__ . '/../Vue/header.php';
+        require __DIR__ . '/../Vue/pages/v_mdp_oblie.php';
+        require __DIR__ . '/../Vue/footer.php';
+    }
+}
 ?>
+

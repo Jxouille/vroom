@@ -51,7 +51,68 @@ class Annonces {
 
     public static function delete(int $id): bool {
         $db = dbConnect();
-        $stmt = $db->prepare("DELETE FROM annonces WHERE id = ?");
+        $sql = "DELETE FROM annonces WHERE id = ?";
+        $stmt = $db->prepare($sql);
         return $stmt->execute([$id]);
+    }
+    public static function recherche_trajets(array $filters = [], string $sort = 'date_desc'): array{
+        $trajets = [];
+        $db = dbConnect();
+
+        $sql = "SELECT prenom, nom, note, places, depart, destination, date_depart, prix
+                FROM annonces
+                WHERE 1=1"; // Dummy condition for easier appending
+
+        $params = [];
+
+        // Apply filters
+        if (!empty($filters['depart'])) {
+            $sql .= " AND depart LIKE :depart";
+            $params[':depart'] = '%' . $filters['depart'] . '%';
+        }
+        if (!empty($filters['destination'])) {
+            $sql .= " AND destination LIKE :destination";
+            $params[':destination'] = '%' . $filters['destination'] . '%';
+        }
+        if (!empty($filters['date'])) {
+            $sql .= " AND DATE(date_depart) = :date";
+            $params[':date'] = $filters['date'];
+        }
+
+        // Apply sorting
+        switch ($sort) {
+            case 'date_asc':
+                $sql .= " ORDER BY date_depart ASC";
+                break;
+            case 'prix_asc':
+                $sql .= " ORDER BY prix ASC";
+                break;
+            case 'prix_desc':
+                $sql .= " ORDER BY prix DESC";
+                break;
+            case 'date_desc':
+            default:
+                $sql .= " ORDER BY date_depart DESC";
+                break;
+        }
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute($params);
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $trajets[] = [
+                "prenom" => $row["prenom"],
+                "nom" => $row["nom"],
+                "avatar" => strtoupper(
+                    substr($row["prenom"], 0, 1) . substr($row["nom"], 0, 1)),
+                "note" => (float) $row["note"],
+                "places" => (int) $row["places"],
+                "depart" => $row["depart"],
+                "destination" => $row["destination"],
+                "date" => date("l d M • H:i", strtotime($row["date_depart"])),
+                "prix" => (int) $row["prix"]
+            ];
+        }
+        return $trajets;
     }
 }
