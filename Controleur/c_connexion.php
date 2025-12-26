@@ -13,31 +13,34 @@ class c_connexion {
     }
 
     public function verifier(): void {
-
-        if (!isset($_POST['email'], $_POST['mot_de_passe'])) {
-            header("Location: index.php?page=connexion&error=missing");
-            exit;
-        }
-
-        $user = Utilisateur::connexion(
-            trim($_POST['email']),
-            $_POST['mot_de_passe']
-        );
-
-        if (!$user) {
-            header("Location: index.php?page=connexion&error=invalid");
-            exit;
-        }
-
-        session_regenerate_id(true);
-
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['user_nom'] = $user['nom'];
-        $_SESSION['user_email'] = $user['email'];
-
-        header("Location: index.php?page=accueil");
+    if (!isset($_POST['email'], $_POST['mot_de_passe'])) {
+        header("Location: index.php?page=connexion&error=missing");
         exit;
     }
+
+    $login = trim($_POST['email']); // email ou téléphone
+    $mot_de_passe = $_POST['mot_de_passe'];
+
+    // Récupérer l'utilisateur par email ou téléphone
+    $user = Utilisateur::getByEmailOrTelephone($login);
+
+    if (!$user) {
+        header("Location: index.php?page=connexion&error=invalid");
+        exit;
+    }
+
+    // Vérifier le mot de passe
+    if (!password_verify($mot_de_passe, $user['mot_de_passe'])) {
+        header("Location: index.php?page=connexion&error=invalid");
+        exit;
+    }
+
+    // Connexion réussie
+    $_SESSION['user_id'] = $user['id'];
+    header("Location: index.php?page=accueil");
+    exit;
+}
+
 
     public function deconnexion(): void {
         session_destroy();

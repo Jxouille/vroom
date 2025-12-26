@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-/**
+/**git
  * Page par défaut
  */
 $page = $_GET['page'] ?? 'accueil';
@@ -80,13 +80,13 @@ switch ($page) {
     case 'profil':
         require 'Controleur/c_profil.php';
         $controller = new c_profil();
+
         if ($action === 'modifier') {
             $controller->modifier();
         } else {
-            $id = $_GET['id'] ?? null;
-           $controller->afficher($id);
+            $id = isset($_GET['id']) && ctype_digit($_GET['id']) ? (int)$_GET['id'] : null;
+            $controller->afficher($id);
         }
-        $controller->afficher();
         break;
 
     // Messages

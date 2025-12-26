@@ -45,11 +45,10 @@ class c_inscription {
         unset($_SESSION['captcha_secret']);
 
         $success = Utilisateur::creer([
-            'nom'       => trim($_POST['nom']),
-            'prenom'    => trim($_POST['prenom']),
-            'email'     => trim($_POST['email']),
-            'telephone' => $_POST['telephone'] ?? null,
-            'mdp'       => password_hash($_POST['mdp'], PASSWORD_DEFAULT)
+            'nom'         => $_POST['nom'],
+            'prenom'      => $_POST['prenom'],
+            'email'       => $_POST['email'],
+            'mot_de_passe' => password_hash($_POST['mdp'], PASSWORD_DEFAULT)
         ]);
 
         if (!$success) {

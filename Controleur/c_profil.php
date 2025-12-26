@@ -3,23 +3,20 @@ require_once __DIR__ . '/../Modele/utilisateur.php';
 require_once __DIR__ . '/../Modele/vehicules.php';
 require_once __DIR__ . '/../Modele/messages.php';
 require_once __DIR__ . '/../Modele/conversations.php';
-require_once __DIR__ . '/../Model/favoris.php';
-require_once __DIR__ . '/../Model/paiements.php';
-require_once __DIR__ . '/../Model/reservations.php';
+require_once __DIR__ . '/../Modele/favoris.php';
+require_once __DIR__ . '/../Modele/paiements.php';
+require_once __DIR__ . '/../Modele/reservations.php';
 
 class c_profil {
 
-    public function afficher(int $id_utilisateur = null): void {
-        if (!isset($_SESSION['user_id'])) {
-            header("Location: index.php?page=connexion");
-            exit;
-        }
 
-        $id = $id_utilisateur ?? $_SESSION['user_id'];
-        $utilisateur = Utilisateur::get($id);
-        $vehicules = Vehicules::getByUtilisateur($id);
+    // Affichage du profil
+    public function afficher(?int $id_utilisateur = null) {
+        $id_utilisateur = $id_utilisateur ?? $_SESSION['user_id'];
+        $utilisateur = Utilisateur::getById($id_utilisateur);
+        $vehicules = Vehicules::getByUser($id_utilisateur);
 
-        $title = "Profil";
+        $title = "Profile de " . htmlspecialchars($utilisateur['prenom'] . ' ' . $utilisateur['nom']);
         $css = "profil.css";
 
         require __DIR__ . '/../Vue/head.php';
@@ -28,26 +25,67 @@ class c_profil {
         require __DIR__ . '/../Vue/footer.php';
     }
 
-    public function modifier(): void {
-        if (!isset($_SESSION['user_id'], $_POST['nom'], $_POST['telephone'])) {
-            header("Location: index.php?page=profil&error=missing");
+    // Modification d'un champ
+    public function modifier() {
+        // Vérifier si l'utilisateur est connecté
+        if (!isset($_SESSION['user_id'])) {
+            http_response_code(403);
+            echo 'Non autorisé';
             exit;
         }
 
-        Utilisateur::update($_SESSION['user_id'], [
-            'nom' => $_POST['nom'],
-            'telephone' => $_POST['telephone'],
-            'biographie' => $_POST['biographie'] ?? null
-        ]);
+        $id_utilisateur = $_SESSION['user_id'];
 
-        header("Location: index.php?page=profil&success=updated");
-        exit;
+        if (!isset($_POST['field'], $_POST['value'])) {
+            http_response_code(400);
+            echo 'Données manquantes';
+            exit;
+        }
+
+        $field = $_POST['field'];
+        $value = trim($_POST['value']);
+
+        // Champs autorisés
+        $champs_valides = ['prenom', 'nom', 'email', 'telephone', 'biographie'];
+        if (!in_array($field, $champs_valides)) {
+            http_response_code(400);
+            echo 'Champ non autorisé';
+            exit;
+        }
+
+        // Mise à jour en base
+        $success = Utilisateur::updateField($id_utilisateur, $field, $value);
+
+        if ($success) {
+            echo 'OK';
+        } else {
+            http_response_code(500);
+            echo 'Erreur lors de la mise à jour';
+        }
+    }
+
+    // Suppression du compte (optionnel)
+    public function supprimer() {
+        if (!isset($_SESSION['user_id'])) {
+            http_response_code(403);
+            exit;
+        }
+        $id_utilisateur = $_SESSION['user_id'];
+        $deleted = Utilisateur::delete($id_utilisateur);
+
+        if ($deleted) {
+            session_destroy();
+            echo 'OK';
+        } else {
+            http_response_code(500);
+            echo 'Erreur suppression';
+        }
     }
 }
 
 class c_messages {
 
-    public function liste(int $id_conversation = null): void {
+    public function liste(?int $id_conversation = null): void {
         if (!isset($_SESSION['user_id'])) {
             header("Location: index.php?page=connexion");
             exit;

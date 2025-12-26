@@ -10,7 +10,8 @@
                 <p>Connexion</p>
                 <p>Entrez vos identifiants pour accéder à votre compte</p>
             </div>
-         <!-- Messages d'erreur -->
+
+            <!-- Messages d'erreur -->
             <?php if (isset($_GET['error'])): ?>
                 <div class="error">
                     <?php if ($_GET['error'] === 'missing'): ?>
@@ -20,9 +21,11 @@
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
+
             <div>
-                <label for="telephone" class="id">Téléphone</label><br>
-                <input type="text" id="telephone" name="telephone" required class="input-group"><br><br>
+                <label for="email" class="id">Email</label><br>
+                <input type="text" id="email" name="email" required class="input-group"><br><br>
+
                 <label for="mot_de_passe" class="mdp">
                     Mot de passe
                     <a href="#" class="mdp-oublié">Mot de passe oublié ?</a>
@@ -31,11 +34,13 @@
 
                 <button type="submit" class="button">→ Se connecter</button>
             </div>
+
             <div class="creation-compte">
                 <h3>Pas encore de compte ? <a href="index.php?page=inscription">Inscrivez-vous</a></h3>
             </div>
         </form>
     </div>
+
     <div class="retour-accueil">
         <h3><a href="index.php?page=accueil">← Retour à l'accueil</a></h3>
     </div>

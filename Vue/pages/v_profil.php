@@ -1,4 +1,3 @@
-
 <body>
 
     <div class="main-wrapper">
@@ -9,55 +8,40 @@
 
             <div class="main-content">
 
-                <!-- Profil résumé (lecture seule) -->
+                <!-- Profil résumé (lecture seule / modifiable) -->
                 <div class="info-card profile-summary">
                     <div class="profile-header">
-                        <div class="avatar large">JD</div>
+                        <div class="avatar large">
+                            <?= strtoupper(substr($utilisateur['prenom'], 0, 1) . substr($utilisateur['nom'], 0, 1)) ?>
+                        </div>
                         <div class="profile-meta">
-                            <div class="profile-name">Jean Dupont</div>
-                            <div class="profile-sub">Peugeot 308 • 3 places • Bleu</div>
+                            <div class="profile-name"><?= htmlspecialchars($utilisateur['prenom'] . ' ' . $utilisateur['nom']) ?></div>
+                            <?php if (!empty($vehicules[0])): ?>
+                                <div class="profile-sub">
+                                    <?= htmlspecialchars($vehicules[0]['marque'] . ' ' . $vehicules[0]['modele']) ?> • 
+                                    <?= htmlspecialchars($vehicules[0]['places_disponibles'] ?? 3) ?> places • 
+                                    <?= htmlspecialchars($vehicules[0]['couleur']) ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
                         <div class="profile-actions">
-                            <a class="btn-link" href="v_mes_trajets.php">Mes trajets</a>
+                            <a class="btn-link" href="index.php?page=mes_trajets">Mes trajets</a>
                         </div>
                     </div>
 
                     <div class="profile-fields">
+                        <?php
+                        $fields = ['prenom', 'nom', 'email', 'telephone', 'biographie'];
+                        foreach ($fields as $field):
+                        ?>
                         <div class="field-row">
-                            <div class="field-label">Prénom</div>
-                            <div class="field-value" data-field="prenom">Jean</div>
-                            <button class="edit-btn" data-field="prenom">Modifier</button>
+                            <div class="field-label"><?= ucfirst($field) ?></div>
+                            <div class="field-value" data-field="<?= $field ?>">
+                                <?= htmlspecialchars($utilisateur[$field] ?? '') ?>
+                            </div>
+                            <button class="edit-btn" data-field="<?= $field ?>">Modifier</button>
                         </div>
-
-                        <div class="field-row">
-                            <div class="field-label">Nom</div>
-                            <div class="field-value" data-field="nom">Dupont</div>
-                            <button class="edit-btn" data-field="nom">Modifier</button>
-                        </div>
-
-                        <div class="field-row">
-                            <div class="field-label">Âge</div>
-                            <div class="field-value" data-field="age">34</div>
-                            <button class="edit-btn" data-field="age">Modifier</button>
-                        </div>
-
-                        <div class="field-row">
-                            <div class="field-label">Adresse</div>
-                            <div class="field-value" data-field="adresse">12 rue Exemple, 75000 Paris</div>
-                            <button class="edit-btn" data-field="adresse">Modifier</button>
-                        </div>
-
-                        <div class="field-row">
-                            <div class="field-label">E‑mail</div>
-                            <div class="field-value" data-field="email">jean.dupont@example.com</div>
-                            <button class="edit-btn" data-field="email">Modifier</button>
-                        </div>
-
-                        <div class="field-row">
-                            <div class="field-label">Téléphone</div>
-                            <div class="field-value" data-field="telephone">06 12 34 56 78</div>
-                            <button class="edit-btn" data-field="telephone">Modifier</button>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
 
@@ -99,13 +83,11 @@
     </div>
 
     <script>
-    // Inline edit helper: toggles a field between display and edit mode
     document.addEventListener('DOMContentLoaded', function() {
-        // trigger gentle animations
-        var wrap = document.querySelector('.main-wrapper'); if (wrap) { wrap.classList.add('animate'); setTimeout(function(){ wrap.classList.add('show'); }, 50); }
+
         function createInput(value, field) {
             var input = document.createElement('input');
-            input.type = (field === 'age') ? 'number' : 'text';
+            input.type = (field === 'email') ? 'email' : 'text';
             input.className = 'inline-input';
             input.value = value;
             return input;
@@ -118,14 +100,11 @@
                 var valueEl = row.querySelector('.field-value');
                 var current = valueEl.textContent.trim();
 
-                // Prevent double-edit
                 if (row.querySelector('.inline-input')) return;
 
-                // Replace value with input
                 var input = createInput(current, field);
                 row.replaceChild(input, valueEl);
 
-                // replace edit button with save/cancel
                 var save = document.createElement('button');
                 save.className = 'save-small';
                 save.textContent = 'Sauvegarder';
@@ -139,13 +118,22 @@
 
                 save.addEventListener('click', function() {
                     var newVal = input.value;
-                    var span = document.createElement('div');
-                    span.className = 'field-value';
-                    span.dataset.field = field;
-                    span.textContent = newVal;
-                    row.replaceChild(span, input);
-                    save.remove(); cancel.remove(); btn.style.display = '';
-                    // TODO: send update to server via fetch/ajax
+
+                    // Ajax call to update profile
+                    fetch('index.php?page=profil&action=modifier', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                        body: 'field=' + encodeURIComponent(field) + '&value=' + encodeURIComponent(newVal)
+                    }).then(res => res.text()).then(data => {
+                        var span = document.createElement('div');
+                        span.className = 'field-value';
+                        span.dataset.field = field;
+                        span.textContent = newVal;
+                        row.replaceChild(span, input);
+                        save.remove(); cancel.remove(); btn.style.display = '';
+                    }).catch(err => {
+                        alert('Erreur lors de la mise à jour.');
+                    });
                 });
 
                 cancel.addEventListener('click', function() {
@@ -163,9 +151,9 @@
         var del = document.getElementById('delete-account');
         if (del) {
             del.addEventListener('click', function() {
-                if (confirm('Voulez-vous vraiment supprimer votre compte ? Cette action est irréversible.')) {
-                    // TODO: post deletion to server
-                    alert('Compte supprimé (simulation).');
+                if (confirm('Voulez-vous vraiment supprimer votre compte ?')) {
+                    fetch('index.php?page=profil&action=supprimer', { method: 'POST' })
+                        .then(() => window.location.href = 'index.php?page=accueil');
                 }
             });
         }

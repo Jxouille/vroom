@@ -1,7 +1,5 @@
 <?php
-require_once  __DIR__ . 'bd_connection.php';
-
-
+require_once  __DIR__ . '/bd_connection.php';
 class Favoris {
 
     public static function ajouter(int $user_id, int $id_annonce): bool {
