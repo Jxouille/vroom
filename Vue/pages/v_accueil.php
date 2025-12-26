@@ -130,96 +130,50 @@
     <p>Découvrez les trajets les plus demandés cette semaine</p>
 
     <div class="rides-list">
+        <?php if (!empty($annonces)):
+            $count = 0; // limiter à 3 trajets
+            foreach ($annonces as $annonce):
+                if ($count >= 3) break;
 
-        <!-- CARD 1 -->
-        <div class="ride-card">
-            <div class="ride-header">
-                <div class="avatar">MD</div>
-                <div>
-                    <h4>Marie D.</h4>
-                    <span> 4.9</span>
+                $trajet = Annonces::detail_trajet((int)$annonce['id']);    
+                if (!$trajet) continue;
+
+                $count++;
+        ?>
+            <!-- CARD dynamique -->
+            <div class="ride-card">
+                <div class="ride-header">
+                    <div class="avatar"><?= htmlspecialchars($trajet["avatar"] ?? 'ND') ?></div>
+                    <div>
+                        <h4><?= htmlspecialchars($trajet["conducteur_nom"] ?? 'Nom') ?></h4>
+                        <span><?= htmlspecialchars($trajet["conducteur_note"] ?? 0) ?></span>
+                    </div>
+                    <span class="places"><?= htmlspecialchars($trajet["places_disponibles"] ?? 0) ?> places</span>
                 </div>
-                <span class="places">2 places</span>
-            </div>
 
-            <div class="ride-route">
-                <p>Paris</p>
-                <div class="line"></div>
-                <p>Lyon</p>
-            </div>
-
-            <div class="ride-info">
-                <p> Lundi 20 Oct • 14:00</p>
-                <p class="price">25€/pers</p>
-            </div>
-
-            <button class="ride-btn"
-                onclick="window.location.href='index.php?page=detail_trajet'">
-                Réserver
-            </button>
-        </div>
-
-        <!-- CARD 2 -->
-        <div class="ride-card">
-            <div class="ride-header">
-                <div class="avatar">TL</div>
-                <div>
-                    <h4>Thomas L.</h4>
-                    <span> 5.0</span>
+                <div class="ride-route">
+                    <p><?= htmlspecialchars($trajet["lieu_depart"] ?? '') ?></p>
+                    <div class="line"></div>
+                    <p><?= htmlspecialchars($trajet["lieu_arrivee"] ?? '') ?></p>
                 </div>
-                <span class="places">3 places</span>
-            </div>
 
-            <div class="ride-route">
-                <p>Marseille</p>
-                <div class="line"></div>
-                <p>Nice</p>
-            </div>
-
-            <div class="ride-info">
-                <p> Mardi 21 Oct • 09:30</p>
-                <p class="price">15€/pers</p>
-            </div>
-
-            <button class="ride-btn"
-                onclick="window.location.href='index.php?page=detail_trajet'">
-                Réserver
-            </button>
-        </div>
-
-        <!-- CARD 3 -->
-        <div class="ride-card">
-            <div class="ride-header">
-                <div class="avatar">SM</div>
-                <div>
-                    <h4>Sophie M.</h4>
-                    <span> 4.8</span>
+                <div class="ride-info">
+                    <p><?= htmlspecialchars($trajet["date_depart"] ?? '') ?> • <?= htmlspecialchars($trajet["heure_depart"] ?? '') ?></p>
+                    <p class="price"><?= htmlspecialchars($trajet["prix_par_personne"] ?? 0) ?>€/pers</p>
                 </div>
-                <span class="places">1 place</span>
+
+                <button class="ride-btn"
+                    onclick="window.location.href='index.php?page=detail_trajet&id=<?= htmlspecialchars($trajet['id']) ?>'">
+                    Réserver
+                </button>
             </div>
-
-            <div class="ride-route">
-                <p>Bordeaux</p>
-                <div class="line"></div>
-                <p>Toulouse</p>
-            </div>
-
-            <div class="ride-info">
-                <p> Mercredi 22 Oct • 16:00</p>
-                <p class="price">18€/pers</p>
-            </div>
-
-            <button class="ride-btn"
-                onclick="window.location.href='index.php?page=detail_trajet'">
-                Réserver
-            </button>
-        </div>
-
+        <?php endforeach; else: ?>
+            <p>Aucun trajet trouvé</p>
+        <?php endif; ?>
     </div>
     <button class="all-rides-btn"
         onclick="window.location.href='index.php?page=recherche_trajet'">
         Voir tous les trajets
     </button>
-
 </section>
-</body> 
+</body>
