@@ -49,6 +49,7 @@ CREATE TABLE `lieux` (
 CREATE TABLE `utilisateurs` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
+  `note` float DEFAULT 0,
   `telephone` varchar(20) DEFAULT NULL,
   `avatar` varchar(255) DEFAULT NULL,
   `biographie` text DEFAULT NULL,

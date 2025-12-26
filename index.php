@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -43,7 +42,7 @@ switch ($page) {
         break;
 
     case 'reservation':
-        require 'Controleur/c_reservation.php';
+        require 'Controleur/c_trajet.php';
         $controller = new c_reservation();
         $id = $_GET['id'] ?? null;
         $controller->afficher($id);
