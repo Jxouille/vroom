@@ -2,7 +2,7 @@
 const DB_CONFIG = [
   'host'     => '127.0.0.1',
   'port'     => '3306',
-  'dbname'   => 'vroom',
+  'dbname'   => 'app',   // <- corrigé
   'username' => 'root',
   'password' => ''
 ];
@@ -10,7 +10,10 @@ const DB_CONFIG = [
 function dbConnect() {
     try {
         $db = new PDO(
-            "mysql:host=" . DB_CONFIG['host'] . ";port=" . DB_CONFIG['port'] . ";dbname=" . DB_CONFIG['dbname'].";charset=utf8mb4",
+            "mysql:host=" . DB_CONFIG['host'] . 
+            ";port=" . DB_CONFIG['port'] . 
+            ";dbname=" . DB_CONFIG['dbname'] . 
+            ";charset=utf8mb4",
             DB_CONFIG['username'],
             DB_CONFIG['password']
         );
@@ -20,4 +23,3 @@ function dbConnect() {
         die("Erreur de connexion à la base de données : " . $e->getMessage());
     }
 }
-

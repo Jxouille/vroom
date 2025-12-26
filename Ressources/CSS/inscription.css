@@ -1,120 +1,43 @@
-<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
+* {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+}
+
+/* Conteneur principal */
 .box1 {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #EFEFEF; 
+    weight: 100vh;
+    background-color: #EFEFEF;
 }
-=======
-* {font-family: Arial, Helvetica, sans-serif;}
 
->>>>>>> 2ae4fe406998fc47b4b48c1d0ae95d58e58610a1
-/* Style pour la boite blanche du formulaire */
+/* Box du formulaire */
 .form-container {
     background-color: white;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-<<<<<<< HEAD
-    width: 600px;
-=======
-    width: 500px;
->>>>>>> 2ae4fe406998fc47b4b48c1d0ae95d58e58610a1
+    width: 75vh;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin : 0 auto;
 }
+
+/* Titre */
 h2 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
 }
 
-/* Style des champs de saisie */
+/* Champs */
 .input-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
-}
-label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 0.9em;
-    color: #555;
-}
-input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
-}
-
-/* Style du bouton */
-button {
-    background-color: #42d372ff; 
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: normal;
-    width: 100%;
-}
-
-button:hover {
-    background-color: #33a157ff; /* Un peu plus foncé au survol */
-}
-<<<<<<< HEAD
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
-.box1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #EFEFEF; 
-}
-
-.box2{
-    width: 30%;
-    height: 80%;
-    background-color: #FFFFFF; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    border-radius: 10px; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Style pour la boite blanche du formulaire */
-.form-container {
-    background-color: white;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    font-family: Arial, Helvetica, sans-serif
-}
-
-h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-    font-family: Arial, Helvetica, sans-serif
-}
-
-/* Style des champs de saisie */
-.input-group {
-    display: flex;
-    flex-direction: column;
+    top-margin: 10px;
     margin-bottom: 15px;
 }
 
@@ -132,21 +55,41 @@ input {
     font-size: 1em;
 }
 
-/* Style du bouton */
+/* Bouton */
 button {
-    background-color: #42D372; 
+    background-color: #28a745;
     color: white;
-    padding: 10px 20px;
+    padding: 10px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: normal;
     width: 100%;
 }
 
 button:hover {
-    background-color: #33a157ff; /* Un peu plus foncé au survol */
+    background-color: #13cb3eff;
+     transform: scale(1.01); /* grossit le bouton de 10% */
 }
-=======
->>>>>>> 2ae4fe406998fc47b4b48c1d0ae95d58e58610a1
+
+.captcha_err {
+    color: red;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+
+.box-names {
+    display: flex;
+    gap: 20px;
+    top-margin: 10px;
+    margin-bottom: 15px;
+}
+
+.question {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

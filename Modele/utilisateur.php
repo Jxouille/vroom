@@ -1,7 +1,11 @@
 <?php
-require_once  __DIR__ . '/bd_connection.php';
+require_once __DIR__ . '/bd_connection.php';
+
 class Utilisateur {
 
+    /* =========================
+       RÉCUPÉRER PAR ID
+    ========================= */
     public static function get(int $id): ?array {
         $db = dbConnect();
         $stmt = $db->prepare("SELECT * FROM utilisateurs WHERE id = ?");
@@ -9,47 +13,55 @@ class Utilisateur {
         return $stmt->fetch() ?: null;
     }
 
-    public static function getByTelephone(string $telephone): ?array {
+    /* =========================
+       RÉCUPÉRER PAR EMAIL
+    ========================= */
+    public static function getByEmail(string $email): ?array {
         $db = dbConnect();
-        $stmt = $db->prepare("SELECT * FROM utilisateurs WHERE telephone = ?");
-        $stmt->execute([$telephone]);
+        $stmt = $db->prepare("SELECT * FROM utilisateurs WHERE email = ?");
+        $stmt->execute([$email]);
         return $stmt->fetch() ?: null;
     }
 
-    public static function connexion(string $telephone, string $mot_de_passe): ?array {
-        $user = self::getByTelephone($telephone);
-        if ($user && password_verify($mot_de_passe, $user['mot_de_passe'])) {
+    /* =========================
+       CONNEXION
+    ========================= */
+    public static function connexion(string $email, string $mdp): ?array {
+        $user = self::getByEmail($email);
+
+        if ($user && password_verify($mdp, $user['mdp'])) {
             return $user;
         }
         return null;
     }
 
-    public static function creer(array $data): int {
+    /* =========================
+       CRÉATION COMPTE
+    ========================= */
+    public static function creer(array $data): bool {
         $db = dbConnect();
-        $stmt = $db->prepare("INSERT INTO utilisateurs (nom, telephone, mot_de_passe, avatar, biographie) VALUES (?, ?, ?, ?, ?)");
-        $stmt->execute([
-            $data['nom'],
-            $data['telephone'],
-            password_hash($data['mot_de_passe'], PASSWORD_BCRYPT),
-            $data['avatar'] ?? null,
-            $data['biographie'] ?? null
-        ]);
-        return (int)$db->lastInsertId();
-    }
 
-    public static function update(int $id, array $data): bool {
-        $db = dbConnect();
-        $stmt = $db->prepare("UPDATE utilisateurs SET nom = ?, telephone = ?, mot_de_passe = ?, avatar = ?, biographie = ? WHERE id = ?");
+        // Vérifier si email existe déjà
+        if (self::getByEmail($data['email'])) {
+            return false;
+        }
+
+        $stmt = $db->prepare("
+            INSERT INTO utilisateurs (nom, prenom, email, mdp)
+            VALUES (:nom, :prenom, :email, :mdp)
+        ");
+
         return $stmt->execute([
-            $data['nom'],
-            $data['telephone'],
-            isset($data['mot_de_passe']) ? password_hash($data['mot_de_passe'], PASSWORD_BCRYPT) : null,
-            $data['avatar'] ?? null,
-            $data['biographie'] ?? null,
-            $id
+            'nom'    => $data['nom'],
+            'prenom' => $data['prenom'],
+            'email'  => $data['email'],
+            'mdp'    => $data['mdp']
         ]);
     }
 
+    /* =========================
+       SUPPRESSION
+    ========================= */
     public static function delete(int $id): bool {
         $db = dbConnect();
         $stmt = $db->prepare("DELETE FROM utilisateurs WHERE id = ?");
