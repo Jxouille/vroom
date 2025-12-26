@@ -60,7 +60,7 @@ class Annonces {
         $trajets = [];
         $db = dbConnect();
 
-        $sql = "SELECT id, note, places, depart, destination, date_depart, prix
+        $sql = "SELECT id
                 FROM annonces
                 WHERE 1=1"; // Dummy condition for easier appending
 

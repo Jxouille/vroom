@@ -2,48 +2,7 @@
 
 <link rel="stylesheet" href="Ressources/Css/listeTrajets.css">
 
-<?php
-/*   
-htmlspecialchars() est une fonction PHP très importante pour la sécurité et l’affichage HTML.
-Elle convertit les caractères spéciaux en entités HTML, pour que le navigateur ne les interprète pas comme du code HTML.
-*/
-// Tableau de trajets
-$trajets = [
-    [
-        "prenom" => "Marie",
-        "nom" => "D.",
-        "avatar" => "MD",
-        "note" => 4.9,
-        "places" => 2,
-        "depart" => "Paris",
-        "destination" => "Lyon",
-        "date" => "Lundi 20 Oct • 14:00",
-        "prix" => 25
-    ],
-    [
-        "prenom" => "Thomas",
-        "nom" => "L.",
-        "avatar" => "TL",
-        "note" => 5.0,
-        "places" => 3,
-        "depart" => "Marseille",
-        "destination" => "Nice",
-        "date" => "Mardi 21 Oct • 09:30",
-        "prix" => 15
-    ],
-    [
-        "prenom" => "Sophie",
-        "nom" => "M.",
-        "avatar" => "SM",
-        "note" => 4.8,
-        "places" => 1,
-        "depart" => "Bordeaux",
-        "destination" => "Toulouse",
-        "date" => "Mercredi 22 Oct • 16:00",
-        "prix" => 18
-    ],
-];
-?>
+
 <body>
 
     <section class="search-container">
@@ -83,69 +42,55 @@ $trajets = [
 
     <section class="trajets-list-section">
         <div class="trajets-container">
-            <?php foreach ($annonces as $id_t ):
-                $trajet = Annonces::detail_trajet($id_t)?>
-
-                <div class="trajet-ligne">
-                    <!-- COLONNE 1 : AVATAR + NOM + OPTIONS -->
-                    <div class="col-driver">
-                        <div class="avatar"><?= htmlspecialchars($trajet["avatar"]) ?></div>
-
-                        <div class="driver-text">
-                            <div class="driver-name">
-                                <?= htmlspecialchars($trajet["conducteur_nom"]) ?> <?= htmlspecialchars($trajet["nom"]) ?>
-                            </div>
-
-                            <div class="driver-stars">
-                                ⭐ <?= htmlspecialchars($trajet["note"]) ?>
-                            </div>
-
+            <?php if (!empty($annonces)): ?>
+                <?php foreach ($annonces as $annonce): 
+                    $trajet = Annonces::detail_trajet((int)$annonce['id']);
+                    
+                    if (!$trajet) continue;
+                ?>
+                    <div class="trajet-ligne">
+                        <div class="col-driver">
+                            <div class="avatar"><?= htmlspecialchars($trajet["avatar"] ?? '') ?></div>
+                            <div class="driver-name"><?= htmlspecialchars($trajet["conducteur_nom"] ?? '') ?></div>
+                            <div class="driver-stars">⭐ <?= htmlspecialchars($trajet["conducteur_note"] ?? 0) ?></div>
                             <div class="driver-details">
-                                <p><?= htmlspecialchars($trajet["marque"]) ?></p>
-                                <p><?= htmlspecialchars($trajet["modele"]) ?></p>
+                                <p><?= htmlspecialchars($trajet["marque"] ?? '') ?></p>
+                                <p><?= htmlspecialchars($trajet["modele"] ?? '') ?></p>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- COLONNE 2 : HEURES + TRAJET VERT -->
-                    <div class="col-horaires">
-                        <div class="time-block">
-                            <span class="heure"><?= htmlspecialchars($trajet["heure_depart"]) ?></span>
-                            <span class="duree">1h57</span>
-                            <span class="heure">16:56</span>
+                        <div class="col-horaires">
+                            <div class="time-block">
+                                <span class="heure"><?= htmlspecialchars($trajet["heure_depart"]) ?></span>
+                            </div>
+                            <div class="ligne-verte">
+                                <span class="dot"></span>
+                                <div class="bar"></div>
+                                <span class="dot"></span>
+                            </div>
                         </div>
 
-                        <div class="ligne-verte">
-                            <span class="dot"></span>
-                            <div class="bar"></div>
-                            <span class="dot"></span>
-                        </div>
-                    </div>
-
-                    <!-- COLONNE 3 : VILLES -->
-                    <div class="col-villes">
-                        <div class="ville">
-                            <h4><?= htmlspecialchars($trajet["lieu_depart"]) ?></h4>
-                            <p>Gare de Lyon - Hall 1 & 2</p>
+                        <div class="col-villes">
+                            <div class="ville">
+                                <h4><?= htmlspecialchars($trajet["lieu_depart"]) ?></h4>
+                            </div>
+                            <div class="ville">
+                                <h4><?= htmlspecialchars($trajet["lieu_arrivee"]) ?></h4>
+                            </div>
                         </div>
 
-                        <div class="ville">
-                            <h4><?= htmlspecialchars($trajet["lieu_arrivee"]) ?></h4>
-                            <p>Gare de Lyon - Hall 1 & 2</p>
+                        <div class="col-prix">
+                            <div class="prix"><?= htmlspecialchars($trajet["prix_par_personne"]) ?> MAD</div>
+                            <span class="prix-info">Par personne<br><?= htmlspecialchars($trajet["places_disponibles"]) ?></span>
+                            <button class="btn-reserver"
+                                onclick="window.location.href='index.php?page=detail_trajet&id=<?= htmlspecialchars($trajet['id']) ?>'">
+                                Réserver
+                            </button>
                         </div>
                     </div>
-
-                    <!-- COLONNE 4 : PRIX + BOUTON -->
-                    <div class="col-prix">
-                        <div class="prix"><?= htmlspecialchars($trajet["prix"]) ?> €</div>
-                        <span class="prix-info">Par personne<br><?= htmlspecialchars($trajet["places_disponibles"]) ?></span>
-                        <button class="btn-reserver"
-                            onclick="window.location.href='index.php?page=detail_trajet&id=<?= htmlspecialchars($trajet['id']) ?>'">    
-                            Réserver
-                        </button>
-                    </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>Aucun trajet trouvé</p>
+            <?php endif; ?>
         </div>
     </section>
-</body>

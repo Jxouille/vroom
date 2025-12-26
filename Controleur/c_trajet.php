@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../Modele/annonces.php';
-require_once __DIR__ . '/../Model/reservations.php';
+require_once __DIR__ . '/../Modele/reservations.php';
 
 class c_recherche_trajet {
 
