@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -75,7 +74,6 @@ switch ($page) {
         } else {
             $controller->afficher();
         }
-        $controller->afficher();
         break;
 
     // Profil

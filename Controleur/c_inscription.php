@@ -1,5 +1,6 @@
 <?php
-#require_once __DIR__ . '/../Modele/utilisateur.php';
+
+require_once __DIR__ . '/../Modele/utilisateur.php';
 
 class c_inscription {
 
@@ -14,15 +15,41 @@ class c_inscription {
     }
 
     public function enregistrer(): void {
-        if (!isset($_POST['nom'], $_POST['telephone'], $_POST['mot_de_passe'])) {
+
+        if (!isset(
+            $_POST['nom'],
+            $_POST['prenom'],
+            $_POST['email'],
+            $_POST['mdp'],
+            $_POST['mdp_confirm'],
+            $_POST['captcha_reponse']
+        )) {
             header("Location: index.php?page=inscription&error=missing");
             exit;
         }
 
+        if ($_POST['mdp'] !== $_POST['mdp_confirm']) {
+            header("Location: index.php?page=inscription&error=password");
+            exit;
+        }
+
+        $reponse_client = (int) $_POST['captcha_reponse'];
+        $resultat_attendu = $_SESSION['captcha_secret'] ?? null;
+
+        if ($resultat_attendu === null || $reponse_client !== $resultat_attendu) {
+            unset($_SESSION['captcha_secret']);
+            header("Location: index.php?page=inscription&error=captcha");
+            exit;
+        }
+
+        unset($_SESSION['captcha_secret']);
+
         $success = Utilisateur::creer([
-            'nom' => $_POST['nom'],
-            'telephone' => $_POST['telephone'],
-            'mot_de_passe' => $_POST['mot_de_passe']
+            'nom'       => trim($_POST['nom']),
+            'prenom'    => trim($_POST['prenom']),
+            'email'     => trim($_POST['email']),
+            'telephone' => $_POST['telephone'] ?? null,
+            'mdp'       => password_hash($_POST['mdp'], PASSWORD_DEFAULT)
         ]);
 
         if (!$success) {

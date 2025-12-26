@@ -13,19 +13,28 @@ class c_connexion {
     }
 
     public function verifier(): void {
-        if (!isset($_POST['telephone'], $_POST['mot_de_passe'])) {
+
+        if (!isset($_POST['email'], $_POST['mot_de_passe'])) {
             header("Location: index.php?page=connexion&error=missing");
             exit;
         }
 
-        $user = Utilisateur::connexion($_POST['telephone'], $_POST['mot_de_passe']);
+        $user = Utilisateur::connexion(
+            trim($_POST['email']),
+            $_POST['mot_de_passe']
+        );
 
         if (!$user) {
             header("Location: index.php?page=connexion&error=invalid");
             exit;
         }
 
+        session_regenerate_id(true);
+
         $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_nom'] = $user['nom'];
+        $_SESSION['user_email'] = $user['email'];
+
         header("Location: index.php?page=accueil");
         exit;
     }
@@ -36,9 +45,10 @@ class c_connexion {
         exit;
     }
 }
+
 class c_mdp_oblie {
     public function afficher(): void {
-        $title = "Mot de passe oblier";
+        $title = "Mot de passe oublié";
         $css = "mdp_oblie.css";
         require __DIR__ . '/../Vue/head.php';
         require __DIR__ . '/../Vue/header.php';
@@ -47,4 +57,3 @@ class c_mdp_oblie {
     }
 }
 ?>
-
