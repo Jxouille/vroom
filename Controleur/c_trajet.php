@@ -8,103 +8,39 @@ class c_recherche_trajet {
         $title = "Recherche de trajets";
         $css = "recherche_trajet.css";
 
-        #$annonces = Annonces::all();
+        $annonces = Annonces::recherche_trajets();
 
         require __DIR__ . '/../Vue/head.php';
         require __DIR__ . '/../Vue/header.php';
         require __DIR__ . '/../Vue/pages/v_recherche_trajet.php';
         require __DIR__ . '/../Vue/footer.php';
     }
-    
-   
 }
 
-class c_annonce {
-
-    /**
-     * Affiche une annonce
-     */
-    public function afficher(): void {
-
-        // Sécurité : vérifier l'ID
-        #if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
-        #    header("Location: index.php?page=accueil");
-        #   exit;
-        #}
-
-        #$annonce = Annonces::get((int) $_GET['id']);
-
-        #if (!$annonce) {
-        #    header("Location: index.php?page=accueil");
-        #    exit;
-        #}
-
-        // Variables pour head.php
-        $title = "Détail du trajet";
-        $css   = "detail_trajet.css";
-
-        require __DIR__ . '/../Vue/head.php';
-        require __DIR__ . '/../Vue/header.php';
-        require __DIR__ . '/../Vue/pages/v_detail_trajet.php';
-        require __DIR__ . '/../Vue/footer.php';
-    }
-}
 
 class c_detail_trajet {
 
-    /**
-     * Affiche une annonce
-     */
     public function afficher(): void {
-
-        // Sécurité : vérifier l'ID
-        #if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
-        #    header("Location: index.php?page=accueil");
-        #    exit;
-        #}
-
-        #$annonce = Annonces::get((int) $_GET['id']);
-
-        #if (!$annonce) {
-        #    header("Location: index.php?page=accueil");
-        #    exit;
-        #}
-
-        // Variables pour head.php
         $title = "Détail du trajet";
-        $css   = "detail_trajet.css";
+        $css = "detail_trajet.css";
 
+        if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+            die("Annonce invalide");
+        }
+
+        $annonce = Annonces::detail_trajet((int) $_GET['id']);
+
+        if (!$annonce) {
+            die("Annonce introuvable");
+        }
         require __DIR__ . '/../Vue/head.php';
         require __DIR__ . '/../Vue/header.php';
         require __DIR__ . '/../Vue/pages/v_detail_trajet.php';
         require __DIR__ . '/../Vue/footer.php';
-    }
-     public function publier(): void {
-
-        // Protection basique
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            header("Location: index.php?page=accueil");
-            exit;
-        }
-
-        // Optionnel : protection si non connecté
-        if (!isset($_SESSION['user_id'])) {
-            header("Location: index.php?page=connexion");
-            exit;
-        }
-
-        Annonces::creer($_POST);
-
-        header("Location: index.php?page=mes_annonces");
-        exit;
     }
 }
 
 class c_publie_trajet {
-
-    /**
-     * Affiche une annonce
-     */
     public function afficher(): void {
 
         // Sécurité : vérifier l'ID
@@ -153,35 +89,5 @@ class c_publie_trajet {
         exit;
     }
 }
-class c_mes_trajets {
-
-    public function afficher(int $id): void {
-        #if (!$resa) {
-        #    header("Location: index.php?page=accueil");
-        #    exit;
-        #}
-        $title = "Mes trajets";
-        $css = "mes_trajets.css";
-
-        require __DIR__ . '/../Vue/head.php';
-        require __DIR__ . '/../Vue/header.php';
-        require __DIR__ . '/../Vue/pages/v_mes_trajets.php';
-        require __DIR__ . '/../Vue/footer.php';
-    }
-
-    public function creer(array $data): void {
-        if (!isset($_SESSION['user_id'])) {
-            header("Location: index.php?page=connexion");
-            exit;
-        }
-
-        $data['id_passager'] = (int)$_SESSION['user_id'];
-        Reservations::creer($data);
-
-        header("Location: index.php?page=mes_reservations");
-        exit;
-    }
-}
-
 
 ?>

@@ -76,79 +76,76 @@ $trajets = [
                     <input type="date" name="date">
                 </div>
             </div>
-
             <button class="search-btn" type="submit" name="action" value="actionChercherTrajets">Rechercher</button>
-
         </form>
     </section>
 
 
     <section class="trajets-list-section">
         <div class="trajets-container">
+            <?php foreach ($annonces as $id_t ):
+                $trajet = Annonces::detail_trajet($id_t)?>
 
-            <?php foreach ($trajets as $t): ?>
-            <div class="trajet-ligne">
+                <div class="trajet-ligne">
+                    <!-- COLONNE 1 : AVATAR + NOM + OPTIONS -->
+                    <div class="col-driver">
+                        <div class="avatar"><?= htmlspecialchars($trajet["avatar"]) ?></div>
 
-                <!-- COLONNE 1 : AVATAR + NOM + OPTIONS -->
-                <div class="col-driver">
-                    <div class="avatar"><?= htmlspecialchars($t["avatar"]) ?></div>
+                        <div class="driver-text">
+                            <div class="driver-name">
+                                <?= htmlspecialchars($trajet["conducteur_nom"]) ?> <?= htmlspecialchars($trajet["nom"]) ?>
+                            </div>
 
-                    <div class="driver-text">
-                        <div class="driver-name">
-                            <?= htmlspecialchars($t["prenom"]) ?> <?= htmlspecialchars($t["nom"]) ?>
+                            <div class="driver-stars">
+                                ⭐ <?= htmlspecialchars($trajet["note"]) ?>
+                            </div>
+
+                            <div class="driver-details">
+                                <p><?= htmlspecialchars($trajet["marque"]) ?></p>
+                                <p><?= htmlspecialchars($trajet["modele"]) ?></p>
+                            </div>
                         </div>
-                        <div class="driver-stars">
-                            ⭐ <?= htmlspecialchars($t["note"]) ?>
+                    </div>
+
+                    <!-- COLONNE 2 : HEURES + TRAJET VERT -->
+                    <div class="col-horaires">
+                        <div class="time-block">
+                            <span class="heure"><?= htmlspecialchars($trajet["heure_depart"]) ?></span>
+                            <span class="duree">1h57</span>
+                            <span class="heure">16:56</span>
                         </div>
 
-                        <div class="driver-details">
-                            <p>Type voiture</p>
-                            <p>Options</p>
+                        <div class="ligne-verte">
+                            <span class="dot"></span>
+                            <div class="bar"></div>
+                            <span class="dot"></span>
                         </div>
                     </div>
-                </div>
 
-                <!-- COLONNE 2 : HEURES + TRAJET VERT -->
-                <div class="col-horaires">
-                    <div class="time-block">
-                        <span class="heure">14:59</span>
-                        <span class="duree">1h57</span>
-                        <span class="heure">16:56</span>
+                    <!-- COLONNE 3 : VILLES -->
+                    <div class="col-villes">
+                        <div class="ville">
+                            <h4><?= htmlspecialchars($trajet["lieu_depart"]) ?></h4>
+                            <p>Gare de Lyon - Hall 1 & 2</p>
+                        </div>
+
+                        <div class="ville">
+                            <h4><?= htmlspecialchars($trajet["lieu_arrivee"]) ?></h4>
+                            <p>Gare de Lyon - Hall 1 & 2</p>
+                        </div>
                     </div>
 
-                    <div class="ligne-verte">
-                        <span class="dot"></span>
-                        <div class="bar"></div>
-                        <span class="dot"></span>
+                    <!-- COLONNE 4 : PRIX + BOUTON -->
+                    <div class="col-prix">
+                        <div class="prix"><?= htmlspecialchars($trajet["prix"]) ?> €</div>
+                        <span class="prix-info">Par personne<br><?= htmlspecialchars($trajet["places_disponibles"]) ?></span>
+                        <button class="btn-reserver"
+                            onclick="window.location.href='index.php?page=detail_trajet&id=<?= htmlspecialchars($trajet['id']) ?>'">    
+                            Réserver
+                        </button>
                     </div>
                 </div>
-
-                <!-- COLONNE 3 : VILLES -->
-                <div class="col-villes">
-                    <div class="ville">
-                        <h4><?= htmlspecialchars($t["depart"]) ?></h4>
-                        <p>Gare de Lyon - Hall 1 & 2</p>
-                    </div>
-
-                    <div class="ville">
-                        <h4><?= htmlspecialchars($t["destination"]) ?></h4>
-                        <p>Gare de Lyon - Hall 1 & 2</p>
-                    </div>
-                </div>
-
-                <!-- COLONNE 4 : PRIX + BOUTON -->
-                <div class="col-prix">
-                    <div class="prix"><?= htmlspecialchars($t["prix"]) ?> €</div>
-                    <span class="prix-info">Par personne<br>2 places</span>
-                    <button class="btn-reserver"
-                        onclick="window.location.href='index.php?page=detail_trajet'">
-                        Réserver
-                    </button>
-                </div>
-
-            </div>
             <?php endforeach; ?>
-
         </div>
     </section>
 </body>

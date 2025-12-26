@@ -9,6 +9,7 @@ class Annonces {
         $stmt = $db->prepare("SELECT * FROM annonces WHERE id = ?");
         $stmt->execute([$id]);
         return $stmt->fetch() ?: null;
+
     }
 
     public static function all(): array {
@@ -59,7 +60,7 @@ class Annonces {
         $trajets = [];
         $db = dbConnect();
 
-        $sql = "SELECT prenom, nom, note, places, depart, destination, date_depart, prix
+        $sql = "SELECT id, note, places, depart, destination, date_depart, prix
                 FROM annonces
                 WHERE 1=1"; // Dummy condition for easier appending
 
@@ -101,18 +102,48 @@ class Annonces {
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $trajets[] = [
-                "prenom" => $row["prenom"],
-                "nom" => $row["nom"],
-                "avatar" => strtoupper(
-                    substr($row["prenom"], 0, 1) . substr($row["nom"], 0, 1)),
-                "note" => (float) $row["note"],
-                "places" => (int) $row["places"],
-                "depart" => $row["depart"],
-                "destination" => $row["destination"],
-                "date" => date("l d M • H:i", strtotime($row["date_depart"])),
-                "prix" => (int) $row["prix"]
+                "id"=> (int) $row["id"],
             ];
         }
         return $trajets;
+    }
+    public static function detail_trajet(int $id): ?array
+    {
+        $db = dbConnect();// or your PDO instance
+
+        $sql = "
+        SELECT 
+            a.id,
+            a.date_depart,
+            a.heure_depart,
+            a.prix_par_personne,
+            a.places_disponibles,
+            a.description,
+
+            u.nom AS conducteur_nom,
+            u.note AS conducteur_note,
+            u.avatar,
+
+            v.marque,
+            v.modele,
+
+            ld.nom AS lieu_depart,
+            la.nom AS lieu_arrivee
+
+        FROM annonces a
+        JOIN utilisateurs u ON a.id_conducteur = u.id
+        JOIN vehicules v ON a.id_vehicule = v.id
+        JOIN lieux ld ON a.id_lieu_depart = ld.id
+        JOIN lieux la ON a.id_lieu_arrivee = la.id
+        WHERE a.id = :id
+        AND a.statut = 'active'
+        ";
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute(['id' => $id]);
+
+        $annonce = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $annonce ?: null;
     }
 }

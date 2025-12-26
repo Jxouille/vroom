@@ -178,6 +178,58 @@ class c_paiement {
         exit;
     }
 }
+class c_mes_trajets {
+    public function afficher(int $id): void {
+        #if (!$resa) {
+        #    header("Location: index.php?page=accueil");
+        #    exit;
+        #}
+        $title = "Mes trajets";
+        $css = "mes_trajets.css";
 
+        require __DIR__ . '/../Vue/head.php';
+        require __DIR__ . '/../Vue/header.php';
+        require __DIR__ . '/../Vue/pages/v_mes_trajets.php';
+        require __DIR__ . '/../Vue/footer.php';
+    }
+
+    public function creer(array $data): void {
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: index.php?page=connexion");
+            exit;
+        }
+
+        $data['id_passager'] = (int)$_SESSION['user_id'];
+        Reservations::creer($data);
+
+        header("Location: index.php?page=mes_reservations");
+        exit;
+    }
+}
+class c_reservation {
+    public function afficher(?string $id): void {
+        // Sécurité : vérifier l'ID
+        if ($id === null || !ctype_digit($id)) {
+            header("Location: index.php?page=accueil");
+            exit;
+        }
+
+        $reservation = Reservations::get((int) $id);
+
+        if (!$reservation) {
+            header("Location: index.php?page=accueil");
+            exit;
+        }
+
+        // Variables pour head.php
+        $title = "Détail de la réservation";
+        $css   = "detail_reservation.css";
+
+        require __DIR__ . '/../Vue/head.php';
+        require __DIR__ . '/../Vue/header.php';
+        require __DIR__ . '/../Vue/pages/v_detail_reservation.php';
+        require __DIR__ . '/../Vue/footer.php';
+    }
+}
 
 ?>
