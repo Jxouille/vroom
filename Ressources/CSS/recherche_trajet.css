@@ -1,17 +1,6 @@
-:root {
-  --couleurVerte: #28a745;
-  --couleurVerteFonce: #1f7e36;
-  --texteGris: #6d7c82;
-  --titreNoir: #222;
-  --fondClair: #ffffff;
-  --ombre: rgba(0,0,0,0.10);
-  --ombreHover: rgba(0,0,0,0.18);
-}
 
 
 /* BARRE DE RECHERCHE                                 */
-
-
 .search-container {
     transform: translateX(0%);
     max-width: 800px;
@@ -88,11 +77,14 @@
 
 
 .trajets-container {
-    max-width: 700px;          
+    max-width: 800px;          
     margin: auto;
     display: flex;
     flex-direction: column;
-    gap: 14px;                 
+    gap: 14px;   
+    padding-bottom: 30px;
+    padding-top:50px;
+
 }
 
 .trajet-ligne {
@@ -111,7 +103,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    width: 25%;                 
+    width: 300px;              
 }
 
 .avatar {
@@ -145,7 +137,7 @@
 /* ------ HEURES ------ */
 
 .col-horaires {
-    width: 15%;                 
+    width: 10%;                 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -171,9 +163,10 @@
 /* ------ VILLES ------ */
 
 .col-villes {
-    width: 28%;
+    width: 150px;
     display: flex;
     flex-direction: column;
+    
     gap: 14px;                   
 }
 
@@ -191,7 +184,7 @@
     width: 15%;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     gap: 4px;
 }
 
