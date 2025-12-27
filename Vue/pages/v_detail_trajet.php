@@ -89,7 +89,7 @@
                     </div>
                 </div>
             </div>
-
+<!-- ON APPELERA ICI LA PAGE DE PAYEMENT FICTIF -->
             <!-- Bouton centré et pleine largeur (séparé de la carte) -->
             <div class="button-row">
                 <button class="confirm-btn" aria-label="Confirmer le trajet">Confirmer le trajet</button>
