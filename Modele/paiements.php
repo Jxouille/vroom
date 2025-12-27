@@ -3,6 +3,14 @@ require_once  __DIR__ . '/bd_connection.php';
 
 class Paiements {
 
+        public static function get(int $id): ?array {
+        $db = dbConnect();
+        $stmt = $db->prepare("SELECT * FROM paiements WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch() ?: null;
+    }
+
+
     public function payer() {
         // 1. Si le formulaire est soumis en POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
