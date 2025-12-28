@@ -33,7 +33,7 @@
                     <div class="driver-right">
                         <div class="price"><?= htmlspecialchars($annonce['prix_par_personne']) ?></div>
                         <button class="contact-small">Contacter</button>
-                    </div> <-- pop up messagerie avec le conducteur en java script à faire-->
+                    </div> <!-- pop up messagerie avec le conducteur en java script à faire -->
                 </div> 
             </div>
 
@@ -92,7 +92,7 @@
 <!-- ON APPELERA ICI LA PAGE DE PAYEMENT FICTIF -->
             <!-- Bouton centré et pleine largeur (séparé de la carte) -->
             <div class="button-row">
-                <button class="confirm-btn" aria-label="Confirmer le trajet">Confirmer le trajet</button>
+                <button href="index.php?page=reservation&action=creer&id_annonce=<?= $annonce['id'] ?>" class="confirm-btn" aria-label="Confirmer le trajet">Confirmer le trajet</button>
             </div>
         </div>
     </div>
