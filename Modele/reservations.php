@@ -29,15 +29,38 @@ class Reservations {
     }
 
     public static function update(int $id, array $data): bool {
-        $db = dbConnect();
-        $stmt = $db->prepare("UPDATE reservations SET donnees_passager = ?, statut = ?, prix_total = ? WHERE id = ?");
-        return $stmt->execute([
-            isset($data['donnees_passager']) ? json_encode($data['donnees_passager'], JSON_UNESCAPED_UNICODE) : null,
-            $data['statut'] ?? 'en_attente',
-            $data['prix_total'],
-            $id
-        ]);
+    $db = dbConnect();
+
+    $fields = [];
+    $params = [':id' => $id];
+
+    // Only update if the field exists in $data
+    if (isset($data['donnees_passager'])) {
+        $fields[] = "donnees_passager = :donnees_passager";
+        $params[':donnees_passager'] = json_encode($data['donnees_passager'], JSON_UNESCAPED_UNICODE);
     }
+
+    if (isset($data['statut'])) {
+        $fields[] = "statut = :statut";
+        $params[':statut'] = $data['statut'];
+    }
+
+    if (isset($data['prix_total'])) {
+        $fields[] = "prix_total = :prix_total";
+        $params[':prix_total'] = $data['prix_total'];
+    }
+
+    // Nothing to update
+    if (empty($fields)) {
+        return false;
+    }
+
+    $sql = "UPDATE reservations SET " . implode(', ', $fields) . " WHERE id = :id";
+    $stmt = $db->prepare($sql);
+
+    return $stmt->execute($params);
+    }
+
 
     public static function delete(int $id): bool {
         $db = dbConnect();

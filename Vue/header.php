@@ -22,7 +22,6 @@
                         <li><a href="index.php?page=connexion" class="button-header">Se connecter</a></li> 
                         <li><a href="index.php?page=inscription" class="button-header">S'inscrire</a></li> 
                     <?php } ?>
-                
                 </ul>
         </nav>
     </div>

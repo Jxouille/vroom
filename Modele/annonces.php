@@ -37,18 +37,52 @@ class Annonces {
     }
 
     public static function update(int $id, array $data): bool {
-        $db = dbConnect();
-        $stmt = $db->prepare("UPDATE annonces SET date_depart = ?, heure_depart = ?, prix_par_personne = ?, places_disponibles = ?, description = ?, statut = ? WHERE id = ?");
-        return $stmt->execute([
-            $data['date_depart'],
-            $data['heure_depart'],
-            $data['prix_par_personne'],
-            $data['places_disponibles'],
-            $data['description'],
-            $data['statut'] ?? 'active',
-            $id
-        ]);
+    $db = dbConnect();
+
+    $fields = [];
+    $params = [':id' => $id];
+
+    if (!empty($data['date_depart'])) {
+        $fields[] = "date_depart = :date_depart";
+        $params[':date_depart'] = $data['date_depart'];
     }
+
+    if (!empty($data['heure_depart'])) {
+        $fields[] = "heure_depart = :heure_depart";
+        $params[':heure_depart'] = $data['heure_depart'];
+    }
+
+    if (isset($data['prix_par_personne']) && $data['prix_par_personne'] !== '') {
+        $fields[] = "prix_par_personne = :prix_par_personne";
+        $params[':prix_par_personne'] = $data['prix_par_personne'];
+    }
+
+    if (isset($data['places_disponibles']) && $data['places_disponibles'] !== '') {
+        $fields[] = "places_disponibles = :places_disponibles";
+        $params[':places_disponibles'] = $data['places_disponibles'];
+    }
+
+    if (!empty($data['description'])) {
+        $fields[] = "description = :description";
+        $params[':description'] = $data['description'];
+    }
+
+    if (!empty($data['statut'])) {
+        $fields[] = "statut = :statut";
+        $params[':statut'] = $data['statut'];
+    }
+
+    // 🚨 Nothing to update
+    if (empty($fields)) {
+        return false;
+    }
+
+    $sql = "UPDATE annonces SET " . implode(', ', $fields) . " WHERE id = :id";
+
+    $stmt = $db->prepare($sql);
+    return $stmt->execute($params);
+    }
+
 
     public static function delete(int $id): bool {
         $db = dbConnect();
@@ -56,57 +90,63 @@ class Annonces {
         $stmt = $db->prepare($sql);
         return $stmt->execute([$id]);
     }
-    public static function recherche_trajets(array $filters = [], string $sort = 'date_desc'): array{
-        $trajets = [];
-        $db = dbConnect();
+    public static function recherche_trajets(array $filters = [], string $sort = 'date_desc'): array {
+    $trajets = [];
+    $db = dbConnect();
 
-        $sql = "SELECT id
-                FROM annonces
-                WHERE 1=1"; // Dummy condition for easier appending
+    $sql = "SELECT id
+            FROM annonces
+            WHERE statut = :statut";
 
-        $params = [];
+    $params = [
+        ':statut' => 'active'
+    ];
 
-        // Apply filters
-        if (!empty($filters['depart'])) {
-            $sql .= " AND depart LIKE :depart";
-            $params[':depart'] = '%' . $filters['depart'] . '%';
-        }
-        if (!empty($filters['destination'])) {
-            $sql .= " AND destination LIKE :destination";
-            $params[':destination'] = '%' . $filters['destination'] . '%';
-        }
-        if (!empty($filters['date'])) {
-            $sql .= " AND DATE(date_depart) = :date";
-            $params[':date'] = $filters['date'];
-        }
-
-        // Apply sorting
-        switch ($sort) {
-            case 'date_asc':
-                $sql .= " ORDER BY date_depart ASC";
-                break;
-            case 'prix_asc':
-                $sql .= " ORDER BY prix ASC";
-                break;
-            case 'prix_desc':
-                $sql .= " ORDER BY prix DESC";
-                break;
-            case 'date_desc':
-            default:
-                $sql .= " ORDER BY date_depart DESC";
-                break;
-        }
-
-        $stmt = $db->prepare($sql);
-        $stmt->execute($params);
-
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $trajets[] = [
-                "id"=> (int) $row["id"],
-            ];
-        }
-        return $trajets;
+    // Apply filters
+    if (!empty($filters['depart'])) {
+        $sql .= " AND depart LIKE :depart";
+        $params[':depart'] = '%' . $filters['depart'] . '%';
     }
+
+    if (!empty($filters['destination'])) {
+        $sql .= " AND destination LIKE :destination";
+        $params[':destination'] = '%' . $filters['destination'] . '%';
+    }
+
+    if (!empty($filters['date'])) {
+        $sql .= " AND DATE(date_depart) = :date";
+        $params[':date'] = $filters['date'];
+    }
+
+    // Apply sorting
+    switch ($sort) {
+        case 'date_asc':
+            $sql .= " ORDER BY date_depart ASC";
+            break;
+        case 'prix_asc':
+            $sql .= " ORDER BY prix_par_personne ASC";
+            break;
+        case 'prix_desc':
+            $sql .= " ORDER BY prix_par_personne DESC";
+            break;
+        case 'date_desc':
+        default:
+            $sql .= " ORDER BY date_depart DESC";
+            break;
+    }
+
+    $stmt = $db->prepare($sql);
+    $stmt->execute($params);
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $trajets[] = [
+            "id" => (int) $row["id"],
+        ];
+    }
+
+    return $trajets;
+    }
+
     public static function detail_trajet(int $id): ?array
     {
         $db = dbConnect();// or your PDO instance

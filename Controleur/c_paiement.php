@@ -21,7 +21,8 @@ class c_paiement {
             'prix_total' => $annonce_info['prix_par_personne'] , 
             'uuid'=> uniqid('res_') ,
         ];
-        $reservation = Reservations::creer($data);
+        
+        $reservation_id = Reservations::creer($data);
 
         // Chargement de la vue
         require __DIR__ . '/../Vue/head.php';
@@ -29,27 +30,21 @@ class c_paiement {
         require __DIR__ . '/../Vue/pages/v_paiement.php'; // La vue avec le formulaire
         require __DIR__ . '/../Vue/footer.php';
     }
-
-
     public function payer(): void {
         $res_info = Reservations::get($_GET['id']);
         $data = [
-            'id_annonce' => $_GET['id'],
+            'id_reservation' => $_GET['id'],
             'moyen_paiement' => 'carte',
-            'montant'        => $res_info['prix'], // Récupéré de l'annonce
+            'montant'        => $res_info['prix_total'], // Récupéré de l'annonce
             'statut'         => 'valide',
             'devise'         => 'EUR',
             'transaction_id' => 'TX-' . uniqid(),
             'date_paiement'  => date('Y-m-d H:i:s')
         ];
-
-            // Insertion en BDD
-            Paiements::creer($data);
-
-            // Mise à jour du statut de la réservation
-            Reservations::update($_GET['id_res'], ['statut' => 'acceptee']);
-
-            header("Location: index.php?page=sucess");
-            exit;
+        Paiements::creer($data);
+        Reservations::update($_GET['id'], ['statut' => 'acceptee']);
+        Annonces::update($res_info['id_annonce'], ['statut'=> 'complete'] );
+        header("Location: index.php?page=success");
+        exit;
         }
-    }
+}

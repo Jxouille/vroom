@@ -133,15 +133,14 @@ switch ($page) {
     case 'paiement':
         require 'Controleur/c_paiement.php';
         $controller = new c_paiement();
-        if ($action === 'payer') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $controller->payer();
-
         } else {
             $controller->afficher();
         }
         break;
     case 'sucess':
-        require 'Vue/pages/v_sucess.php';
+        require 'Vue/pages/v_success.php';
         break;
 }
 ?>
