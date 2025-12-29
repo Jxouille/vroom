@@ -177,7 +177,7 @@ class c_favoris {
 
 
 
-class c_paiement {
+class c_mes_paiement {
 
     public function afficher(int $id_reservation): void {
         if (!isset($_SESSION['user_id'])) {
@@ -187,12 +187,12 @@ class c_paiement {
 
         $reservation = Reservations::get($id_reservation);
         if (!$reservation) {
-            header("Location: index.php?page=mes_reservations");
+            header("Location: index.php?page=mes_paiements");
             exit;
         }
 
-        $title = "Paiement";
-        $css = "paiement.css";
+        $title = "Mes Paiements";
+        $css = "paiement.css"; /// page à faire
 
         require __DIR__ . '/../Vue/head.php';
         require __DIR__ . '/../Vue/header.php';

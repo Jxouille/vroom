@@ -11,12 +11,18 @@
             <input type="checkbox" id="show-menu" role="button">
                 <img src="../../Ressources/Image/person_icon.png"  alt="Logo Vroom">
                 <ul classe="hidden">
-                    <li><a href="index.php?page=mes_trajets">Mes trajets</a></li>
-                    <li><a href="index.php?page=messagerie">Messagerie</a></li>
-                    <li><a href="index.php?page=profil">Mon compte</a></li> 
-                    <li><a href="index.php?page=mes_documents">Mes documents</a></li> 
-                    <li><a href="index.php?page=connexion" class="button-header">Se connecter</a></li> 
-                    <li><a href="index.php?page=inscription" class="button-header">S'inscrire</a></li> 
+                    <?php if (isset($_SESSION['user_id'])) { ?>
+                        <li><a href="index.php?page=profil" class="button-header">Mon profil</a></li> 
+                        <li><a href="index.php?page=mes_reservations" class="button-header">Mes réservations</a></li> 
+                        <li><a href="index.php?page=mes_paiements" class="button-header">Mes paiements</a></li> 
+                        <li><a href="index.php?page=mes_documents" class="button-header">Mes documents</a></li> 
+                        <li><a href="index.php?page=favoris" class="button-header">Mes favoris</a></li> 
+                        <li><a href="index.php?page=accueil&user_id=null" class="button-header">Se déconnecter</a></li>
+                    <?php } else { ?>
+                        <li><a href="index.php?page=connexion" class="button-header">Se connecter</a></li> 
+                        <li><a href="index.php?page=inscription" class="button-header">S'inscrire</a></li> 
+                    <?php } ?>
+                
                 </ul>
         </nav>
     </div>

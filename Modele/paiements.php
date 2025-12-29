@@ -3,15 +3,15 @@ require_once  __DIR__ . '/bd_connection.php';
 
 class Paiements {
 
-        public static function get(int $id): ?array {
-        $db = dbConnect();
-        $stmt = $db->prepare("SELECT * FROM paiements WHERE id = ?");
-        $stmt->execute([$id]);
-        return $stmt->fetch() ?: null;
+    public static function get(int $id): ?array {
+    $db = dbConnect();
+    $stmt = $db->prepare("SELECT * FROM paiements WHERE id = ?");
+    $stmt->execute([$id]);
+    return $stmt->fetch() ?: null;
     }
 
 
-    public function payer() {
+    public function payer($annonce_info): void {
         // 1. Si le formulaire est soumis en POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
@@ -22,7 +22,7 @@ class Paiements {
             $data = [
                 'id_reservation' => $id_reservation,
                 'moyen_paiement' => 'Carte Bancaire',
-                'montant'        => 50.00, // À récupérer dynamiquement selon le trajet
+                'montant'        => $annonce_info['prix'], // À récupérer dynamiquement selon le trajet
                 'statut'         => 'complete',
                 'devise'         => 'MAD',
                 'transaction_id' => 'TX-' . time() . '-' . rand(100, 999),
@@ -43,9 +43,20 @@ class Paiements {
                 $error = "Erreur lors du paiement : " . $e->getMessage();
             }
         }
-
-        // 3. Charger la vue
-        require_once 'Vue/v_paiement.php';
+    }
+    public static function creer(array $data): int {
+        $db = dbConnect();
+        $stmt = $db->prepare("INSERT INTO paiements (id_reservation, moyen_paiement, montant, statut, devise, transaction_id, date_paiement) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([
+            $data['id_reservation'],
+            $data['moyen_paiement'],
+            $data['montant'],
+            $data['statut'],
+            $data['devise'],
+            $data['transaction_id'],
+            $data['date_paiement']
+        ]);
+        return (int)$db->lastInsertId();
     }
 }
 ?>

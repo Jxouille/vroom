@@ -26,7 +26,9 @@
                                 <span class="star filled">★</span>
                                 <span class="star filled">★</span>
                                 <span class="star">★</span>
-                                <span style="margin-left:8px;color:#6c757d;font-weight:700;">4.5</span>
+                                <span style="margin-left:8px;color:#6c757d;font-weight:700;">
+                                    <?= $annonce['note_conducteur'] ?>/5
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -92,7 +94,7 @@
 <!-- ON APPELERA ICI LA PAGE DE PAYEMENT FICTIF -->
             <!-- Bouton centré et pleine largeur (séparé de la carte) -->
             <div class="button-row">
-                <button href="index.php?page=reservation&action=creer&id_annonce=<?= $annonce['id'] ?>" class="confirm-btn" aria-label="Confirmer le trajet">Confirmer le trajet</button>
+                <button href="index.php?page=paiement&action=creer&id_annonce=<?= $annonce['id'] ?>" class="confirm-btn" aria-label="Confirmer le trajet">Confirmer le trajet</button>
             </div>
         </div>
     </div>

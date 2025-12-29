@@ -6,6 +6,7 @@ session_start();
  */
 $page = $_GET['page'] ?? 'accueil';
 $action = $_GET['action'] ?? null;
+$user_id = $_SESSION['user_id'] ?? null;
 
 /**
  * Router MVC
@@ -132,13 +133,8 @@ switch ($page) {
         if ($action === 'payer') {
             $controller->payer();
         } else {
-            $id_reservation = $_GET['id_reservation'] ?? null;
-            $controller->afficher($id_reservation);
+            $controller->afficher();
         }
-        break;
-
-    default:
-        echo "<h1>404 - Page introuvable</h1>";
         break;
 }
 ?>
