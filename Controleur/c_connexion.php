@@ -40,13 +40,17 @@ class c_connexion {
     header("Location: index.php?page=accueil");
     exit;
 }
-
-
     public function deconnexion(): void {
-        session_destroy();
-        header("Location: index.php?page=accueil");
-        exit;
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
     }
+
+    $_SESSION = [];     // clear session data
+    session_destroy(); // destroy session
+
+    header("Location: index.php?page=accueil");
+    exit;
+}
 }
 
 class c_mdp_oblie {

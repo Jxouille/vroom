@@ -94,7 +94,11 @@
 <!-- ON APPELERA ICI LA PAGE DE PAYEMENT FICTIF -->
             <!-- Bouton centré et pleine largeur (séparé de la carte) -->
             <div class="button-row">
-                <button href="index.php?page=paiement&action=creer&id_annonce=<?= $annonce['id'] ?>" class="confirm-btn" aria-label="Confirmer le trajet">Confirmer le trajet</button>
+                <a href="index.php?page=paiement&id=<?= $annonce['id'] ?>"
+                class="confirm-btn"
+                aria-label="Confirmer le trajet">
+                Confirmer le trajet
+                </a>
             </div>
         </div>
     </div>

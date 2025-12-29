@@ -24,11 +24,7 @@ class c_detail_trajet {
         $title = "Détail du trajet";
         $css = "detail_trajet.css";
 
-        if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-            die("Annonce invalide");
-        }
-
-        $annonce = Annonces::detail_trajet((int) $_GET['id']);
+        $annonce = Annonces::detail_trajet($_GET['id']);
 
         if (!$annonce) {
             die("Annonce introuvable");

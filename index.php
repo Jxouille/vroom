@@ -6,7 +6,6 @@ session_start();
  */
 $page = $_GET['page'] ?? 'accueil';
 $action = $_GET['action'] ?? null;
-$user_id = $_SESSION['user_id'] ?? null;
 
 /**
  * Router MVC
@@ -61,6 +60,10 @@ switch ($page) {
         $controller = new c_connexion();
         if ($action === 'verifier') {
             $controller->verifier();
+        } 
+        elseif ($action === 'deconnexion') {
+            $controller->deconnexion();
+            break;
         } else {
             $controller->afficher();
         }
@@ -132,9 +135,13 @@ switch ($page) {
         $controller = new c_paiement();
         if ($action === 'payer') {
             $controller->payer();
+
         } else {
             $controller->afficher();
         }
+        break;
+    case 'sucess':
+        require 'Vue/pages/v_sucess.php';
         break;
 }
 ?>

@@ -2,7 +2,7 @@
 <body>
 
 <div class="payment-container">
-    <form action="index.php?page=paiement&action=payer&id_res=<?= $_GET['id_res'] ?>" method="POST">
+    <form action="index.php?page=paiement&action=payer&id_res=<?= $_GET['id_res'] ?>">
         <div class="header">
             <span class="icon-card">💳</span>
             <h2>Informations de paiement</h2>
