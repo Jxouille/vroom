@@ -74,4 +74,47 @@ class Reservations {
         $stmt->execute([$user_id]);
         return $stmt->fetchAll();
     }
+    public static function trajets_a_venir(int $id_client): ?array {
+        $db = dbConnect();
+
+        $sql = "
+            SELECT *
+            FROM reservations r
+            JOIN annonces a ON r.id_annonce = a.id
+            JOIN utilisateurs u ON a.id_conducteur = u.id
+            JOIN vehicules v ON a.id_vehicule = v.id
+            JOIN lieux ld ON a.id_lieu_depart = ld.id
+            JOIN lieux la ON a.id_lieu_arrivee = la.id
+            WHERE r.id_passager = :id_client
+            AND a.date_depart >= CURDATE()
+            ORDER BY a.date_depart ASC
+        ";
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute(['id_client' => $id_client]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: null;
+    }
+
+    public static function trajets_effectue(int $id_client): ?array {
+        $db = dbConnect();
+
+        $sql = "
+            SELECT *
+            FROM reservations r
+            JOIN annonces a ON r.id_annonce = a.id
+            JOIN utilisateurs u ON a.id_conducteur = u.id
+            JOIN vehicules v ON a.id_vehicule = v.id
+            JOIN lieux ld ON a.id_lieu_depart = ld.id
+            JOIN lieux la ON a.id_lieu_arrivee = la.id
+            WHERE r.id_passager = :id_client
+            AND a.date_depart < CURDATE()
+            ORDER BY a.date_depart DESC
+        ";
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute(['id_client' => $id_client]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: null;
+    }
+
+
 }

@@ -9,7 +9,6 @@ class Annonces {
         $stmt = $db->prepare("SELECT * FROM annonces WHERE id = ?");
         $stmt->execute([$id]);
         return $stmt->fetch() ?: null;
-
     }
 
     public static function all(): array {
@@ -186,4 +185,19 @@ class Annonces {
 
         return $annonce ?: null;
     }
+  public static function get_annonces_conducteur(int $id_conducteur): ?array {
+    $db = dbConnect();
+    $stmt = $db->prepare(
+        "SELECT * FROM annonces WHERE id_conducteur = :id_conducteur"
+    );
+    $stmt->execute([
+        ':id_conducteur' => $id_conducteur
+    ]);
+
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result ?: null;
+}
+
+
+
 }

@@ -16,7 +16,6 @@ switch ($page) {
     case 'accueil':
         require 'Controleur/c_accueil.php';
         $controller = new c_accueil();
-        
         $controller->afficher();
         break;
 
@@ -80,6 +79,20 @@ switch ($page) {
         }
         break;
 
+    case 'verifier_code':
+        require 'Controleur/c_inscription.php';
+        $controller = new c_verifier_code();
+        if ($action === 'verifier') {
+            $controller->verifier();
+        } 
+        elseif ($action == 'renvoyer'){
+            $controller->renvoyer();
+        }
+        else {
+            $controller->afficher();
+        }
+        break;
+
     // Profil
     case 'profil':
         require 'Controleur/c_profil.php';
@@ -108,7 +121,7 @@ switch ($page) {
     // Annonces
     case 'annonce':
         require 'Controleur/c_trajet.php';
-        $controller = new c_detail_trajet();
+        $controller = new c_publie_trajet();
         if ($action === 'publier') {
             $controller->publier();
         } else {
@@ -119,15 +132,22 @@ switch ($page) {
     // Favoris
     case 'favoris':
         require 'Controleur/c_profil.php';
-        $controller = new c_favoris();
+        $controller = new c_mes_favoris();
         if ($action === 'ajouter') {
             $controller->ajouter();
         } elseif ($action === 'supprimer') {
             $controller->supprimer();
         } else {
-            $controller->liste();
+            $controller->afficher();
         }
         break;
+
+    case 'mes_reservations':
+        require 'Controleur/c_profil.php';
+        $controller = new c_mes_reservations();
+        $controller->afficher();
+        break;
+
 
     // Paiements
     case 'paiement':
@@ -142,5 +162,7 @@ switch ($page) {
     case 'sucess':
         require 'Vue/pages/v_success.php';
         break;
+
+    
 }
 ?>

@@ -4,7 +4,7 @@ require_once  __DIR__ . '/bd_connection.php';
 
 class Avis {
 
-    public static function getByReservation(int $id_reservation): ?array {
+    public static function get(int $id_reservation): ?array {
         $db = dbConnect();
         $stmt = $db->prepare("SELECT * FROM avis WHERE id_reservation = ?");
         $stmt->execute([$id_reservation]);

@@ -2,6 +2,23 @@
 require_once  __DIR__ . '/bd_connection.php';
 
 class Paiements {
+    public static function mes_paiement(int $id_client): array {
+        $db = dbConnect();
+
+        $sql = "
+            SELECT p.*
+            FROM paiements p
+            JOIN reservations r ON r.id = p.id_reservation
+            WHERE r.id_passager = :id_client
+            ORDER BY p.date_creation DESC
+        ";
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':id_client', $id_client, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public static function get(int $id): ?array {
     $db = dbConnect();

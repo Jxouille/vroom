@@ -6,9 +6,9 @@ require_once __DIR__ . '/../Modele/conversations.php';
 require_once __DIR__ . '/../Modele/favoris.php';
 require_once __DIR__ . '/../Modele/paiements.php';
 require_once __DIR__ . '/../Modele/reservations.php';
+require_once __DIR__ . '/../Modele/annonces.php';
 
 class c_profil {
-
 
     // Affichage du profil
     public function afficher(?int $id_utilisateur = null) {
@@ -133,63 +133,40 @@ class c_mes_documents {
 }
 
 
-class c_favoris {
+class c_mes_favoris {
+    public function afficher(): void {
+        $title = "Mes favoris";
+        $css = "favoris.css";
 
-    public function ajouter(): void {
-        if (!isset($_SESSION['user_id'], $_GET['id_annonce']) || !ctype_digit($_GET['id_annonce'])) {
-            header("Location: index.php?page=accueil");
-            exit;
-        }
+        $favoris = Favoris::liste((int)$_SESSION['user_id']);
 
-        Favoris::ajouter((int)$_SESSION['user_id'], (int)$_GET['id_annonce']);
-        header("Location: index.php?page=annonce&id=" . (int)$_GET['id_annonce']);
-        exit;
+        require __DIR__ . '/../Vue/head.php';
+        require __DIR__ . '/../Vue/header.php';
+        require __DIR__ . '/../Vue/pages/v_favoris.php';
+        require __DIR__ . '/../Vue/footer.php';
     }
 
+    public function ajouter(): void {
+        if (!isset($_SESSION['user_id']) ){
+            header("Location: index.php?page=connexion");
+            exit;
+        }
+        Favoris::ajouter((int)$_SESSION['user_id'], (int)$_GET['id_annonce']);
+        exit;
+    }
     public function supprimer(): void {
         if (!isset($_SESSION['user_id'], $_GET['id_annonce']) || !ctype_digit($_GET['id_annonce'])) {
             header("Location: index.php?page=accueil");
             exit;
         }
-
         Favoris::supprimer((int)$_SESSION['user_id'], (int)$_GET['id_annonce']);
-        header("Location: index.php?page=annonce&id=" . (int)$_GET['id_annonce']);
         exit;
     }
-
-    public function liste(): void {
-        if (!isset($_SESSION['user_id'])) {
-            header("Location: index.php?page=connexion");
-            exit;
-        }
-
-        $favoris = Favoris::liste((int)$_SESSION['user_id']);
-
-        $title = "Mes favoris";
-        $css = "favoris.css";
-
-        require __DIR__ . '/../Vue/head.php';
-        require __DIR__ . '/../Vue/header.php';
-        require __DIR__ . '/../Vue/pages/favoris.php';
-        require __DIR__ . '/../Vue/footer.php';
-    }
 }
-
-
-
 class c_mes_paiement {
-
     public function afficher(int $id_reservation): void {
-        if (!isset($_SESSION['user_id'])) {
-            header("Location: index.php?page=connexion");
-            exit;
-        }
 
-        $reservation = Reservations::get($id_reservation);
-        if (!$reservation) {
-            header("Location: index.php?page=mes_paiements");
-            exit;
-        }
+        $paiements = Paiements::mes_paiement((int)$_SESSION['user_id']);
 
         $title = "Mes Paiements";
         $css = "paiement.css"; /// page à faire
@@ -197,6 +174,18 @@ class c_mes_paiement {
         require __DIR__ . '/../Vue/head.php';
         require __DIR__ . '/../Vue/header.php';
         require __DIR__ . '/../Vue/pages/v_paiement.php';
+        require __DIR__ . '/../Vue/footer.php';
+    }
+    
+    public function details_paiement(int $id_paiement): void {
+        $paiement = Paiements::get($id_paiement);
+
+        $title = "Détails du paiement";
+        $css = "detail_paiement.css"; /// page à faire
+
+        require __DIR__ . '/../Vue/head.php';
+        require __DIR__ . '/../Vue/header.php';
+        require __DIR__ . '/../Vue/pages/v_detail_paiement.php';
         require __DIR__ . '/../Vue/footer.php';
     }
 
@@ -216,58 +205,42 @@ class c_mes_paiement {
         exit;
     }
 }
-class c_mes_trajets {
-    public function afficher(int $id): void {
-        #if (!$resa) {
-        #    header("Location: index.php?page=accueil");
-        #    exit;
-        #}
-        $title = "Mes trajets";
-        $css = "mes_trajets.css";
+class c_mes_reservations {
+
+    # il faut peut etre faire les trajet desjat effectue et trajet à venir 
+
+    public function afficher(): void {
+    $title = "Mes réservations";
+    $css = "mes_reservations.css";
+
+    $id_client = $_SESSION['user_id'];
+    $trajets_avenir = Reservations::trajets_a_venir($id_client);
+    $trajets_effectues = Reservations::trajets_effectue($id_client);
+
+    require __DIR__ . '/../Vue/head.php';
+    require __DIR__ . '/../Vue/header.php';
+    require __DIR__ . '/../Vue/pages/v_mes_reservations.php';
+    require __DIR__ . '/../Vue/footer.php';
+}
+
+    
+}
+
+class c_mes_annonces {
+    public function afficher(): void {
+
+        $title = "Mes annonces";
+        $css = "mes_annonces.css"; 
+        $annonces = Annonces::get_annonces_conducteur($_SESSION['user_id']);
 
         require __DIR__ . '/../Vue/head.php';
         require __DIR__ . '/../Vue/header.php';
         require __DIR__ . '/../Vue/pages/v_mes_trajets.php';
         require __DIR__ . '/../Vue/footer.php';
+
     }
 
-    public function creer(array $data): void {
-        if (!isset($_SESSION['user_id'])) {
-            header("Location: index.php?page=connexion");
-            exit;
-        }
-
-        $data['id_passager'] = (int)$_SESSION['user_id'];
-        Reservations::creer($data);
-
-        header("Location: index.php?page=mes_reservations");
-        exit;
-    }
 }
-class c_reservation {
-    public function afficher(?string $id): void {
-        // Sécurité : vérifier l'ID
-        if ($id === null || !ctype_digit($id)) {
-            header("Location: index.php?page=accueil");
-            exit;
-        }
-
-        $reservation = Reservations::get((int) $id);
-
-        if (!$reservation) {
-            header("Location: index.php?page=accueil");
-            exit;
-        }
-
-        // Variables pour head.php
-        $title = "Détail de la réservation";
-        $css   = "detail_reservation.css";
-
-        require __DIR__ . '/../Vue/head.php';
-        require __DIR__ . '/../Vue/header.php';
-        require __DIR__ . '/../Vue/pages/v_detail_reservation.php';
-        require __DIR__ . '/../Vue/footer.php';
-    }
-}
+        
 
 ?>

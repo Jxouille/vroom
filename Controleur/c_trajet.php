@@ -17,9 +17,7 @@ class c_recherche_trajet {
     }
 }
 
-
 class c_detail_trajet {
-
     public function afficher(): void {
         $title = "Détail du trajet";
         $css = "detail_trajet.css";
@@ -38,7 +36,6 @@ class c_detail_trajet {
 
 class c_publie_trajet {
     public function afficher(): void {
-
         // Sécurité : vérifier l'ID
         #if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
         #    header("Location: index.php?page=accueil");

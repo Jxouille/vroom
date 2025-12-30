@@ -62,5 +62,34 @@ class c_mdp_oblie {
         require __DIR__ . '/../Vue/pages/v_mdp_oblie.php';
         require __DIR__ . '/../Vue/footer.php';
     }
+    public function envoyerLienReset(): void {
+    if (!isset($_POST['email'])) {
+        header("Location: index.php?page=mdp_oublie&error=missing");
+        exit;
+    }
+
+    $email = $_POST['email'];
+    $user = Utilisateur::getByEmail($email);
+
+    if (!$user) {
+        header("Location: index.php?page=mdp_oublie&error=invalid");
+        exit;
+    }
+
+    $token = bin2hex(random_bytes(16));
+    Utilisateur::updateField($user['id'], 'remember_token', $token);
+
+    $resetLink = "https://yourdomain.com/index.php?page=reset_password&token=$token";
+    $subject = "Réinitialisation du mot de passe";
+    $body = "<p>Bonjour {$user['prenom']},</p>
+             <p>Cliquez sur le lien suivant pour réinitialiser votre mot de passe :</p>
+             <a href='$resetLink'>$resetLink</a>";
+
+    sendEmail($email, $subject, $body);
+
+    header("Location: index.php?page=mdp_oublie&success=sent");
+    exit;
+}
+
 }
 ?>

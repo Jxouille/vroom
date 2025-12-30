@@ -14,6 +14,7 @@
                     <?php if (isset($_SESSION['user_id'])) { ?>
                         <li><a href="index.php?page=profil" class="button-header">Mon profil</a></li> 
                         <li><a href="index.php?page=mes_reservations" class="button-header">Mes réservations</a></li> 
+                        <li><a href="index.php?page=mes_annonces" class="button-header">Mes annonces</a></li> 
                         <li><a href="index.php?page=mes_paiements" class="button-header">Mes paiements</a></li> 
                         <li><a href="index.php?page=mes_documents" class="button-header">Mes documents</a></li> 
                         <li><a href="index.php?page=favoris" class="button-header">Mes favoris</a></li> 
