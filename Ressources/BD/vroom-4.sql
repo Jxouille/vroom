@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 26, 2025 at 03:46 PM
+-- Generation Time: Dec 30, 2025 at 04:48 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -51,8 +51,8 @@ INSERT INTO `annonces` (`id`, `id_conducteur`, `id_vehicule`, `date_depart`, `he
 (1, 1, 1, '2025-07-01', '08:00:00', '2025-07-01 08:00:00', 50.00, 3, 'Trajet Casablanca → Rabat', 1, 2, 'active', '2025-12-26 10:51:52'),
 (2, 2, 2, '2025-07-02', '14:30:00', '2025-07-02 14:30:00', 80.00, 2, 'Trajet Rabat → Marrakech', 2, 3, 'active', '2025-12-26 10:51:52'),
 (3, 4, 3, '2025-07-03', '09:00:00', '2025-07-03 09:00:00', 60.00, 3, 'Agadir → Marrakech', 4, 3, 'active', '2025-12-26 10:55:21'),
-(4, 5, 4, '2025-07-04', '07:30:00', '2025-07-04 07:30:00', 40.00, 2, 'Fès → Rabat', 5, 2, 'active', '2025-12-26 10:55:21'),
-(5, 6, 5, '2025-07-05', '16:00:00', '2025-07-05 16:00:00', 90.00, 3, 'Tanger → Casablanca', 6, 1, 'active', '2025-12-26 10:55:21');
+(4, 5, 4, '2025-07-04', '07:30:00', '2025-07-04 07:30:00', 40.00, 2, 'Fès → Rabat', 5, 2, 'complete', '2025-12-26 10:55:21'),
+(5, 6, 5, '2025-07-05', '16:00:00', '2025-07-05 16:00:00', 90.00, 3, 'Tanger → Casablanca', 6, 1, 'complete', '2025-12-26 10:55:21');
 
 -- --------------------------------------------------------
 
@@ -204,7 +204,11 @@ INSERT INTO `paiements` (`id`, `id_reservation`, `moyen_paiement`, `montant`, `s
 (1, 1, 'carte', 50.00, 'valide', 'MAD', 'TX123456', NULL, NULL, '2025-12-26 10:52:32'),
 (2, 2, 'cash', 60.00, 'valide', 'MAD', 'TX789101', NULL, NULL, '2025-12-26 10:55:21'),
 (3, 3, 'carte', 40.00, 'valide', 'MAD', 'TX112131', NULL, NULL, '2025-12-26 10:55:21'),
-(4, 4, 'carte', 90.00, 'rembourse', 'MAD', 'TX415161', NULL, NULL, '2025-12-26 10:55:21');
+(4, 4, 'carte', 90.00, 'rembourse', 'MAD', 'TX415161', NULL, NULL, '2025-12-26 10:55:21'),
+(5, 34, 'carte', 90.00, 'valide', 'EUR', 'TX-6952d49520b10', NULL, '2025-12-29 18:20:53', '2025-12-29 19:20:53'),
+(6, 34, 'carte', 90.00, 'valide', 'EUR', 'TX-6952d5de40976', NULL, '2025-12-29 18:26:22', '2025-12-29 19:26:22'),
+(7, 34, 'carte', 90.00, 'valide', 'EUR', 'TX-6952d5e3c7723', NULL, '2025-12-29 18:26:27', '2025-12-29 19:26:27'),
+(8, 35, 'carte', 40.00, 'valide', 'EUR', 'TX-6952d609aef76', NULL, '2025-12-29 18:27:05', '2025-12-29 19:27:05');
 
 -- --------------------------------------------------------
 
@@ -233,7 +237,11 @@ INSERT INTO `reservations` (`id`, `uuid`, `id_annonce`, `donnees_passager`, `id_
 (2, 'fae229fe-e248-11f0-8b54-367dda755253', 2, NULL, 1, 'en_attente', 80.00, '2025-12-26 10:52:32', '2025-12-26 10:52:32'),
 (3, '5ff5195a-e249-11f0-8b54-367dda755253', 3, NULL, 2, 'acceptee', 60.00, '2025-12-26 10:55:21', '2025-12-26 10:55:21'),
 (4, '5ff51b80-e249-11f0-8b54-367dda755253', 4, NULL, 1, 'en_attente', 40.00, '2025-12-26 10:55:21', '2025-12-26 10:55:21'),
-(5, '5ff51c66-e249-11f0-8b54-367dda755253', 5, NULL, 3, 'terminee', 90.00, '2025-12-26 10:55:21', '2025-12-26 10:55:21');
+(5, '5ff51c66-e249-11f0-8b54-367dda755253', 5, NULL, 3, 'terminee', 90.00, '2025-12-26 10:55:21', '2025-12-26 10:55:21'),
+(32, 'res_6952cd8a9503b', 5, NULL, 10, 'en_attente', 90.00, '2025-12-29 18:50:50', '2025-12-29 18:50:50'),
+(33, 'res_6952cfe6e2235', 5, NULL, 10, 'en_attente', 90.00, '2025-12-29 19:00:54', '2025-12-29 19:00:54'),
+(34, 'res_6952d48937704', 5, NULL, 10, 'acceptee', 90.00, '2025-12-29 19:20:41', '2025-12-29 19:20:53'),
+(35, 'res_6952d5fe375bd', 4, NULL, 10, 'acceptee', 40.00, '2025-12-29 19:26:54', '2025-12-29 19:27:05');
 
 -- --------------------------------------------------------
 
@@ -270,7 +278,14 @@ INSERT INTO `utilisateurs` (`id`, `nom`, `prenom`, `email`, `telephone`, `avatar
 (4, 'Omar El Fassi', 'Utilisateur', 'user4@test.com', '0600000004', NULL, NULL, 'password_hash_4', NULL, 1, 0, NULL, '2025-12-26 10:55:21', '2025-12-26 14:40:00', 0),
 (5, 'Nadia Zahra', 'Utilisateur', 'user5@test.com', '0600000005', NULL, NULL, 'password_hash_5', NULL, 1, 0, NULL, '2025-12-26 10:55:21', '2025-12-26 14:40:00', 0),
 (6, 'Hamza Idrissi', 'Utilisateur', 'user6@test.com', '0600000006', NULL, NULL, 'password_hash_6', NULL, 1, 0, NULL, '2025-12-26 10:55:21', '2025-12-26 14:40:00', 0),
-(7, 'Bui', 'Thi My Anh', 'thi-my-anh.bui@eleve.isep.fr', NULL, NULL, NULL, '$2y$12$vEfQTWLX1HJGcoyh17Ra9OlYCtoDuGjXinQ1iHzN02wmY0XUDdrc6', NULL, 1, 0, NULL, '2025-12-26 14:45:12', '2025-12-26 14:45:12', 0);
+(8, 'Bui', 'Thi My Anh', 'myanhbui811@gmail.com', NULL, NULL, NULL, '$2y$12$gl51UwGS4GbQJBBEv9S9nuY6kVCr74GMreRVTf9Wno4eo8CwjskCK', NULL, 1, 0, NULL, '2025-12-26 15:32:26', '2025-12-26 15:32:26', 0),
+(9, 'Bui', 'Thi My Anh', 'myanhbui0811@gmail.com', NULL, NULL, NULL, '$2y$12$NE607WaiEOToMYZAsrmYmOIKtZoCsUTfXsKgk6tEjEy3V0ZdaCpLS', NULL, 1, 0, NULL, '2025-12-26 15:54:54', '2025-12-26 15:54:54', 0),
+(10, 'Bui', 'Thi My', 'myanhbui@gmail.com', NULL, NULL, NULL, '$2y$12$HKCw1lreym5LTl87W3q8D.k/vpaDvp1rKDUdnJc5VVV0MoSK2bA2G', NULL, 1, 0, NULL, '2025-12-26 15:55:29', '2025-12-26 16:38:46', 0),
+(15, 'Bui', 'Thi My Anh', 'myanhbui811111111111@gmail.com', NULL, NULL, NULL, '$2y$12$YymvgE0Nx3Jn9jyOcZHO0uNbR6a8BthK0lcDBiLaIxJ/R4cJ5Ku8G', NULL, 1, 0, NULL, '2025-12-30 14:58:59', '2025-12-30 14:58:59', 0),
+(16, 'Bui', 'Thi My Anh', 'myanhbui82222222@gmail.com', NULL, NULL, NULL, '$2y$12$jeyL0O8en9dQXBop.bvpoeA8XQAeGrZbVfHPlA/f1tD9rvmooDxc2', NULL, 1, 0, NULL, '2025-12-30 15:12:01', '2025-12-30 15:12:01', 0),
+(17, 'Bui', 'Thi My Anh', 'myanhbui811777@gmail.com', NULL, NULL, NULL, '$2y$12$CC8cfQElOSCHhmnkw8aypuFcOAp6TmR2I3YIsJIGuRV4X8HjlkHAu', NULL, 1, 0, NULL, '2025-12-30 15:26:39', '2025-12-30 15:26:39', 0),
+(18, 'Bui', 'Thi My Anh', 'myanhbui819999991@gmail.com', NULL, NULL, NULL, '$2y$12$mO4wJaIvq5GcjQPLJW7GDOcZADrqAOsokPAEx5pgsc3KKiXyVuu6G', NULL, 1, 0, NULL, '2025-12-30 15:31:05', '2025-12-30 15:31:05', 0),
+(19, 'Bui', 'Thi My Anh', 'myanhbui811888888888@gmail.com', NULL, NULL, NULL, '$2y$12$B1gxk4Amuy7Dn/iBqA.QQOM/1aauZvpnRLNGXe0VBRXaWgj0Yc1Qm', NULL, 1, 0, NULL, '2025-12-30 15:39:45', '2025-12-30 15:39:45', 0);
 
 -- --------------------------------------------------------
 
@@ -299,6 +314,20 @@ INSERT INTO `vehicules` (`id`, `id_utilisateur`, `marque`, `modele`, `annee`, `c
 (3, 4, 'Hyundai', 'i10', '2020', 'Gris', 'EE-789-FF', '2025-12-26 10:55:21'),
 (4, 5, 'Peugeot', '208', '2018', 'Rouge', 'GG-321-HH', '2025-12-26 10:55:21'),
 (5, 6, 'Volkswagen', 'Golf', '2022', 'Bleu', 'II-654-JJ', '2025-12-26 10:55:21');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `verification_codes`
+--
+
+CREATE TABLE `verification_codes` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `code` varchar(6) NOT NULL,
+  `expires_at` datetime NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Indexes for dumped tables
@@ -383,6 +412,12 @@ ALTER TABLE `vehicules`
   ADD KEY `fk_vehicule_user` (`id_utilisateur`);
 
 --
+-- Indexes for table `verification_codes`
+--
+ALTER TABLE `verification_codes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -426,25 +461,31 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `paiements`
 --
 ALTER TABLE `paiements`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `vehicules`
 --
 ALTER TABLE `vehicules`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `verification_codes`
+--
+ALTER TABLE `verification_codes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
