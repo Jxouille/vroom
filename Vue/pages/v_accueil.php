@@ -1,6 +1,6 @@
 <body>
 <div class="hero">
-    <img src="Ressources/Images/img_kv_pc.jpg" alt="Voiture" class="hero-img">
+    <img src="Ressources/Image/img_kv_pc.jpg" alt="Voiture" class="hero-img">
    <section class="search-container">
     <form class="search-box" action="index.php" method="GET">
 

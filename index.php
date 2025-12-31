@@ -50,8 +50,15 @@ switch ($page) {
     case 'mes_documents':
         require 'Controleur/c_profil.php';
         $controller = new c_mes_documents();
-        $controller->afficher();
+        if(isset($_GET['action']) && $_GET['action'] === 'supprimer_tous'){
+            $controller->supprimerTous();
+        } elseif ($action === 'envoyer') {
+            $controller->envoyer();
+        } else {
+            $controller->afficher();
+        }
         break;
+
         
     // Connexion
     case 'connexion':

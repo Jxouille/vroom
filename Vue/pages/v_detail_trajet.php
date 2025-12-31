@@ -1,5 +1,3 @@
-
-
 <body>
     <div class="main-wrapper">
     <div class="page-container">

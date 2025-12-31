@@ -19,8 +19,10 @@
                         <li><a href="index.php?page=mes_documents" class="button-header">Mes documents</a></li> 
                         <li><a href="index.php?page=favoris" class="button-header">Mes favoris</a></li> 
                         <li><a href="index.php?page=connexion&action=deconnexion" class="button-header">Se déconnecter</a></li>
-                    <?php } else { ?>
+                    <?php } elseif ($page = 'connexion') { ?>
                         <li><a href="index.php?page=connexion" class="button-header">Se connecter</a></li> 
+                     <?php } else { ?>
+                        <li><a href="index.php?page=connexion" class="button-header">Se connecter</a></li>
                         <li><a href="index.php?page=inscription" class="button-header">S'inscrire</a></li> 
                     <?php } ?>
                 </ul>

@@ -122,11 +122,15 @@ class Utilisateur {
         $db = dbConnect();
         $stmt = $db->prepare("SELECT * FROM utilisateurs WHERE id = :id");
         $stmt->execute([':id' => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);  
     }
 
-   
-        
+    public function mettreAJourPhotoProfil(int $id_utilisateur, string $chemin_photo): bool {
+        $db = dbConnect();
+        $requete = $this->$db->prepare(
+            "UPDATE utilisateurs SET photo_profil = ? WHERE id = ?"
+        );
+        return $requete->execute([$chemin_photo, $id_utilisateur]);
     }
-
+}
 ?>

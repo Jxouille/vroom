@@ -7,6 +7,7 @@ require_once __DIR__ . '/../Modele/favoris.php';
 require_once __DIR__ . '/../Modele/paiements.php';
 require_once __DIR__ . '/../Modele/reservations.php';
 require_once __DIR__ . '/../Modele/annonces.php';
+require_once __DIR__ . '/../Modele/documents.php';
 
 class c_profil {
 
@@ -81,6 +82,39 @@ class c_profil {
             echo 'Erreur suppression';
         }
     }
+    public function envoyer_photo_profil(): void {
+    if (!isset($_SESSION['user_id'], $_FILES['photo_profil'])) {
+        http_response_code(400);
+        exit('Données manquantes');
+    }
+
+    $photo = $_FILES['photo_profil'];
+    $types_autorises = ['image/jpeg', 'image/png'];
+
+    if (!in_array($photo['type'], $types_autorises)) {
+        exit('Format non autorisé');
+    }
+
+    if ($photo['size'] > 2 * 1024 * 1024) {
+        exit('Image trop volumineuse');
+    }
+
+    $id_utilisateur = $_SESSION['user_id'];
+    $extension = pathinfo($photo['name'], PATHINFO_EXTENSION);
+    $nom_fichier = "profil_$id_utilisateur.$extension";
+    $chemin = "uploads/photos_profils/$nom_fichier";
+
+    move_uploaded_file(
+        $photo['tmp_name'],
+        __DIR__ . "/../../$chemin"
+    );
+
+    Utilisateur::updateField($id_utilisateur, 'photo_profil', $chemin);
+
+    header("Location: index.php?page=profil&success=photo");
+    exit;
+}
+
 }
 
 class c_messages {
@@ -123,14 +157,99 @@ class c_mes_documents {
         $title = "Mes documents";
         $css = "mes_documents.css";
 
-        #$annonces = Annonces::all();
+        $id_utilisateur = $_SESSION['user_id'];
+        // Get existing documents
+        $documents = Documents::getByUser($id_utilisateur); 
 
         require __DIR__ . '/../Vue/head.php';
         require __DIR__ . '/../Vue/header.php';
         require __DIR__ . '/../Vue/pages/v_mes_documents.php';
         require __DIR__ . '/../Vue/footer.php';
     }
+
+    public function envoyer(): void {
+        if (!isset($_SESSION['user_id'])) {
+            http_response_code(403);
+            exit('Non autorisé');
+        }
+
+        $id_utilisateur = (int)$_SESSION['user_id'];
+
+        $mapping_documents = [
+            'id_card'              => 'piece_identite',
+            'driving_license'      => 'permis_conduire',
+            'vehicle_registration' => 'carte_grise',
+            'insurance'            => 'assurance',
+            'proof_of_address'     => 'justificatif_domicile'
+        ];
+
+        $types_fichiers_autorises = ['application/pdf', 'image/jpeg', 'image/png'];
+
+        foreach ($mapping_documents as $champ_form => $type_document) {
+            if (!isset($_FILES[$champ_form]) || $_FILES[$champ_form]['error'] === UPLOAD_ERR_NO_FILE) {
+                continue;
+            }
+
+            $fichier = $_FILES[$champ_form];
+
+            if (!in_array($fichier['type'], $types_fichiers_autorises) || $fichier['size'] > 5 * 1024 * 1024) {
+                continue;
+            }
+
+            // Supprimer ancien document
+            $ancien = Documents::getByUserAndType($id_utilisateur, $type_document);
+            if ($ancien && file_exists($ancien['chemin_fichier'])) {
+                unlink($ancien['chemin_fichier']);
+                Documents::supprimer($ancien['id']);
+            }
+
+            $dossier = "uploads/documents/user_$id_utilisateur/$type_document/";
+            if (!is_dir($dossier)) mkdir($dossier, 0755, true);
+
+            $extension = pathinfo($fichier['name'], PATHINFO_EXTENSION);
+            $nom_fichier = uniqid($type_document . '_') . '.' . $extension;
+            $chemin = $dossier . $nom_fichier;
+
+            move_uploaded_file($fichier['tmp_name'], $chemin);
+
+            Documents::ajouter(
+                $id_utilisateur,
+                $type_document,
+                $fichier['name'],
+                $chemin,
+                $fichier['type'],
+                $fichier['size']
+            );
+        }
+
+        // Photo de profil optionnelle
+        if (isset($_FILES['profile_photo']) && $_FILES['profile_photo']['error'] !== UPLOAD_ERR_NO_FILE) {
+            $photo = $_FILES['profile_photo'];
+            $chemin_photo = "uploads/profiles/user_$id_utilisateur/";
+            if (!is_dir($chemin_photo)) mkdir($chemin_photo, 0755, true);
+            $nom_photo = uniqid('profile_') . '.' . pathinfo($photo['name'], PATHINFO_EXTENSION);
+            move_uploaded_file($photo['tmp_name'], $chemin_photo . $nom_photo);
+            Utilisateur::updateField($id_utilisateur, 'photo_profil', $chemin_photo . $nom_photo);
+        }
+
+        header("Location: index.php?page=mes_documents&success=ok");
+        exit;
+    }
+    public function supprimerTous(): void {
+        $docs = Documents::obtenirDocumentsParUtilisateur($_SESSION['user_id']);
+        foreach($docs as $doc){
+            // Supprimer le fichier du serveur si nécessaire
+            if(file_exists($doc['chemin_fichier'])) unlink($doc['chemin_fichier']);
+            Documents::supprimer($doc['id']);
+        }
+        echo 'OK';
+        exit;
 }
+
+
+}
+
+
 
 
 class c_mes_favoris {
@@ -163,7 +282,7 @@ class c_mes_favoris {
         exit;
     }
 }
-class c_mes_paiement {
+class c_mes_paiements {
     public function afficher(int $id_reservation): void {
 
         $paiements = Paiements::mes_paiement((int)$_SESSION['user_id']);
