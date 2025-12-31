@@ -37,21 +37,13 @@ class c_detail_trajet {
 class c_publie_trajet {
     public function afficher(): void {
         // Sécurité : vérifier l'ID
-        #if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
-        #    header("Location: index.php?page=accueil");
-        #    exit;
-        #}
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: index.php?page=connexion");
+            exit;
+        }
 
-        #$annonce = Annonces::get((int) $_GET['id']);
-
-        #if (!$annonce) {
-        #    header("Location: index.php?page=accueil");
-        #    exit;
-        #}
-
-        // Variables pour head.php
         $title = "Publier un trajet";
-        $css   = "publier_trajet.css";
+        $css   = "publie_trajet.css";
 
         require __DIR__ . '/../Vue/head.php';
         require __DIR__ . '/../Vue/header.php';
