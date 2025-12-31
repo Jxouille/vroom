@@ -1,0 +1,432 @@
+:root {
+  --couleurVerte: #28a745;
+  --couleurVerteFonce: #1f7e36;
+  --texteGris: #6d7c82;
+  --titreNoir: #222;
+  --fondClair: #ffffff;
+  --ombre: rgba(0,0,0,0.10);
+  --ombreHover: rgba(0,0,0,0.18);
+}
+
+
+
+
+/* HERO */
+
+.hero {
+    width: 100%;
+    position: relative;
+}
+
+.hero-img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    filter: brightness(0.8);
+}
+
+/* BARRE DE RECHERCHE POSITIONNÉE SUR L'IMAGE */
+.search-container {
+    position: absolute;
+    bottom: -55px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1100px;
+}
+
+/* BOÎTE PRINCIPALE */
+.search-box {
+    background: var(--fondClair);
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+}
+
+/* FIELDS */
+.search-field {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 12px;
+}
+
+.icon svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--texteGris);
+    fill: none;
+}
+
+.field-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.field-content label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--texteGris);
+    margin-bottom: 3px;
+}
+
+.field-content input {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* DIVISEUR ENTRE LES CHAMPS */
+.divider {
+    width: 1px;
+    height: 40px;
+    background: #e6e6e6;
+}
+
+/* BOUTON */
+.search-btn {
+    background: var(--couleurVerte);
+    border: none;
+    color: var(--fondClair);
+    padding: 18px 28px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s ease;
+    flex-shrink: 0;
+}
+
+.search-btn:hover {
+    background: var(--couleurVerteFonce);
+}
+
+
+
+
+/* TITRES GÉNÉRAUX (harmonisation globale)       */
+
+h2 {
+    font-size: 32px;
+    color: var(--couleurVerteFonce);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: var(--titreNoir);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+p {
+    color: var(--texteGris);
+    line-height: 1.5;
+}
+
+
+
+
+/* INTRO                                         */
+
+.texte-intro {
+    text-align: center;
+    margin-top: 90px;
+    margin-bottom: 20px;
+}
+
+
+
+
+/* AVANTAGES                                     */
+
+.avantages {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.avantages-item {
+    text-align: center;
+    background: var(--fondClair);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px var(--ombre);
+    transition: 0.3s;
+}
+
+.avantages-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px var(--ombreHover);
+}
+
+.avantage-icon {
+    width: 55px;
+    height: 55px;
+    fill: var(--couleurVerte);
+    margin-bottom: 15px;
+}
+
+
+
+
+
+/* SECTION : Comment ça marche */
+.how-it-works {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--fondClair);
+}
+
+.how-it-works h2 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    color: var(--titreNoir);
+}
+
+.how-it-works > p {
+    font-size: 1.1rem;
+    color: var(--texteGris);
+    margin-bottom: 50px;
+}
+
+/* Container des étapes */
+.steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    max-width: 900px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+/* Ligne horizontale reliant les étapes */
+.steps::before {
+    content: "";
+    position: absolute;
+    top: 35px;
+    left: 50px;
+    right: 50px;
+    height: 3px;
+    background: var(--texteGris);
+    opacity: 0.25;
+    z-index: 1;
+}
+
+/* Chaque étape */
+.step {
+    flex: 1;
+    text-align: center;
+    padding: 0 10px;
+    position: relative;
+}
+
+/* Icones rondes */
+.step-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--couleurVerte);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    z-index: 2;
+    position: relative;
+    border: 4px solid var(--fondClair);
+    box-shadow: 0 4px 10px var(--ombre);
+    transition: 0.3s ease;
+}
+
+/* Effet hover */
+.step-icon:hover {
+    background: var(--couleurVerteFonce);
+    box-shadow: 0 6px 14px var(--ombreHover);
+}
+
+/* Titres */
+.step h3 {
+    font-size: 1.3rem;
+    color: var(--titreNoir);
+    margin-bottom: 10px;
+}
+
+/* Textes */
+.step p {
+    font-size: 0.95rem;
+    color: var(--texteGris);
+    line-height: 1.5;
+}
+
+
+
+
+/* TRAJETS POPULAIRES                            */
+
+
+/* SECTION : Trajets populaires */
+.popular-rides {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--fondClair);
+}
+
+.popular-rides h2 {
+    font-size: 2rem;
+    color: var(--titreNoir);
+    margin-bottom: 10px;
+}
+
+.popular-rides > p {
+    font-size: 1.1rem;
+    color: var(--texteGris);
+    margin-bottom: 40px;
+}
+
+/* Container des cartes */
+.rides-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* --- CARTE --- */
+.ride-card {
+    background: var(--fondClair);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 4px 12px var(--ombre);
+    transition: 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.ride-card:hover {
+    box-shadow: 0 6px 18px var(--ombreHover);
+    transform: translateY(-3px);
+}
+
+/* HEADER : Avatar + nom + rating + places */
+.ride-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+/* Avatar rond */
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--couleurVerte);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--fondClair);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Nom + rating */
+.ride-header h4 {
+    margin: 0;
+    color: var(--titreNoir);
+}
+
+.ride-header span {
+    font-size: 0.9rem;
+    color: var(--texteGris);
+}
+
+/* Places */
+.places {
+    background: var(--couleurVerte);
+    color: var(--fondClair);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+/* --- ROUTE (Paris — Lyon) --- */
+.ride-route {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.ride-route p {
+    font-weight: 600;
+    color: var(--titreNoir);
+}
+
+.ride-route .line {
+    flex: 1;
+    height: 2px;
+    background: var(--couleurVerte);
+    margin: 0 10px;
+    opacity: 0.5;
+}
+
+/* --- INFO (date + prix) --- */
+.ride-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.ride-info p {
+    margin: 0;
+    color: var(--texteGris);
+}
+
+.price {
+    font-weight: 600;
+    color: var(--couleurVerteFonce);
+}
+
+/* --- BTN Résserver --- */
+.ride-btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--couleurVerte);
+    color: var(--fondClair);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.ride-btn:hover {
+    background: var(--couleurVerteFonce);
+}
+
+/* --- BTN Voir tous les trajets --- */
+.all-rides-btn {
+    margin-top: 40px;
+    padding: 12px 30px;
+    background: transparent;
+    border: 2px solid var(--couleurVerte);
+    color: var(--couleurVerte);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.all-rides-btn:hover {
+    background: var(--couleurVerte);
+    color: var(--fondClair);
+}

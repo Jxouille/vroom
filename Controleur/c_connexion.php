@@ -1,28 +1,95 @@
 <?php
-require_once __DIR__ . '/../modele/utilisateur.php';
+require_once __DIR__ . '/../Modele/utilisateur.php';
 
 class c_connexion {
 
-    public function afficher() {
-        include __DIR__ . '/../vue/header.php';
-        include __DIR__ . '/../vue/pages/connexion.php';
-        include __DIR__ . '/../vue/footer.php';
+    public function afficher(): void {
+        $title = "Connexion";
+        $css = "connexion.css";
+        require __DIR__ . '/../Vue/head.php';
+        require __DIR__ . '/../Vue/header.php';
+        require __DIR__ . '/../Vue/pages/v_connexion.php';
+        require __DIR__ . '/../Vue/footer.php';
     }
 
-    public function verifier() {
-        if (!isset($_POST['telephone'], $_POST['mot_de_passe'])) {
-            header("Location: index.php?page=connexion&error=missing");
-            exit;
-        }
-
-        $user = Utilisateur::connexion($_POST['telephone'], $_POST['mot_de_passe']);
-
-        if (!$user) {
-            header("Location: index.php?page=connexion&error=invalid");
-            exit;
-        }
-
-        $_SESSION['user_id'] = $user['id'];
-        header("Location: index.php?page=accueil");
+    public function verifier(): void {
+    if (!isset($_POST['email'], $_POST['mot_de_passe'])) {
+        header("Location: index.php?page=connexion&error=missing");
+        exit;
     }
+
+    $login = trim($_POST['email']); // email ou téléphone
+    $mot_de_passe = $_POST['mot_de_passe'];
+
+    // Récupérer l'utilisateur par email ou téléphone
+    $user = Utilisateur::getByEmailOrTelephone($login);
+
+    if (!$user) {
+        header("Location: index.php?page=connexion&error=invalid");
+        exit;
+    }
+
+    // Vérifier le mot de passe
+    if (!password_verify($mot_de_passe, $user['mot_de_passe'])) {
+        header("Location: index.php?page=connexion&error=invalid");
+        exit;
+    }
+
+    // Connexion réussie
+    $_SESSION['user_id'] = $user['id'];
+    header("Location: index.php?page=accueil");
+    exit;
 }
+    public function deconnexion(): void {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    $_SESSION = [];     // clear session data
+    session_destroy(); // destroy session
+
+    header("Location: index.php?page=accueil");
+    exit;
+}
+}
+
+class c_mdp_oblie {
+    public function afficher(): void {
+        $title = "Mot de passe oublié";
+        $css = "mdp_oblie.css";
+        require __DIR__ . '/../Vue/head.php';
+        require __DIR__ . '/../Vue/header.php';
+        require __DIR__ . '/../Vue/pages/v_mdp_oblie.php';
+        require __DIR__ . '/../Vue/footer.php';
+    }
+    public function envoyerLienReset(): void {
+    if (!isset($_POST['email'])) {
+        header("Location: index.php?page=mdp_oublie&error=missing");
+        exit;
+    }
+
+    $email = $_POST['email'];
+    $user = Utilisateur::getByEmail($email);
+
+    if (!$user) {
+        header("Location: index.php?page=mdp_oublie&error=invalid");
+        exit;
+    }
+
+    $token = bin2hex(random_bytes(16));
+    Utilisateur::updateField($user['id'], 'remember_token', $token);
+
+    $resetLink = "https://yourdomain.com/index.php?page=reset_password&token=$token";
+    $subject = "Réinitialisation du mot de passe";
+    $body = "<p>Bonjour {$user['prenom']},</p>
+             <p>Cliquez sur le lien suivant pour réinitialiser votre mot de passe :</p>
+             <a href='$resetLink'>$resetLink</a>";
+
+    sendEmail($email, $subject, $body);
+
+    header("Location: index.php?page=mdp_oublie&success=sent");
+    exit;
+}
+
+}
+?>

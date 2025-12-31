@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <?php require "../head_&_header.php";?>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proposer un Trajet - VROOM</title>
-    <link rel="stylesheet" href="../../Ressources/CSS/publier_trajet.css"> </head>
+
 <body>
 
     <div class="page-container">
@@ -122,7 +115,5 @@
     </div>
 
 </body>
-<?php include "../footer.php";?>
-</html>
 
 

@@ -1,14 +1,12 @@
-<?php require "../head_&_header.php";?>
-
 <body>
-
-
-
     <div class="main-wrapper">
     <div class="page-container">
         
         <div class="header-title">Détail trajet</div>
         <div class="header-bandeau"></div>
+        <?php if (!$annonce): ?>
+            <p>Trajet introuvable</p>
+        <?php return; endif; ?>
 
         <div class="main-content">
             
@@ -18,45 +16,47 @@
                     <div class="driver-left">
                         <div class="avatar">JD</div>
                         <div class="driver-info">
-                            <div class="driver-name">Jean Dupont</div>
-                            <div class="vehicle">Peugeot 308 • 3 places</div>
+                            <div class="driver-name"><?= htmlspecialchars($annonce['conducteur_nom']) ?></div>
+                            <div class="vehicle"><?= htmlspecialchars($annonce['marque']) ?> • <?= htmlspecialchars($annonce['modele']) ?></div>
                             <div class="rating" title="Note 4.5 sur 5">
                                 <span class="star filled">★</span>
                                 <span class="star filled">★</span>
                                 <span class="star filled">★</span>
                                 <span class="star filled">★</span>
                                 <span class="star">★</span>
-                                <span style="margin-left:8px;color:#6c757d;font-weight:700;">4.5</span>
+                                <span style="margin-left:8px;color:#6c757d;font-weight:700;">
+                                    <?= $annonce['note_conducteur'] ?>/5
+                                </span>
                             </div>
                         </div>
                     </div>
                     <div class="driver-right">
-                        <div class="price">20€</div>
+                        <div class="price"><?= htmlspecialchars($annonce['prix_par_personne']) ?></div>
                         <button class="contact-small">Contacter</button>
-                    </div>
-                </div>
+                    </div> <!-- pop up messagerie avec le conducteur en java script à faire -->
+                </div> 
             </div>
 
             <!-- Date card (placed under driver details) -->
             <div class="info-card">
-                <h2 class="card-title">Date</h2>
+                <h2 class="card-title"><?= htmlspecialchars($annonce['date_depart']) ?></h2>
 
                 <div class="trajet-detail">
                     <div class="heures">
-                        <span class="heure-depart">14:59</span>
-                        <span class="heure-arrivee">16:56</span>
+                        <span class="heure-depart"><?= htmlspecialchars($annonce['heure_depart']) ?></span>
+                        <span class="heure-arrivee"><?= htmlspecialchars($annonce['heure_depart']) ?></span>
                     </div>
 
                     <div class="separateur"></div>
 
                     <div class="gares-info">
                         <div class="gare depart">
-                            <div class="ville">Paris</div>
-                            <div class="detail-gare">Gare Montparnasse</div>
+                            <div class="ville"><?= htmlspecialchars($annonce['lieu_depart']) ?></div>
+                            <div class="detail-gare"><?= htmlspecialchars($annonce['lieu_depart']) ?></div>
                         </div>
                         <div class="gare arrivee">
-                            <div class="ville">Lyon</div>
-                            <div class="detail-gare">Place Bellecour, 69002</div>
+                            <div class="ville"><?= htmlspecialchars($annonce['lieu_arrivee']) ?></div>
+                            <div class="detail-gare"><?= htmlspecialchars($annonce['lieu_arrivee']) ?></div>
                         </div>
                     </div>
                 </div>
@@ -89,10 +89,14 @@
                     </div>
                 </div>
             </div>
-
+<!-- ON APPELERA ICI LA PAGE DE PAYEMENT FICTIF -->
             <!-- Bouton centré et pleine largeur (séparé de la carte) -->
             <div class="button-row">
-                <button class="confirm-btn" aria-label="Confirmer le trajet">Confirmer le trajet</button>
+                <a href="index.php?page=paiement&id=<?= $annonce['id'] ?>"
+                class="confirm-btn"
+                aria-label="Confirmer le trajet">
+                Confirmer le trajet
+                </a>
             </div>
         </div>
     </div>

@@ -1,129 +1,179 @@
-
-<?php require "../head_&_header.php";?>
-
 <body>
-    <section class="top-page">
-        <div class="landing-content">
-            <div class="intro-box">
-                <h1>Voyagez ensemble, économisez et protégez la planète</h1>
-                <p>VROOM rend le covoiturage simple, économique et écologique. Partagez vos trajets, réduisez votre empreinte carbone et voyagez pour moins cher.</p>
-                <div class="buttons-container">
-                    <a href="#" class="button button-primary">Trouver un trajet →</a>
-                    <a href="publie_trajet.php" class="button button-secondary">Proposer un trajet</a> 
-                </div>
-            </div>
-            </div>
+<div class="hero">
+    <img src="Ressources/Image/img_kv_pc.jpg" alt="Voiture" class="hero-img">
+   <section class="search-container">
+    <form class="search-box" action="index.php" method="GET">
 
-        <section class="search-trips">
-            <div class="search-item">
-                <img src="../../Ressources/Image/Date.png" alt="Date de départ">
-                <input type="date" placeholder="jj/mm/aaaa">
+        <div class="search-field">
+            <div class="icon">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9" stroke-width="2" fill="none"/>
+                </svg>
             </div>
-            <div class="search-item">
-                <img src="../../Ressources/Image/position.png" alt="Lieu de départ">
-                <input type="text" placeholder="Lieu de départ">
+            <div class="field-content">
+                <label>Départ</label>
+                <input type="text" name="depart" placeholder="Ville de départ" >
             </div>
-            <div class="search-item">
-                <img src="../../Ressources/Image/position.png" alt="Lieu d'arrivée">
-                <input type="text" placeholder="Lieu d'arrivée">
-            </div>
-            <div class="search-item">
-                <img src="../../Ressources/Image/nombre_de_personnes.png" alt="Nombre de personnes">
-                <input type="number" min="1" placeholder="Nombre de personnes">
-            </div>
-            <button class="search-button">Rechercher</button>
-        </section>
-    </section>
+        </div>
 
-    <div class="texte-intro">
-        <h2>Pourquoi choisir VROOM ?</h2>
-        <a>Le covoiturage qui fait du bien à votre portefeuile et à la planète</h3>
+        <div class="divider"></div>
+
+        <div class="search-field">
+            <div class="icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7z"/>
+                </svg>
+            </div>
+            <div class="field-content">
+                <label>Destination</label>
+                <input type="text" name="destination" placeholder="Ville d'arrivée" >
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="search-field">
+            <div class="icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4 12h16m-6-6l6 6-6 6"/>
+                </svg>
+            </div>
+            <div class="field-content">
+                <label>Date</label>
+                <input type="date" name="date" >
+            </div>
+        </div>
+
+        <button class="search-btn" type="submit" name="action" value="actionChercherTrajets">Rechercher</button>
+
+    </form>
+</section>
+</div>
+
+
+<div class="texte-intro">
+    <h2>Pourquoi choisir VROOM ?</h2>
+    <p>Le covoiturage qui fait du bien à votre portefeuille et à la planète</p>
+</div>
+
+
+<section class="avantages">
+
+    <div class="avantages-item">
+        <!-- Icône Écologique -->
+        <svg class="avantage-icon" viewBox="0 0 24 24">
+            <path d="M12 2a10 10 0 0 0-7 17l7-7V2zm2 2v7l7 7A10 10 0 0 0 14 4z"/>
+        </svg>
+        <h3>Écologique</h3>
+        <p>Réduisez votre empreinte carbone jusqu'à 75% en partageant vos trajets</p>
     </div>
 
-    <section class = "avantages">
-        <section class="avantages-item">
-            <img src="../../Ressources/Image/feuille.png" alt="" class="icone">
-            <h3>Écologique</h3>
-            <p>Réduisez votre empreinte carbone jusqu'à 75% en partageant vos trajets</p>
-        </section>
-
-        <section class="avantages-item">
-            <img src="../../Ressources/Image/portefeuille.png" alt="" class="icone">
-            <h3>Économique</h3>
-            <p>Divisez vos frais de route par le nombre de passagers et économisez</p>
-        </section>
-
-        <section class="avantages-item">
-            <img src="../../Ressources/Image/gens.png" alt="" class="icone">
-            <h3>Convivial</h3>
-            <p>Rencontrez de nouvelles personnes et partagez des moments agréables</p>
-        </section>
-
-        <section class="avantages-item">
-            <img src="../../Ressources/Image/bouclier.png" alt="" class="icone">
-            <h3>Sécurisé</h3>
-            <p>Profils vérifiés et système de notation pour voyager en toute confiance</p>
-        </section>
-    </section>
-
-    <div class="texte-intro">
-        <h2>Comment ça marche ?</h2>
-        <a>Covoiturer n'a jamais été aussi simple</a>
+    <div class="avantages-item">
+        <!-- Icône Economique -->
+        <svg class="avantage-icon" viewBox="0 0 24 24">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l6 2.67v5.4c0 4.73-3 9.23-6 10.34-3-1.11-6-5.61-6-10.34v-5.4l6-2.67z"/>
+        </svg>
+        <h3>Économique</h3>
+        <p>Divisez vos frais de route par le nombre de passagers et économisez</p>
     </div>
-    <section class="fonctionnement">
-        <section class="fonctionnement-item">
-            <img src="../../Ressources/Image/rechercher.png" alt="" class="icone-fonctionnement">
+
+    <div class="avantages-item">
+        <!-- Icône Convivial -->
+        <svg class="avantage-icon" viewBox="0 0 24 24">
+            <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm-8 9v-2c0-3.31 4.03-5 8-5s8 1.69 8 5v2"/>
+        </svg>
+        <h3>Convivial</h3>
+        <p>Rencontrez de nouvelles personnes et partagez des moments agréables</p>
+    </div>
+
+    <div class="avantages-item">
+        <!-- Icône Sécurité -->
+        <svg class="avantage-icon" viewBox="0 0 24 24">
+            <path d="M12 2l8 4v6c0 7-5.33 11-8 12-2.67-1-8-5-8-12V6l8-4zm0 5a3 3 0 0 0-3 3v2h6V10a3 3 0 0 0-3-3z"/>
+        </svg>
+        <h3>Sécurisé</h3>
+        <p>Profils vérifiés et système de notation pour voyager en toute confiance</p>
+    </div>
+
+</section>
+
+<!-- SECTION : Comment ça marche -->
+<section class="how-it-works">
+    <h2>Comment ça marche ?</h2>
+    <p>Covoiturer n'a jamais été aussi simple</p>
+
+    <div class="steps">
+        <div class="step">
+            <div class="step-icon"></div>
             <h3>Recherchez</h3>
-            <p>Trouvez un trajet qui correspond à vos besoins parmi des miliers d'options</p>
-        </section>
+            <p>Trouvez un trajet qui correspond à vos besoins parmi des milliers d’options</p>
+        </div>
 
-        <section class="fonctionnement-item">
-            <img src="../../Ressources/Image/message.png" alt="" class="icone-fonctionnement">
+        <div class="step">
+            <div class="step-icon"></div>
             <h3>Réservez</h3>
-            <p>Contactez le conducteur et réserver votre place en quelques clics</p>
-        </section>
+            <p>Contactez le conducteur et réservez votre place en quelques clics</p>
+        </div>
 
-        <section class="fonctionnement-item">
-            <img src="../../Ressources/Image/voiture.png" alt="" class="icone-fonctionnement">
-            <h3>Partagez</h3>
-            <p>Profitez du trajet, faites des économies et réduisez votre impact environnemental</p>
-        </section>
-    </section>
-        
-    <section class="texte-intro">
-            <h2>Trajets populaires</h2>
-            <a>Découvrez les trajets les plus demandés cette semaine</a>
-    </section>
-
-    <section class="trajet-populaire">
-        <section class="trajet-item">
-            <div class="avatar">MD</div>
-            <h3>Paris </h3>
-            <h3>Lyon</h3>
-            <p>Départ : 15 août 2024</p>
-            <p>Prix : 20€</p>
-        </section>
-
-        <section class="trajet-item">
-            <div class="avatar">TL</div>
-            <h3>Bordeaux</h3>
-            <h3>Toulouse</h3>
-            <p>Départ : 22 août 2024</p>
-            <p>Prix : 22€</p>
-        </section>
-
-        <section class="trajet-item">
-            <div class="avatar">SM</div>
-            <h3>Marseille</h3>
-            <h3>Nice</h3>
-            <p>Départ : 20 août 2024</p>
-            <p>Prix : 18€</p>
-        </section>
-    </section>
+        <div class="step">
+            <div class="step-icon"></div>
+            <h3>Voyagez</h3>
+            <p>Profitez du trajet et payez directement le conducteur sur la plateforme</p>
+        </div>
+    </div>
+</section>
 
 
+<!-- SECTION : Trajets populaires -->
+<section class="popular-rides">
+    <h2>Trajets populaires</h2>
+    <p>Découvrez les trajets les plus demandés cette semaine</p>
+
+    <div class="rides-list">
+        <?php if (!empty($annonces)):
+            $count = 0; // limiter à 3 trajets
+            foreach ($annonces as $annonce):
+                if ($count >= 3) break;
+
+                $trajet = Annonces::detail_trajet((int)$annonce['id']);    
+                if (!$trajet) continue;
+
+                $count++;
+        ?>
+            <!-- CARD dynamique -->
+            <div class="ride-card">
+                <div class="ride-header">
+                    <div class="avatar"><?= htmlspecialchars($trajet["avatar"] ?? 'ND') ?></div>
+                    <div>
+                        <h4><?= htmlspecialchars($trajet["conducteur_nom"] ?? 'Nom') ?></h4>
+                        <span><?= htmlspecialchars($trajet["conducteur_note"] ?? 0) ?></span>
+                    </div>
+                    <span class="places"><?= htmlspecialchars($trajet["places_disponibles"] ?? 0) ?> places</span>
+                </div>
+
+                <div class="ride-route">
+                    <p><?= htmlspecialchars($trajet["lieu_depart"] ?? '') ?></p>
+                    <div class="line"></div>
+                    <p><?= htmlspecialchars($trajet["lieu_arrivee"] ?? '') ?></p>
+                </div>
+
+                <div class="ride-info">
+                    <p><?= htmlspecialchars($trajet["date_depart"] ?? '') ?> • <?= htmlspecialchars($trajet["heure_depart"] ?? '') ?></p>
+                    <p class="price"><?= htmlspecialchars($trajet["prix_par_personne"] ?? 0) ?>€/pers</p>
+                </div>
+
+                <button class="ride-btn"
+                    onclick="window.location.href='index.php?page=detail_trajet&id=<?= htmlspecialchars($trajet['id']) ?>'">
+                    Réserver
+                </button>
+            </div>
+        <?php endforeach; else: ?>
+            <p>Aucun trajet trouvé</p>
+        <?php endif; ?>
+    </div>
+    <button class="all-rides-btn"
+        onclick="window.location.href='index.php?page=recherche_trajet'">
+        Voir tous les trajets
+    </button>
+</section>
 </body>
-
-<?php require "../footer.php";?>
-</html>
-
