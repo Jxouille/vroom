@@ -13,6 +13,40 @@ class Utilisateur {
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     }
 
+    ///recuper les detail d'un utilisateur
+
+ public static function detail_utilisateur(int $id): ?array
+    {
+        $db = dbConnect();// or your PDO instance
+
+        $sql = "
+        SELECT 
+            a.id,
+            u.nom,             
+            u.prenom,           
+            u.email,            
+            a.date_creation,    
+            ld.nom AS depart,   
+            la.nom AS arrivee   
+        FROM annonces a
+        JOIN utilisateurs u ON a.id_conducteur = u.id
+        JOIN vehicules v ON a.id_vehicule = v.id
+        JOIN lieux ld ON a.id_lieu_depart = ld.id
+        JOIN lieux la ON a.id_lieu_arrivee = la.id
+        WHERE a.id = :id
+        AND a.statut = 'active'
+        ";
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute(['id' => $id]);
+
+        $annonce = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $annonce ?: null;
+    }
+
+
+
     /* =========================
        RÉCUPÉRER PAR EMAIL
     ========================= */
@@ -132,5 +166,5 @@ class Utilisateur {
         );
         return $requete->execute([$chemin_photo, $id_utilisateur]);
     }
-}
+    }
 ?>
