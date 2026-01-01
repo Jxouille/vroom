@@ -8,7 +8,7 @@
             <p>Remplissez les informations de votre trajet pour commencer à utiliser Vroom en toute simplicité.</p>
         </header>
 
-        <form class="ride-form">
+        <form class="ride-form" method="post" action="index.php?page=publie_trajets&action=publier">">
 
             <section class="form-section">
                 <h3>Itinéraire</h3>
@@ -45,7 +45,39 @@
                     </label>
                 </div>
             </section>
+           <section class="form-section">
+                <h3>Carte</h3>
+                
+                <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+                <style>
+                #map {
+                    height: 400px;
+                    border-radius: 12px;
+                }
+                .info {
+                    margin-top: 10px;
+                    font-weight: bold;
+                }
+                </style>
+                </head>
+                <body>
+
+                <h2>Trajet estimé</h2>
+                <div id="map"></div>
+
+                <div class="info">
+                    Distance : <span id="distance">—</span> km<br>
+                    Durée : <span id="duration">—</span> min<br>
+                    Heure d’arrivée estimée : <span id="arrival">—</span>
+                </div>
+
+                <input type="text" id="distance_km">
+                <input type="text" id="duree_minutes">
+                <input type="text" id="route_index">
+
+                <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+            </section>
             <section class="form-section">
                 <h3>Détails du trajet</h3>
                 <div class="grid-2-cols">

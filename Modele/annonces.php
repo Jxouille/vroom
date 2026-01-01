@@ -17,24 +17,51 @@ class Annonces {
         return $stmt->fetchAll();
     }
 
-    public static function creer(array $data): int {
+
+    public static function trouverOuCreerLieu(string $nomVille): int
+    {
+        // Connexion à la base (supposons $db est ton PDO)
         $db = dbConnect();
-        $stmt = $db->prepare("INSERT INTO annonces (id_conducteur, id_vehicule, date_depart, heure_depart, prix_par_personne, places_disponibles, description, id_lieu_depart, id_lieu_arrivee, statut) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->execute([
-            $data['id_conducteur'],
-            $data['id_vehicule'],
-            $data['date_depart'],
-            $data['heure_depart'],
-            $data['prix_par_personne'],
-            $data['places_disponibles'],
-            $data['description'],
-            $data['id_lieu_depart'],
-            $data['id_lieu_arrivee'],
-            $data['statut'] ?? 'active'
-        ]);
+
+        // On cherche si le lieu existe déjà
+        $stmt = $db->prepare("SELECT id FROM lieux WHERE nom = :nom LIMIT 1");
+        $stmt->execute([':nom' => $nomVille]);
+        $lieu = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($lieu) {
+            return (int)$lieu['id'];
+        }
+
+        // Si le lieu n'existe pas, on le crée
+        $stmt = $db->prepare("INSERT INTO lieux (nom) VALUES (:nom)");
+        $stmt->execute([':nom' => $nomVille]);
+
         return (int)$db->lastInsertId();
     }
 
+    /**
+     * Crée une annonce avec les données fournies
+     */
+    public static function creer(array $data): void
+    {
+        $db = dbConnect();
+
+        $stmt = $db->prepare("
+            INSERT INTO annonces (
+                id_conducteur, id_vehicule, date_depart, heure_depart,
+                date_arrivee, heure_arrivee, distance_km, duree_minutes,
+                route_index, prix_par_personne, places_disponibles,
+                description, id_lieu_depart, id_lieu_arrivee
+            ) VALUES (
+                :id_conducteur, :id_vehicule, :date_depart, :heure_depart,
+                :date_arrivee, :heure_arrivee, :distance_km, :duree_minutes,
+                :route_index, :prix_par_personne, :places_disponibles,
+                :description, :id_lieu_depart, :id_lieu_arrivee
+            )
+        ");
+
+        $stmt->execute($data);
+    }
     public static function update(int $id, array $data): bool {
     $db = dbConnect();
 

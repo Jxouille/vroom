@@ -13,4 +13,7 @@
     <?php if (!empty($css)): ?>
         <link rel="stylesheet" href="Ressources/CSS/<?= htmlspecialchars($css) ?>">
     <?php endif; ?>
+    <?php if (!empty($js)): ?>
+        <script src="Ressources/JVS/<?= htmlspecialchars($js) ?>" defer></script>
+    <?php endif; ?>
 </head>
