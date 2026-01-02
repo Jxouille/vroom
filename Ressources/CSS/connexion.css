@@ -1,4 +1,13 @@
-.logo_position {
+:root {
+  --couleurVerte: #28a745;
+  --couleurVerteFonce: #1f7e36;
+  --texteGris: #6d7c82;
+  --titreNoir: #222;
+  --fondClair: #ffffff;
+  --ombre: rgba(0,0,0,0.10);
+  --ombreHover: rgba(0,0,0,0.18);
+}
+  .logo_position {
     display: flex;                  /* active flex */   
     padding: 0 40px;                /* espace intÃ©rieur gauche et droite */
 }
@@ -27,7 +36,7 @@
     justify-content: center;
     height: 100%;
     width: 500px;
-    border: 0.5px solid #378959;
+    border: 0.5px solid var(--couleurVerte);
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* effet d'ombre au survol */
     border-radius: 15px;
@@ -59,7 +68,7 @@
 
 h2 {
     text-align: center;
-    color: #36a579;
+    color: var(--couleurVerte);
     margin-bottom: 20px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 100;
@@ -67,7 +76,7 @@ h2 {
 
 h3 {
     text-align: center;
-    color: #36a579;
+    color: var(--couleurVerte);
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 150;
 }
@@ -91,14 +100,14 @@ h3 {
 .mdp-oubliÃ© {
     margin-left: 148px;
     font-weight: normal;
-    color: #36a579;
+    color:  var(--couleurVerte);
     text-decoration: none;
 }
 
 /* Bouton de connexion */
 
 .button {
-    background-color: #149268; 
+    background-color: var(--couleurVerte); 
     color: white;
     padding: 10px 20px;
     border: none;
@@ -119,7 +128,7 @@ h3 {
 
 .retour-accueil {
     text-align: center;
-    color: #36a579;
+    color: var(--couleurVerte);
     margin-top: 50px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 150;
@@ -137,9 +146,9 @@ h3 {
 
 a {
     text-decoration: none;
-    color: #36a579;
+    color: var(--couleurVerte);
 }
 
 a:hover {
-     color: #38c06c; /* couleur au survol */
+     color: var(--couleurVerteFonce); /* couleur au survol */
 }

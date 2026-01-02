@@ -10,14 +10,7 @@
     --status-text: #5c6bc0;
 }
 
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
-    margin: 0;
-    padding: 40px;
-    display: flex;
-    justify-content: center;
-}
+
 
 .container {
     width: 100%;
@@ -26,6 +19,7 @@ body {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    justify-content: center;
 }
 
 /* Onglets */
