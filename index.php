@@ -4,7 +4,7 @@ session_start();
 /**git
  * Page par défaut
  */
-$page = $_GET['page'] ?? 'admin';
+$page = $_GET['page'] ?? 'accueil';
 $action = $_GET['action'] ?? null;
 
 /**
