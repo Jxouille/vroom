@@ -1,0 +1,139 @@
+/* Variables de couleurs */
+:root {
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+    --text-light: #888;
+    --border-color: #eee;
+    --active-tab-bg: #ffffff;
+    --inactive-tab-bg: #dcdcdc;
+    --status-bg: #e8eaf6;
+    --status-text: #5c6bc0;
+}
+
+
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    justify-content: center;
+}
+
+/* Onglets */
+.tabs {
+    display: flex;
+    background-color: var(--inactive-tab-bg);
+    padding: 5px;
+}
+
+.tab {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    color: #555;
+}
+
+.tab.active {
+    background-color: var(--active-tab-bg);
+    color: #000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Sections */
+.content-section {
+    display: none;
+    padding: 20px;
+}
+
+.content-section.active {
+    display: block;
+}
+
+/* Style de la Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+thead th {
+    text-align: left;
+    color: var(--text-light);
+    font-weight: 400;
+    font-size: 0.85rem;
+    padding: 15px 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+tbody td {
+    padding: 15px 10px;
+    vertical-align: middle;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+/* Utilisateur & Avatar */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #ddd;
+    object-fit: cover;
+}
+
+/* Status Badge */
+.status-badge {
+    background-color: var(--status-bg);
+    color: var(--status-text);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Icônes d'action */
+.actions {
+    display: flex;
+    gap: 15px;
+    color: #666;
+}
+
+.actions i {
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.actions i:hover {
+    color: #000;
+}
+
+.fa-trash-can:hover { color: #e53935; }
+
+/* Etat vide (Trajets) */
+.empty-state {
+    text-align: center;
+    padding: 50px;
+    color: var(--text-light);
+}
+
+.empty-state i {
+    margin-bottom: 15px;
+    opacity: 0.3;
+}

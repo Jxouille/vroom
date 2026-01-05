@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+* {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+}
+
+/* Conteneur principal */
+.box1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    weight: 100vh;
+    background-color: #EFEFEF;
+}
+
+/* Box du formulaire */
+.form-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    width: 75vh;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Titre */
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Champs */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    top-margin: 10px;
+    margin-bottom: 15px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+    color: #555;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* Bouton */
+button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #13cb3eff;
+     transform: scale(1.01); /* grossit le bouton de 10% */
+}
+
+.captcha_err {
+    color: red;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+
+.box-names {
+    display: flex;
+    gap: 20px;
+    top-margin: 10px;
+    margin-bottom: 15px;
+}
+
+.question {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

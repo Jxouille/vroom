@@ -1,0 +1,154 @@
+:root {
+  --couleurVerte: #28a745;
+  --couleurVerteFonce: #1f7e36;
+  --texteGris: #6d7c82;
+  --titreNoir: #222;
+  --fondClair: #ffffff;
+  --ombre: rgba(0,0,0,0.10);
+  --ombreHover: rgba(0,0,0,0.18);
+}
+  .logo_position {
+    display: flex;                  /* active flex */   
+    padding: 0 40px;                /* espace intÃ©rieur gauche et droite */
+}
+
+/* rÃ©duit la taille du logo (image) */
+.logo_position img {
+    width: 10%;    /* ajuster pour rendre le logo plus petit/plus grand */
+}
+.icone {
+    width: 70px;
+    height: 70px;
+    display: block;
+    margin: 0 auto;
+    
+}
+.form_position {
+    display: flex;
+    justify-content: center; /* centre horizontalement */
+    align-items: center;     /* centre verticalement */
+    margin-top: 50px;       /* espace au-dessus du formulaire */
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 500px;
+    border: 0.5px solid var(--couleurVerte);
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* effet d'ombre au survol */
+    border-radius: 15px;
+
+}
+.form_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    /* margin-top: -20px;*/ 
+    position: relative;
+    /* top: -20px; translation vers le haut */
+}
+
+.petit-texte {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #646a68;
+    font-size: medium
+}
+
+.titre-login {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    top: -30px;
+}
+
+h2 {
+    text-align: center;
+    color: var(--couleurVerte);
+    margin-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
+}
+
+h3 {
+    text-align: center;
+    color: var(--couleurVerte);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 150;
+}
+
+
+
+.id {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    color: #646a68;
+    
+}   
+
+.mdp {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    color: #646a68;
+
+}
+
+.mdp-oubliÃ© {
+    margin-left: 148px;
+    font-weight: normal;
+    color:  var(--couleurVerte);
+    text-decoration: none;
+}
+
+/* Bouton de connexion */
+
+.button {
+    background-color: var(--couleurVerte); 
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    width: 400px;
+}
+
+.creation-compte h3 {
+    text-align: center;
+    color: #646a68;
+    margin-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 150;
+}
+
+.retour-accueil {
+    text-align: center;
+    color: var(--couleurVerte);
+    margin-top: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 150;
+}
+
+.input-group {
+    width: 400px;
+    padding: 8px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: rgb(200, 200, 200);
+}
+
+a {
+    text-decoration: none;
+    color: var(--couleurVerte);
+}
+
+a:hover {
+     color: var(--couleurVerteFonce); /* couleur au survol */
+}

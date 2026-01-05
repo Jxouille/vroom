@@ -1,0 +1,212 @@
+
+
+/* BARRE DE RECHERCHE                                 */
+.search-container {
+    transform: translateX(0%);
+    max-width: 800px;
+    margin: 30px auto 20px auto; /* haut / droite / bas / gauche */
+}
+
+.search-box {
+    background: var(--fondClair);
+    width: 100%;
+    padding: 10px 16px;        
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;                 
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+}
+
+/* FIELDS */
+.search-field {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 8px;                
+}
+
+.icon svg {
+    width: 20px;              
+    height: 20px;
+    stroke: var(--texteGris);
+    fill: none;
+}
+
+.field-content label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--texteGris);
+    margin-bottom: 2px;
+}
+
+.field-content input {
+    border: none;
+    outline: none;
+    font-size: 14px;          
+    font-weight: 500;
+}
+
+/* DIVISEUR */
+.divider {
+    width: 1px;
+    height: 32px;             
+    background: #e6e6e6;
+}
+
+/* BOUTON */
+.search-btn {
+    background: var(--couleurVerte);
+    border: none;
+    color: var(--fondClair);
+    padding: 12px 22px;       
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 40px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.search-btn:hover {
+    background: var(--couleurVerteFonce);
+}
+
+
+
+/* LISTE DES TRAJETS                                  */
+
+
+.trajets-container {
+    max-width: 800px;          
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;   
+    padding-bottom: 30px;
+    padding-top:50px;
+
+}
+
+.trajet-ligne {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;        
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: #fff;
+}
+
+/* ------ CONDUCTEUR ------ */
+
+.col-driver {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 300px;              
+}
+
+.avatar {
+    width: 45px;                
+    height: 45px;
+    border-radius: 50%;
+    background: #eaeaea;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.driver-name {
+    font-weight: 700;
+    font-size: 14px;            
+}
+
+.driver-stars {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 3px;
+}
+
+.driver-details p {
+    font-size: 11px;
+    margin: 0;
+    color: #777;
+}
+
+/* ------ HEURES ------ */
+
+.col-horaires {
+    width: 10%;                 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-block {
+    gap: 4px;                  
+    font-size: 14px;
+}
+
+.duree {
+    color: #28a745;
+    font-size: 11px;
+}
+
+/* BARRE VERTE */
+.bar {
+    width: 3px;
+    height: 30px;               
+    background: #28a745;
+}
+
+/* ------ VILLES ------ */
+
+.col-villes {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    
+    gap: 14px;                   
+}
+
+.ville h4 {
+    font-size: 14px;
+}
+
+.ville p {
+    font-size: 12px;
+}
+
+/* ------ PRIX ------ */
+
+.col-prix {
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.prix {
+    font-size: 18px;             
+    font-weight: 700;
+}
+
+.prix-info {
+    font-size: 11px;
+}
+
+.btn-reserver {
+    background: #28a745;
+    color: white;
+    padding: 6px 12px;           
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-reserver:hover {
+    background: #1f7e36;
+}

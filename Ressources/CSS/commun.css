@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+:root {
+  --couleurVerte: #28a745;
+  --couleurVerteFonce: #1f7e36;
+  --texteGris: #6d7c82;
+  --titreNoir: #222;
+  --fondClair: #ffffff;
+  --ombre: rgba(0,0,0,0.10);
+  --ombreHover: rgba(0,0,0,0.18);
+}
+/* Réinitialisation de base */
+* {
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;  
+}
+
+@media screen and (min-width = 1280px){ 
+    header nav {
+        width: 80%;
+    }
+    body { 
+        width: 75%
+    } 
+    .footer-container {
+        width: 75%;
+    }
+}
+@media screen and (min-width = 769px) and (max-width = 1280px){ 
+    header{
+        width:100%;
+    }
+    body { 
+        width : 100%;
+    }  
+    .footer-container {
+        width: 100%;
+    }
+}
+@media screen and (max-width = 768px){
+    body { 
+        width : 100%;
+    } 
+}
+
+header{
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    flex-direction: row;
+    background-color:var(--fondClair);
+    
+}
+
+/* Barre de nav fixe */
+header img {
+    width: 70px;   /* taille du logo */
+}
+.header-content {
+    width: 60%;   /* taille de la barre de navigation */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.nav-main {
+    display: flex;
+    flex-direction: row;
+    gap: 70px;  
+    margin: 0 auto; 
+    align-items: center;
+    
+}
+.nav-profile {
+    margin-right: 20px;
+    list-style-type: none;
+}
+.nav-profile img {
+    width: 40px;   /* taille de l'icône profil */
+    border-radius: 50%; /* rendre l'image circulaire */
+}   
+/* Style des liens du menu déroulant */
+.nav-profile li:hover ul a {
+    background: #f3f3f3;
+    color: #2f3036;
+    height: 40px;
+    line-height: 40px;
+}
+/* État au survol des liens du menu déroulant */
+.nav-profile li:hover ul a:hover {
+    background: #19c589;
+    color: #fff;
+}
+/* Masquer les liens du menu déroulant jusqu'à ce qu'ils soient nécessaires */
+.nav-profile li ul {
+    display: none;
+}
+/* Rendre les liens du menu déroulant verticaux */
+.nav-profile ul li {
+    display: block;
+    float: none;
+}
+.nav-profile ul li a {
+    width: auto;
+    min-width: 100px;
+    padding: 0 20px;
+}
+/* Afficher le menu déroulant au survol */
+.nav-profile img:hover + .hidden, .hidden:hover {
+    display: block;
+}   
+/*Hide checkbox*/
+input[type=checkbox]{
+    display: none;
+}
+/*Show menu when invisible checkbox is checked*/
+input[type=checkbox]:checked ~ #nav-profile{
+    display: block;
+}   
+.show-menu {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    background: var(--fondClair);
+    text-align: center;
+    padding: 10px 0;
+    display: none;
+}
+
+header nav a { 
+    color: var(--texteGris);
+    font-weight: 600;
+    font-size: 18px;
+    justify-content: space-around;
+    text-decoration: none;
+}
+header a:hover {
+    color:var(--titreNoir);      /* couleur au survol */
+}
+/*___________________________________*/
+
+body{
+    background-color: #f0f0f0; /* Couleur de fond pour le reste de la page */
+    align-items: center;
+    justify-content: center;
+    margin: auto 0;
+}
+
+/*___________________________________*/
+
+footer {
+    background-color: var(--texteGris); /* Vert foncé, couleur dominante */
+    padding: 40px 20px;
+    width: 100%;
+}
+.footer-content {
+    display: flex; /* Utilisation de Flexbox pour aligner les colonnes */
+    justify-content: space-around; /* Espace entre les blocs */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.footer-logo img {
+    max-width: 100%; /* Assure que l'image ne dépasse pas la largeur du conteneur */
+    height: 100px; 
+}   
+.footer-section {
+    min-width: 180px; /* Pour éviter un rétrécissement excessif */
+}
+.footer-section h4 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #5d9d88; /* Soulignement léger pour les titres */
+    padding-bottom: 5px;
+}
+.footer-section ul {
+    list-style: none;
+}
+.footer-section ul li {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+.footer-section ul li a {
+    text-decoration: none;
+    color: #f1f1f1;
+}
+.footer-section ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-section p {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column; /* Les blocs passent en colonne */
+        gap: 30px; /* Espace vertical entre les blocs */
+    }
+    .footer-logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}
