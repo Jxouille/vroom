@@ -4,7 +4,7 @@ session_start();
 /**git
  * Page par défaut
  */
-$page = $_GET['page'] ?? 'accueil';
+$page = $_GET['page'] ?? 'admin';
 $action = $_GET['action'] ?? null;
 
 /**
@@ -126,6 +126,11 @@ switch ($page) {
         break;
 
     // Annonces
+    case 'admin':
+        require 'Controleur/c_admin.php';
+        $controller = new c_admin();
+        $controller->afficher();
+        break;
     case 'annonce':
         require 'Controleur/c_trajet.php';
         $controller = new c_publie_trajet();

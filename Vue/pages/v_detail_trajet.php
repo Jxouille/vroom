@@ -25,7 +25,7 @@
                                 <span class="star filled">★</span>
                                 <span class="star">★</span>
                                 <span style="margin-left:8px;color:#6c757d;font-weight:700;">
-                                    <?= $annonce['note_conducteur'] ?>/5
+                                    <?= $annonce['conducteur_note'] ?>/5
                                 </span>
                             </div>
                         </div>
