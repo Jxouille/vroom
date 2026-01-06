@@ -1,26 +1,5 @@
-/* ---------- Reset léger ---------- */
-* {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: "Arial", "Helvetica", sans-serif;
-    color: #223233;
-}
-
-/* ---------- Page & conteneur principal ---------- */
-body {
-    background-color: #eef9f2; 
-    padding: 40px 20px;
-}
-
-/* largeur fixe agréable pour desktop, centré, aspect "carte" */
 .page-container {
-    max-width: 820px;
+    width: 900px;
     margin: 0 auto 60px;
     
     /* MODIFICATIONS POUR L'ASPECT CARTE BLANCHE */

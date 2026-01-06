@@ -176,11 +176,13 @@ switch ($page) {
             $controller->afficher();
         }
         break;
+        
     case 'success':
         require 'Controleur/c_paiement.php';
         $controller = new c_paiement();
         $controller->paiemnetsucces();
         break;
+
     case 'detail_paiement':
         require 'Controleur/c_paiement.php';
         $controller = new c_detail_paiement();
