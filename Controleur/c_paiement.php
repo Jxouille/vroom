@@ -31,20 +31,57 @@ class c_paiement {
         require __DIR__ . '/../Vue/footer.php';
     }
     public function payer(): void {
+
+        /// si paiement dejas fait il faut affiche que le paiement est dejas fait car si non sur la bd va crere un paiement en attent en plus si on fait fait retour 
+        
         $res_info = Reservations::get($_GET['id']);
-        $data = [
-            'id_reservation' => $_GET['id'],
-            'moyen_paiement' => 'carte',
-            'montant'        => $res_info['prix_total'], // Récupéré de l'annonce
-            'statut'         => 'valide',
-            'devise'         => 'EUR',
-            'transaction_id' => 'TX-' . uniqid(),
-            'date_paiement'  => date('Y-m-d H:i:s')
-        ];
-        Paiements::creer($data);
-        Reservations::update($_GET['id'], ['statut' => 'acceptee']);
-        Annonces::update($res_info['id_annonce'], ['statut'=> 'complete'] );
-        header("Location: index.php?page=success");
-        exit;
+
+        if ($res_info['statut'] === 'acceptee') {
+            header("Location: index.php?page=success");
+            exit;
+        } else {
+            $data = [
+                'id_reservation' => $_GET['id'],
+                'moyen_paiement' => 'carte',
+                'montant'        => $res_info['prix_total'], // Récupéré de l'annonce
+                'statut'         => 'valide',
+                'devise'         => 'EUR',
+                'transaction_id' => 'TX-' . uniqid(),
+                'date_paiement'  => date('Y-m-d H:i:s')
+            ];
+            Paiements::creer($data);
+            Reservations::update($_GET['id'], ['statut' => 'acceptee']);
+            Annonces::update($res_info['id_annonce'], ['statut'=> 'complete'] );
+            header("Location: index.php?page=success");
+            exit;
         }
+    }
+    public function paiemnetsucces(): void {
+        $title = "Paiement réussi";
+        $css = "success.css";
+
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: index.php?page=connexion");
+            exit;
+        }
+
+        // Chargement de la vue
+        require __DIR__ . '/../Vue/head.php';
+        require __DIR__ . '/../Vue/header.php';
+        require __DIR__ . '/../Vue/pages/v_success.php'; // La vue de succès
+        require __DIR__ . '/../Vue/footer.php';
+    }
 }
+class c_detail_paiement {
+    public function detail_paiement(): void {
+            $paiement = Paiements::get($_GET['id']);
+
+            $title = "Détails du paiement";
+            $css = "detail_paiement.css"; /// page à faire
+
+            require __DIR__ . '/../Vue/head.php';
+            require __DIR__ . '/../Vue/header.php';
+            require __DIR__ . '/../Vue/pages/v_detail_paiement.php';
+            require __DIR__ . '/../Vue/footer.php';
+        }
+}?>

@@ -1,11 +1,10 @@
 <body>
 <section class="trajets-container">
-
     <!-- Trajets à venir -->
     <h2>Trajets à venir</h2>
     <?php if (!empty($trajets_avenir)): ?>
-        <?php foreach ($trajets_avenir as $trajet): 
-            echo '<pre>'; var_dump($trajets_avenir); echo '</pre>';?>
+        <?php foreach ($trajets_avenir as $trajet): ?>
+
             <div class="trajet-ligne">
                 <!-- Conducteur -->
                 <div class="col-driver">
@@ -47,16 +46,16 @@
                     <div class="prix"><?= htmlspecialchars($trajet["prix_par_personne"] ?? '') ?> $</div>
                     <div class="prix-info"><?= htmlspecialchars($trajet["places_disponibles"] ?? '') ?> places</div>
                     <button class="btn-reserver"
-                        onclick="window.location.href='index.php?page=detail_trajet&id=<?= htmlspecialchars($trajet['annonce_id']) ?>'">
-                        Détails
+                        onclick="window.location.href='index.php?page=detail_trajet&id=<?= htmlspecialchars($trajet['id_annonce']) ?>'">
+                        Voir le trajet
                     </button>
                 </div>
             </div>
 
             <!-- Statut et date réservation -->
-            <div class="trajet-ligne" style="flex-direction: column; gap: 6px; background: #f9f9f9;">
-                <p><strong>Status réservation :</strong> <?= htmlspecialchars($trajet["reservation_status"] ?? '') ?></p>
-                <p><strong>Date réservation :</strong> <?= htmlspecialchars($trajet["date_reservation"] ?? '') ?></p>
+            <div class="trajet-ligne infos">
+                <p><strong>Status réservation :</strong> <?= htmlspecialchars($trajet["statut"] ?? '') ?></p>
+                <p><strong>Date réservation :</strong> <?= htmlspecialchars($trajet["date_creation"] ?? '') ?></p>
                 <p><strong>Description :</strong> <?= htmlspecialchars($trajet["description"] ?? '') ?></p>
             </div>
         <?php endforeach; ?>
@@ -68,6 +67,7 @@
     <h2>Trajets effectués</h2>
     <?php if (!empty($trajets_effectues)): ?>
         <?php foreach ($trajets_effectues as $trajet): ?>
+
             <div class="trajet-ligne" style="opacity: 0.7;">
                 <!-- Conducteur -->
                 <div class="col-driver">
@@ -106,7 +106,7 @@
             </div>
 
             <!-- Statut et date réservation -->
-            <div class="trajet-ligne" style="flex-direction: column; gap: 6px; background: #f0f0f0; opacity: 0.7;">
+            <div class="trajet-ligne effectue">
                 <p><strong>Status réservation :</strong> <?= htmlspecialchars($trajet["reservation_status"] ?? '') ?></p>
                 <p><strong>Date réservation :</strong> <?= htmlspecialchars($trajet["date_reservation"] ?? '') ?></p>
                 <p><strong>Description :</strong> <?= htmlspecialchars($trajet["description"] ?? '') ?></p>

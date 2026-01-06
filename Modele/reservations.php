@@ -86,6 +86,7 @@ class Reservations {
             JOIN lieux ld ON a.id_lieu_depart = ld.id
             JOIN lieux la ON a.id_lieu_arrivee = la.id
             WHERE r.id_passager = :id_client
+            AND r.statut = 'acceptee'
             AND a.date_depart >= CURDATE()
             ORDER BY a.date_depart ASC
         ";

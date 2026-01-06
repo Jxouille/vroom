@@ -30,6 +30,9 @@
             <p>De 8h00 à 18h00</p>
         </div>
     </div>
+    <div class="footer-bottom">
+        © 2026 Vroom — Tous droits réservés
+    </div>  
 </footer>
 </html>
 

@@ -283,45 +283,17 @@ class c_mes_favoris {
     }
 }
 class c_mes_paiements {
-    public function afficher(int $id_reservation): void {
+    public function afficher(): void {
 
         $paiements = Paiements::mes_paiement((int)$_SESSION['user_id']);
 
         $title = "Mes Paiements";
-        $css = "paiement.css"; /// page à faire
+        $css = "mes_paiements.css"; 
 
         require __DIR__ . '/../Vue/head.php';
         require __DIR__ . '/../Vue/header.php';
-        require __DIR__ . '/../Vue/pages/v_paiement.php';
+        require __DIR__ . '/../Vue/pages/v_mes_paiements.php';
         require __DIR__ . '/../Vue/footer.php';
-    }
-    
-    public function details_paiement(int $id_paiement): void {
-        $paiement = Paiements::get($id_paiement);
-
-        $title = "Détails du paiement";
-        $css = "detail_paiement.css"; /// page à faire
-
-        require __DIR__ . '/../Vue/head.php';
-        require __DIR__ . '/../Vue/header.php';
-        require __DIR__ . '/../Vue/pages/v_detail_paiement.php';
-        require __DIR__ . '/../Vue/footer.php';
-    }
-
-    public function payer(): void {
-        if (!isset($_SESSION['user_id'], $_POST['id_reservation'], $_POST['moyen_paiement'], $_POST['montant'])) {
-            header("Location: index.php?page=paiement&error=missing");
-            exit;
-        }
-
-        Paiements::creer([
-            'id_reservation' => $_POST['id_reservation'],
-            'moyen_paiement' => $_POST['moyen_paiement'],
-            'montant' => $_POST['montant']
-        ]);
-
-        header("Location: index.php?page=mes_reservations&success=paid");
-        exit;
     }
 }
 class c_mes_reservations {
@@ -354,12 +326,11 @@ class c_mes_annonces {
 
         require __DIR__ . '/../Vue/head.php';
         require __DIR__ . '/../Vue/header.php';
-        require __DIR__ . '/../Vue/pages/v_mes_trajets.php';
+        require __DIR__ . '/../Vue/pages/v_mes_annonces.php';
         require __DIR__ . '/../Vue/footer.php';
 
     }
 
 }
-        
 
 ?>
