@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 31, 2025 at 02:43 PM
+-- Generation Time: Jan 05, 2026 at 09:15 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -40,19 +40,55 @@ CREATE TABLE `annonces` (
   `id_lieu_depart` bigint(20) UNSIGNED NOT NULL,
   `id_lieu_arrivee` bigint(20) UNSIGNED NOT NULL,
   `statut` enum('active','complete','annulee','expiree') DEFAULT 'active',
-  `date_creation` timestamp NOT NULL DEFAULT current_timestamp()
+  `date_creation` timestamp NOT NULL DEFAULT current_timestamp(),
+  `distance_km` decimal(6,2) DEFAULT NULL,
+  `duree_minutes` int(11) DEFAULT NULL,
+  `heure_arrivee` time DEFAULT NULL,
+  `date_arrivee` date DEFAULT NULL,
+  `route_index` int(11) DEFAULT 0,
+  `trafic` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `annonces`
 --
 
-INSERT INTO `annonces` (`id`, `id_conducteur`, `id_vehicule`, `date_depart`, `heure_depart`, `datetime_depart`, `prix_par_personne`, `places_disponibles`, `description`, `id_lieu_depart`, `id_lieu_arrivee`, `statut`, `date_creation`) VALUES
-(1, 1, 1, '2025-07-01', '08:00:00', '2025-07-01 08:00:00', 50.00, 3, 'Trajet Casablanca → Rabat', 1, 2, 'active', '2025-12-26 10:51:52'),
-(2, 2, 2, '2025-07-02', '14:30:00', '2025-07-02 14:30:00', 80.00, 2, 'Trajet Rabat → Marrakech', 2, 3, 'complete', '2025-12-26 10:51:52'),
-(3, 4, 3, '2025-07-03', '09:00:00', '2025-07-03 09:00:00', 60.00, 3, 'Agadir → Marrakech', 4, 3, 'complete', '2025-12-26 10:55:21'),
-(4, 5, 4, '2025-07-04', '07:30:00', '2025-07-04 07:30:00', 40.00, 2, 'Fès → Rabat', 5, 2, 'complete', '2025-12-26 10:55:21'),
-(5, 6, 5, '2025-07-05', '16:00:00', '2025-07-05 16:00:00', 90.00, 3, 'Tanger → Casablanca', 6, 1, 'complete', '2025-12-26 10:55:21');
+INSERT INTO `annonces` (`id`, `id_conducteur`, `id_vehicule`, `date_depart`, `heure_depart`, `datetime_depart`, `prix_par_personne`, `places_disponibles`, `description`, `id_lieu_depart`, `id_lieu_arrivee`, `statut`, `date_creation`, `distance_km`, `duree_minutes`, `heure_arrivee`, `date_arrivee`, `route_index`, `trafic`) VALUES
+(1, 1, 1, '2025-07-01', '08:00:00', '2025-07-01 08:00:00', 50.00, 3, 'Trajet Casablanca → Rabat', 1, 2, 'complete', '2025-12-26 10:51:52', NULL, NULL, NULL, NULL, 0, 1),
+(2, 2, 2, '2025-07-02', '14:30:00', '2025-07-02 14:30:00', 80.00, 2, 'Trajet Rabat → Marrakech', 2, 3, 'complete', '2025-12-26 10:51:52', NULL, NULL, NULL, NULL, 0, 1),
+(3, 4, 3, '2025-07-03', '09:00:00', '2025-07-03 09:00:00', 60.00, 3, 'Agadir → Marrakech', 4, 3, 'complete', '2025-12-26 10:55:21', NULL, NULL, NULL, NULL, 0, 1),
+(4, 5, 4, '2025-07-04', '07:30:00', '2025-07-04 07:30:00', 40.00, 2, 'Fès → Rabat', 5, 2, 'complete', '2025-12-26 10:55:21', NULL, NULL, NULL, NULL, 0, 1),
+(5, 6, 5, '2025-07-05', '16:00:00', '2025-07-05 16:00:00', 90.00, 3, 'Tanger → Casablanca', 6, 1, 'complete', '2025-12-26 10:55:21', NULL, NULL, NULL, NULL, 0, 1),
+(6, 1, 2, '2026-01-06', '08:00:00', '2026-01-06 08:00:00', 30.00, 3, 'Paris → Lyon', 201, 202, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(7, 2, 3, '2026-01-07', '09:00:00', '2026-01-07 09:00:00', 25.00, 2, 'Marseille → Nice', 203, 204, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(8, 3, 1, '2026-01-08', '07:30:00', '2026-01-08 07:30:00', 40.00, 3, 'Bordeaux → Toulouse', 205, 206, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(9, 4, 4, '2026-01-09', '10:00:00', '2026-01-09 10:00:00', 20.00, 2, 'Nantes → Rennes', 207, 208, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(10, 5, 5, '2026-01-10', '11:30:00', '2026-01-10 11:30:00', 35.00, 3, 'Strasbourg → Metz', 209, 210, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(11, 6, 2, '2026-01-11', '13:00:00', '2026-01-11 13:00:00', 28.00, 2, 'Lille → Amiens', 211, 212, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(12, 1, 3, '2026-01-12', '15:30:00', '2026-01-12 15:30:00', 45.00, 3, 'Toulouse → Montpellier', 206, 213, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(13, 2, 4, '2026-01-13', '09:45:00', '2026-01-13 09:45:00', 50.00, 2, 'Paris → Bordeaux', 201, 205, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(14, 3, 5, '2026-01-14', '08:30:00', '2026-01-14 08:30:00', 22.00, 3, 'Nice → Cannes', 204, 214, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(15, 4, 1, '2026-01-15', '14:15:00', '2026-01-15 14:15:00', 32.00, 2, 'Lyon → Grenoble', 202, 215, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(16, 5, 2, '2026-01-16', '07:45:00', '2026-01-16 07:45:00', 18.00, 3, 'Rennes → Brest', 208, 216, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(17, 6, 3, '2026-01-17', '10:30:00', '2026-01-17 10:30:00', 55.00, 2, 'Marseille → Avignon', 203, 217, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(18, 1, 4, '2026-01-18', '12:00:00', '2026-01-18 12:00:00', 27.00, 3, 'Lille → Calais', 211, 218, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(19, 2, 5, '2026-01-19', '16:00:00', '2026-01-19 16:00:00', 38.00, 2, 'Bordeaux → Angoulême', 205, 219, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(20, 3, 1, '2026-01-20', '09:15:00', '2026-01-20 09:15:00', 42.00, 3, 'Toulouse → Pau', 206, 220, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(21, 4, 2, '2026-01-21', '11:30:00', '2026-01-21 11:30:00', 29.00, 2, 'Nice → Toulon', 204, 221, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(22, 5, 3, '2026-01-22', '14:00:00', '2026-01-22 14:00:00', 33.00, 3, 'Paris → Chartres', 201, 222, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(23, 6, 4, '2026-01-23', '08:15:00', '2026-01-23 08:15:00', 47.00, 2, 'Montpellier → Nîmes', 213, 223, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(24, 1, 5, '2026-01-24', '10:00:00', '2026-01-24 10:00:00', 25.00, 3, 'Nantes → La Rochelle', 207, 224, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(25, 2, 1, '2026-01-25', '13:30:00', '2026-01-25 13:30:00', 60.00, 2, 'Strasbourg → Colmar', 209, 225, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(26, 3, 2, '2026-01-26', '09:45:00', '2026-01-26 09:45:00', 48.00, 3, 'Grenoble → Valence', 215, 226, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(27, 4, 3, '2026-01-27', '15:00:00', '2026-01-27 15:00:00', 44.00, 2, 'Brest → Quimper', 216, 227, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(28, 5, 4, '2026-01-28', '07:30:00', '2026-01-28 07:30:00', 23.00, 3, 'Rennes → Angers', 208, 228, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(29, 6, 5, '2026-01-29', '17:10:00', '2026-01-29 17:10:00', 50.00, 2, 'Toulouse → Carcassonne', 206, 229, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(30, 1, 1, '2026-01-30', '12:45:00', '2026-01-30 12:45:00', 35.00, 3, 'Lyon → Clermont-Ferrand', 202, 230, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(31, 2, 2, '2026-01-31', '08:30:00', '2026-01-31 08:30:00', 41.00, 2, 'Paris → Lille', 201, 211, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(32, 3, 3, '2026-02-01', '16:00:00', '2026-02-01 16:00:00', 27.00, 3, 'La Rochelle → Royan', 224, 231, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(33, 4, 4, '2026-02-02', '10:15:00', '2026-02-02 10:15:00', 30.00, 2, 'Chartres → Orléans', 222, 232, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(34, 5, 5, '2026-02-03', '14:45:00', '2026-02-03 14:45:00', 55.00, 3, 'Marseille → Lyon', 203, 202, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1),
+(35, 6, 1, '2026-02-04', '09:00:00', '2026-02-04 09:00:00', 38.00, 2, 'Nîmes → Montpellier', 223, 213, 'active', '2026-01-01 09:00:00', NULL, NULL, NULL, NULL, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -120,6 +156,15 @@ CREATE TABLE `documents_utilisateur` (
   `date_creation` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `documents_utilisateur`
+--
+
+INSERT INTO `documents_utilisateur` (`id`, `id_utilisateur`, `type_document`, `nom_fichier`, `chemin_fichier`, `mime_type`, `taille_fichier`, `statut`, `date_expiration`, `date_creation`) VALUES
+(9, 25, 'piece_identite', 'guide_cpme_bonnes_pratiques.pdf', 'uploads/documents/user_25/piece_identite/piece_identite_6956bc33bf4d6.pdf', 'application/pdf', 874007, 'en_attente', NULL, '2026-01-01 18:25:55'),
+(11, 25, 'carte_grise', 'guide_cpme_bonnes_pratiques.pdf', 'uploads/documents/user_25/carte_grise/carte_grise_6956bc77b3bc0.pdf', 'application/pdf', 874007, 'en_attente', NULL, '2026-01-01 18:27:03'),
+(12, 28, 'piece_identite', '1I598HH0J_6VNU3J.JPG', 'uploads/documents/user_28/piece_identite/piece_identite_695b87dd436e2.JPG', 'image/jpeg', 51113, 'en_attente', NULL, '2026-01-05 09:43:57');
+
 -- --------------------------------------------------------
 
 --
@@ -167,7 +212,57 @@ INSERT INTO `lieux` (`id`, `nom`, `latitude`, `longitude`) VALUES
 (3, 'Marrakech', 31.629500, -7.981100),
 (4, 'Agadir', 30.427800, -9.598100),
 (5, 'Fès', 34.033300, -5.000000),
-(6, 'Tanger', 35.759500, -5.833900);
+(6, 'Tanger', 35.759500, -5.833900),
+(201, 'Paris', 48.856613, 2.352222),
+(202, 'Lyon', 45.764043, 4.835659),
+(203, 'Marseille', 43.296482, 5.369780),
+(204, 'Nice', 43.710173, 7.261953),
+(205, 'Bordeaux', 44.837789, -0.579180),
+(206, 'Toulouse', 43.604652, 1.444209),
+(207, 'Nantes', 47.218371, -1.553621),
+(208, 'Rennes', 48.117266, -1.677793),
+(209, 'Strasbourg', 48.573405, 7.752111),
+(210, 'Metz', 49.119308, 6.175715),
+(211, 'Lille', 50.629250, 3.057256),
+(212, 'Amiens', 49.894067, 2.295753),
+(213, 'Rouen', 49.443232, 1.099971),
+(214, 'Reims', 49.258329, 4.031696),
+(215, 'Nancy', 48.692054, 6.184417),
+(216, 'Dijon', 47.322047, 5.041480),
+(217, 'Besançon', 47.237829, 6.024053),
+(218, 'Clermont-Ferrand', 45.777222, 3.087025),
+(219, 'Grenoble', 45.188529, 5.724524),
+(220, 'Annecy', 45.899247, 6.129384),
+(221, 'Chambéry', 45.564601, 5.917781),
+(222, 'Valence', 44.933393, 4.892360),
+(223, 'Avignon', 43.949317, 4.805528),
+(224, 'Arles', 43.676647, 4.627777),
+(225, 'Montpellier', 43.610769, 3.876716),
+(226, 'Perpignan', 42.688659, 2.894833),
+(227, 'Pau', 43.295100, -0.370797),
+(228, 'Bayonne', 43.492949, -1.474841),
+(229, 'La Rochelle', 46.160329, -1.151139),
+(230, 'Poitiers', 46.580224, 0.340375),
+(231, 'Tours', 47.394144, 0.684840),
+(232, 'Orléans', 47.902964, 1.909251),
+(233, 'Le Mans', 48.006110, 0.199556),
+(234, 'Angers', 47.478419, -0.563166),
+(235, 'Brest', 48.390394, -4.486076),
+(236, 'Quimper', 47.996032, -4.102478),
+(237, 'Saint-Malo', 48.649337, -2.025674),
+(238, 'Caen', 49.182863, -0.370679),
+(239, 'Cherbourg', 49.633731, -1.622137),
+(240, 'Ajaccio', 41.919229, 8.738635),
+(241, 'Bastia', 42.697283, 9.450880),
+(242, 'Mulhouse', 47.750839, 7.335888),
+(243, 'Colmar', 48.079536, 7.358512),
+(244, 'Troyes', 48.297345, 4.074401),
+(245, 'Auxerre', 47.798202, 3.573781),
+(246, 'Nevers', 46.989582, 3.159009),
+(247, 'Mâcon', 46.306884, 4.828462),
+(248, 'Albi', 43.929800, 2.148000),
+(249, 'Tarbes', 43.232951, 0.078083),
+(250, 'Carcassonne', 43.213036, 2.349106);
 
 -- --------------------------------------------------------
 
@@ -229,7 +324,8 @@ INSERT INTO `paiements` (`id`, `id_reservation`, `moyen_paiement`, `montant`, `s
 (7, 34, 'carte', 90.00, 'valide', 'EUR', 'TX-6952d5e3c7723', NULL, '2025-12-29 18:26:27', '2025-12-29 19:26:27'),
 (8, 35, 'carte', 40.00, 'valide', 'EUR', 'TX-6952d609aef76', NULL, '2025-12-29 18:27:05', '2025-12-29 19:27:05'),
 (9, 36, 'carte', 60.00, 'valide', 'EUR', 'TX-6953fa0bc8197', NULL, '2025-12-30 15:12:59', '2025-12-30 16:12:59'),
-(10, 38, 'carte', 80.00, 'valide', 'EUR', 'TX-6953fa9a82df5', NULL, '2025-12-30 15:15:22', '2025-12-30 16:15:22');
+(10, 38, 'carte', 80.00, 'valide', 'EUR', 'TX-6953fa9a82df5', NULL, '2025-12-30 15:15:22', '2025-12-30 16:15:22'),
+(11, 40, 'carte', 50.00, 'valide', 'EUR', 'TX-6956bbeb22f53', NULL, '2026-01-01 17:24:43', '2026-01-01 18:24:43');
 
 -- --------------------------------------------------------
 
@@ -266,7 +362,11 @@ INSERT INTO `reservations` (`id`, `uuid`, `id_annonce`, `donnees_passager`, `id_
 (36, 'res_6953fa0308e02', 3, NULL, 20, 'acceptee', 60.00, '2025-12-30 16:12:51', '2025-12-30 16:12:59'),
 (37, 'res_6953fa0fb4ea4', 3, NULL, 20, 'en_attente', 60.00, '2025-12-30 16:13:03', '2025-12-30 16:13:03'),
 (38, 'res_6953fa909747e', 2, NULL, 21, 'acceptee', 80.00, '2025-12-30 16:15:12', '2025-12-30 16:15:22'),
-(39, 'res_6953fa9be5b88', 2, NULL, 21, 'en_attente', 80.00, '2025-12-30 16:15:23', '2025-12-30 16:15:23');
+(39, 'res_6953fa9be5b88', 2, NULL, 21, 'en_attente', 80.00, '2025-12-30 16:15:23', '2025-12-30 16:15:23'),
+(40, 'res_6956bbe1d1c3b', 1, NULL, 25, 'acceptee', 50.00, '2026-01-01 18:24:33', '2026-01-01 18:24:43'),
+(41, 'res_6956bbf0f0b45', 1, NULL, 25, 'en_attente', 50.00, '2026-01-01 18:24:48', '2026-01-01 18:24:48'),
+(42, 'res_6956bbf54ece9', 1, NULL, 25, 'en_attente', 50.00, '2026-01-01 18:24:53', '2026-01-01 18:24:53'),
+(43, 'res_6956bbfdb20ae', 1, NULL, 25, 'en_attente', 50.00, '2026-01-01 18:25:01', '2026-01-01 18:25:01');
 
 -- --------------------------------------------------------
 
@@ -315,7 +415,12 @@ INSERT INTO `utilisateurs` (`id`, `nom`, `prenom`, `email`, `telephone`, `avatar
 (20, 'Bui', 'Thi My Anh', 'myanhbui8110000000@gmail.com', NULL, NULL, NULL, '$2y$12$ugF0fjiju7hN6RnqiFfbv.Y4b8eFrg3lmKPdcQ6rbiX9Oq7HA4/6i', NULL, 1, 0, NULL, '2025-12-30 16:12:28', '2025-12-30 16:12:28', 0, NULL),
 (21, 'Bui', 'Thi My Anh', 'myanhbui81177777@gmail.com', NULL, NULL, NULL, '$2y$12$qzywtRCK/v6IQfIuc5jmQOfoNi3DY/oeB2pJicS42gV.nWpn0JtpG', NULL, 1, 0, NULL, '2025-12-30 16:15:03', '2025-12-30 16:15:03', 0, NULL),
 (22, 'Bui', 'Thi My Anh', 'thi-my-anh.bui@sep.fr', NULL, NULL, NULL, '$2y$12$lptPRiOyZ.LsN3eHytlmnu0ZcE00oGRzDAJMaEjPEjZ5eUfkuYc1m', NULL, 1, 0, NULL, '2025-12-31 10:34:07', '2025-12-31 10:34:07', 0, NULL),
-(23, 'Bui', 'Thi My Anh', 'myanhbui8115555@gmail.com', NULL, NULL, NULL, '$2y$12$/MXZnObHq9kxsemZYG9ZJ.FonSUZ/ZgFODTee.44g8nmTPPVz8GG.', NULL, 1, 0, NULL, '2025-12-31 10:35:09', '2025-12-31 10:35:09', 0, NULL);
+(23, 'Bui', 'Thi My Anh', 'myanhbui8115555@gmail.com', NULL, NULL, NULL, '$2y$12$/MXZnObHq9kxsemZYG9ZJ.FonSUZ/ZgFODTee.44g8nmTPPVz8GG.', NULL, 1, 0, NULL, '2025-12-31 10:35:09', '2025-12-31 10:35:09', 0, NULL),
+(24, 'Bui', 'Thi My Anh', 'myanh@gmail.com', NULL, NULL, NULL, '$2y$12$sBpvQCH1zkQIhqtiHyNtVu8tP6IJ4wa1UhXBKHp9sRy.Ky0qmN7Uq', NULL, 1, 0, NULL, '2025-12-31 14:37:59', '2025-12-31 14:37:59', 0, NULL),
+(25, 'Bui', 'Thi My Anh', 'myanhbui81999991@gmail.com', NULL, NULL, NULL, '$2y$12$.BOLGMpC9x4bBvIYndwVjeP4uSTFr5Or0J3f8i/v9hq/IpKjlAyru', NULL, 1, 0, NULL, '2026-01-01 18:24:14', '2026-01-01 18:24:14', 0, NULL),
+(26, 'Bui', 'Thi My Anh', 'myanhbui8o999911@gmail.com', NULL, NULL, NULL, '$2y$12$g.eQCk0ZXGgo.I34/.4N/ueALv6aDQg4adVjXK4czh6YhQB7Zfsgy', NULL, 1, 0, NULL, '2026-01-05 09:41:04', '2026-01-05 09:41:04', 0, NULL),
+(27, 'Bui', 'Thi My Anh', 'myanhbui80000000011@gmail.com', NULL, NULL, NULL, '$2y$12$LHiv9DsqeJXaYFU4L0FzP.vPMxQVdERx/foAGe4g5so4iTTi6nWQC', NULL, 1, 0, NULL, '2026-01-05 09:42:14', '2026-01-05 09:42:14', 0, NULL),
+(28, 'Bui', 'Thi My Anh', 'myanhbui8111@gmail.com', NULL, NULL, NULL, '$2y$12$pNpbGH/dIW1uOjMD4JbaTuU8JXQA0VIiT3a.6yfYHGi8i9xQLJRQS', NULL, 1, 0, NULL, '2026-01-05 09:43:12', '2026-01-05 09:43:12', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -462,7 +567,7 @@ ALTER TABLE `verification_codes`
 -- AUTO_INCREMENT for table `annonces`
 --
 ALTER TABLE `annonces`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `avis`
@@ -480,7 +585,7 @@ ALTER TABLE `conversations`
 -- AUTO_INCREMENT for table `documents_utilisateur`
 --
 ALTER TABLE `documents_utilisateur`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `favoris`
@@ -492,7 +597,7 @@ ALTER TABLE `favoris`
 -- AUTO_INCREMENT for table `lieux`
 --
 ALTER TABLE `lieux`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=251;
 
 --
 -- AUTO_INCREMENT for table `messages`
@@ -504,19 +609,19 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `paiements`
 --
 ALTER TABLE `paiements`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `vehicules`
@@ -528,7 +633,7 @@ ALTER TABLE `vehicules`
 -- AUTO_INCREMENT for table `verification_codes`
 --
 ALTER TABLE `verification_codes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Constraints for dumped tables
