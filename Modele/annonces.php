@@ -198,9 +198,7 @@ class Annonces {
         JOIN lieux ld ON a.id_lieu_depart = ld.id
         JOIN lieux la ON a.id_lieu_arrivee = la.id
         WHERE a.id = :id
-        AND a.statut = 'active'
         ";
-
         $stmt = $db->prepare($sql);
         $stmt->execute(['id' => $id]);
         $annonce = $stmt->fetch(PDO::FETCH_ASSOC);
