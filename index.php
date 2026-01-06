@@ -127,6 +127,21 @@ switch ($page) {
             $controller->liste($id_conversation);
         }
         break;
+    case 'mes_favoris':
+        require 'Controleur/c_profil.php';
+        $controller = new c_mes_favoris();
+
+        if (isset($_GET['action'])) {
+            if ($_GET['action'] === 'ajouter') {
+                $controller->ajouter();
+            }
+            if ($_GET['action'] === 'supprimer') {
+                $controller->supprimer();
+            }
+        } else {
+            $controller->afficher();
+        }
+        break;
 
     // Annonces
     case 'admin':
@@ -176,7 +191,7 @@ switch ($page) {
             $controller->afficher();
         }
         break;
-        
+
     case 'success':
         require 'Controleur/c_paiement.php';
         $controller = new c_paiement();

@@ -51,6 +51,7 @@ header{
     align-items: center;
     justify-content:space-around;
     flex-direction: row;
+    min-height: 100px;
     background-color:var(--fondClair);
     
 }
@@ -145,7 +146,6 @@ body{
     background-color: #f0f0f0; /* Couleur de fond pour le reste de la page */
     align-items: center;
     justify-content: center;
-    margin: auto 0;
     display: flex;
     flex-direction: column;
     gap : 30px;

@@ -172,11 +172,16 @@ INSERT INTO `documents_utilisateur` (`id`, `id_utilisateur`, `type_document`, `n
 --
 
 CREATE TABLE `favoris` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `id_utilisateur` bigint(20) UNSIGNED NOT NULL,
-  `id_annonce` bigint(20) UNSIGNED NOT NULL,
-  `date_creation` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `id_utilisateur` INT NOT NULL,
+  `id_annonce` INT NOT NULL,
+  `date_creation` timestamp NOT NULL DEFAULT current_timestamp(),
+  UNIQUE (`id_utilisateur`, `id_annonce`),
+  FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`id_annonce`) REFERENCES `annonces`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 
 --
 -- Dumping data for table `favoris`

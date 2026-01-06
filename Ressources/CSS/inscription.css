@@ -1,95 +1,118 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+/* PAGE */
 
-* {
-    font-family: Inter, Arial, Helvetica, sans-serif;
-}
 
-/* Conteneur principal */
-.box1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    weight: 100vh;
-    background-color: #EFEFEF;
-}
-
-/* Box du formulaire */
-.form-container {
-    background-color: white;
+/* CONTENEUR */
+.conteneur-formulaire {
+    width: 800px;
+    margin: auto;
+    background: #fff;
+    border-radius: 18px;
     padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    width: 75vh;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
 }
 
-/* Titre */
-h2 {
+/* TITRE */
+.titre-formulaire {
     text-align: center;
+    font-size: 32px;
+    margin-bottom: 35px;
     color: #333;
-    margin-bottom: 20px;
 }
 
-/* Champs */
-.input-group {
+/* FORM */
+.formulaire-inscription {
     display: flex;
     flex-direction: column;
-    top-margin: 10px;
-    margin-bottom: 15px;
+    gap: 20px;
 }
 
-label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 0.9em;
+/* LIGNE DOUBLE */
+.ligne-champs {
+    display: flex;
+    gap: 20px;
+}
+
+/* GROUPE */
+.groupe-champ {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.groupe-champ label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
     color: #555;
 }
 
-input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
+.groupe-champ input {
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+    transition: all 0.2s ease;
 }
 
-/* Bouton */
-button {
-    background-color: #28a745;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    width: 100%;
+.groupe-champ input:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(76,175,80,0.15);
 }
 
-button:hover {
-    background-color: #13cb3eff;
-     transform: scale(1.01); /* grossit le bouton de 10% */
+/* CAPTCHA */
+.bloc-captcha {
+    background: #f1f8f4;
+    padding: 20px;
+    border-radius: 14px;
 }
 
-.captcha_err {
-    color: red;
-    position: relative;
+.titre-captcha {
+    font-weight: 700;
+    color: #4CAF50;
+}
+
+.question-captcha {
+    margin: 6px 0 12px;
+    font-size: 15px;
+}
+
+/* ERREURS */
+.message-erreur {
+    color: #d32f2f;
+    font-size: 14px;
+    display: none;
+}
+
+.message-erreur:not(:empty) {
+    display: block;
+}
+
+/* BOUTON */
+.bouton-principal {
     margin-top: 10px;
-    margin-bottom: 10px;
-    text-align: center;
-    font-weight: bold;
+    background: #4CAF50;
+    color: #fff;
+    padding: 16px;
+    border-radius: 14px;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
 }
 
-
-
-.box-names {
-    display: flex;
-    gap: 20px;
-    top-margin: 10px;
-    margin-bottom: 15px;
+.bouton-principal:hover {
+    background: #43a047;
 }
 
-.question {
-    margin-top: 5px;
-    margin-bottom: 5px;
+.bouton-principal:active {
+    transform: scale(0.98);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .ligne-champs {
+        flex-direction: column;
+    }
 }

@@ -20,5 +20,16 @@ class Favoris {
         $stmt->execute([$user_id]);
         return $stmt->fetchAll();
     }
+    public static function estFavori(int $user_id, int $id_annonce): bool {
+    if ($user_id === 0) return false;
+
+    $db = dbConnect();
+    $stmt = $db->prepare(
+        "SELECT 1 FROM favoris WHERE id_utilisateur = ? AND id_annonce = ?"
+    );
+    $stmt->execute([$user_id, $id_annonce]);
+    return (bool) $stmt->fetchColumn();
+}
+
 }
 ?>

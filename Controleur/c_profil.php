@@ -255,13 +255,13 @@ class c_mes_documents {
 class c_mes_favoris {
     public function afficher(): void {
         $title = "Mes favoris";
-        $css = "favoris.css";
+        $css = "mes_favoris.css";
 
         $favoris = Favoris::liste((int)$_SESSION['user_id']);
 
         require __DIR__ . '/../Vue/head.php';
         require __DIR__ . '/../Vue/header.php';
-        require __DIR__ . '/../Vue/pages/v_favoris.php';
+        require __DIR__ . '/../Vue/pages/v_mes_favoris.php';
         require __DIR__ . '/../Vue/footer.php';
     }
 

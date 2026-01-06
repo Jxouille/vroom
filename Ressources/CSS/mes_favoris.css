@@ -1,0 +1,23 @@
+.conteneur-favoris {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.grille-annonces {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.carte-annonce {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.retirer {
+    color: #e53935;
+    text-decoration: none;
+    font-weight: bold;
+}
