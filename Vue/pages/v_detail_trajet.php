@@ -1,5 +1,5 @@
 <body>
-    <div class="main-wrapper">
+    
     <div class="page-container">
         
         <div class="header-title">Détail trajet</div>
@@ -100,5 +100,5 @@
             </div>
         </div>
     </div>
+
 </body>
-</html>

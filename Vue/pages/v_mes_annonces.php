@@ -1,5 +1,5 @@
 
-
+<body>
     <section class="trajets-container">
     
             <?php if (!empty($annonces)): ?>
