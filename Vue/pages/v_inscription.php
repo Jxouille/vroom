@@ -27,6 +27,12 @@
                        placeholder="emmanuel.macron@gouv.fr">
             </div>
 
+            <?php if (isset($_GET['error']) && $_GET['error'] === "exists"):?>
+                <p class="message-erreur">
+                    L'adress email est déjàs utilisé ! 
+                </p>
+            <?php endif; ?>
+
             <!-- MOT DE PASSE -->
             <div class="groupe-champ">
                 <label for="mdp">Mot de passe</label>
@@ -37,9 +43,11 @@
                 <label for="mdp_confirm">Confirmer le mot de passe</label>
                 <input type="password" id="mdp_confirm" name="mdp_confirm" required>
             </div>
-            <p id="erreur-mdp" class="message-erreur">
-                Les mots de passe ne correspondent pas !
-            </p>
+            <?php if (isset($_GET['error']) && $_GET['error'] === "password"):?>
+                <p class="message-erreur">
+                    Les mots de passe ne correspondent pas !
+                </p>
+            <?php endif; ?>
 
             <!-- CAPTCHA -->
             <div class="bloc-captcha">
@@ -63,8 +71,6 @@
             <button type="submit" class="bouton-principal">
                 S'inscrire
             </button>
-
         </form>
     </div>
-
 </body>

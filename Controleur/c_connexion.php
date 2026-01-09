@@ -50,18 +50,19 @@ class c_connexion {
 
     header("Location: index.php?page=accueil");
     exit;
-}
+    }
 }
 
 class c_mdp_oblie {
     public function afficher(): void {
-        $title = "Mot de passe oublié";
+        $title = "Mot de passe oublié | VROOM";
         $css = "mdp_oblie.css";
         require __DIR__ . '/../Vue/head.php';
         require __DIR__ . '/../Vue/header.php';
         require __DIR__ . '/../Vue/pages/v_mdp_oblie.php';
         require __DIR__ . '/../Vue/footer.php';
     }
+    // Si l'Email n'et pas enregistrer dans la base des donnés
     public function envoyerLienReset(): void {
     if (!isset($_POST['email'])) {
         header("Location: index.php?page=mdp_oublie&error=missing");
@@ -73,23 +74,20 @@ class c_mdp_oblie {
 
     if (!$user) {
         header("Location: index.php?page=mdp_oublie&error=invalid");
+        // utilisateur introuvable ! veiller contacter administrateur
         exit;
     }
-
+    // Sinon 
     $token = bin2hex(random_bytes(16));
     Utilisateur::updateField($user['id'], 'remember_token', $token);
-
     $resetLink = "https://yourdomain.com/index.php?page=reset_password&token=$token";
-    $subject = "Réinitialisation du mot de passe";
-    $body = "<p>Bonjour {$user['prenom']},</p>
-             <p>Cliquez sur le lien suivant pour réinitialiser votre mot de passe :</p>
-             <a href='$resetLink'>$resetLink</a>";
 
-    sendEmail($email, $subject, $body);
-
+    sendEmail($email, $user['prenom'], "mdp_oblie_link", $resetLink);
     header("Location: index.php?page=mdp_oublie&success=sent");
+    // if sent "Votre lien de reitialtion mdp a etet envoye dans votre boite mail !
+    // page retialiser le mote de passe 
     exit;
-}
-
+    }
+    
 }
 ?>

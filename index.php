@@ -6,6 +6,7 @@ session_start();
  */
 $page = $_GET['page'] ?? 'accueil';
 $action = $_GET['action'] ?? null;
+$error = $_GET['error'] ?? null;
 
 /**
  * Router MVC
@@ -34,6 +35,7 @@ switch ($page) {
             $controller->afficher();
         }
         break;
+        
     case 'detail_trajet':
         require 'Controleur/c_trajet.php';
         $controller = new c_detail_trajet();
@@ -202,6 +204,16 @@ switch ($page) {
         require 'Controleur/c_paiement.php';
         $controller = new c_detail_paiement();
         $controller->detail_paiement();
+        break;
+    case 'mdp_oblie':
+        require 'Controleur/c_connexion.php';
+        $controller = new c_mdp_oblie();
+        if ($action === 'envoyer'){
+            $controller->envoyerLienReset();
+            exit;
+        } else {
+            $controller->afficher();  
+        }
         break;
 }
 ?>

@@ -22,6 +22,15 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
+CREATE TABLE preferences (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    description VARCHAR(255) NOT NULL
+);
+
+
+
+
 
 --
 -- Table structure for table `annonces`
@@ -375,7 +384,7 @@ INSERT INTO `reservations` (`id`, `uuid`, `id_annonce`, `donnees_passager`, `id_
 --
 
 CREATE TABLE `utilisateurs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
@@ -390,8 +399,10 @@ CREATE TABLE `utilisateurs` (
   `date_creation` timestamp NOT NULL DEFAULT current_timestamp(),
   `date_mise_a_jour` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `note` float DEFAULT 0,
-  `photo_profil` varchar(255) DEFAULT NULL
+  `photo_profil` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 --
 -- Dumping data for table `utilisateurs`
@@ -457,11 +468,10 @@ INSERT INTO `vehicules` (`id`, `id_utilisateur`, `marque`, `modele`, `annee`, `c
 --
 
 CREATE TABLE `verification_codes` (
-  `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `code` varchar(6) NOT NULL,
-  `expires_at` datetime NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `date_expire` datetime NOT NULL,
+  `date_cree` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -553,15 +563,8 @@ ALTER TABLE `vehicules`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_vehicule_user` (`id_utilisateur`);
 
---
--- Indexes for table `verification_codes`
---
-ALTER TABLE `verification_codes`
-  ADD PRIMARY KEY (`id`);
 
---
--- AUTO_INCREMENT for dumped tables
---
+
 
 --
 -- AUTO_INCREMENT for table `annonces`
@@ -632,10 +635,7 @@ ALTER TABLE `vehicules`
 --
 -- AUTO_INCREMENT for table `verification_codes`
 --
-ALTER TABLE `verification_codes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
---
 -- Constraints for dumped tables
 --
 

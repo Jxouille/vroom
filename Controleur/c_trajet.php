@@ -56,52 +56,68 @@ class c_publie_trajet {
     /**
      * Publie une nouvelle annonce
      */
-    public function publier(): void
-{
+    public function publier(): void {
         if (!isset($_SESSION['user_id'])) {
             header("Location: index.php?page=connexion");
+            exit;
+        }
+        if (!isset(
+            $_POST['date_depart'],
+            $_POST['heure_depart'],
+            $_POST['prix'],
+            $_POST['places'],
+            $_POST['adresse_depart'],
+            $_POST['adresse_arrivee'],
+            $_POST['ville_depart'],
+            $_POST['ville_arrivee']
+        )) {
+            header("Location: index.php?page=inscription&error=missing");
             exit;
         }
 
         $id_conducteur = $_SESSION['user_id'];
 
-        // Vérification minimale des champs requis
-        $required = ['ville_depart', 'ville_arrivee', 'date_depart', 'heure_depart', 'heure_arrivee', 'distance', 'duree_minutes', 'route_index', 'prix', 'places', 'description'];
-        foreach ($required as $field) {
-            if (empty($_POST[$field])) {
-                die("Le champ $field est requis.");
-            }
-        }
+        // Vérification minimale des champs requis  
 
-        // Création ou récupération des lieux
-        $id_lieu_depart  = Annonces::trouverOuCreerLieu($_POST['ville_depart']);
-        $id_lieu_arrivee = Annonces::trouverOuCreerLieu($_POST['ville_arrivee']);
+        // Création ou récupération des ville
+        $id_ville_depart  = Annonces::trouverOuCreerLieu($_POST['ville_depart']);
+        $id_ville_arrivee = Annonces::trouverOuCreerLieu($_POST['ville_arrivee']);
 
         // Récupération du véhicule
-        $vehicule = Vehicules::getByUser($id_conducteur);
-        if (!$vehicule) die("Aucun véhicule associé à votre compte.");
-
+        $datetime_depart = $_POST['date_depart'] . ' ' . $_POST['heure_depart'];
         // Préparation des données
         $data = [
-            'id_conducteur'      => $id_conducteur,
-            'id_vehicule'        => $vehicule['id'],
-            'date_depart'        => $_POST['date_depart'],
-            'heure_depart'       => $_POST['heure_depart'],
-            'date_arrivee'       => $_POST['date_depart'], // peut-être $_POST['date_arrivee'] si différent
-            'heure_arrivee'      => $_POST['heure_arrivee'],
-            'distance_km'        => $_POST['distance'],
-            'duree_minutes'      => $_POST['duree_minutes'],
-            'route_index'        => $_POST['route_index'],
-            'prix_par_personne'  => $_POST['prix'],
-            'places_disponibles' => $_POST['places'],
-            'description'        => $_POST['description'],
-            'id_lieu_depart'     => $id_lieu_depart,
-            'id_lieu_arrivee'    => $id_lieu_arrivee
+            'id_conducteur'       => $id_conducteur,
+
+            'date_depart'         => $_POST['date_depart'],
+            'heure_depart'        => $_POST['heure_depart'],
+            'datetime_depart'     => $datetime_depart,
+
+            'date_arrivee'        => $_POST['date_arrivee'] ?? null,
+            'heure_arrivee'       => $_POST['heure_arrivee'] ?? null,
+
+            'distance_km'         => $_POST['distance'] ?? null,
+            'duree_minutes'       => $_POST['duree_minutes'] ?? null,
+            'route_index'         => $_POST['route_index'] ?? null,
+
+            'prix_par_personne'   => $_POST['prix'],
+            'places_disponibles'  => $_POST['places'],
+            'description'         => $_POST['description'] ?? null,
+
+            'id_ville_depart'     => $id_ville_depart,
+            'adresse_depart'      => $_POST['adresse_depart'],
+
+            'id_ville_arrivee'    => $id_ville_arrivee,
+            'adresse_arrivee'     => $_POST['adresse_arrivee']
         ];
 
+
+        
         // Création de l'annonce
         if (!Annonces::creer($data)) {
-            die("Erreur lors de la création de l'annonce.");
+            header("Location: index.php?page=mes_paiements");
+            exit;
+            /// die("Erreur lors de la création de l'annonce.");
         }
         header("Location: index.php?page=mes_annonces");
         exit;

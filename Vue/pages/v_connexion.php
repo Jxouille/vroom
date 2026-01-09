@@ -34,7 +34,7 @@
                 <div class="form-group">
                     <label for="mot_de_passe">
                         Mot de passe
-                        <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+                        <a href="index.php?page=mdp_oblie" class="forgot-password">Mot de passe oublié ?</a>
                     </label>
                     <input type="password" id="mot_de_passe" name="mot_de_passe" required>
                 </div>

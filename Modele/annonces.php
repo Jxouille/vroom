@@ -24,7 +24,7 @@ class Annonces {
         $db = dbConnect();
 
         // On cherche si le lieu existe déjà
-        $stmt = $db->prepare("SELECT id FROM lieux WHERE nom = :nom LIMIT 1");
+        $stmt = $db->prepare("SELECT id FROM ville WHERE nom = :nom LIMIT 1");
         $stmt->execute([':nom' => $nomVille]);
         $lieu = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -33,7 +33,7 @@ class Annonces {
         }
 
         // Si le lieu n'existe pas, on le crée
-        $stmt = $db->prepare("INSERT INTO lieux (nom) VALUES (:nom)");
+        $stmt = $db->prepare("INSERT INTO ville (nom) VALUES (:nom)");
         $stmt->execute([':nom' => $nomVille]);
 
         return (int)$db->lastInsertId();
@@ -42,23 +42,45 @@ class Annonces {
     /**
      * Crée une annonce avec les données fournies
      */
-    public static function creer(array $data): void
-    {
+    public static function creer(array $data): void {
         $db = dbConnect();
-
         $stmt = $db->prepare("
             INSERT INTO annonces (
-                id_conducteur, id_vehicule, date_depart, heure_depart,
-                date_arrivee, heure_arrivee, distance_km, duree_minutes,
-                route_index, prix_par_personne, places_disponibles,
-                description, id_lieu_depart, id_lieu_arrivee
+            id_conducteur,
+            date_depart,
+            heure_depart,
+            datetime_depart,
+            date_arrivee,
+            heure_arrivee,
+            distance_km,
+            duree_minutes,
+            route_index,
+            prix_par_personne,
+            places_disponibles,
+            description,
+            id_ville_depart,
+            adresse_depart,
+            id_ville_arrivee,
+            adresse_arrivee
             ) VALUES (
-                :id_conducteur, :id_vehicule, :date_depart, :heure_depart,
-                :date_arrivee, :heure_arrivee, :distance_km, :duree_minutes,
-                :route_index, :prix_par_personne, :places_disponibles,
-                :description, :id_lieu_depart, :id_lieu_arrivee
+            :id_conducteur,
+            :date_depart,
+            :heure_depart,
+            :datetime_depart,
+            :date_arrivee,
+            :heure_arrivee,
+            :distance_km,
+            :duree_minutes,
+            :route_index,
+            :prix_par_personne,
+            :places_disponibles,
+            :description,
+            :id_ville_depart,
+            :adresse_depart,
+            :id_ville_arrivee,
+            :adresse_arrivee
             )
-        ");
+            ");
 
         $stmt->execute($data);
     }
@@ -98,7 +120,7 @@ class Annonces {
             $params[':statut'] = $data['statut'];
         }
 
-        // 🚨 Nothing to update
+        // Nothing to update
         if (empty($fields)) {
             return false;
         }
@@ -195,8 +217,8 @@ class Annonces {
         FROM annonces a
         JOIN utilisateurs u ON a.id_conducteur = u.id
         JOIN vehicules v ON a.id_vehicule = v.id
-        JOIN lieux ld ON a.id_lieu_depart = ld.id
-        JOIN lieux la ON a.id_lieu_arrivee = la.id
+        JOIN ville ld ON a.id_ville_depart = ld.id
+        JOIN ville la ON a.id_ville_arrivee = la.id
         WHERE a.id = :id
         ";
         $stmt = $db->prepare($sql);

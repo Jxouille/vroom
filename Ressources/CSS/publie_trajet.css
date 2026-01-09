@@ -1,3 +1,4 @@
+@import url(https://unpkg.com/leaflet@1.9.4/dist/leaflet.css);
 .page-container {
     width: 900px;
     margin: 0 auto 60px;
@@ -229,4 +230,13 @@ textarea {
     .grid-2-cols {
         grid-template-columns: 1fr;
     }
+}
+
+#map {
+    height: 400px;
+    border-radius: 12px;
+                }
+.info {
+    margin-top: 10px;
+    font-weight: bold;
 }

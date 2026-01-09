@@ -76,7 +76,7 @@ class Utilisateur {
         return $stmt->execute([
             'nom' => $data['nom'],
             'prenom' => $data['prenom'],
-            'email' => $data['email'] ?? null,
+            'email' => $data['email'] ,
             'telephone' => $data['telephone'] ?? null,
             'mot_de_passe' => $data['mot_de_passe'],
             'biographie' => $data['biographie'] ?? null,

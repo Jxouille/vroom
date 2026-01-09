@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../Modele/utilisateur.php';
 require_once __DIR__ . '/envoye_mail.php';
-
+require_once __DIR__ . '/../Modele/verification_code.php';
 class c_inscription {
 
     public function afficher(): void {
@@ -49,8 +49,8 @@ class c_inscription {
             header("Location: index.php?page=inscription&error=exists");
             exit;
         }
-
-        // 🔐 Stockage temporaire
+        // Sinon
+        // Stockage temporaire
         $_SESSION['tmp_user'] = [
             'nom' => $_POST['nom'],
             'prenom' => $_POST['prenom'],
@@ -58,28 +58,13 @@ class c_inscription {
             'mdp' => password_hash($_POST['mdp'], PASSWORD_DEFAULT)
         ];
 
-        // 🔢 Génération du code
-        $code = random_int(100000, 999999);
-        $expiration = date('Y-m-d H:i:s', time() + 120);
+        // Génération du code
+        $code = Authentification_code::generer($_POST['email']);
 
-        $db = dbConnect();
-        $stmt = $db->prepare("
-            INSERT INTO verification_codes (email, code, expires_at)
-            VALUES (?, ?, ?)
-        ");
-        $stmt->execute([$_POST['email'], $code, $expiration]);
+        // Envoi email
+        sendEmail($_POST['email'], $_POST['prenom'],"auth_code", $code);
 
-        // ✉️ Envoi email
-        sendEmail(
-            $_POST['email'],
-            "Code de vérification Vroom",
-            "<p>Bonjour {$_POST['prenom']},</p>
-             <p>Votre code de vérification est :</p>
-             <h2>$code</h2>
-             <p>⏱️ Valide 2 minutes</p>"
-        );
-
-        // ➡️ Page de validation du code
+        // Page de validation du code
         header("Location: index.php?page=verifier_code");
         exit;
     }
@@ -99,43 +84,23 @@ class c_verifier_code {
         $email = $_SESSION['tmp_user']['email'];
         $code = $_POST['code'];
 
-        $db = dbConnect();
-        $stmt = $db->prepare("
-            SELECT * FROM verification_codes
-            WHERE email = ? AND code = ?
-            ORDER BY created_at DESC
-            LIMIT 1
-        ");
-        $stmt->execute([$email, $code]);
-        $row = $stmt->fetch();
-
-        // Nettoyage des codes expirés
-        $now = date('Y-m-d H:i:s');
-        $db->prepare("DELETE FROM verification_codes WHERE expires_at < ?")
-        ->execute([$now]);
-
-        if (!$row) {
-            die(" Code incorrect");
+        // Vérification du code
+        if (!Authentification_code::verifier($email, $code)) {
+            header("Location: index.php?page=verifier_code&error=invalid");
+            exit;
         }
-
-        if (strtotime($row['expires_at']) < time()) {
-            die("⏱️ Code expiré");
+        else {
+            //  Création définitive du compte
+            Utilisateur::creer([
+                'nom' => $_SESSION['tmp_user']['nom'],
+                'prenom' => $_SESSION['tmp_user']['prenom'],
+                'email' => $email,
+                'mot_de_passe' => $_SESSION['tmp_user']['mdp']
+            ]);
+            unset($_SESSION['tmp_user']);
+            header("Location: index.php?page=connexion&success=verified");
+            exit;
         }
-
-        //  Création définitive du compte
-        Utilisateur::creer([
-            'nom' => $_SESSION['tmp_user']['nom'],
-            'prenom' => $_SESSION['tmp_user']['prenom'],
-            'email' => $email,
-            'mot_de_passe' => $_SESSION['tmp_user']['mdp']
-        ]);
-
-        // Nettoyage des codes utilisés
-        $db->prepare("DELETE FROM verification_codes WHERE email = ?")->execute([$email]);
-        unset($_SESSION['tmp_user']);
-
-        header("Location: index.php?page=connexion&success=verified");
-        exit;
     }
     public function renvoyer(): void {
         if (!isset($_SESSION['tmp_user'])) {
@@ -147,29 +112,16 @@ class c_verifier_code {
         $prenom = $_SESSION['tmp_user']['prenom'];
 
         // Générer un nouveau code
-        $code = random_int(100000, 999999);
-        $expiration = date('Y-m-d H:i:s', time() + 120);
-
-        $db = dbConnect();
-        $stmt = $db->prepare("
-            INSERT INTO verification_codes (email, code, expires_at)
-            VALUES (?, ?, ?)
-        ");
-        $stmt->execute([$email, $code, $expiration]);
-
+        $code = Authentification_code::generer($email);
+        $sujet = "Nouveau code de vérification Vroom";
+        $contenu = "<p>Bonjour $prenom,</p>
+                     <p>Voici votre <strong>nouveau code</strong> :</p>
+                     <h2>$code</h2>
+                     <p>⏱️ Valide 2 minutes</p>";
         // Renvoyer l’email
-        sendEmail(
-            $email,
-            "Nouveau code de vérification Vroom",
-            "<p>Bonjour $prenom,</p>
-            <p>Voici votre <strong>nouveau code</strong> :</p>
-            <h2>$code</h2>
-            <p>⏱️ Valide 2 minutes</p>"
-        );
-
+        sendEmail($email, $prenom,"auth_code_again", $code);
         header("Location: index.php?page=verifier_code&resent=1");
         exit;
     }
-
 }
 
