@@ -1,12 +1,6 @@
 /* detail_trajet.css - styles scoped to the trajet detail page */
 
 /* Page base */
-body {
-    background-color: #f6f7f9;
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 0;
-}
 
 .page-container {
     width: 100%;

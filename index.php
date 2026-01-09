@@ -40,11 +40,10 @@ switch ($page) {
         $controller->afficher();
         break;
 
-    case 'reservation':
-        require 'Controleur/c_trajet.php';
-        $controller = new c_reservation();
-        $id = $_GET['id'] ?? null;
-        $controller->afficher($id);
+    case 'mes_annonces':
+        require 'Controleur/c_profil.php';
+        $controller = new c_mes_annonces();
+        $controller->afficher();
         break;
 
     case 'mes_documents':
@@ -58,7 +57,11 @@ switch ($page) {
             $controller->afficher();
         }
         break;
-
+    case 'mes_paiements':
+        require 'Controleur/c_profil.php';
+        $controller = new c_mes_paiements();
+        $controller->afficher();
+        break;
         
     // Connexion
     case 'connexion':
@@ -124,6 +127,21 @@ switch ($page) {
             $controller->liste($id_conversation);
         }
         break;
+    case 'mes_favoris':
+        require 'Controleur/c_profil.php';
+        $controller = new c_mes_favoris();
+
+        if (isset($_GET['action'])) {
+            if ($_GET['action'] === 'ajouter') {
+                $controller->ajouter();
+            }
+            if ($_GET['action'] === 'supprimer') {
+                $controller->supprimer();
+            }
+        } else {
+            $controller->afficher();
+        }
+        break;
 
     // Annonces
     case 'admin':
@@ -167,14 +185,23 @@ switch ($page) {
         $controller = new c_paiement();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $controller->payer();
+            $controller->paiemnetsucces();
+            exit;
         } else {
             $controller->afficher();
         }
         break;
-    case 'sucess':
-        require 'Vue/pages/v_success.php';
+
+    case 'success':
+        require 'Controleur/c_paiement.php';
+        $controller = new c_paiement();
+        $controller->paiemnetsucces();
         break;
 
-    
+    case 'detail_paiement':
+        require 'Controleur/c_paiement.php';
+        $controller = new c_detail_paiement();
+        $controller->detail_paiement();
+        break;
 }
 ?>

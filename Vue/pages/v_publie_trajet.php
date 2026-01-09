@@ -8,7 +8,7 @@
             <p>Remplissez les informations de votre trajet pour commencer à utiliser Vroom en toute simplicité.</p>
         </header>
 
-        <form class="ride-form" method="post" action="index.php?page=publie_trajets&action=publier">">
+        <form class="ride-form" method="post" action="index.php?page=publie_trajets&action=publier">
 
             <section class="form-section">
                 <h3>Itinéraire</h3>

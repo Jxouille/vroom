@@ -72,8 +72,9 @@
                                 <h4><?= htmlspecialchars($trajet["lieu_arrivee"] ?? '') ?></h4>
                             </div>
                         </div>
-
+                        
                         <div class="col-prix">
+                            
                             <div class="prix"><?= htmlspecialchars($trajet["prix_par_personne"] ?? '') ?> $</div>
                             <div class="prix-info"><?= htmlspecialchars($trajet["places_disponibles"] ?? '')?> places</div>
                             <button class="btn-reserver"
@@ -81,6 +82,17 @@
                                 Réserver
                             </button>
                         </div>
+                        <div class="col-favori">
+                            <button class="btn-favori" data-id="<?= htmlspecialchars($trajet['id']) ?>">
+                                ♥
+                            </button>
+                        </div>
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <button class="btn-favori" data-id="<?= $trajet['id'] ?>">♥</button>
+                        <?php endif; ?>
+                        
+                       
+
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
@@ -89,3 +101,19 @@
         
     </section>
 </body>
+
+<script>
+document.querySelectorAll('.btn-favori').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        this.classList.toggle('active');
+
+        // ID du trajet
+        const trajetId = this.dataset.id;
+        console.log("Favori cliqué pour trajet :", trajetId);
+
+        // PLUS TARD :
+        // fetch('index.php?page=favoris&action=toggle', {...}) 
+    });
+});
+</script>
