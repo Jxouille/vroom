@@ -1,79 +1,188 @@
-/* profile.css - styles for the profile page, matching site theme */
+/* Global */
 
-body { background-color: #f6f7f9; }
 
-.profile-form { padding: 0 20px 18px 20px; }
-.form-row { display:block; margin-bottom:12px; }
-.form-row label { display:block; font-weight:700; margin-bottom:6px; color:#263238; }
-.form-row input, .profile-form textarea { width:100%; box-sizing:border-box; padding:10px 12px; border:1px solid #e0e0e0; border-radius:8px; font-size:1rem; color:#333; }
-.form-row.two-cols { display:flex; gap:12px; }
-.form-row.two-cols > div { flex:1; }
-
-.btn-link { display:inline-block; padding:10px 14px; background:transparent; color:#007bff; text-decoration:none; font-weight:700; border-radius:8px; }
-
-.save-btn { display:inline-block; padding:10px 16px; background:#28a745; color:#fff; border:none; border-radius:8px; font-weight:800; cursor:pointer; }
-.save-btn:hover { background:#218838; }
-
-.delete-btn { display:inline-block; padding:8px 12px; background:transparent; color:#c82333; border:2px solid #c82333; border-radius:8px; font-weight:700; cursor:pointer; }
-.delete-btn:hover { background:#c82333; color:#fff; }
-
-.danger-text { font-weight:800; color:#c82333; }
-
-/* Reuse container widths from detail_trajet to keep consistent look */
-.page-container { max-width:900px; margin:32px auto; padding:0 16px; }
-
-@media (max-width:600px) {
-	.form-row.two-cols { flex-direction:column; }
+/* Containers */
+.main-wrapper {
+    display: flex;
+    justify-content: center;
 }
 
-/* Profile summary / inline edit styles */
-.profile-summary .profile-header { display:flex; align-items:center; gap:16px; padding:16px 20px; }
-.avatar.large { width:72px; height:72px; font-size:22px; }
-.profile-meta { flex:1; }
-.profile-name { font-weight:900; font-size:1.2rem; color:#263238; }
-.profile-sub { color:#6c757d; margin-top:6px; }
-.profile-actions { margin-left:12px; }
-
-.profile-fields { padding: 6px 20px 18px 20px; }
-.field-row { display:flex; align-items:center; gap:12px; padding:12px 0; border-top:1px solid #f0f0f0; }
-.field-row:first-child { border-top:none; }
-.field-label { width:140px; font-weight:700; color:#333; }
-.field-value { flex:1; color:#263238; }
-.edit-btn { padding:6px 10px; border-radius:8px; background:transparent; border:1px solid #007bff; color:#007bff; cursor:pointer; font-weight:700; }
-.edit-btn:hover { background:#007bff; color:white; }
-
-.save-small { padding:6px 10px; border-radius:8px; background:#28a745; color:#fff; border:none; cursor:pointer; font-weight:800; }
-.cancel-small { padding:6px 10px; border-radius:8px; background:transparent; border:1px solid #6c757d; color:#6c757d; cursor:pointer; margin-left:8px; }
-
-/* Inline input style when editing */
-.inline-input { width:100%; box-sizing:border-box; padding:8px 10px; border:1px solid #ddd; border-radius:6px; }
-
-/* Theme variables + subtle polish */
-:root{
-	--primary:#007bff;
-	--accent:#28a745;
-	--muted:#6c757d;
-	--surface:#ffffff;
-	--shadow: 0 8px 30px rgba(17,24,39,0.06);
+.page-container {
+    width: 100%;
+    max-width: 900px;
+    padding: 30px 20px;
 }
 
-.info-card { transition: transform .28s ease, box-shadow .28s ease; }
-.info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+/* Titles */
+.header-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
 
-.edit-btn, .save-small, .cancel-small, .btn-link { transition: background-color .18s ease, color .18s ease, transform .12s ease; }
-.edit-btn:hover { transform: translateY(-2px); }
-.save-small:hover { transform: translateY(-2px); }
-.cancel-small:hover { transform: translateY(-2px); }
+.header-bandeau {
+    height: 4px;
+    width: 60px;
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    border-radius: 4px;
+    margin-bottom: 25px;
+}
 
-.avatar.large { transition: transform .35s cubic-bezier(.2,.9,.2,1); }
-.avatar.large:hover { transform: scale(1.04); }
+/* Cards */
+.info-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
 
-/* Fade-in animation on load */
-.animate .info-card { opacity:0; transform: translateY(8px); }
-.animate.show .info-card { opacity:1; transform: translateY(0); transition: all .4s cubic-bezier(.2,.9,.2,1); }
+/* Profile header */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 25px;
+}
 
-/* Smooth field-row hover */
-.field-row { transition: background-color .18s ease; }
-.field-row:hover { background-color: rgba(0,0,0,0.02); }
+.avatar.large {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2563eb, #60a5fa);
+    color: #fff;
+    font-size: 26px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.profile-name {
+    font-size: 20px;
+    font-weight: 600;
+}
 
+.profile-sub {
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: 4px;
+}
+
+.profile-actions {
+    margin-left: auto;
+}
+
+.btn-link {
+    color: #2563eb;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+/* Fields */
+.profile-fields {
+    margin-top: 10px;
+}
+
+.field-row {
+    display: grid;
+    grid-template-columns: 160px 1fr auto;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid #eef0f4;
+}
+
+.field-label {
+    font-weight: 500;
+    color: #6b7280;
+}
+
+.field-value {
+    font-size: 15px;
+}
+
+/* Inputs */
+.inline-input {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+}
+
+/* Buttons */
+.edit-btn,
+.save-small,
+.cancel-small {
+    padding: 7px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    border: none;
+}
+
+.edit-btn {
+    background: #eef2ff;
+    color: #3730a3;
+}
+
+.save-small {
+    background: #2563eb;
+    color: white;
+    margin-left: 8px;
+}
+
+.cancel-small {
+    background: #e5e7eb;
+    color: #374151;
+    margin-left: 6px;
+}
+
+/* Security section */
+.card-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0;
+}
+
+.regle {
+    font-weight: 500;
+}
+
+.description {
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: 3px;
+}
+
+/* Action buttons */
+.save-btn {
+    background: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 9px 16px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 9px 16px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.danger-text {
+    color: #dc2626;
+    font-weight: 600;
+}

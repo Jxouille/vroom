@@ -1,9 +1,19 @@
 /* mes_documents.css - styles for driver documents upload page */
 
-body { background:#f6f7f9; }
-.page-container { max-width:900px; margin:32px auto; padding:0 16px; }
 
-.info-card { background:#fff; border-radius:10px; padding:12px 0 18px 0; box-shadow:0 6px 20px rgba(0,0,0,0.04); margin-bottom:18px; }
+.page-container { 
+	max-width:900px; 
+	margin:32px auto; 
+	padding:0 16px; 
+}
+
+.info-card { 
+	background:#fff; 
+	border-radius:10px; 
+	padding:12px 0 18px 0; 
+	box-shadow:0 6px 20px rgba(0,0,0,0.04); 
+	margin-bottom:18px; 
+}
 .card-title { font-size:1.1rem; font-weight:700; padding:0 20px; margin-bottom:6px; }
 .help { padding:0 20px 12px 20px; color:#616161; }
 
