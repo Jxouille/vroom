@@ -23,6 +23,7 @@
             <?php else: ?>
                 <div class="profile">
                     <a href="index.php?page=connexion" class="profile-link">Se connecter</a>
+                    <a href="index.php?page=inscription" class="profile-link profile-signup">S'inscrire</a>
                     <ul class="profile-menu-auth" role="menu" aria-hidden="true">
                         <li role="menuitem"><a href="index.php?page=connexion">Se connecter</a></li>
                         <li role="menuitem"><a href="index.php?page=inscription">S'inscrire</a></li>

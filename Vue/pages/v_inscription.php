@@ -11,12 +11,12 @@
             <div class="ligne-champs">
                 <div class="groupe-champ">
                     <label for="nom">Nom</label>
-                    <input type="text" id="nom" name="nom" required placeholder="Macron">
+                    <input type="text" id="nom" name="nom" required placeholder="Nom">
                 </div>
 
                 <div class="groupe-champ">
                     <label for="prenom">Prénom</label>
-                    <input type="text" id="prenom" name="prenom" required placeholder="Emmanuel">
+                    <input type="text" id="prenom" name="prenom" required placeholder="Prénom">
                 </div>
             </div>
 
@@ -24,7 +24,7 @@
             <div class="groupe-champ">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required
-                       placeholder="emmanuel.macron@gouv.fr">
+                       placeholder="adresse@mail.com">
             </div>
 
             <?php if (isset($_GET['error']) && $_GET['error'] === "exists"):?>
@@ -36,7 +36,8 @@
             <!-- MOT DE PASSE -->
             <div class="groupe-champ">
                 <label for="mdp">Mot de passe</label>
-                <input type="password" id="mdp" name="mdp" required minlength="6">
+                <input type="password" id="mdp" name="mdp" placeholder="Mot de passe"
+                 required minlength="6">
             </div>
 
             <div class="groupe-champ">
@@ -71,6 +72,7 @@
             <button type="submit" class="bouton-principal">
                 S'inscrire
             </button>
+            <p class="small-note">J'ai déjà un compte : <a href="index.php?page=connexion">Se connecter</a></p>
         </form>
     </div>
 </body>
