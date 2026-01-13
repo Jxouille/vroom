@@ -82,9 +82,8 @@ class Reservations {
             FROM reservations r
             JOIN annonces a ON r.id_annonce = a.id
             JOIN utilisateurs u ON a.id_conducteur = u.id
-            JOIN vehicules v ON a.id_vehicule = v.id
-            JOIN lieux ld ON a.id_lieu_depart = ld.id
-            JOIN lieux la ON a.id_lieu_arrivee = la.id
+            JOIN ville ld ON a.id_ville_depart = ld.id
+            JOIN ville la ON a.id_ville_arrivee = la.id
             WHERE r.id_passager = :id_client
             AND r.statut = 'acceptee'
             AND a.date_depart >= CURDATE()
@@ -104,9 +103,8 @@ class Reservations {
             FROM reservations r
             JOIN annonces a ON r.id_annonce = a.id
             JOIN utilisateurs u ON a.id_conducteur = u.id
-            JOIN vehicules v ON a.id_vehicule = v.id
-            JOIN lieux ld ON a.id_lieu_depart = ld.id
-            JOIN lieux la ON a.id_lieu_arrivee = la.id
+            JOIN ville ld ON a.id_ville_depart = ld.id
+            JOIN ville la ON a.id_ville_arrivee = la.id
             WHERE r.id_passager = :id_client
             AND a.date_depart < CURDATE()
             ORDER BY a.date_depart DESC
