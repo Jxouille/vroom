@@ -25,7 +25,7 @@
                             <?php endif; ?>
                         </div>
                         <div class="profile-actions">
-                            <a class="btn-link" href="index.php?page=mes_trajets">Mes trajets</a>
+                            <a class="btn-link" href="index.php?page=mes_annonces">Mes annonces</a>
                         </div>
                     </div>
 
