@@ -8,6 +8,8 @@
 
     <!-- CSS commun -->
     <link rel="stylesheet" href="Ressources/CSS/commun.css">
+    <!-- CSS header (menu profil) -->
+    <link rel="stylesheet" href="Ressources/CSS/header.css">
 
     <!-- CSS spécifique à la page -->
     <?php if (!empty($css)): ?>
@@ -16,4 +18,5 @@
     <?php if (!empty($js)): ?>
         <script src="Ressources/JVS/<?= htmlspecialchars($js) ?>" defer></script>
     <?php endif; ?>
+    <script src="Ressources/JVS/commun.js" defer></script>
 </head>
