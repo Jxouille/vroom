@@ -62,14 +62,17 @@
                                 <div class="bar"></div>
                                 <span class="dot"></span>
                             </div>
+                            <div class="time-block">
+                                <span class="heure"><?= htmlspecialchars($trajet["heure_arrivee"] ?? '') ?></span>
+                            </div>
                         </div>
 
                         <div class="col-villes">
                             <div class="ville">
-                                <h4><?= htmlspecialchars($trajet["lieu_depart"] ?? '') ?></h4>
+                                <h4><?= htmlspecialchars($trajet["ville_depart"] ?? '') ?></h4>
                             </div>
                             <div class="ville">
-                                <h4><?= htmlspecialchars($trajet["lieu_arrivee"] ?? '') ?></h4>
+                                <h4><?= htmlspecialchars($trajet["ville_arrivee"] ?? '') ?></h4>
                             </div>
                         </div>
                         
@@ -82,13 +85,11 @@
                                 Réserver
                             </button>
                         </div>
-                        <div class="col-favori">
-                            <button class="btn-favori" data-id="<?= htmlspecialchars($trajet['id']) ?>">
-                                ♥
-                            </button>
-                        </div>
+                        
                         <?php if (isset($_SESSION['user_id'])): ?>
-                            <button class="btn-favori" data-id="<?= $trajet['id'] ?>">♥</button>
+                            <div class="col-favori">
+                                <button class="btn-favori" action="index.php?page=recherche_trajetdata&action=favoris&id_favori="<?= $trajet['id'] ?>>♥</button>
+                            </div>
                         <?php endif; ?>
                         
                        
