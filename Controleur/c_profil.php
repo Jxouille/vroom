@@ -156,6 +156,7 @@ class c_mes_documents {
     public function afficher(): void {
         $title = "Mes documents";
         $css = "mes_documents.css";
+        $js = "mes_documents.js";
 
         $id_utilisateur = $_SESSION['user_id'];
         // Get existing documents
