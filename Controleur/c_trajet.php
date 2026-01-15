@@ -61,19 +61,6 @@ class c_publie_trajet {
             header("Location: index.php?page=connexion");
             exit;
         }
-        if (!isset(
-            $_POST['date_depart'],
-            $_POST['heure_depart'],
-            $_POST['prix'],
-            $_POST['places'],
-            $_POST['adresse_depart'],
-            $_POST['adresse_arrivee'],
-            $_POST['ville_depart'],
-            $_POST['ville_arrivee']
-        )) {
-            header("Location: index.php?page=inscription&error=missing");
-            exit;
-        }
 
         $id_conducteur = $_SESSION['user_id'];
 
@@ -96,9 +83,8 @@ class c_publie_trajet {
             'date_arrivee'        => $_POST['date_arrivee'] ?? null,
             'heure_arrivee'       => $_POST['heure_arrivee'] ?? null,
 
-            'distance_km'         => $_POST['distance'] ?? null,
-            'duree_minutes'       => $_POST['duree_minutes'] ?? null,
-            'route_index'         => $_POST['route_index'] ?? null,
+           
+          
 
             'prix_par_personne'   => $_POST['prix'],
             'places_disponibles'  => $_POST['places'],
@@ -108,7 +94,8 @@ class c_publie_trajet {
             'adresse_depart'      => $_POST['adresse_depart'],
 
             'id_ville_arrivee'    => $id_ville_arrivee,
-            'adresse_arrivee'     => $_POST['adresse_arrivee']
+            'adresse_arrivee'     => $_POST['adresse_arrivee'],
+            'id_vehicule'         => 3,
         ];
 
 
