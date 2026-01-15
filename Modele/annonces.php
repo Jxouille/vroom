@@ -52,9 +52,8 @@ class Annonces {
             datetime_depart,
             date_arrivee,
             heure_arrivee,
-            distance_km,
-            duree_minutes,
-            route_index,
+            id_vehicule,
+    
             prix_par_personne,
             places_disponibles,
             description,
@@ -69,9 +68,8 @@ class Annonces {
             :datetime_depart,
             :date_arrivee,
             :heure_arrivee,
-            :distance_km,
-            :duree_minutes,
-            :route_index,
+            :id_vehicule,
+           
             :prix_par_personne,
             :places_disponibles,
             :description,
@@ -203,6 +201,8 @@ class Annonces {
             a.prix_par_personne,
             a.places_disponibles,
             a.description,
+            a.adresse_depart,
+            a.adresse_arrivee,
 
             u.nom AS conducteur_nom,
             u.note AS conducteur_note,
@@ -211,14 +211,14 @@ class Annonces {
             v.marque,
             v.modele,
 
-            ld.nom AS lieu_depart,
-            la.nom AS lieu_arrivee
+            vd.nom AS ville_depart,
+            va.nom AS ville_arrivee
 
         FROM annonces a
         JOIN utilisateurs u ON a.id_conducteur = u.id
         JOIN vehicules v ON a.id_vehicule = v.id
-        JOIN ville ld ON a.id_ville_depart = ld.id
-        JOIN ville la ON a.id_ville_arrivee = la.id
+        JOIN ville vd ON a.id_ville_depart = vd.id
+        JOIN ville va ON a.id_ville_arrivee = va.id
         WHERE a.id = :id
         ";
         $stmt = $db->prepare($sql);

@@ -7,7 +7,7 @@
         </header>
 
         <form class="ride-form"
-                action="index.php?page=publie_trajets&action=publier"
+                action="index.php?page=publie_trajet&action=publier"
                 method="POST" >
 
             <section class="form-section">
@@ -37,11 +37,11 @@
                 <div class="grid-2-cols">
                     <label class="input-group">
                         <span class="label-text">Date du trajet</span>
-                        <input type="text" placeholder="jj/mm/aaaa" name="date_depart" required>
+                        <input type="date" name="date_depart" required>
                     </label>
                     <label class="input-group">
                         <span class="label-text">Heure de départ</span>
-                        <input type="text" placeholder="hh:mm" name="heure_depart" required>
+                        <input type="time" name="heure_depart" required>
                     </label>
                 </div>
             </section>

@@ -51,12 +51,12 @@
 
                     <div class="gares-info">
                         <div class="gare depart">
-                            <div class="ville"><?= htmlspecialchars($annonce['lieu_depart']) ?></div>
-                            <div class="detail-gare"><?= htmlspecialchars($annonce['lieu_depart']) ?></div>
+                            <div class="ville"><?= htmlspecialchars($annonce['ville_depart']) ?></div>
+                            <div class="detail-gare"><?= htmlspecialchars($annonce['adresse_depart']) ?></div>
                         </div>
                         <div class="gare arrivee">
-                            <div class="ville"><?= htmlspecialchars($annonce['lieu_arrivee']) ?></div>
-                            <div class="detail-gare"><?= htmlspecialchars($annonce['lieu_arrivee']) ?></div>
+                            <div class="ville"><?= htmlspecialchars($annonce['ville_arrivee']) ?></div>
+                            <div class="detail-gare"><?= htmlspecialchars($annonce['adresse_arrivee']) ?></div>
                         </div>
                     </div>
                 </div>
