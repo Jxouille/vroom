@@ -1,6 +1,6 @@
 <header class="header">
     <div class="header-content">  
-        <img src="../../Ressources/Image/logo_ver2.png"  alt="Logo Vroom">
+        <img src="Ressources/Image/logo_ver2.png"  alt="Logo Vroom">
         <nav class="nav-main">
             <a href="index.php?page=accueil">Accueil</a>
             <a href="index.php?page=recherche_trajet">Chercher un trajet</a>
