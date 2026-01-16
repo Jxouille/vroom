@@ -50,8 +50,8 @@
                     <h2 class="card-title">Sécurité & actions</h2>
                     <div class="info-item" style="border-top:none; align-items:center;">
                         <div style="flex:1">
-                            <div class="regle">E‑mail vérifié</div>
-                            <div class="description">Votre e‑mail est confirmé.</div>
+                            <div class="regle">E‑mail <?= isset($utilisateur['email_verifie']) && $utilisateur['email_verifie'] ? 'vérifié' : 'non vérifié' ?></div>
+                            <div class="description">Votre e‑mail <?= isset($utilisateur['email_verifie']) && $utilisateur['email_verifie'] ? 'est confirmé' : 'n\'est pas confirmé' ?>.</div>
                         </div>
                         <div>
                             <button class="save-btn" type="button" id="change-password">Changer le mot de passe</button>
@@ -59,8 +59,8 @@
                     </div>
                     <div class="info-item" style="border-top:1px solid #eee; align-items:center;">
                         <div style="flex:1">
-                            <div class="regle">Téléphone vérifié</div>
-                            <div class="description">Votre numéro est confirmé.</div>
+                            <div class="regle">Téléphone <?= isset($utilisateur['telephone_verifie']) && $utilisateur['telephone_verifie'] ? 'vérifié' : 'non vérifié' ?></div>
+                            <div class="description">Votre numéro <?= isset($utilisateur['telephone_verifie']) && $utilisateur['telephone_verifie'] ? 'est confirmé' : 'n\'est pas confirmé' ?>.</div>
                         </div>
                         <div>
                             <button class="save-btn" type="button">Vérifier / modifier</button>
