@@ -121,14 +121,12 @@ class c_publie_trajet {
             'id_vehicule'         => 3,
         ];
         
-        // Création de l'annonce
-        if (!Annonces::creer($data)) {
-            header("Location: index.php?page=mes_paiements");
-            exit;
-            /// die("Erreur lors de la création de l'annonce.");
-        }
+    // Création de l'annonce
+    Annonces::creer($data) ;
+
+        // Redirection vers la page d'accueil
         header("Location: index.php?page=mes_annonces");
         exit;
-            }
-        }
+    }
+}
 ?>

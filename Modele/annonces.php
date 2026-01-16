@@ -33,7 +33,6 @@ class Annonces {
             date_arrivee,
             heure_arrivee,
             id_vehicule,
-    
             prix_par_personne,
             places_disponibles,
             description,
@@ -49,7 +48,6 @@ class Annonces {
             :date_arrivee,
             :heure_arrivee,
             :id_vehicule,
-           
             :prix_par_personne,
             :places_disponibles,
             :description,
