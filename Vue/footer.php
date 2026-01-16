@@ -2,7 +2,7 @@
 <footer>
     <div class="footer-content">
         <div class="footer-logo">
-            <img src="../../Ressources/Image/logo_ver2.png" alt="Logo VROOM" class="logo-image"/>
+            <img src="Ressources/Image/logo_ver2.png" alt="Logo VROOM" class="logo-image"/>
         </div> 
         <div class="footer-section">
             <h4>En savoir plus</h4>

@@ -109,14 +109,20 @@
 }
 
 .avatar {
-    width: 45px;                
-    height: 45px;
+    width: 50px;                
+    height: 50px;
     border-radius: 50%;
     background: #eaeaea;
     font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .driver-name {
@@ -132,10 +138,17 @@
 
 .driver-details p {
     font-size: 11px;
-    margin: 0;
     color: #777;
 }
 
+/* ------ DATE ------ */
+.col-date {
+    width: 150px;      
+    font-size: 12px;      
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+}
 /* ------ HEURES ------ */
 
 .col-horaires {
@@ -261,4 +274,43 @@
 
 .coeur:hover {
     transform: scale(1.2);
+}
+
+
+.filter-btn {
+    background: white;
+    border: 1px solid #28a745;
+    color: #28a745;
+    padding: 12px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.filter-btn:hover {
+    background: #28a745;
+    color: white;
+}
+
+.filters-panel {
+    display: none;
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    background: #f9f9f9;
+    gap: 15px;
+    
+}
+
+.filters-panel.open {
+    display: flex;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }

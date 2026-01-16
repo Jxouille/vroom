@@ -1,53 +1,57 @@
 <body>
 <div class="hero">
     <img src="Ressources/Image/img_kv_pc.jpg" alt="Voiture" class="hero-img">
-   <section class="search-container">
-    <form class="search-box" action="index.php" method="GET">
+    <section class="search-container">
+        <form class="search-box" action="index.php" method="GET">
 
-        <div class="search-field">
-            <div class="icon">
-                <svg viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="9" stroke-width="2" fill="none"/>
-                </svg>
+            <!-- Page cible -->
+            <input type="hidden" name="page" value="recherche_trajet">
+
+            <div class="search-field">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="9" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                <div class="field-content">
+                    <label>Départ</label>
+                    <input type="text" name="ville_depart" placeholder="Ville de départ" >
+                </div>
             </div>
-            <div class="field-content">
-                <label>Départ</label>
-                <input type="text" name="depart" placeholder="Ville de départ" >
+
+            <div class="divider"></div>
+
+            <div class="search-field">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7z"/>
+                    </svg>
+                </div>
+                <div class="field-content">
+                    <label>Destination</label>
+                    <input type="text" name="ville_arrivee" placeholder="Ville d'arrivée" >
+                </div>
             </div>
-        </div>
 
-        <div class="divider"></div>
+            <div class="divider"></div>
 
-        <div class="search-field">
-            <div class="icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7z"/>
-                </svg>
+            <div class="search-field">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 12h16m-6-6l6 6-6 6"/>
+                    </svg>
+                </div>
+                <div class="field-content">
+                    <label>Date</label>
+                    <input type="date" 
+                        name="date_depart"
+                        min="<?= date('Y-m-d') ?>"
+                        value="<?= date('Y-m-d') ?>">
+                </div>
             </div>
-            <div class="field-content">
-                <label>Destination</label>
-                <input type="text" name="destination" placeholder="Ville d'arrivée" >
-            </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="search-field">
-            <div class="icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M4 12h16m-6-6l6 6-6 6"/>
-                </svg>
-            </div>
-            <div class="field-content">
-                <label>Date</label>
-                <input type="date" name="date" >
-            </div>
-        </div>
-
-        <button class="search-btn" type="submit" name="action" value="actionChercherTrajets">Rechercher</button>
-
-    </form>
-</section>
+            <button class="search-btn" type="submit" >Rechercher</button>
+        </form>
+    </section>
 </div>
 
 
@@ -123,54 +127,68 @@
     </div>
 </section>
 
-
-<!-- SECTION : Trajets populaires -->
 <section class="popular-rides">
     <h2>Trajets populaires</h2>
-    <p>Découvrez les trajets les plus demandés cette semaine</p>
+    <p class="subtitle">Découvrez les trajets les plus demandés cette semaine</p>
 
     <div class="rides-list">
         <?php if (!empty($annonces)):
-            $count = 0; // limiter à 3 trajets
+            $count = 0;
             foreach ($annonces as $annonce):
                 if ($count >= 3) break;
 
                 $trajet = Annonces::detail_trajet((int)$annonce['id']);    
                 if (!$trajet) continue;
-
                 $count++;
         ?>
-            <!-- CARD dynamique -->
-            <div class="ride-card">
-                <div class="ride-header">
-                    <div class="avatar"><?= htmlspecialchars($trajet["avatar"] ?? 'ND') ?></div>
-                    <div>
-                        <h4><?= htmlspecialchars($trajet["conducteur_nom"] ?? 'Nom') ?></h4>
-                        <span><?= htmlspecialchars($trajet["conducteur_note"] ?? 0) ?></span>
-                    </div>
-                    <span class="places"><?= htmlspecialchars($trajet["places_disponibles"] ?? 0) ?> places</span>
+        <div class="ride-card">
+            <div class="ride-header">
+                <div class="avatar">
+                    <?php if (!empty($trajet["chemin_avatar"])): ?>
+                        <img src="<?= htmlspecialchars($trajet["chemin_avatar"]) ?>" alt="Avatar">
+                    <?php else: ?>
+                        <img src="Ressources/Image/person_icon.png" alt="Avatar par défaut">
+                    <?php endif; ?>
                 </div>
 
-                <div class="ride-route">
-                    <p><?= htmlspecialchars($trajet["lieu_depart"] ?? '') ?></p>
-                    <div class="line"></div>
-                    <p><?= htmlspecialchars($trajet["lieu_arrivee"] ?? '') ?></p>
+                <div class="driver-info">
+                    <h4><?= htmlspecialchars($trajet["conducteur_nom"] ?? 'Nom') ?></h4>
+                    <span class="rating">⭐ <?= htmlspecialchars($trajet["conducteur_note"] ?? 0) ?></span>
                 </div>
 
-                <div class="ride-info">
-                    <p><?= htmlspecialchars($trajet["date_depart"] ?? '') ?> • <?= htmlspecialchars($trajet["heure_depart"] ?? '') ?></p>
-                    <p class="price"><?= htmlspecialchars($trajet["prix_par_personne"] ?? 0) ?>€/pers</p>
-                </div>
-
-                <button class="ride-btn"
-                    onclick="window.location.href='index.php?page=detail_trajet&id=<?= htmlspecialchars($trajet['id']) ?>'">
-                    Réserver
-                </button>
+                <span class="places">
+                    <?= htmlspecialchars($trajet["places_disponibles"] ?? 0) ?> places
+                </span>
             </div>
+
+            <div class="divider"></div>
+
+            <div class="ride-route">
+                <span><?= htmlspecialchars($trajet["ville_depart"] ?? '') ?></span>
+                <div class="route-line"></div>
+                <span><?= htmlspecialchars($trajet["ville_arrivee"] ?? '') ?></span>
+            </div>
+
+            <div class="ride-footer">
+                <div class="date">
+                    <p><?= htmlspecialchars($trajet["heure_depart"] ?? '') ?> </p>
+                    <p><?= htmlspecialchars(formatDateFr($trajet["date_depart"] ?? '')) ?> </p>
+                </div>
+                <div class="price">
+                    <?= htmlspecialchars($trajet["prix_par_personne"] ?? 0) ?>€<span>/pers</span>
+                </div>
+            </div>
+
+            <button class="ride-btn"
+                onclick="window.location.href='index.php?page=detail_trajet&id=<?= htmlspecialchars($trajet['id']) ?>'">
+                Réserver
+            </button>
+        </div>
         <?php endforeach; else: ?>
             <p>Aucun trajet trouvé</p>
         <?php endif; ?>
     </div>
+
     <button class="all-rides-btn"
         onclick="window.location.href='index.php?page=recherche_trajet'">
         Voir tous les trajets

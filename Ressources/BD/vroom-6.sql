@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 15, 2026 at 06:45 PM
+-- Generation Time: Jan 16, 2026 at 03:03 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -61,7 +61,7 @@ INSERT INTO `annonces` (`id`, `id_conducteur`, `date_depart`, `heure_depart`, `d
 (6, 1, '2026-01-06', '08:00:00', '2026-01-06 08:00:00', 30.00, 3, 'Paris → Lyon', NULL, 201, '', 202, '', 'complete', '2026-01-01 09:00:00', NULL, NULL, 2),
 (7, 2, '2026-01-07', '09:00:00', '2026-01-07 09:00:00', 25.00, 2, 'Marseille → Nice', NULL, 203, '', 204, '', 'active', '2026-01-01 09:00:00', NULL, NULL, NULL),
 (8, 3, '2026-01-08', '07:30:00', '2026-01-08 07:30:00', 40.00, 3, 'Bordeaux → Toulouse', NULL, 205, '', 206, '', 'active', '2026-01-01 09:00:00', NULL, NULL, NULL),
-(9, 4, '2026-01-09', '10:00:00', '2026-01-09 10:00:00', 20.00, 2, 'Nantes → Rennes', NULL, 207, '', 208, '', 'active', '2026-01-01 09:00:00', NULL, NULL, NULL),
+(9, 4, '2026-01-30', '10:00:00', '2026-01-30 10:00:00', 20.00, 2, 'Nantes → Rennes', NULL, 207, '', 208, '', 'active', '2026-01-01 09:00:00', NULL, NULL, 1),
 (10, 5, '2026-01-10', '11:30:00', '2026-01-10 11:30:00', 35.00, 3, 'Strasbourg → Metz', NULL, 209, '', 210, '', 'active', '2026-01-01 09:00:00', NULL, NULL, NULL),
 (11, 6, '2026-01-11', '13:00:00', '2026-01-11 13:00:00', 28.00, 2, 'Lille → Amiens', NULL, 211, '', 212, '', 'active', '2026-01-01 09:00:00', NULL, NULL, NULL),
 (12, 1, '2026-01-12', '15:30:00', '2026-01-12 15:30:00', 45.00, 3, 'Toulouse → Montpellier', NULL, 206, '', 213, '', 'active', '2026-01-01 09:00:00', NULL, NULL, NULL),
@@ -90,7 +90,9 @@ INSERT INTO `annonces` (`id`, `id_conducteur`, `date_depart`, `heure_depart`, `d
 (35, 6, '2026-02-04', '09:00:00', '2026-02-04 09:00:00', 38.00, 2, 'Nîmes → Montpellier', NULL, 223, '', 213, '', 'complete', '2026-01-01 09:00:00', NULL, NULL, NULL),
 (59, 28, '2026-01-24', '10:10:00', '2026-01-24 10:10:00', 20.00, 3, 'non', NULL, 201, '22 rue Rivoli', 202, '15 place belle cour', 'active', '2026-01-14 07:18:26', NULL, NULL, NULL),
 (60, 28, '2026-01-29', '12:38:00', '2026-01-29 12:38:00', 20.00, 3, 'non', NULL, 202, '22 rue Rivoli', 201, '15 place belle cour', 'active', '2026-01-14 07:36:08', NULL, NULL, 3),
-(61, 28, '2026-05-27', '21:43:00', '2026-05-27 21:43:00', 20.00, 3, 'non', NULL, 201, '22 rue Rivoli', 202, '15 place belle cour', 'active', '2026-01-15 17:40:16', NULL, NULL, 3);
+(61, 28, '2026-05-27', '21:43:00', '2026-05-27 21:43:00', 20.00, 3, 'non', NULL, 201, '22 rue Rivoli', 202, '15 place belle cour', 'active', '2026-01-15 17:40:16', NULL, NULL, 3),
+(62, 28, '2026-01-18', '16:57:00', '2026-01-18 16:57:00', 11.00, 2, 'non', NULL, 202, '22 rue Rivoli', 206, '15 place belle cour', 'active', '2026-01-16 13:56:00', NULL, NULL, 3),
+(63, 28, '2026-01-18', '16:57:00', '2026-01-18 16:57:00', 11.00, 2, 'non', NULL, 202, '22 rue Rivoli', 206, '15 place belle cour', 'active', '2026-01-16 13:57:53', NULL, NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -148,7 +150,7 @@ INSERT INTO `conversations` (`id`, `date_creation`) VALUES
 CREATE TABLE `documents_utilisateur` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_utilisateur` bigint(20) UNSIGNED NOT NULL,
-  `type_document` enum('piece_identite','permis','carte_grise','assurance','justificatif_domicile','photo_profil') NOT NULL,
+  `type_document` enum('piece_identite','permis','carte_grise','assurance','justificatif_domicile','avatar') NOT NULL,
   `nom_fichier` varchar(255) NOT NULL,
   `chemin_fichier` varchar(255) NOT NULL,
   `mime_type` varchar(100) NOT NULL,
@@ -165,7 +167,8 @@ CREATE TABLE `documents_utilisateur` (
 INSERT INTO `documents_utilisateur` (`id`, `id_utilisateur`, `type_document`, `nom_fichier`, `chemin_fichier`, `mime_type`, `taille_fichier`, `statut`, `date_expiration`, `date_creation`) VALUES
 (9, 25, 'piece_identite', 'guide_cpme_bonnes_pratiques.pdf', 'uploads/documents/user_25/piece_identite/piece_identite_6956bc33bf4d6.pdf', 'application/pdf', 874007, 'en_attente', NULL, '2026-01-01 18:25:55'),
 (11, 25, 'carte_grise', 'guide_cpme_bonnes_pratiques.pdf', 'uploads/documents/user_25/carte_grise/carte_grise_6956bc77b3bc0.pdf', 'application/pdf', 874007, 'en_attente', NULL, '2026-01-01 18:27:03'),
-(12, 28, 'piece_identite', '1I598HH0J_6VNU3J.JPG', 'uploads/documents/user_28/piece_identite/piece_identite_695b87dd436e2.JPG', 'image/jpeg', 51113, 'en_attente', NULL, '2026-01-05 09:43:57');
+(12, 28, 'piece_identite', '1I598HH0J_6VNU3J.JPG', 'uploads/documents/user_28/piece_identite/piece_identite_695b87dd436e2.JPG', 'image/jpeg', 51113, 'en_attente', NULL, '2026-01-05 09:43:57'),
+(13, 28, 'avatar', '1I598HH2G_6VNU3J.JPG', 'uploads/documents/user_28/avatar/avatar_696a06a731890.JPG', 'image/jpeg', 56889, 'en_attente', NULL, '2026-01-16 09:36:39');
 
 -- --------------------------------------------------------
 
@@ -625,7 +628,7 @@ ALTER TABLE `ville`
 -- AUTO_INCREMENT for table `annonces`
 --
 ALTER TABLE `annonces`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `avis`
@@ -643,7 +646,7 @@ ALTER TABLE `conversations`
 -- AUTO_INCREMENT for table `documents_utilisateur`
 --
 ALTER TABLE `documents_utilisateur`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `favoris`

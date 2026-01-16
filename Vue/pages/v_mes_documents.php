@@ -88,7 +88,7 @@
                             </div>
                         </div>
 
-                        <?php $doc = $documents['photo_profil'] ?? null; ?>
+                        <?php $doc = $documents['avatar'] ?? null; ?>
                         <div class="doc-item">
                             <div class="doc-label">Photo de profil (optionnel)</div>
                             <div class="doc-controls">

@@ -181,7 +181,8 @@ class c_mes_documents {
             'driving_license'      => 'permis_conduire',
             'vehicle_registration' => 'carte_grise',
             'insurance'            => 'assurance',
-            'proof_of_address'     => 'justificatif_domicile'
+            'proof_of_address'     => 'justificatif_domicile',
+            'profile_photo'        => 'avatar',
         ];
 
         $types_fichiers_autorises = ['application/pdf', 'image/jpeg', 'image/png'];

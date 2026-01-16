@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once __DIR__ . '/Ressources/PHP/date_en_fr.php';
 
 /**git
  * Page par défaut
@@ -7,10 +8,10 @@ session_start();
 $page = $_GET['page'] ?? 'accueil';
 $action = $_GET['action'] ?? null;
 $error = $_GET['error'] ?? null;
+$depart = $_GET['ville_depart'] ?? null;
+$arrivee = $_GET['ville_arrivee'] ?? null;
+$date = $_GET['date_depart'] ?? null;
 
-/**
- * Router MVC
- */
 switch ($page) {
 
     // Accueil
@@ -23,7 +24,11 @@ switch ($page) {
     case 'recherche_trajet':
         require 'Controleur/c_trajet.php';
         $controller = new c_recherche_trajet();
-        $controller->afficher();
+        if (!$depart ==null || !$arrivee ==null || !$date ==null) {
+            $controller->recherche_trajets();
+        } else {
+            $controller->afficher();
+        }
         break;
 
     case 'publie_trajet':
