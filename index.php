@@ -124,16 +124,18 @@ switch ($page) {
         break;
 
     // Messages
-    case 'messages':
+    case 'messagerie':
         require 'Controleur/c_profil.php';
-        $controller = new c_messages();
+        $controller = new c_messagerie();
+
         if ($action === 'envoyer') {
             $controller->envoyer();
         } else {
             $id_conversation = $_GET['id_conversation'] ?? null;
-            $controller->liste($id_conversation);
+            $controller->afficher($id_conversation);
         }
         break;
+
     case 'mes_favoris':
         require 'Controleur/c_profil.php';
         $controller = new c_mes_favoris();
@@ -221,4 +223,10 @@ switch ($page) {
         }
         break;
 }
+
+?>
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 ?>

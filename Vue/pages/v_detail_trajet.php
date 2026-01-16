@@ -38,7 +38,10 @@
                     </div>
                     <div class="driver-right">
                         <div class="price"><?= htmlspecialchars($annonce['prix_par_personne']) ?> $</div>
-                        <button class="contact-small">Contacter</button>
+                        <button class="btn-reserver"
+                            href="index.php?page=messages&action=nouvelle&id_user=<?= $trajet['conducteur_id'] ?>">
+                            Contacter</button>
+
                     </div> <!-- pop up messagerie avec le conducteur en java script à faire -->
                 </div> 
             </div>
