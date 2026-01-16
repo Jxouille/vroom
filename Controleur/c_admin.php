@@ -16,15 +16,44 @@ class c_admin {
         #$id_utilisateur = $id_utilisateur ?? $_SESSION['user_id'];
         #$utilisateur = Utilisateur::getById($id_utilisateur);
         #$vehicules = Vehicules::getByUser($id_utilisateur);
+       
+        // 1️⃣ Récupération de la page demandée
+        $admin_page = $_GET['admin_page'] ?? 'utilisateurs';
 
-        $title = "Gestion Utilisateurs & Trajets" ;
-        $css = "admin.css";
-        $js = "";
+        // 2️⃣ Sécurité : pages autorisées
+        $pages_autorisees = ['utilisateurs', 'annonces', 'reservations'];
 
-        require __DIR__ . '/../Vue/head.php';
-        require __DIR__ . '/../Vue/header.php';
-        require __DIR__ . '/../Vue/pages/v_admin.php';
-        require __DIR__ . '/../Vue/footer.php';
+        if (!in_array($admin_page, $pages_autorisees, true)) {
+            $admin_page = 'utilisateurs';
+        }
+
+        // 3️⃣ Chargement des données selon la page
+        switch ($admin_page) {
+
+            case 'utilisateurs':
+                $titre_colone = ['id', 'nom', 'prenom', 'email', 'telephone', 'date_creation'];
+                $valeurs = Utilisateur::all();
+                break;
+
+            case 'annonces':
+                $titre_colone = [
+                    'id', 'id_conducteur', 'id_vehicule',
+                    'id_ville_depart', 'id_ville_arrivee',
+                    'date_depart', 'prix_par_personne',
+                    'places_disponibles', 'statut', 'date_creation'
+                ];
+                $valeurs = Annonces::all();
+                break;
+
+            case 'reservations':
+                $titre_colone = ['id', 'id_annonce', 'id_passager', 'prix_total', 'statut', 'date_creation'];
+                $valeurs = Reservations::all();
+                break;
+        }
+
+        // 4️⃣ Inclusion de la vue (TOUJOURS À LA FIN)
+        require __DIR__ . '/../Vue/admin/index_admin.php';
+
     }
 
     // Modification d'un champ

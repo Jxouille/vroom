@@ -6,6 +6,12 @@ class Utilisateur {
     /* =========================
        RÉCUPÉRER PAR ID
     ========================= */
+    public static function all() : array {
+        $db = dbConnect();
+        $stmt = $db->query("SELECT * FROM utilisateurs ORDER BY date_creation DESC");
+        $values = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $values;
+    }
     public static function get(int $id): ?array {
         $db = dbConnect();
         $stmt = $db->prepare("SELECT * FROM utilisateurs WHERE id = ?");

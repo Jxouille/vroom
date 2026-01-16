@@ -2,6 +2,11 @@
 require_once  __DIR__ . '/bd_connection.php';
 
 class Paiements {
+    public static function all(): array {
+        $db = dbConnect();
+        $stmt = $db->query("SELECT * FROM paiements ORDER BY date_creation DESC");
+        return $stmt->fetchAll();
+    }
     public static function mes_paiement(int $id_client): array {
         $db = dbConnect();
 

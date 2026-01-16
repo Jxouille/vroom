@@ -5,14 +5,20 @@ require_once __DIR__ . '/Ressources/PHP/date_en_fr.php';
 /**git
  * Page par défaut
  */
-$page = $_GET['page'] ?? 'accueil';
+$page = $_GET['page'] ?? 'admin';
 $action = $_GET['action'] ?? null;
 $error = $_GET['error'] ?? null;
 $depart = $_GET['ville_depart'] ?? null;
 $arrivee = $_GET['ville_arrivee'] ?? null;
 $date = $_GET['date_depart'] ?? null;
+$admin_page = $_GET['admin_page'] ?? 'utilisateurs';
 
 switch ($page) {
+    case 'admin':
+        require 'Controleur/c_admin.php';
+        $controller = new c_admin();
+        $controller->afficher();
+        break;
 
     // Accueil
     case 'accueil':
@@ -153,11 +159,6 @@ switch ($page) {
         break;
 
     // Annonces
-    case 'admin':
-        require 'Controleur/c_admin.php';
-        $controller = new c_admin();
-        $controller->afficher();
-        break;
     case 'annonce':
         require 'Controleur/c_trajet.php';
         $controller = new c_publie_trajet();

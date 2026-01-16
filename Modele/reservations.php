@@ -3,6 +3,11 @@ require_once  __DIR__ . '/bd_connection.php';
 
 class Reservations {
 
+    public static function all(): array {
+        $db = dbConnect();
+        $stmt = $db->query("SELECT * FROM reservations ORDER BY date_creation DESC");
+        return $stmt->fetchAll();
+    }
     public static function get(int $id): ?array {
         $db = dbConnect();
         $stmt = $db->prepare("SELECT * FROM reservations WHERE id = ?");

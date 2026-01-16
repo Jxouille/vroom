@@ -1,139 +1,117 @@
-/* Variables de couleurs */
-:root {
-    --bg-color: #f4f7f6;
-    --text-color: #333;
-    --text-light: #888;
-    --border-color: #eee;
-    --active-tab-bg: #ffffff;
-    --inactive-tab-bg: #dcdcdc;
-    --status-bg: #e8eaf6;
-    --status-text: #5c6bc0;
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f6f9;
 }
 
-
-
-.container {
-    width: 100%;
-    max-width: 1100px;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    justify-content: center;
+.admin-wrapper {
+  display: flex;
 }
 
-/* Onglets */
-.tabs {
-    display: flex;
-    background-color: var(--inactive-tab-bg);
-    padding: 5px;
+/* SIDEBAR */
+.sidebar {
+  width: 250px;
+  background: #111827;
+  min-height: 100vh;
+  color: #fff;
 }
 
-.tab {
-    flex: 1;
-    padding: 12px;
-    text-align: center;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-    color: #555;
+.sidebar .logo {
+  padding: 20px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.tab.active {
-    background-color: var(--active-tab-bg);
-    color: #000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.sidebar .menu {
+  list-style: none;
+  padding: 0;
 }
 
-/* Sections */
-.content-section {
-    display: none;
-    padding: 20px;
+.sidebar .menu li a {
+  display: block;
+  padding: 14px 20px;
+  color: #cbd5e1;
+  text-decoration: none;
 }
 
-.content-section.active {
-    display: block;
+.sidebar .menu li.active a,
+.sidebar .menu li a:hover {
+  background: #1f2933;
+  color: #fff;
 }
 
-/* Style de la Table */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+.sidebar .menu li.logout {
+  margin-top: 30px;
 }
 
-thead th {
-    text-align: left;
-    color: var(--text-light);
-    font-weight: 400;
-    font-size: 0.85rem;
-    padding: 15px 10px;
-    border-bottom: 1px solid var(--border-color);
+/* TOPBAR */
+.topbar {
+  position: fixed;
+  left: 250px;
+  right: 0;
+  height: 60px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-tbody tr {
-    border-bottom: 1px solid var(--border-color);
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #f1f5f9;
+  padding: 8px 12px;
+  border-radius: 20px;
 }
 
-tbody td {
-    padding: 15px 10px;
-    vertical-align: middle;
-    font-size: 0.9rem;
-    color: var(--text-color);
-}
-
-/* Utilisateur & Avatar */
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.search-box input {
+  border: none;
+  outline: none;
+  background: transparent;
+  margin-left: 8px;
 }
 
 .avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background-color: #ddd;
-    object-fit: cover;
+  width: 35px;
+  border-radius: 50%;
 }
 
-/* Status Badge */
-.status-badge {
-    background-color: var(--status-bg);
-    color: var(--status-text);
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: 600;
+/* CONTENT */
+.content {
+  margin-left: 250px;
+  margin-top: 80px;
+  padding: 25px;
+  width: 100%;
 }
 
-/* Icônes d'action */
-.actions {
-    display: flex;
-    gap: 15px;
-    color: #666;
+.page-title {
+  font-weight: 600;
 }
 
-.actions i {
-    cursor: pointer;
-    transition: color 0.2s;
+/* STATS */
+.stat-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.actions i:hover {
-    color: #000;
+.stat-card i {
+  font-size: 28px;
+  padding: 15px;
+  border-radius: 50%;
+  background: #6366f1;
+  color: #fff;
 }
 
-.fa-trash-can:hover { color: #e53935; }
+.stat-card.blue i { background: #0ea5e9; }
+.stat-card.green i { background: #22c55e; }
+.stat-card.orange i { background: #f97316; }
 
-/* Etat vide (Trajets) */
-.empty-state {
-    text-align: center;
-    padding: 50px;
-    color: var(--text-light);
-}
-
-.empty-state i {
-    margin-bottom: 15px;
-    opacity: 0.3;
+.stat-card h3 {
+  margin: 0;
 }

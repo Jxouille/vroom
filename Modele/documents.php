@@ -6,6 +6,11 @@ class Documents {
     public function __construct() {
         $this->bd = dbConnect();
     }
+    public static function all () {
+        $bd = dbConnect();
+        $stmt = $bd->query("SELECT * FROM documents_utilisateur ORDER BY date_creation DESC");
+        return $stmt->fetchAll();
+    }
     public static function ajouter(
         int $id_utilisateur,
         string $type_document,
