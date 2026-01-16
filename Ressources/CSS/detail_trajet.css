@@ -1,6 +1,12 @@
-/* detail_trajet.css - styles scoped to the trajet detail page */
-
-/* Page base */
+:root {
+  --couleurVerte: #28a745;
+  --couleurVerteFonce: #1f7e36;
+  --texteGris: #6d7c82;
+  --titreNoir: #222;
+  --fondClair: #ffffff;
+  --ombre: rgba(0,0,0,0.10);
+  --ombreHover: rgba(0,0,0,0.18);
+}
 
 .page-container {
     width: 100%;
@@ -8,6 +14,11 @@
     margin: 32px auto;
     box-sizing: border-box;
     padding: 0 16px;
+}
+.header-title{
+    font-size: 30px;
+    font-weight: 800;
+    color: #263238;
 }
 
 /* Info card */
@@ -27,8 +38,30 @@
     margin-bottom: 10px;
 }
 
+.avatar {
+    width: 50px;                
+    height: 50px;
+    border-radius: 50%;
+    background: #eaeaea;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 /* Buttons */
-.button-row { margin-top: 10px; display:flex; justify-content:center; padding: 0 20px 16px 20px; }
+.button-row { 
+    margin-top: 10px; 
+    display:flex; 
+    justify-content:center; 
+    padding: 0 20px 16px 20px; 
+}
 .btn-fullwidth {
     display: inline-block;
     width: 100%;
@@ -52,14 +85,17 @@
     padding: 14px 18px;
     font-size: 1.05rem;
     font-weight: 800;
-    background-color: #28a745;
+    background-color: var(--couleurVerte);
     color: #ffffff;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     text-align: center;
+    text-decoration: none;
 }
-.confirm-btn:hover { background-color: #218838; }
+.confirm-btn:hover { 
+    background-color: var(--couleurVerteFonce); 
+}
 
 /* Trajet detail layout (times / separator / stations) */
 .trajet-detail {
@@ -112,36 +148,112 @@
     justify-content: space-between;
     flex: 1;
 }
-.gare { margin: 0; }
-.ville { font-weight: 700; color:#263238; }
-.detail-gare { color:#616161; font-size:0.95rem; }
+
+.ville { 
+    font-weight: 700; 
+    color:#263238; 
+}
+.detail-gare { 
+    color:#616161; 
+    font-size:0.95rem; 
+}
 
 /* Reusable info-item style used elsewhere on the page */
-.info-item { display:flex; align-items:flex-start; padding:12px 20px; border-top:1px solid #eee; }
-.info-item:first-child { border-top: none; }
+.info-item { 
+    display:flex; 
+    align-items:flex-start; 
+    padding:12px 20px; 
+    border-top:1px solid #eee; 
+}
+.info-item:first-child { 
+    border-top: none; 
+}
 .info-icone { font-size:1.3rem; margin-right:12px; color:#555; }
 .info-texte .regle { font-weight:700; color:#333; }
 .info-texte .description { color:#666; margin-top:4px; }
 
 /* Driver card (détails conducteur) */
-.driver-card { display:flex; align-items:center; justify-content:space-between; padding:12px 20px; gap:12px; }
-.driver-left { display:flex; align-items:center; gap:12px; }
-.avatar { width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,#007bff,#00a3ff); color:white; display:flex; align-items:center; justify-content:center; font-weight:700; }
-.driver-info .driver-name { font-weight:800; color:#263238; }
-.driver-info .vehicle { color:#6c757d; margin-top:4px; }
-.rating { margin-top:6px; color:#f1c40f; font-weight:700; }
-.rating .star { color:#ddd; }
-.rating .star.filled { color:#f1c40f; }
+.driver-card { 
+    display:flex; 
+    align-items:center; 
+    justify-content:space-between; 
+    padding:12px 20px; gap:12px; }
+.driver-left { 
+    display:flex; 
+    align-items:center; 
+    gap:12px; 
+}
+.avatar { 
+    width:56px; 
+    height:56px; 
+    border-radius:50%; 
+    background:linear-gradient(135deg,#007bff,#00a3ff); 
+    color:white; 
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    font-weight:700; 
+}
+.driver-info .driver-name { 
+    font-weight:800; 
+    color:#263238; 
+}
+.driver-info .vehicle { 
+    color:#6c757d; 
+    margin-top:4px; 
+}
+.rating { 
+    margin-top:6px; 
+    color:#f1c40f; 
+    font-weight:700;
+}
+.rating .star { 
+    color:#ddd; 
+}
+.rating .star.filled { 
+    color:#f1c40f; 
+}
 
-.driver-right { text-align:right; }
-.price { background:#28a745; color:#fff; padding:8px 12px; border-radius:10px; font-weight:800; font-size:1.1rem; display:inline-block; }
-.contact-small { margin-top:8px; display:inline-block; padding:8px 10px; background:#007bff; color:#fff; border-radius:8px; font-size:0.95rem; border:none; cursor:pointer; }
+.driver-right { 
+    text-align:right; 
+}
+.price { 
+    background:var(--couleurVerte); 
+    color:#fff; 
+    padding:8px 12px; 
+    border-radius:10px; 
+    font-weight:800; 
+    font-size:1.1rem; 
+    display:inline-block; 
+}
+.contact-small { 
+    margin-top:8px; 
+    display:inline-block; 
+    padding:8px 10px; 
+    background:#007bff; 
+    color:#fff; 
+    border-radius:8px; 
+    font-size:0.95rem; 
+    border:none; 
+    cursor:pointer; 
+}
 
 @media (max-width:600px) {
-    .driver-card { flex-direction:column; align-items:flex-start; }
-    .driver-right { width:100%; text-align:left; margin-top:8px; }
+    .driver-card { 
+        flex-direction:column; 
+        align-items:flex-start; 
+    }
+    .driver-right { 
+        width:100%; 
+        text-align:left; 
+        margin-top:8px; 
+    }
 }
 
 /* small helpers */
-.header-title{ padding: 6px 20px; font-weight:800; color:#263238; }
+.header-title{ 
+    padding: 6px 20px; 
+    font-weight:800; 
+    color:#263238; 
+}
 

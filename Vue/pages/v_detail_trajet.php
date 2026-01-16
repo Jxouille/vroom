@@ -14,11 +14,17 @@
             <div class="info-card">
                 <div class="driver-card">
                     <div class="driver-left">
-                        <div class="avatar">JD</div>
+                        <div class="avatar">
+                            <?php if (!empty($trajet["chemin_avatar"])): ?>
+                                <img src="<?= htmlspecialchars($trajet["chemin_avatar"]) ?>" alt="Avatar">
+                            <?php else: ?>
+                                <img src="Ressources/Image/person_icon.png" alt="Avatar par défaut">
+                            <?php endif; ?>
+                        </div>
                         <div class="driver-info">
                             <div class="driver-name"><?= htmlspecialchars($annonce['conducteur_nom']) ?></div>
                             <div class="vehicle"><?= htmlspecialchars($annonce['marque']) ?> • <?= htmlspecialchars($annonce['modele']) ?></div>
-                            <div class="rating" title="Note 4.5 sur 5">
+                            <div class="rating">
                                 <span class="star filled">★</span>
                                 <span class="star filled">★</span>
                                 <span class="star filled">★</span>
@@ -31,7 +37,7 @@
                         </div>
                     </div>
                     <div class="driver-right">
-                        <div class="price"><?= htmlspecialchars($annonce['prix_par_personne']) ?></div>
+                        <div class="price"><?= htmlspecialchars($annonce['prix_par_personne']) ?> $</div>
                         <button class="contact-small">Contacter</button>
                     </div> <!-- pop up messagerie avec le conducteur en java script à faire -->
                 </div> 
@@ -39,12 +45,12 @@
 
             <!-- Date card (placed under driver details) -->
             <div class="info-card">
-                <h2 class="card-title"><?= htmlspecialchars($annonce['date_depart']) ?></h2>
+                <h2 class="card-title"><?= htmlspecialchars(formatDateFr($annonce['date_depart'])) ?></h2>
 
                 <div class="trajet-detail">
                     <div class="heures">
                         <span class="heure-depart"><?= htmlspecialchars($annonce['heure_depart']) ?></span>
-                        <span class="heure-arrivee"><?= htmlspecialchars($annonce['heure_depart']) ?></span>
+                        <span class="heure-arrivee"><?= htmlspecialchars($annonce['heure_arrivee']?? '') ?></span>
                     </div>
 
                     <div class="separateur"></div>

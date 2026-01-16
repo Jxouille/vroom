@@ -1,5 +1,6 @@
 <?php
 require_once  __DIR__ . '/bd_connection.php';
+require_once  __DIR__ . '/ville.php';
 
 
 class Annonces {
@@ -17,28 +18,7 @@ class Annonces {
         return $stmt->fetchAll();
     }
 
-
-    public static function trouverOuCreerLieu(string $nomVille): int
-    {
-        // Connexion à la base (supposons $db est ton PDO)
-        $db = dbConnect();
-
-        // On cherche si le lieu existe déjà
-        $stmt = $db->prepare("SELECT id FROM ville WHERE nom = :nom LIMIT 1");
-        $stmt->execute([':nom' => $nomVille]);
-        $lieu = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($lieu) {
-            return (int)$lieu['id'];
-        }
-
-        // Si le lieu n'existe pas, on le crée
-        $stmt = $db->prepare("INSERT INTO ville (nom) VALUES (:nom)");
-        $stmt->execute([':nom' => $nomVille]);
-
-        return (int)$db->lastInsertId();
-    }
-
+   
     /**
      * Crée une annonce avec les données fournies
      */
@@ -138,6 +118,8 @@ class Annonces {
     }
     public static function recherche_trajets(array $filters = [], string $sort = 'date_desc'): array {
         $trajets = [];
+        $id_ville_depart = null;
+        $id_ville_arrivee = null;
         $db = dbConnect();
 
         $sql = "SELECT id
@@ -148,19 +130,21 @@ class Annonces {
             ':statut' => 'active'
         ];
         // Apply filters
-        if (!empty($filters['depart'])) {
-            $sql .= " AND depart LIKE :depart";
-            $params[':depart'] = '%' . $filters['depart'] . '%';
+        if (!empty($filters['ville_depart'])) {
+            $id_ville_depart = Villes::getId($filters['ville_depart']);
+            $sql .= " AND id_ville_depart LIKE :id_ville_depart";
+            $params[':id_ville_depart'] = $id_ville_depart;
         }
 
-        if (!empty($filters['destination'])) {
-            $sql .= " AND destination LIKE :destination";
-            $params[':destination'] = '%' . $filters['destination'] . '%';
+        if (!empty($filters['ville_arrivee'])) {
+            $id_ville_arrivee = Villes::getId($filters['ville_arrivee']);
+            $sql .= " AND id_ville_arrivee LIKE :id_ville_arrivee";
+            $params[':ville_arrivee'] = $id_ville_arrivee ;
         }
 
-        if (!empty($filters['date'])) {
-            $sql .= " AND DATE(date_depart) = :date";
-            $params[':date'] = $filters['date'];
+        if (!empty($filters['date_depart'])) {
+            $sql .= " AND DATE(date_depart) = :date_depart";
+            $params[':date_depart'] = $filters['date_depart'];
         }
 
     // Apply sorting
@@ -197,7 +181,7 @@ class Annonces {
         SELECT 
             a.id,
             a.date_depart,
-            a.heure_depart,
+            DATE_FORMAT(a.heure_depart, '%H:%i') AS heure_depart,
             a.prix_par_personne,
             a.places_disponibles,
             a.description,
@@ -212,10 +196,15 @@ class Annonces {
             v.modele,
 
             vd.nom AS ville_depart,
-            va.nom AS ville_arrivee
+            va.nom AS ville_arrivee,
+
+            d.chemin_fichier AS chemin_avatar
 
         FROM annonces a
         JOIN utilisateurs u ON a.id_conducteur = u.id
+        LEFT JOIN documents_utilisateur d 
+            ON a.id_conducteur = d.id_utilisateur 
+            AND d.type_document = 'avatar'
         JOIN vehicules v ON a.id_vehicule = v.id
         JOIN ville vd ON a.id_ville_depart = vd.id
         JOIN ville va ON a.id_ville_arrivee = va.id

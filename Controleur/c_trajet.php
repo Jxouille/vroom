@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../Modele/annonces.php';
 require_once __DIR__ . '/../Modele/reservations.php';
 require_once __DIR__ . '/../Modele/favoris.php';
-
+require_once __DIR__ . '/../Modele/ville.php';
 class c_recherche_trajet {
 
     public function afficher(): void {
@@ -16,6 +16,35 @@ class c_recherche_trajet {
         require __DIR__ . '/../Vue/pages/v_recherche_trajet.php';
         require __DIR__ . '/../Vue/footer.php';
     }
+    public function recherche_trajets(): void {
+    $title = "Recherche de trajets";
+    $css = "recherche_trajet.css";
+
+    if (!empty($_GET['prix_max'])) {
+        $conditions[] = 'prix_par_personne <= :prix_max';
+    }
+    if (!empty($_GET['heure_min'])) {
+        $conditions[] = 'heure_depart >= :heure_min';
+    }
+    if (!empty($_GET['places_min'])) {
+        $conditions[] = 'places_disponibles >= :places_min';
+    }
+
+
+    $filters = [
+        'depart'  => $_GET['ville_depart'],
+        'arrivee' => $_GET['ville_arrivee'] ,
+        'date_depart'   => $_GET['date_depart'],
+    ];
+
+    $annonces = Annonces::recherche_trajets($filters);
+
+    require __DIR__ . '/../Vue/head.php';
+    require __DIR__ . '/../Vue/header.php';
+    require __DIR__ . '/../Vue/pages/v_recherche_trajet.php';
+    require __DIR__ . '/../Vue/footer.php';
+}
+
 }
 
 class c_detail_trajet {
@@ -61,14 +90,11 @@ class c_publie_trajet {
             header("Location: index.php?page=connexion");
             exit;
         }
-
         $id_conducteur = $_SESSION['user_id'];
 
-        // Vérification minimale des champs requis  
-
         // Création ou récupération des ville
-        $id_ville_depart  = Annonces::trouverOuCreerLieu($_POST['ville_depart']);
-        $id_ville_arrivee = Annonces::trouverOuCreerLieu($_POST['ville_arrivee']);
+        $id_ville_depart  = Villes::trouveroucreer($_POST['ville_depart']);
+        $id_ville_arrivee = Villes::trouveroucreer($_POST['ville_arrivee']);
 
         // Récupération du véhicule
         $datetime_depart = $_POST['date_depart'] . ' ' . $_POST['heure_depart'];
@@ -83,9 +109,6 @@ class c_publie_trajet {
             'date_arrivee'        => $_POST['date_arrivee'] ?? null,
             'heure_arrivee'       => $_POST['heure_arrivee'] ?? null,
 
-           
-          
-
             'prix_par_personne'   => $_POST['prix'],
             'places_disponibles'  => $_POST['places'],
             'description'         => $_POST['description'] ?? null,
@@ -97,8 +120,6 @@ class c_publie_trajet {
             'adresse_arrivee'     => $_POST['adresse_arrivee'],
             'id_vehicule'         => 3,
         ];
-
-
         
         // Création de l'annonce
         if (!Annonces::creer($data)) {
