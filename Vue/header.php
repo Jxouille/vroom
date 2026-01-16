@@ -15,6 +15,7 @@
                         <li role="menuitem"><a href="index.php?page=mes_annonces">Mes annonces</a></li>
                         <li role="menuitem"><a href="index.php?page=mes_paiements">Mes paiements</a></li>
                         <li role="menuitem"><a href="index.php?page=mes_documents">Mes documents</a></li>
+                        <li role="menuitem"><a href="index.php?page=messagerie">Messagerie</a></li>
                         <li role="menuitem"><a href="index.php?page=favoris">Mes favoris</a></li>
                         <li role="menuitem"><a href="index.php?page=connexion&action=deconnexion">Se déconnecter</a></li>
                     </ul>

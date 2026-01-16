@@ -1,5 +1,4 @@
 <body>
-    <div class="main-wrapper">
         <div class="page-container">
 
             <div class="header-title">Mes documents</div>
@@ -112,11 +111,4 @@
                 </div>
             </div>
         </div>
-    </div>
-
-
-    <script>
-
-    </script>
-
 </body>

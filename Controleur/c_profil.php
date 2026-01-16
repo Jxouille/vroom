@@ -117,40 +117,67 @@ class c_profil {
 
 }
 
-class c_messages {
 
-    public function liste(?int $id_conversation = null): void {
+class c_messagerie {
+
+    public function afficher(?int $id_conversation = null): void {
+        // Vérifier si l'utilisateur est connecté
         if (!isset($_SESSION['user_id'])) {
             header("Location: index.php?page=connexion");
             exit;
         }
 
+        $id_user = $_SESSION['user_id'];
+
+        // Récupérer toutes les conversations de l'utilisateur
+        $conversations = Conversations::getForUser($id_user);
+
+        // Définir la conversation active
+        $conversation_active = null;
         if ($id_conversation) {
-            $messages = Messages::getByConversation($id_conversation);
+            // Vérifier si l'utilisateur a le droit sur cette conversation
+            if (Conversations::utilisateurAutorise($id_conversation, $id_user)) {
+                $conversation_active = $id_conversation;
+                // Récupérer tous les messages de la conversation
+                $messages = Messages::getByConversation($id_conversation);
+            } else {
+                // Si l'utilisateur n'est pas autorisé
+                $messages = [];
+            }
         } else {
-            $messages = Messages::allForUser($_SESSION['user_id']);
+            $messages = [];
         }
 
-        $title = "Messages";
-        $css = "messages.css";
+        $title = "Messagerie";
+        $css = "messagerie.css";
 
         require __DIR__ . '/../Vue/head.php';
         require __DIR__ . '/../Vue/header.php';
-        require __DIR__ . '/../Vue/pages/v_messages.php';
+        require __DIR__ . '/../Vue/pages/v_messagerie.php';
         require __DIR__ . '/../Vue/footer.php';
     }
 
     public function envoyer(): void {
-        if (!isset($_SESSION['user_id'], $_POST['id_destinataire'], $_POST['contenu'])) {
-            header("Location: index.php?page=messages&error=missing");
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: index.php?page=connexion");
             exit;
         }
 
-        Messages::envoyer($_SESSION['user_id'], $_POST['id_destinataire'], $_POST['contenu']);
-        header("Location: index.php?page=messages&id_conversation=" . $_POST['id_conversation']);
+        $id_user = $_SESSION['user_id'];
+        $id_destinataire = $_GET['id_destinataire'] ?? null;
+        $conversation_id = $_GET['id_conversation'] ?? null;
+        $message = trim($_POST['message'] ?? '');
+
+        if ($message !== '' && $conversation_id) {
+            Messages::envoyer($conversation_id, $id_user, $id_destinataire, $message);
+        }
+
+        header("Location: index.php?page=messagerie&id_conversation=" . $conversation_id);
         exit;
     }
 }
+
+
 class c_mes_documents {
 
     public function afficher(): void {

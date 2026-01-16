@@ -1,51 +1,107 @@
 <?php
-require_once  __DIR__ . '/bd_connection.php';
+require_once __DIR__ . '/bd_connection.php';
 
-class Conversations {
-
-    // Create a new conversation
-    public static function creer(): int {
+class Conversations
+{
+    /**
+     * Récupérer une conversation entre deux utilisateurs
+     * ou la créer si elle n'existe pas
+     */
+    public static function getOrCreate(int $user1, int $user2): array
+    {
         $db = dbConnect();
-        $stmt = $db->prepare("INSERT INTO conversations () VALUES ()");
-        $stmt->execute();
-        return (int)$db->lastInsertId();
+
+        // Toujours stocker user1 < user2 (évite les doublons)
+        if ($user1 > $user2) {
+            [$user1, $user2] = [$user2, $user1];
+        }
+
+        $stmt = $db->prepare(
+            "SELECT * FROM conversations 
+             WHERE user1_id = ? AND user2_id = ?"
+        );
+        $stmt->execute([$user1, $user2]);
+        $conv = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($conv) {
+            return $conv;
+        }
+
+        $stmt = $db->prepare(
+            "INSERT INTO conversations (user1_id, user2_id, date_creation)
+             VALUES (?, ?, NOW())"
+        );
+        $stmt->execute([$user1, $user2]);
+
+        return [
+            'id'         => (int)$db->lastInsertId(),
+            'user1_id'   => $user1,
+            'user2_id'   => $user2,
+            'date_creation' => date('Y-m-d H:i:s')
+        ];
     }
 
-    // Get a conversation by its ID
-    public static function get(int $id): ?array {
+    /**
+     * Récupérer une conversation par ID
+     */
+    public static function getById(int $id): ?array
+    {
         $db = dbConnect();
         $stmt = $db->prepare("SELECT * FROM conversations WHERE id = ?");
         $stmt->execute([$id]);
-        return $stmt->fetch() ?: null;
+        return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     }
 
-    // Get all conversations for a specific user
-    public static function getAllForUser(int $user_id): array {
+    /**
+     * Liste des conversations d'un utilisateur
+     * avec dernier message + infos interlocuteur
+     */
+    public static function getForUser(int $user_id): array
+    {
         $db = dbConnect();
-        $stmt = $db->prepare("
-            SELECT c.id, c.date_creation
-            FROM conversations c
-            JOIN messages m ON m.id_conversation = c.id
-            WHERE m.id_expediteur = ? OR m.id_destinataire = ?
-            GROUP BY c.id
-            ORDER BY c.date_creation DESC
-        ");
-        $stmt->execute([$user_id, $user_id]);
-        return $stmt->fetchAll();
+
+        $sql = "
+        SELECT 
+            c.id,
+            c.date_creation,
+            u.id AS interlocuteur_id,
+            u.prenom,
+            u.nom,
+            u.photo_profil,
+            m.contenu AS dernier_message,
+            m.date_creation AS date_dernier_message
+        FROM conversations c
+        JOIN utilisateurs u 
+            ON u.id = IF(c.user1_id = ?, c.user2_id, c.user1_id)
+        LEFT JOIN messages m 
+            ON m.id = (
+                SELECT id FROM messages
+                WHERE id_conversation = c.id
+                ORDER BY date_creation DESC
+                LIMIT 1
+            )
+        WHERE c.user1_id = ? OR c.user2_id = ?
+        ORDER BY m.date_creation DESC
+        ";
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute([$user_id, $user_id, $user_id]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Check if a conversation exists between two users
-    public static function getBetweenUsers(int $user1, int $user2): ?array {
+    /**
+     * Vérifie si un utilisateur fait partie de la conversation
+     */
+    public static function utilisateurAutorise(int $conversation_id, int $user_id): bool
+    {
         $db = dbConnect();
-        $stmt = $db->prepare("
-            SELECT c.id
-            FROM conversations c
-            JOIN messages m1 ON m1.id_conversation = c.id AND m1.id_expediteur = ?
-            JOIN messages m2 ON m2.id_conversation = c.id AND m2.id_expediteur = ?
-            LIMIT 1
-        ");
-        $stmt->execute([$user1, $user2]);
-        return $stmt->fetch() ?: null;
+        $stmt = $db->prepare(
+            "SELECT 1 FROM conversations 
+             WHERE id = ? AND (user1_id = ? OR user2_id = ?)"
+        );
+        $stmt->execute([$conversation_id, $user_id, $user_id]);
+        return (bool)$stmt->fetchColumn();
     }
 }
 ?>
