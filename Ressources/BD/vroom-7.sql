@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 16, 2026 at 03:03 PM
+-- Generation Time: Jan 16, 2026 at 05:18 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -128,6 +128,8 @@ INSERT INTO `avis` (`id`, `id_reservation`, `id_expediteur`, `id_destinataire`, 
 
 CREATE TABLE `conversations` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `user1_id` bigint(20) UNSIGNED NOT NULL,
+  `user2_id` bigint(20) UNSIGNED NOT NULL,
   `date_creation` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -135,11 +137,10 @@ CREATE TABLE `conversations` (
 -- Dumping data for table `conversations`
 --
 
-INSERT INTO `conversations` (`id`, `date_creation`) VALUES
-(1, '2025-12-26 10:52:32'),
-(2, '2025-12-26 10:55:21'),
-(3, '2025-12-26 10:55:21'),
-(4, '2025-12-26 10:55:21');
+INSERT INTO `conversations` (`id`, `user1_id`, `user2_id`, `date_creation`) VALUES
+(1, 28, 8, '2026-01-16 15:24:38'),
+(2, 28, 9, '2026-01-16 15:24:38'),
+(3, 28, 10, '2026-01-16 15:24:38');
 
 -- --------------------------------------------------------
 
@@ -167,8 +168,7 @@ CREATE TABLE `documents_utilisateur` (
 INSERT INTO `documents_utilisateur` (`id`, `id_utilisateur`, `type_document`, `nom_fichier`, `chemin_fichier`, `mime_type`, `taille_fichier`, `statut`, `date_expiration`, `date_creation`) VALUES
 (9, 25, 'piece_identite', 'guide_cpme_bonnes_pratiques.pdf', 'uploads/documents/user_25/piece_identite/piece_identite_6956bc33bf4d6.pdf', 'application/pdf', 874007, 'en_attente', NULL, '2026-01-01 18:25:55'),
 (11, 25, 'carte_grise', 'guide_cpme_bonnes_pratiques.pdf', 'uploads/documents/user_25/carte_grise/carte_grise_6956bc77b3bc0.pdf', 'application/pdf', 874007, 'en_attente', NULL, '2026-01-01 18:27:03'),
-(12, 28, 'piece_identite', '1I598HH0J_6VNU3J.JPG', 'uploads/documents/user_28/piece_identite/piece_identite_695b87dd436e2.JPG', 'image/jpeg', 51113, 'en_attente', NULL, '2026-01-05 09:43:57'),
-(13, 28, 'avatar', '1I598HH2G_6VNU3J.JPG', 'uploads/documents/user_28/avatar/avatar_696a06a731890.JPG', 'image/jpeg', 56889, 'en_attente', NULL, '2026-01-16 09:36:39');
+(14, 28, 'avatar', '1I598HH2S_6VNU3J.JPG', 'uploads/documents/user_28/avatar/avatar_696a63bfefd6f.JPG', 'image/jpeg', 57178, 'en_attente', NULL, '2026-01-16 16:13:51');
 
 -- --------------------------------------------------------
 
@@ -202,11 +202,10 @@ INSERT INTO `favoris` (`id`, `id_utilisateur`, `id_annonce`, `date_creation`) VA
 
 CREATE TABLE `messages` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `id_conversation` bigint(20) UNSIGNED DEFAULT NULL,
+  `id_conversation` bigint(20) UNSIGNED NOT NULL,
   `id_expediteur` bigint(20) UNSIGNED NOT NULL,
   `id_destinataire` bigint(20) UNSIGNED NOT NULL,
   `contenu` text NOT NULL,
-  `vu` tinyint(1) DEFAULT 0,
   `date_creation` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -214,12 +213,20 @@ CREATE TABLE `messages` (
 -- Dumping data for table `messages`
 --
 
-INSERT INTO `messages` (`id`, `id_conversation`, `id_expediteur`, `id_destinataire`, `contenu`, `vu`, `date_creation`) VALUES
-(1, 1, 1, 3, 'Salut, il reste une place ?', 0, '2025-12-26 10:52:32'),
-(2, 1, 3, 1, 'Oui, bien sûr 👍', 0, '2025-12-26 10:52:32'),
-(3, 2, 2, 4, 'Bonjour, le trajet est toujours dispo ?', 0, '2025-12-26 10:55:21'),
-(4, 3, 5, 6, 'Je peux prendre un bagage ?', 0, '2025-12-26 10:55:21'),
-(5, 4, 6, 5, 'Oui, sans problème 👍', 0, '2025-12-26 10:55:21');
+INSERT INTO `messages` (`id`, `id_conversation`, `id_expediteur`, `id_destinataire`, `contenu`, `date_creation`) VALUES
+(1, 1, 28, 8, 'Salut Bui, est-ce que le trajet est dispo ?', '2026-01-16 15:24:38'),
+(2, 1, 8, 28, 'Oui, toujours 👍', '2026-01-16 15:24:38'),
+(3, 2, 28, 9, 'Salut Bui, tu pars à quelle heure ?', '2026-01-16 15:24:38'),
+(4, 2, 9, 28, 'Vers 15h.', '2026-01-16 15:24:38'),
+(5, 2, 28, 9, 'Parfait, merci !', '2026-01-16 15:24:38'),
+(6, 3, 10, 28, 'Hey, on se retrouve où ?', '2026-01-16 15:24:38'),
+(7, 3, 28, 10, 'Au parking habituel.', '2026-01-16 15:24:38'),
+(8, 1, 28, 8, 'ok', '2026-01-16 15:59:18'),
+(9, 1, 28, 8, 'nonno', '2026-01-16 15:59:26'),
+(10, 2, 28, 9, 'ok', '2026-01-16 15:59:38'),
+(11, 3, 28, 10, 'nonno', '2026-01-16 16:12:40'),
+(12, 3, 28, 10, 'ok', '2026-01-16 16:12:58'),
+(13, 1, 28, 8, 'my anh oi', '2026-01-16 16:14:44');
 
 -- --------------------------------------------------------
 
@@ -553,7 +560,9 @@ ALTER TABLE `avis`
 -- Indexes for table `conversations`
 --
 ALTER TABLE `conversations`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user1_id` (`user1_id`),
+  ADD KEY `user2_id` (`user2_id`);
 
 --
 -- Indexes for table `documents_utilisateur`
@@ -575,9 +584,9 @@ ALTER TABLE `favoris`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_message_conversation` (`id_conversation`),
-  ADD KEY `fk_message_sender` (`id_expediteur`),
-  ADD KEY `fk_message_receiver` (`id_destinataire`);
+  ADD KEY `id_conversation` (`id_conversation`),
+  ADD KEY `id_expediteur` (`id_expediteur`),
+  ADD KEY `id_destinataire` (`id_destinataire`);
 
 --
 -- Indexes for table `paiements`
@@ -640,13 +649,13 @@ ALTER TABLE `avis`
 -- AUTO_INCREMENT for table `conversations`
 --
 ALTER TABLE `conversations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `documents_utilisateur`
 --
 ALTER TABLE `documents_utilisateur`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `favoris`
@@ -658,7 +667,7 @@ ALTER TABLE `favoris`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `paiements`
@@ -689,6 +698,25 @@ ALTER TABLE `utilisateurs`
 --
 ALTER TABLE `ville`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=251;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `conversations`
+--
+ALTER TABLE `conversations`
+  ADD CONSTRAINT `conversations_ibfk_1` FOREIGN KEY (`user1_id`) REFERENCES `utilisateurs` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `conversations_ibfk_2` FOREIGN KEY (`user2_id`) REFERENCES `utilisateurs` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `messages`
+--
+ALTER TABLE `messages`
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`id_conversation`) REFERENCES `conversations` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`id_expediteur`) REFERENCES `utilisateurs` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `messages_ibfk_3` FOREIGN KEY (`id_destinataire`) REFERENCES `utilisateurs` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
