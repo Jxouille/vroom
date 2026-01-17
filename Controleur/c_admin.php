@@ -19,7 +19,7 @@ class c_admin {
 
         $title = "Gestion Utilisateurs & Trajets" ;
         $css = "admin.css";
-        $js = "";
+        $js = "admin.js";
 
         require __DIR__ . '/../Vue/head.php';
         require __DIR__ . '/../Vue/header.php';

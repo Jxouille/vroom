@@ -91,7 +91,7 @@
                 <div class="card">
                     <div class="head">
                         <div>
-                            <h2>1500</h2>
+                            <h2>1237</h2>
                             <p>Trafiques</p>
                         </div>
                         <i class='bx bx-trending-up icon' ></i>
@@ -133,16 +133,19 @@
                     <span class="label">80%</span>
                 </div>
             </div>
+            
+            <!-- DATA -->
+
             <div class="data">
                 <div class="content-data">
                     <div class="head">
-                        <h3>Sales Report</h3>
+                        <h3>Trajets journaliers</h3>
                         <div class="menu">
                             <i class='bx bx-dots-horizontal-rounded icon'></i>
                             <ul class="menu-link">
-                                <li><a href="#">Edit</a></li>
-                                <li><a href="#">Save</a></li>
-                                <li><a href="#">Remove</a></li>
+                                <li><a href="#">Modifier</a></li>
+                                <li><a href="#">Sauvegarder</a></li>
+                                <li><a href="#">Supprimer</a></li>
                             </ul>
                         </div>
                     </div>
@@ -150,9 +153,28 @@
                         <div id="chart"></div>
                     </div>
                 </div>
+
                 <div class="content-data">
                     <div class="head">
-                        <h3>Chatbox</h3>
+                        <h3>Trajets mensuels </h3>
+                        <div class="menu">
+                            <i class='bx bx-dots-horizontal-rounded icon'></i>
+                            <ul class="menu-link">
+                                <li><a href="#">Modifier</a></li>
+                                <li><a href="#">Sauvegarder</a></li>
+                                <li><a href="#">Supprimer</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="chart">
+                        <div id="chart"></div>
+                    </div>
+                </div>
+
+
+                <!--div class="content-data">
+                    <div class="head">
+                        <h3>Trajets </h3>
                         <div class="menu">
                             <i class='bx bx-dots-horizontal-rounded icon'></i>
                             <ul class="menu-link">
@@ -205,7 +227,7 @@
                             <button type="submit" class="btn-send"><i class='bx bxs-send' ></i></button>
                         </div>
                     </form>
-                </div>
+                </div-->
             </div>
         </main>
         <!-- MAIN -->
@@ -216,11 +238,15 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+<!-- Vue/pages/v_admin.php -->
+
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
+
     <div class="container">
         <div class="tabs">
             <div class="tab active" onclick="switchTab('utilisateurs')">Utilisateurs</div>
