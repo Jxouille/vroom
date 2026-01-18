@@ -69,6 +69,17 @@
                 <p class="message-erreur">Captcha incorrect. Veuillez réessayer.</p>
             <?php endif; ?>
 
+            <div class="rgpd-checkbox">
+                <label>
+                    <input type="checkbox" required>
+                    J’accepte la
+                    <a href="index?page=rgdp" target="_blank">
+                        politique de confidentialité
+                    </a>
+                </label>
+            </div>
+
+
             <button type="submit" class="bouton-principal">
                 S'inscrire
             </button>

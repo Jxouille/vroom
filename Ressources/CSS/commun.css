@@ -430,3 +430,18 @@ footer {
     }
 }
 
+.rgpd-checkbox {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.rgpd-checkbox input {
+    margin-right: 8px;
+}
+
+.rgpd-checkbox a {
+    color: #2DB24A;
+    font-weight: 600;
+}
+
+

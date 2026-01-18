@@ -5,6 +5,8 @@ require_once __DIR__ . '/Ressources/PHP/date_en_fr.php';
 /**git
  * Page par défaut
  */
+$_COOKIE['essenciel'] = $_GET['essenciel'] ?? 'true';  /** a verifier /*/
+$_COOKIE['avancee'] = $_GET['cookie_avancee'] ?? 'false';  /** a verifier /*/
 $page = $_GET['page'] ?? 'admin';
 $action = $_GET['action'] ?? null;
 $error = $_GET['error'] ?? null;
@@ -222,6 +224,35 @@ switch ($page) {
         } else {
             $controller->afficher();  
         }
+        break;
+    case 'mentions_legales':
+        require 'Controleur/c_vroom.php';
+        $controller = new c_mentions_legales();
+        $controller->afficher();
+        break;
+    case 'faq':
+        require 'Controleur/c_vroom.php';
+        $controller = new c_faq();
+        $controller->afficher();
+        break;
+    case 'contact':
+        require 'Controleur/c_vroom.php';
+        $controller = new c_contact();
+        if ($action === 'envoyer'){
+            $controller->envoyer();
+        } else {
+            $controller->afficher();  
+        }
+        break;
+    case 'rgpd':
+        require 'Controleur/c_vroom.php';
+        $controller = new c_rgpd();
+        $controller->afficher();
+        break;
+    case 'cgu':
+        require 'Controleur/c_vroom.php';
+        $controller = new c_cgu();
+        $controller->afficher();
         break;
 }
 

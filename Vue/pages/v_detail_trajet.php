@@ -98,8 +98,16 @@
                     </div>
                 </div>
             </div>
-<!-- ON APPELERA ICI LA PAGE DE PAYEMENT FICTIF -->
-            <!-- Bouton centré et pleine largeur (séparé de la carte) -->
+            <div class="rgpd-checkbox">
+                <label>
+                    <input type="checkbox" required>
+                    J’accepte la
+                    <a href="index?page=rgdp" target="_blank">
+                        politique de confidentialité
+                    </a>
+                </label>
+            </div>
+
             <div class="button-row">
                 <a href="index.php?page=paiement&id=<?= $annonce['id'] ?>"
                 class="confirm-btn"

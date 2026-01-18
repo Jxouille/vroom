@@ -430,3 +430,68 @@ p {
     background: var(--couleurVerteFonce);
     color: white;
 }
+
+
+.cookie-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+    display: none;
+    z-index: 9999;
+}
+
+.cookie-banner p {
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.cookie-banner a {
+    color: #2DB24A;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.cookie-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.cookie-actions button {
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.cookie-actions button:first-child {
+    background: #2DB24A;
+    color: white;
+}
+
+.cookie-actions .secondary {
+    background: #e0e0e0;
+    color: #333;
+}
+
+/* ==================== cookies ==================== */
+
+.rgpd-checkbox {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.rgpd-checkbox input {
+    margin-right: 8px;
+}
+
+.rgpd-checkbox a {
+    color: #2DB24A;
+    font-weight: 600;
+}
