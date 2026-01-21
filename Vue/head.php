@@ -7,13 +7,13 @@
     <title>VROOM - <?= htmlspecialchars($title ?? 'Accueil') ?></title>
 
     <!-- CSS commun -->
-    <link rel="stylesheet" href="Ressources/CSS/commun.css">
+    <link rel="stylesheet" href="Ressources/Css/commun.css">
     <!-- CSS header (menu profil) -->
-    <link rel="stylesheet" href="Ressources/CSS/header.css">
+    <link rel="stylesheet" href="Ressources/Css/header.css">
 
     <!-- CSS spécifique à la page -->
     <?php if (!empty($css)): ?>
-        <link rel="stylesheet" href="Ressources/CSS/<?= htmlspecialchars($css) ?>">
+        <link rel="stylesheet" href="Ressources/Css/<?= htmlspecialchars($css) ?>">
     <?php endif; ?>
     <?php if (!empty($js)): ?>
         <script src="Ressources/JVS/<?= htmlspecialchars($js) ?>" defer></script>
