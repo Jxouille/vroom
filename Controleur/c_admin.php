@@ -15,8 +15,6 @@ class c_admin {
 
     // Affichage du profil
     public function afficher(?int $id_utilisateur = null) {
-
-       
         // Récupération de la page demandée
         $admin_page = $_GET['admin_page'] ?? 'utilisateurs';
 
@@ -31,11 +29,13 @@ class c_admin {
         switch ($admin_page) {
 
             case 'utilisateurs':
+                $titre = "Utilisateurs";
                 $titre_colone = ['id', 'nom', 'prenom', 'email', 'telephone', 'date_creation'];
                 $valeurs = Utilisateur::all();
                 break;
 
             case 'annonces':
+                $titre = "Annonces";
                 $titre_colone = [
                     'id', 'id_conducteur', 'id_vehicule',
                     'id_ville_depart', 'id_ville_arrivee',
@@ -46,26 +46,32 @@ class c_admin {
                 break;
 
             case 'reservations':
+                $titre = "Réservations";
                 $titre_colone = ['id', 'id_annonce', 'id_passager', 'prix_total', 'statut', 'date_creation'];
                 $valeurs = Reservations::all();
                 break;
             case 'paiements':
+                $titre = "Paiements";
                 $titre_colone = ['id', 'id_reservation', 'moyen_paiement', 'montant', 'statut', 'date_paiement'];
                 $valeurs = Paiements::all();
                 break;
             case 'documents':
+                $titre = "Documents";   
                 $titre_colone = ['id', 'id_utilisateur', 'type_document', 'chemin_fichier', 'date_upload'];
                 $valeurs = Documents::all();
                 break;
             case 'demande_contact':
+                $titre = "Demandes de contact";
                 $titre_colone = ['id', 'nom', 'email', 'message', 'date_envoi'];
                 $valeurs = Contact::all();
                 break;
             case 'faq':
+                $titre = "FAQ";
                 $titre_colone = ['id', 'question', 'reponse', 'statut', 'date_creation', 'nom_theme'];
                 $valeurs = FAQ::all();
                 break;
             case 'historique':
+                $titre = "Historique des réservations";
                 $titre_colone = ['id', 'id_annonce', 'id_passager', 'prix_total', 'statut', 'date_creation'];
                 $valeurs = Reservations::all();
                 break;
@@ -79,11 +85,7 @@ class c_admin {
     // Modification d'un champ
     public function modifier() {
         // Vérifier si l'utilisateur est connecté
-        if (!isset($_SESSION['user_id'])) {
-            http_response_code(403);
-            echo 'Non autorisé';
-            exit;
-        }
+     
 
         $id_utilisateur = $_GET['user_id'];
 

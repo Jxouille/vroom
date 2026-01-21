@@ -13,7 +13,7 @@
     <li><a href="index.php?page=admin&admin_page=demande_contact"><i class="fa fa-file"></i> Documents</a></li>
     <li><a href="index.php?page=admin&admin_page=faq"><i class="fa fa-file"></i> FAQ</a></li>
     <li><a href="index.php?page=admin&admin_page=historique"><i class="fa fa-history"></i> History</a></li>
-    <li class="logout"><a href="index.php?page=connexion&action=deconnexion"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+    <li class="Déconnexion"><a href="index.php?page=connexion&action=deconnexion"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
   </ul>
 </div>
 <div class="content">

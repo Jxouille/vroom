@@ -20,6 +20,7 @@
                         <li role="menuitem"><a href="index.php?page=connexion&action=deconnexion">Se déconnecter</a></li>
                     </ul>
                 </div>
+                
             <?php else: ?>
                 <div class="profile">
                     <a href="index.php?page=connexion" class="profile-link">Se connecter</a>

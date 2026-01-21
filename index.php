@@ -13,6 +13,7 @@ $_COOKIE['avancee'] = $_GET['cookie_avancee'] ?? 'false';  /** a verifier /*/
 $page = $_GET['page'] ?? 'accueil';
 $admin_page = $_GET['admin_page'] ?? 'utilisateurs';
 
+
 $action = $_GET['action'] ?? null;
 $error = $_GET['error'] ?? null;
 $depart = $_GET['ville_depart'] ?? null;
@@ -25,7 +26,13 @@ switch ($page) {
     case 'admin':
         require 'Controleur/c_admin.php';
         $controller = new c_admin();
-        $controller->afficher();
+        if ($action === 'surprimer') {
+            // Ajouter la logique de suppression ici si nécessaire
+        } if ($action === 'modifier') {
+            # code...
+        } else {
+            $controller->afficher();
+        }
         break;
 
     // Accueil

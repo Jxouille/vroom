@@ -34,11 +34,16 @@ class c_connexion {
         header("Location: index.php?page=connexion&error=invalid");
         exit;
     }
-
-    // Connexion réussie
     $_SESSION['user_id'] = $user['id'];
-    header("Location: index.php?page=accueil");
-    exit;
+    // Connexion réussie
+    if (Utilisateur::isAdmin($user['id'])){
+        header("Location: index.php?page=admin");
+        exit;
+    }else{
+        header("Location: index.php?page=accueil");
+        exit;
+    }
+    
 }
     public function deconnexion(): void {
     if (session_status() === PHP_SESSION_NONE) {
