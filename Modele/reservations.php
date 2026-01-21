@@ -34,37 +34,34 @@ class Reservations {
     }
 
     public static function update(int $id, array $data): bool {
-    $db = dbConnect();
+        $db = dbConnect();
+        $fields = [];
+        $params = [':id' => $id];
 
-    $fields = [];
-    $params = [':id' => $id];
+        $map = [
+            'statut',
+            'prix_total',
+            'id_passager'
+        ];
 
-    // Only update if the field exists in $data
-    if (isset($data['donnees_passager'])) {
-        $fields[] = "donnees_passager = :donnees_passager";
-        $params[':donnees_passager'] = json_encode($data['donnees_passager'], JSON_UNESCAPED_UNICODE);
+        foreach ($map as $field) {
+            if (isset($data[$field]) && $data[$field] !== '') {
+                $fields[] = "$field = :$field";
+                $params[":$field"] = $data[$field];
+            }
+        }
+
+        if (isset($data['donnees_passager'])) {
+            $fields[] = "donnees_passager = :donnees_passager";
+            $params[':donnees_passager'] = json_encode($data['donnees_passager']);
+        }
+
+        if (empty($fields)) return false;
+
+        $sql = "UPDATE reservations SET " . implode(', ', $fields) . " WHERE id = :id";
+        return $db->prepare($sql)->execute($params);
     }
 
-    if (isset($data['statut'])) {
-        $fields[] = "statut = :statut";
-        $params[':statut'] = $data['statut'];
-    }
-
-    if (isset($data['prix_total'])) {
-        $fields[] = "prix_total = :prix_total";
-        $params[':prix_total'] = $data['prix_total'];
-    }
-
-    // Nothing to update
-    if (empty($fields)) {
-        return false;
-    }
-
-    $sql = "UPDATE reservations SET " . implode(', ', $fields) . " WHERE id = :id";
-    $stmt = $db->prepare($sql);
-
-    return $stmt->execute($params);
-    }
 
 
     public static function delete(int $id): bool {

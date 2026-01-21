@@ -83,36 +83,56 @@ class c_admin {
 
     // Modification d'un champ
     public function modifier() {
-        // Vérifier si l'utilisateur est connecté
-     
-        $id_utilisateur = $_GET['user_id'];
 
-        if ($$admin_page === 'utilisateurs') {
-            $data = 
+        // 1️⃣ Vérifier l'ID envoyé par le formulaire
+        if (!isset($_POST['id']) || empty($_POST['id'])) {
+            die('ID manquant');
+        }
 
-        if (!isset($_POST['field'], $_POST['value'])) {
-            http_response_code(400);
-            echo 'Données manquantes';
+        $id = (int) $_POST['id'];
+
+        // 2️⃣ Récupérer les données du formulaire
+        $data = $_POST;
+        unset($data['id']); // très important
+
+        // 3️⃣ Savoir quelle page admin est utilisée
+        if (!isset($_GET['admin_page'])) {
+            die('admin_page manquant');
+        }
+
+        $adminPage = $_GET['admin_page'];
+
+        // 4️⃣ Associer page admin → modèle
+        $models = [
+            'utilisateurs'      => 'Utilisateur',
+            'annonces'          => 'Annonce',
+            'reservations'      => 'Reservation',
+            'paiements'         => 'Paiement',
+            'documents'         => 'DocumentUtilisateur',
+            'demande_contact'   => 'ContactMessage',
+            'faq'               => 'FaqQuestion'
+        ];
+
+        if (!isset($models[$adminPage])) {
+            die('Page admin invalide');
+        }
+
+        $model = $models[$adminPage];
+
+        // 5️⃣ Nettoyer les valeurs
+        foreach ($data as $key => $value) {
+            $data[$key] = trim($value);
+        }
+
+        // 6️⃣ Mettre à jour
+        if ($model::update($id, $data)) {
+            header('Location: index.php?page=admin&admin_page=' . $adminPage . '&success=1');
             exit;
         }
 
-        $field = $_POST['field'];
-        $value = trim($_POST['value']);
-
-        // Champs autorisés
-       
-        // Mise à jour en base
-        $success = Utilisateur::updateField($id_utilisateur, $field, $value);
-
-        if ($success) {
-            echo 'OK';
-        } else {
-            http_response_code(500);
-            echo 'Erreur lors de la mise à jour';
-        }
+        header('Location: index.php?page=admin&admin_page=' . $adminPage . '&error=1');
+        exit;
     }
-
-    // Suppression du compte (optionnel)
     public function supprimer() {
         if (!isset($_SESSION['user_id'])) {
             http_response_code(403);

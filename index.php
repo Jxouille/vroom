@@ -29,7 +29,7 @@ switch ($page) {
         if ($action === 'surprimer') {
             // Ajouter la logique de suppression ici si nécessaire
         } if ($action === 'modifier') {
-            # code...
+             $controller->modifier();
         } else {
             $controller->afficher();
         }

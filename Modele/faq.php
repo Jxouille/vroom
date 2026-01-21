@@ -13,6 +13,31 @@ class FAQ {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public static function update(int $id, array $data): bool {
+        $db = dbConnect();
+        $fields = [];
+        $params = [':id' => $id];
+
+        $map = [
+            'question',
+            'reponse',
+            'statut',
+            'auteur',
+            'date_reponse'
+        ];
+
+        foreach ($map as $field) {
+            if (isset($data[$field])) {
+                $fields[] = "$field = :$field";
+                $params[":$field"] = $data[$field];
+            }
+        }
+
+        if (empty($fields)) return false;
+
+        $sql = "UPDATE faq_questions SET " . implode(', ', $fields) . " WHERE id = :id";
+        return $db->prepare($sql)->execute($params);
+    }
 
     // Récupérer les questions par thème
     public static function getByTheme(int $theme_id): array {
