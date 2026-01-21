@@ -44,7 +44,6 @@ class c_admin {
                 ];
                 $valeurs = Annonces::all();
                 break;
-
             case 'reservations':
                 $titre = "Réservations";
                 $titre_colone = ['id', 'id_annonce', 'id_passager', 'prix_total', 'statut', 'date_creation'];
@@ -86,8 +85,10 @@ class c_admin {
     public function modifier() {
         // Vérifier si l'utilisateur est connecté
      
-
         $id_utilisateur = $_GET['user_id'];
+
+        if ($$admin_page === 'utilisateurs') {
+            $data = 
 
         if (!isset($_POST['field'], $_POST['value'])) {
             http_response_code(400);
@@ -99,13 +100,7 @@ class c_admin {
         $value = trim($_POST['value']);
 
         // Champs autorisés
-        $champs_valides = ['prenom', 'nom', 'email', 'telephone', 'biographie'];
-        if (!in_array($field, $champs_valides)) {
-            http_response_code(400);
-            echo 'Champ non autorisé';
-            exit;
-        }
-
+       
         // Mise à jour en base
         $success = Utilisateur::updateField($id_utilisateur, $field, $value);
 
