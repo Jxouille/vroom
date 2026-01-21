@@ -10,6 +10,7 @@ require_once __DIR__ . '/../Modele/annonces.php';
 require_once __DIR__ . '/../Modele/documents.php';
 require_once __DIR__ . '/../Modele/contact.php';
 require_once __DIR__ . '/../Modele/faq.php';
+require_once __DIR__ . '/../Modele/messages_contact.php';
 
 class c_admin {
 
@@ -61,7 +62,7 @@ class c_admin {
                 break;
             case 'demande_contact':
                 $titre = "Demandes de contact";
-                $titre_colone = ['id', 'nom', 'email', 'message', 'date_envoi'];
+                $titre_colone = ['id', 'nom', 'email', 'sujet', 'message', 'date_creation', 'statut', 'reponse', ];
                 $valeurs = Contact::all();
                 break;
             case 'faq':
@@ -105,12 +106,12 @@ class c_admin {
         // 4️⃣ Associer page admin → modèle
         $models = [
             'utilisateurs'      => 'Utilisateur',
-            'annonces'          => 'Annonce',
-            'reservations'      => 'Reservation',
-            'paiements'         => 'Paiement',
-            'documents'         => 'DocumentUtilisateur',
+            'annonces'          => 'Annonces',
+            'reservations'      => 'Reservations',
+            'paiements'         => 'Paiements',
+            'documents'         => 'Documents',
             'demande_contact'   => 'ContactMessage',
-            'faq'               => 'FaqQuestion'
+            'faq'               => 'FAQ'
         ];
 
         if (!isset($models[$adminPage])) {
