@@ -108,23 +108,7 @@ class Utilisateur {
     /* =========================
        METTRE À JOUR UN UTILISATEUR
     ========================= */
-    public static function update(int $id, array $data): bool {
-        $db = dbConnect();
 
-        $fields = [];
-        $params = [];
-
-        foreach ($data as $key => $value) {
-            $fields[] = "$key = :$key";
-            $params[$key] = $value;
-        }
-        $params['id'] = $id;
-
-        $sql = "UPDATE utilisateurs SET " . implode(', ', $fields) . " WHERE id = :id";
-        $stmt = $db->prepare($sql);
-
-        return $stmt->execute($params);
-    }
 
     /* =========================
        SUPPRESSION D'UN UTILISATEUR
@@ -187,5 +171,35 @@ class Utilisateur {
         );
         return $requete->execute([$chemin_photo, $id_utilisateur]);
     }
+
+    public static function update(int $id, array $data): bool {
+    $db = dbConnect();
+    $fields = [];
+    $params = [':id' => $id];
+
+    $map = [
+        'nom', 'prenom', 'email', 'telephone',
+        'biographie', 'avatar', 'photo_profil',
+        'note', 'admin', 'premiere_connexion'
+    ];
+
+    foreach ($map as $field) {
+        if (isset($data[$field]) && $data[$field] !== '') {
+            $fields[] = "$field = :$field";
+            $params[":$field"] = $data[$field];
+        }
+    }
+
+    if (isset($data['mot_de_passe']) && $data['mot_de_passe'] !== '') {
+        $fields[] = "mot_de_passe = :mot_de_passe";
+        $params[':mot_de_passe'] = password_hash($data['mot_de_passe'], PASSWORD_BCRYPT);
+    }
+
+    if (empty($fields)) return false;
+
+    $sql = "UPDATE utilisateurs SET " . implode(', ', $fields) . " WHERE id = :id";
+    return $db->prepare($sql)->execute($params);
+}
+
     }
 ?>

@@ -29,12 +29,6 @@ class c_profil {
     // Modification d'un champ
     public function modifier() {
         // Vérifier si l'utilisateur est connecté
-        if (!isset($_SESSION['user_id'])) {
-            http_response_code(403);
-            echo 'Non autorisé';
-            exit;
-        }
-
         $id_utilisateur = $_SESSION['user_id'];
 
         if (!isset($_POST['field'], $_POST['value'])) {
@@ -45,14 +39,6 @@ class c_profil {
 
         $field = $_POST['field'];
         $value = trim($_POST['value']);
-
-        // Champs autorisés
-        $champs_valides = ['prenom', 'nom', 'email', 'telephone', 'biographie'];
-        if (!in_array($field, $champs_valides)) {
-            http_response_code(400);
-            echo 'Champ non autorisé';
-            exit;
-        }
 
         // Mise à jour en base
         $success = Utilisateur::updateField($id_utilisateur, $field, $value);
