@@ -19,6 +19,7 @@
     <i class="fa fa-search"></i>
     <input type="text" placeholder="Search...">
   </div>
+  <button><a href="index.php?page=accueil">Accueil</a></button>
 
   <div class="topbar-right">
     <span class="admin-name">Admin</span>
