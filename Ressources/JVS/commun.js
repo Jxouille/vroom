@@ -1,10 +1,10 @@
 
 function openHelp(url) {
-        window.open(url, 'help', 'width=600,height=400,scrollbars=yes,resizable=yes');
+    window.open(url, 'help', 'width=600,height=400,scrollbars=yes,resizable=yes');
 }
 
 function confirmAction(message) {
-        return confirm(message);
+    return confirm(message);
 }
 
 function myFunction() {
@@ -12,7 +12,7 @@ function myFunction() {
 }
 
 function showAlert(message) {
-        alert(message);
+    alert(message);
 }
 
 // Accessibility and hover/focus handling for profile dropdowns
@@ -83,4 +83,15 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     });
+
+    // Mobile navigation toggle
+    var navToggle = document.querySelector('.nav-toggle');
+    if (navToggle) {
+        navToggle.addEventListener('click', function () {
+            var header = document.querySelector('.header');
+            if (!header) return;
+            var isOpen = header.classList.toggle('nav-open');
+            navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+    }
 });

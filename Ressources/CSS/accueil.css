@@ -1,11 +1,11 @@
 :root {
-  --couleurVerte: #28a745;
-  --couleurVerteFonce: #1f7e36;
-  --texteGris: #6d7c82;
-  --titreNoir: #222;
-  --fondClair: #ffffff;
-  --ombre: rgba(0,0,0,0.10);
-  --ombreHover: rgba(0,0,0,0.18);
+    --couleurVerte: #28a745;
+    --couleurVerteFonce: #1f7e36;
+    --texteGris: #6d7c82;
+    --titreNoir: #222;
+    --fondClair: #ffffff;
+    --ombre: rgba(0, 0, 0, 0.10);
+    --ombreHover: rgba(0, 0, 0, 0.18);
 }
 
 
@@ -26,26 +26,37 @@
     filter: brightness(0.8);
 }
 
-/* BARRE DE RECHERCHE POSITIONNÉE SUR L'IMAGE */
+/* BARRE DE RECHERCHE - même style que `recherche_trajet` */
 .search-container {
+    /* chevauche légèrement l'image sur grand écran */
     position: absolute;
     bottom: -55px;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
     max-width: 1100px;
+    z-index: 5;
+}
+
+/* Sur petits écrans, on annule le positionnement absolu (voir also responsive.css) */
+@media (max-width: 768px) {
+    .search-container {
+        position: static;
+        transform: none;
+        margin: 12px auto 20px;
+    }
 }
 
 /* BOÎTE PRINCIPALE */
 .search-box {
     background: var(--fondClair);
     width: 100%;
-    padding: 15px 20px;
-    border-radius: 20px;
+    padding: 10px 16px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
-    gap: 20px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+    gap: 14px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
 }
 
 /* FIELDS */
@@ -193,7 +204,7 @@ p {
     color: var(--titreNoir);
 }
 
-.how-it-works > p {
+.how-it-works>p {
     font-size: 1.1rem;
     color: var(--texteGris);
     margin-bottom: 50px;
@@ -295,7 +306,7 @@ p {
     background: #fff;
     border-radius: 16px;
     padding: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -304,7 +315,7 @@ p {
 
 .ride-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
 }
 
 .ride-header {
@@ -315,19 +326,21 @@ p {
 
 
 .avatar {
-    width: 50px;                
+    width: 50px;
     height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .avatar img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
 }
+
 .driver-info {
     flex: 1;
     text-align: left;
@@ -440,7 +453,7 @@ p {
     background: #ffffff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
     display: none;
     z-index: 9999;
 }

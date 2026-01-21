@@ -1,0 +1,420 @@
+/* Centralized responsive rules for all views */
+:root {
+    --maxContentWidth: 1200px;
+}
+
+/* Make images and media fluid */
+img,
+svg,
+picture,
+video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Container utility */
+.container,
+.main-container {
+    width: 92%;
+    max-width: var(--maxContentWidth);
+    margin: 0 auto;
+}
+
+/* Stack common page sections on small screens */
+@media (max-width: 992px) {
+    .avantages {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .steps {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .steps::before {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Hero search box should be fully responsive */
+    .hero-img {
+        height: 180px;
+    }
+
+    .search-container {
+        position: static;
+        transform: none;
+        margin: 12px auto 20px;
+    }
+
+    .search-box {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .search-field {
+        width: 100%;
+    }
+
+    .divider {
+        display: none;
+    }
+
+    .search-btn {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+    /* Cards and lists */
+    .rides-list {
+        grid-template-columns: 1fr;
+    }
+
+    .ride-card {
+        padding: 16px;
+    }
+
+    /* Footer layout */
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Text scaling */
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-img {
+        height: 140px;
+    }
+
+    .avantages {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .step-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .header .logo img,
+    .logo img {
+        height: 34px;
+    }
+
+    .nav a {
+        padding: 6px 8px;
+    }
+}
+
+/* Utility helpers */
+.hide-mobile {
+    display: none !important;
+}
+
+.show-mobile {
+    display: block !important;
+}
+
+/* Improve touch targets */
+button,
+.profile-link,
+.nav a {
+    touch-action: manipulation;
+}
+
+/* Small adjustments for forms and inputs */
+input,
+select,
+textarea {
+    font-size: 15px;
+}
+
+/* end of responsive.css */
+
+/* Target common layout components across views */
+/* Make rows/cards stack on small screens */
+@media (max-width: 900px) {
+
+    .trajet-ligne,
+    .ride-card,
+    .info-card,
+    .trajet-card,
+    .reservation-card {
+        width: 100% !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+
+    /* Specific fixes for recherche_trajet */
+    .trajet-ligne {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    .col-driver,
+    .col-date,
+    .col-horaires,
+    .col-villes,
+    .col-prix,
+    .col-favori {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: flex-start !important;
+        gap: 8px;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Profile page: stack field rows */
+    .field-row {
+        grid-template-columns: 1fr !important;
+        gap: 10px;
+        align-items: start;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    /* Message lists / messagerie */
+    .messages-list,
+    .conversation-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* Tables -> responsive scroll */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Forms and actions */
+    .actions-row,
+    .form-row {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* Ensure buttons fill available width where appropriate */
+    .search-btn,
+    .ride-btn,
+    .all-rides-btn,
+    .save-btn,
+    .btn-reserver {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Tighter typography on very small screens */
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    p,
+    input,
+    select,
+    textarea {
+        font-size: 14px;
+    }
+
+    /* Reduce paddings globally to save space */
+    .page-container,
+    .container,
+    .main-container,
+    .search-box {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+}
+
+/* Page-specific responsive fixes */
+@media (max-width: 900px) {
+
+    /* Admin: collapse sidebar to top bar */
+    .admin-wrapper {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        min-height: auto;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+    }
+
+    .sidebar .menu {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .topbar {
+        position: relative;
+        left: 0;
+        right: 0;
+    }
+
+    .content {
+        margin-left: 0;
+        margin-top: 0;
+        padding: 16px;
+    }
+
+    /* Publie trajet: make form full width and map responsive */
+    .page-container {
+        width: 100% !important;
+        padding: 16px !important;
+        margin: 12px 0 !important;
+    }
+
+    #map {
+        height: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Messagerie: stack conversation list above chat */
+    .messagerie-container {
+        width: 100%;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .conversation-list {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+    }
+
+    .chat-box {
+        width: 100%;
+    }
+
+    /* Connexion / Inscription: make cards full width */
+    .login-card,
+    .conteneur-formulaire {
+        width: 100% !important;
+        padding: 18px !important;
+        box-shadow: none !important;
+    }
+
+    .titre h2 {
+        font-size: 28px;
+    }
+
+    /* Paiement form: stack form rows */
+    .payment-container {
+        max-width: 100% !important;
+        padding: 16px !important;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* Publie trajet: grid to single column where necessary */
+    .grid-2-cols {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 600px) {
+
+    /* Detail trajet: stack detail layout vertically */
+    .trajet-detail {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .heures {
+        width: auto;
+        text-align: left;
+    }
+
+    .separateur {
+        display: none;
+    }
+
+    /* Buttons and inputs full width */
+    .btn-fullwidth,
+    .confirm-btn,
+    .submit-button,
+    .search-btn,
+    .ride-btn,
+    .all-rides-btn {
+        width: 100% !important;
+    }
+
+    /* Mes annonces / trajets: ensure trajet-ligne fits */
+    .trajet-ligne {
+        width: 100% !important;
+        padding: 12px;
+    }
+
+    .col-driver,
+    .col-date,
+    .col-horaires,
+    .col-villes,
+    .col-prix,
+    .col-favori {
+        width: 100% !important;
+    }
+}
+
+/* tiny screens */
+@media (max-width: 420px) {
+
+    input,
+    button,
+    select,
+    textarea {
+        font-size: 14px;
+    }
+
+    .avatar,
+    .avatar img {
+        width: 40px;
+        height: 40px;
+    }
+}
