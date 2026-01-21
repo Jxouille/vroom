@@ -2,7 +2,7 @@
 const DB_CONFIG = [
   'host'     => '178.33.122.21',
   'port'     => '3306',
-  'dbname'   => 'hangarbd_axst62997',   // <- corrigé
+  'dbname'   => 'hangardb_axst62997',   // <- corrigé
   'username' => 'axst62997',
   'password' => 'lgtSzUiSvt6SOQIiV91pya2w'
 ];
