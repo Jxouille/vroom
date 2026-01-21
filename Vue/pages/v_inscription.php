@@ -73,7 +73,7 @@
                 <label>
                     <input type="checkbox" required>
                     J’accepte la
-                    <a href="index?page=rgdp" target="_blank">
+                    <a href="index?page=rgpd" target="_blank">
                         politique de confidentialité
                     </a>
                 </label>

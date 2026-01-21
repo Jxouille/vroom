@@ -19,6 +19,21 @@ class Utilisateur {
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     }
 
+    public static function isAdmin(int $id): bool
+{
+    $db = dbConnect();
+    $stmt = $db->prepare("
+        SELECT admin 
+        FROM utilisateurs 
+        WHERE id = ?
+        LIMIT 1
+    ");
+    $stmt->execute([$id]);
+
+    return (bool) $stmt->fetchColumn();
+}
+
+
     ///recuper les detail d'un utilisateur
 
  public static function detail_utilisateur(int $id): ?array

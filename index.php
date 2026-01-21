@@ -2,18 +2,24 @@
 session_start();
 require_once __DIR__ . '/Ressources/PHP/date_en_fr.php';
 
+
 /**git
  * Page par défaut
  */
+
 $_COOKIE['essenciel'] = $_GET['essenciel'] ?? 'true';  /** a verifier /*/
 $_COOKIE['avancee'] = $_GET['cookie_avancee'] ?? 'false';  /** a verifier /*/
-$page = $_GET['page'] ?? 'admin';
+
+$page = $_GET['page'] ?? 'accueil';
+$admin_page = $_GET['admin_page'] ?? 'utilisateurs';
+
 $action = $_GET['action'] ?? null;
 $error = $_GET['error'] ?? null;
 $depart = $_GET['ville_depart'] ?? null;
 $arrivee = $_GET['ville_arrivee'] ?? null;
 $date = $_GET['date_depart'] ?? null;
-$admin_page = $_GET['admin_page'] ?? 'utilisateurs';
+
+
 
 switch ($page) {
     case 'admin':

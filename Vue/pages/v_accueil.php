@@ -201,12 +201,13 @@
         <a href="politique-confidentialite.html">En savoir plus</a>.
     </p>
     <div class="cookie-actions">
-        <button id="acceptCookies" type="$_COOKIE">Accepter</button> <!-- à verifier -->
+        <button id="acceptCookies" type="$_COOKIE">Accepter</button> <!-- à verifier-->
         <button id="refuseCookies" class="secondary">Refuser</button>
     </div>
 </div>
 
 </body>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const banner = document.getElementById("cookie-banner");
