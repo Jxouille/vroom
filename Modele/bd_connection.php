@@ -1,10 +1,10 @@
 <?php
 const DB_CONFIG = [
-  'host'     => '127.0.0.1',
+  'host'     => '178.33.122.21',
   'port'     => '3306',
-  'dbname'   => 'vroom',   // <- corrigé
-  'username' => 'root',
-  'password' => ''
+  'dbname'   => 'hangarbd_axst62997',   // <- corrigé
+  'username' => 'axst62997',
+  'password' => 'lgtSzUiSvt6SOQIiV91pya2w'
 ];
 
 function dbConnect() {
