@@ -45,5 +45,30 @@ class Paiements {
         ]);
         return (int)$db->lastInsertId();
     }
+    public static function update(int $id, array $data): bool {
+        $db = dbConnect();
+        $fields = [];
+        $params = [':id' => $id];
+
+        $map = [
+            'statut',
+            'transaction_id',
+            'receipt_url',
+            'date_paiement'
+        ];
+
+        foreach ($map as $field) {
+            if (isset($data[$field]) && $data[$field] !== '') {
+                $fields[] = "$field = :$field";
+                $params[":$field"] = $data[$field];
+            }
+        }
+
+        if (empty($fields)) return false;
+
+        $sql = "UPDATE paiements SET " . implode(', ', $fields) . " WHERE id = :id";
+        return $db->prepare($sql)->execute($params);
+    }
+
 }
 ?>

@@ -25,8 +25,9 @@
                                 data-bs-toggle="modal" 
                                 data-bs-target="#editModal"
                                 <?php foreach ($v as $key => $val): ?>
-                                    data-<?= htmlspecialchars($key) ?>="<?= htmlspecialchars($val) ?>"
-                                <?php endforeach; ?>>
+                                data-<?= htmlspecialchars($key, ENT_QUOTES, 'UTF-8') ?>
+                                ="<?= htmlspecialchars((string)($val ?? ''), ENT_QUOTES, 'UTF-8') ?>"
+                            <?php endforeach; ?>>
                             Modifier
                         </button>
 
@@ -43,7 +44,8 @@
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="index.php?page=admin&action=modifier" method="POST">
+            <form action="index.php?page=admin&action=modifier&admin_page=<?= $admin_page ?>" method="POST">
+
                 <div class="modal-header">
                     <h5 class="modal-title" id="editModalLabel">Modifier l'enregistrement</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
