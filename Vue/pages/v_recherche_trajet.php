@@ -155,7 +155,7 @@ function toggleFilters() {
                         
                         <div class="col-prix">
                             
-                            <div class="prix"><?= htmlspecialchars($trajet["prix_par_personne"] ?? '') ?> $</div>
+                            <div class="prix"><?= htmlspecialchars($trajet["prix_par_personne"] ?? '') ?> €</div>
                             <div class="prix-info"><?= htmlspecialchars($trajet["places_disponibles"] ?? '')?> places</div>
                             <button class="btn-reserver"
                                 onclick="window.location.href='index.php?page=detail_trajet&id=<?= htmlspecialchars($trajet['id']) ?>'">
