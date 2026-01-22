@@ -41,8 +41,8 @@ function sendEmail($email_dest, $nom_utilisateur, $type, $code): bool {
         $mail->isSMTP();
         $mail->Host = 'sandbox.smtp.mailtrap.io';
         $mail->SMTPAuth = true;
-        $mail->Username = '4038c6cc664fff';     ////// À remplacer par vos identifiants Mailtrap
-        $mail->Password = '0bc3ae9a13f440'; /////////// À remplacer par vos mdp Mailtrap
+        $mail->Username = 'd3ce40403f99ca';     ////// À remplacer par vos identifiants Mailtrap
+        $mail->Password = '9c05d812069de5'; /////////// À remplacer par vos mdp Mailtrap
         $mail->Port = 2525;
 
         $mail->setFrom('no-reply@vroom.test', 'Vroom Service');

@@ -19,7 +19,7 @@ $error = $_GET['error'] ?? null;
 $depart = $_GET['ville_depart'] ?? null;
 $arrivee = $_GET['ville_arrivee'] ?? null;
 $date = $_GET['date_depart'] ?? null;
-
+$id_destinataire = $_GET['id_destinataire'] ?? null;
 
 
 switch ($page) {

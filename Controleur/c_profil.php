@@ -150,15 +150,22 @@ class c_messagerie {
         }
 
         $id_user = $_SESSION['user_id'];
-        $id_destinataire = $_GET['id_destinataire'] ?? null;
-        $conversation_id = $_GET['id_conversation'] ?? null;
+        $id_destinataire = $_GET['id'];
+        if (!$id_destinataire ){
+            exit('Destinataire invalide');
+        }
+        
+            // Créer une nouvelle conversation si elle n'existe pas
+        $conversation = Conversations::getOrCreate($id_user, $id_destinataire);
+        $id_conversation = $conversation['id'];
+
         $message = trim($_POST['message'] ?? '');
 
-        if ($message !== '' && $conversation_id) {
-            Messages::envoyer($conversation_id, $id_user, $id_destinataire, $message);
+        if ($message !== '' && $id_conversation) {
+            Messages::envoyer($id_conversation, $id_user, $id_destinataire, $message);
         }
 
-        header("Location: index.php?page=messagerie&id_conversation=" . $conversation_id);
+        header("Location: index.php?page=messagerie&id_conversation=" . $id_conversation);
         exit;
     }
 }
