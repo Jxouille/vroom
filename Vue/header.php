@@ -1,6 +1,9 @@
 <header class="header">
     <div class="header-content">  
-        <img src="Ressources/Image/logo_ver2.png"  alt="Logo Vroom">
+        <div class="logo">
+            <img src="Ressources/Image/logo_ver2.png"  alt="Logo Vroom">
+        </div>
+        <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
         <nav class="nav-main">
             <a href="index.php?page=accueil">Accueil</a>
             <a href="index.php?page=recherche_trajet">Chercher un trajet</a>

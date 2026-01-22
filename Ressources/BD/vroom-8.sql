@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 16, 2026 at 05:18 PM
+-- Generation Time: Jan 21, 2026 at 01:07 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -123,6 +123,34 @@ INSERT INTO `avis` (`id`, `id_reservation`, `id_expediteur`, `id_destinataire`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contact_messages`
+--
+
+CREATE TABLE `contact_messages` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(100) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `sujet` varchar(200) DEFAULT NULL,
+  `message` text NOT NULL,
+  `statut` enum('nouveau','en_cours','resolu') DEFAULT 'nouveau',
+  `date_creation` timestamp NOT NULL DEFAULT current_timestamp(),
+  `date_modification` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `date_reponse` timestamp NULL DEFAULT NULL,
+  `reponse` text DEFAULT NULL,
+  `auteur_reponse` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `contact_messages`
+--
+
+INSERT INTO `contact_messages` (`id`, `nom`, `email`, `sujet`, `message`, `statut`, `date_creation`, `date_modification`, `date_reponse`, `reponse`, `auteur_reponse`) VALUES
+(1, 'Jean Dupont', 'jean.dupont@email.com', 'Problème de réservation', 'Je n’arrive pas à réserver mon trajet.', 'nouveau', '2026-01-18 14:36:07', '2026-01-18 14:36:07', NULL, NULL, NULL),
+(2, 'Marie Leroy', 'marie.leroy@email.com', 'Question sur le paiement', 'Comment puis-je payer mon trajet ?', 'nouveau', '2026-01-18 14:36:07', '2026-01-18 14:36:07', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `conversations`
 --
 
@@ -169,6 +197,71 @@ INSERT INTO `documents_utilisateur` (`id`, `id_utilisateur`, `type_document`, `n
 (9, 25, 'piece_identite', 'guide_cpme_bonnes_pratiques.pdf', 'uploads/documents/user_25/piece_identite/piece_identite_6956bc33bf4d6.pdf', 'application/pdf', 874007, 'en_attente', NULL, '2026-01-01 18:25:55'),
 (11, 25, 'carte_grise', 'guide_cpme_bonnes_pratiques.pdf', 'uploads/documents/user_25/carte_grise/carte_grise_6956bc77b3bc0.pdf', 'application/pdf', 874007, 'en_attente', NULL, '2026-01-01 18:27:03'),
 (14, 28, 'avatar', '1I598HH2S_6VNU3J.JPG', 'uploads/documents/user_28/avatar/avatar_696a63bfefd6f.JPG', 'image/jpeg', 57178, 'en_attente', NULL, '2026-01-16 16:13:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `faq_questions`
+--
+
+CREATE TABLE `faq_questions` (
+  `id` int(11) NOT NULL,
+  `theme_id` int(11) NOT NULL,
+  `question` text NOT NULL,
+  `reponse` text DEFAULT NULL,
+  `statut` enum('active','inactive') DEFAULT 'active',
+  `date_creation` timestamp NOT NULL DEFAULT current_timestamp(),
+  `date_modification` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `date_reponse` timestamp NULL DEFAULT NULL,
+  `auteur` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `faq_questions`
+--
+
+INSERT INTO `faq_questions` (`id`, `theme_id`, `question`, `reponse`, `statut`, `date_creation`, `date_modification`, `date_reponse`, `auteur`) VALUES
+(1, 1, 'Comment fonctionne Vroom ?', 'Vroom est une plateforme de covoiturage qui met en relation des conducteurs et des passagers.', 'active', '2026-01-18 14:36:07', '2026-01-18 14:36:07', '2026-01-18 14:36:07', 'admin'),
+(2, 1, 'Vroom est-il un service de transport ?', 'Non, Vroom agit uniquement comme intermédiaire et ne fournit aucun service de transport.', 'active', '2026-01-18 14:36:07', '2026-01-18 14:36:07', '2026-01-18 14:36:07', 'admin'),
+(3, 2, 'Comment créer un compte ?', 'Inscrivez-vous via notre formulaire et choisissez votre profil conducteur ou passager.', 'active', '2026-01-18 14:36:07', '2026-01-18 14:36:07', '2026-01-18 14:36:07', 'admin'),
+(4, 2, 'Puis-je modifier mon profil ?', 'Oui, vous pouvez modifier vos informations personnelles depuis votre espace personnel.', 'active', '2026-01-18 14:36:07', '2026-01-18 14:36:07', '2026-01-18 14:36:07', 'admin'),
+(5, 2, 'Puis-je avoir plusieurs comptes ?', 'Non, un seul compte par utilisateur est autorisé.', 'active', '2026-01-18 14:36:07', '2026-01-18 14:36:07', '2026-01-18 14:36:07', 'admin'),
+(6, 2, 'Que faire si j’ai oublié mon mot de passe ?', 'Utilisez la fonctionnalité « Mot de passe oublié » sur la page de connexion.', 'active', '2026-01-18 14:36:07', '2026-01-18 14:36:07', '2026-01-18 14:36:07', 'admin'),
+(7, 3, 'Comment réserver un trajet ?', 'Recherchez un trajet, sélectionnez celui qui vous convient puis confirmez la réservation.', 'active', '2026-01-18 14:36:07', '2026-01-18 14:36:07', '2026-01-18 14:36:07', 'admin'),
+(8, 3, 'Puis-je annuler un trajet ?', 'Oui, l’annulation est possible selon les conditions précisées lors de la réservation.', 'active', '2026-01-18 14:36:07', '2026-01-18 14:36:07', '2026-01-18 14:36:07', 'admin'),
+(9, 3, 'Que se passe-t-il si le conducteur annule ?', 'Vous serez informé immédiatement et remboursé conformément aux conditions applicables.', 'active', '2026-01-18 14:36:07', '2026-01-18 14:36:07', '2026-01-18 14:36:07', 'admin'),
+(10, 4, 'Les paiements sont-ils sécurisés ?', 'Oui, toutes les transactions sont protégées via un prestataire de paiement sécurisé.', 'active', '2026-01-18 14:36:07', '2026-01-18 14:36:07', '2026-01-18 14:36:07', 'admin'),
+(11, 4, 'Quand le conducteur est-il payé ?', 'Le paiement est validé et transféré au conducteur après la réalisation du trajet.', 'active', '2026-01-18 14:36:07', '2026-01-18 14:36:07', '2026-01-18 14:36:07', 'admin'),
+(12, 4, 'Vroom conserve-t-il mes données bancaires ?', 'Non, Vroom ne stocke aucune donnée bancaire.', 'active', '2026-01-18 14:36:07', '2026-01-18 14:36:07', '2026-01-18 14:36:07', 'admin'),
+(13, 5, 'Comment Vroom garantit la sécurité des utilisateurs ?', 'Grâce aux profils utilisateurs, au système d’avis et aux paiements sécurisés.', 'active', '2026-01-18 14:36:07', '2026-01-18 14:36:07', '2026-01-18 14:36:07', 'admin'),
+(14, 5, 'Puis-je laisser un avis après un trajet ?', 'Oui, les avis permettent d’améliorer la confiance entre conducteurs et passagers.', 'active', '2026-01-18 14:36:07', '2026-01-18 14:36:07', '2026-01-18 14:36:07', 'admin'),
+(15, 6, 'Mes données personnelles sont-elles protégées ?', 'Oui, Vroom respecte le RGPD et protège vos données personnelles.', 'active', '2026-01-18 14:36:07', '2026-01-18 14:36:07', '2026-01-18 14:36:07', 'admin'),
+(16, 6, 'Puis-je supprimer mon compte ?', 'Oui, vous pouvez demander la suppression de votre compte à tout moment.', 'active', '2026-01-18 14:36:07', '2026-01-18 14:36:07', '2026-01-18 14:36:07', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `faq_themes`
+--
+
+CREATE TABLE `faq_themes` (
+  `id` int(11) NOT NULL,
+  `nom_theme` varchar(100) NOT NULL,
+  `date_creation` timestamp NOT NULL DEFAULT current_timestamp(),
+  `date_modification` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `faq_themes`
+--
+
+INSERT INTO `faq_themes` (`id`, `nom_theme`, `date_creation`, `date_modification`) VALUES
+(1, 'Fonctionnement', '2026-01-18 14:36:07', '2026-01-18 14:36:07'),
+(2, 'Compte & Profil', '2026-01-18 14:36:07', '2026-01-18 14:36:07'),
+(3, 'Réservation & trajets', '2026-01-18 14:36:07', '2026-01-18 14:36:07'),
+(4, 'Paiement & Sécurité', '2026-01-18 14:36:07', '2026-01-18 14:36:07'),
+(5, 'Sécurité & Confiance', '2026-01-18 14:36:07', '2026-01-18 14:36:07'),
+(6, 'Données personnelles', '2026-01-18 14:36:07', '2026-01-18 14:36:07');
 
 -- --------------------------------------------------------
 
@@ -360,7 +453,9 @@ INSERT INTO `reservations` (`id`, `uuid`, `id_annonce`, `donnees_passager`, `id_
 (42, 'res_6956bbf54ece9', 1, NULL, 25, 'en_attente', 50.00, '2026-01-01 18:24:53', '2026-01-01 18:24:53'),
 (43, 'res_6956bbfdb20ae', 1, NULL, 25, 'en_attente', 50.00, '2026-01-01 18:25:01', '2026-01-01 18:25:01'),
 (44, 'res_6960bf080e4dc', 35, NULL, 30, 'acceptee', 38.00, '2026-01-09 08:40:40', '2026-01-09 08:40:47'),
-(45, 'res_696745e9172f0', 6, NULL, 28, 'acceptee', 30.00, '2026-01-14 07:29:45', '2026-01-14 07:29:56');
+(45, 'res_696745e9172f0', 6, NULL, 28, 'acceptee', 30.00, '2026-01-14 07:29:45', '2026-01-14 07:29:56'),
+(46, 'res_696abadcec912', 62, NULL, 28, 'en_attente', 11.00, '2026-01-16 22:25:32', '2026-01-16 22:25:32'),
+(47, 'res_696abb4fdc522', 9, NULL, 28, 'en_attente', 20.00, '2026-01-16 22:27:27', '2026-01-16 22:27:27');
 
 -- --------------------------------------------------------
 
@@ -384,39 +479,40 @@ CREATE TABLE `utilisateurs` (
   `date_creation` timestamp NOT NULL DEFAULT current_timestamp(),
   `date_mise_a_jour` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `note` float DEFAULT 0,
-  `photo_profil` varchar(255) DEFAULT NULL
+  `photo_profil` varchar(255) DEFAULT NULL,
+  `admin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `utilisateurs`
 --
 
-INSERT INTO `utilisateurs` (`id`, `nom`, `prenom`, `email`, `telephone`, `avatar`, `biographie`, `mot_de_passe`, `token_notification`, `premiere_connexion`, `try_token`, `remember_token`, `date_creation`, `date_mise_a_jour`, `note`, `photo_profil`) VALUES
-(1, 'Ali Benali', 'Utilisateur', 'user1@test.com', '0600000001', NULL, NULL, 'password_hash_1', NULL, 1, 0, NULL, '2025-12-26 10:51:52', '2025-12-26 14:40:00', 0, NULL),
-(2, 'Sara Amrani', 'Utilisateur', 'user2@test.com', '0600000002', NULL, NULL, 'password_hash_2', NULL, 1, 0, NULL, '2025-12-26 10:51:52', '2025-12-26 14:40:00', 0, NULL),
-(3, 'Youssef Karim', 'Utilisateur', 'user3@test.com', '0600000003', NULL, NULL, 'password_hash_3', NULL, 1, 0, NULL, '2025-12-26 10:51:52', '2025-12-26 14:40:00', 0, NULL),
-(4, 'Omar El Fassi', 'Utilisateur', 'user4@test.com', '0600000004', NULL, NULL, 'password_hash_4', NULL, 1, 0, NULL, '2025-12-26 10:55:21', '2025-12-26 14:40:00', 0, NULL),
-(5, 'Nadia Zahra', 'Utilisateur', 'user5@test.com', '0600000005', NULL, NULL, 'password_hash_5', NULL, 1, 0, NULL, '2025-12-26 10:55:21', '2025-12-26 14:40:00', 0, NULL),
-(6, 'Hamza Idrissi', 'Utilisateur', 'user6@test.com', '0600000006', NULL, NULL, 'password_hash_6', NULL, 1, 0, NULL, '2025-12-26 10:55:21', '2025-12-26 14:40:00', 0, NULL),
-(8, 'Bui', 'Thi My Anh', 'myanhbui811@gmail.com', NULL, NULL, NULL, '$2y$12$gl51UwGS4GbQJBBEv9S9nuY6kVCr74GMreRVTf9Wno4eo8CwjskCK', NULL, 1, 0, NULL, '2025-12-26 15:32:26', '2025-12-26 15:32:26', 0, NULL),
-(9, 'Bui', 'Thi My Anh', 'myanhbui0811@gmail.com', NULL, NULL, NULL, '$2y$12$NE607WaiEOToMYZAsrmYmOIKtZoCsUTfXsKgk6tEjEy3V0ZdaCpLS', NULL, 1, 0, NULL, '2025-12-26 15:54:54', '2025-12-26 15:54:54', 0, NULL),
-(10, 'Bui', 'Thi My', 'myanhbui@gmail.com', NULL, NULL, NULL, '$2y$12$HKCw1lreym5LTl87W3q8D.k/vpaDvp1rKDUdnJc5VVV0MoSK2bA2G', NULL, 1, 0, NULL, '2025-12-26 15:55:29', '2025-12-26 16:38:46', 0, NULL),
-(15, 'Bui', 'Thi My Anh', 'myanhbui811111111111@gmail.com', NULL, NULL, NULL, '$2y$12$YymvgE0Nx3Jn9jyOcZHO0uNbR6a8BthK0lcDBiLaIxJ/R4cJ5Ku8G', NULL, 1, 0, NULL, '2025-12-30 14:58:59', '2025-12-30 14:58:59', 0, NULL),
-(16, 'Bui', 'Thi My Anh', 'myanhbui82222222@gmail.com', NULL, NULL, NULL, '$2y$12$jeyL0O8en9dQXBop.bvpoeA8XQAeGrZbVfHPlA/f1tD9rvmooDxc2', NULL, 1, 0, NULL, '2025-12-30 15:12:01', '2025-12-30 15:12:01', 0, NULL),
-(17, 'Bui', 'Thi My Anh', 'myanhbui811777@gmail.com', NULL, NULL, NULL, '$2y$12$CC8cfQElOSCHhmnkw8aypuFcOAp6TmR2I3YIsJIGuRV4X8HjlkHAu', NULL, 1, 0, NULL, '2025-12-30 15:26:39', '2025-12-30 15:26:39', 0, NULL),
-(18, 'Bui', 'Thi My Anh', 'myanhbui819999991@gmail.com', NULL, NULL, NULL, '$2y$12$mO4wJaIvq5GcjQPLJW7GDOcZADrqAOsokPAEx5pgsc3KKiXyVuu6G', NULL, 1, 0, NULL, '2025-12-30 15:31:05', '2025-12-30 15:31:05', 0, NULL),
-(19, 'Bui', 'Thi My Anh', 'myanhbui811888888888@gmail.com', NULL, NULL, NULL, '$2y$12$B1gxk4Amuy7Dn/iBqA.QQOM/1aauZvpnRLNGXe0VBRXaWgj0Yc1Qm', NULL, 1, 0, NULL, '2025-12-30 15:39:45', '2025-12-30 15:39:45', 0, NULL),
-(20, 'Bui', 'Thi My Anh', 'myanhbui8110000000@gmail.com', NULL, NULL, NULL, '$2y$12$ugF0fjiju7hN6RnqiFfbv.Y4b8eFrg3lmKPdcQ6rbiX9Oq7HA4/6i', NULL, 1, 0, NULL, '2025-12-30 16:12:28', '2025-12-30 16:12:28', 0, NULL),
-(21, 'Bui', 'Thi My Anh', 'myanhbui81177777@gmail.com', NULL, NULL, NULL, '$2y$12$qzywtRCK/v6IQfIuc5jmQOfoNi3DY/oeB2pJicS42gV.nWpn0JtpG', NULL, 1, 0, NULL, '2025-12-30 16:15:03', '2025-12-30 16:15:03', 0, NULL),
-(22, 'Bui', 'Thi My Anh', 'thi-my-anh.bui@sep.fr', NULL, NULL, NULL, '$2y$12$lptPRiOyZ.LsN3eHytlmnu0ZcE00oGRzDAJMaEjPEjZ5eUfkuYc1m', NULL, 1, 0, NULL, '2025-12-31 10:34:07', '2025-12-31 10:34:07', 0, NULL),
-(23, 'Bui', 'Thi My Anh', 'myanhbui8115555@gmail.com', NULL, NULL, NULL, '$2y$12$/MXZnObHq9kxsemZYG9ZJ.FonSUZ/ZgFODTee.44g8nmTPPVz8GG.', NULL, 1, 0, NULL, '2025-12-31 10:35:09', '2025-12-31 10:35:09', 0, NULL),
-(24, 'Bui', 'Thi My Anh', 'myanh@gmail.com', NULL, NULL, NULL, '$2y$12$sBpvQCH1zkQIhqtiHyNtVu8tP6IJ4wa1UhXBKHp9sRy.Ky0qmN7Uq', NULL, 1, 0, NULL, '2025-12-31 14:37:59', '2025-12-31 14:37:59', 0, NULL),
-(25, 'Bui', 'Thi My Anh', 'myanhbui81999991@gmail.com', NULL, NULL, NULL, '$2y$12$.BOLGMpC9x4bBvIYndwVjeP4uSTFr5Or0J3f8i/v9hq/IpKjlAyru', NULL, 1, 0, NULL, '2026-01-01 18:24:14', '2026-01-01 18:24:14', 0, NULL),
-(26, 'Bui', 'Thi My Anh', 'myanhbui8o999911@gmail.com', NULL, NULL, NULL, '$2y$12$g.eQCk0ZXGgo.I34/.4N/ueALv6aDQg4adVjXK4czh6YhQB7Zfsgy', NULL, 1, 0, NULL, '2026-01-05 09:41:04', '2026-01-05 09:41:04', 0, NULL),
-(27, 'Bui', 'Thi My Anh', 'myanhbui80000000011@gmail.com', NULL, NULL, NULL, '$2y$12$LHiv9DsqeJXaYFU4L0FzP.vPMxQVdERx/foAGe4g5so4iTTi6nWQC', NULL, 1, 0, NULL, '2026-01-05 09:42:14', '2026-01-05 09:42:14', 0, NULL),
-(28, 'Bui', 'Thi My Anh', 'myanhbui8111@gmail.com', NULL, NULL, NULL, '$2y$12$pNpbGH/dIW1uOjMD4JbaTuU8JXQA0VIiT3a.6yfYHGi8i9xQLJRQS', NULL, 1, 0, NULL, '2026-01-05 09:43:12', '2026-01-05 09:43:12', 0, NULL),
-(29, 'Bui', 'Thi My Anh', 'myanhbui8333311@gmail.com', NULL, NULL, NULL, '$2y$12$tGW131qLhwoMajoQBM64zerJZ4d63CF1khFkZO0mWGPMJL0NGC8pC', NULL, 1, 0, NULL, '2026-01-07 15:51:07', '2026-01-07 15:51:07', 0, NULL),
-(30, 'jkjbsdlf', 'dzgdzfh', 'myanhbui800000111@gmail.com', NULL, NULL, NULL, '$2y$12$9obD2j41S4rGuyY3PM4DzeB2agFYsBH8AAKIKccYt61rl8sqc8Hii', NULL, 1, 0, NULL, '2026-01-09 08:40:13', '2026-01-09 08:40:13', 0, NULL);
+INSERT INTO `utilisateurs` (`id`, `nom`, `prenom`, `email`, `telephone`, `avatar`, `biographie`, `mot_de_passe`, `token_notification`, `premiere_connexion`, `try_token`, `remember_token`, `date_creation`, `date_mise_a_jour`, `note`, `photo_profil`, `admin`) VALUES
+(1, 'Ali Benali', 'Utilisateur', 'user1@test.com', '0600000001', NULL, NULL, 'password_hash_1', NULL, 1, 0, NULL, '2025-12-26 10:51:52', '2025-12-26 14:40:00', 0, NULL, 0),
+(2, 'Sara Amrani', 'Utilisateur', 'user2@test.com', '0600000002', NULL, NULL, 'password_hash_2', NULL, 1, 0, NULL, '2025-12-26 10:51:52', '2025-12-26 14:40:00', 0, NULL, 0),
+(3, 'Youssef Karim', 'Utilisateur', 'user3@test.com', '0600000003', NULL, NULL, 'password_hash_3', NULL, 1, 0, NULL, '2025-12-26 10:51:52', '2025-12-26 14:40:00', 0, NULL, 0),
+(4, 'Omar El Fassi', 'Utilisateur', 'user4@test.com', '0600000004', NULL, NULL, 'password_hash_4', NULL, 1, 0, NULL, '2025-12-26 10:55:21', '2025-12-26 14:40:00', 0, NULL, 0),
+(5, 'Nadia Zahra', 'Utilisateur', 'user5@test.com', '0600000005', NULL, NULL, 'password_hash_5', NULL, 1, 0, NULL, '2025-12-26 10:55:21', '2025-12-26 14:40:00', 0, NULL, 0),
+(6, 'Hamza Idrissi', 'Utilisateur', 'user6@test.com', '0600000006', NULL, NULL, 'password_hash_6', NULL, 1, 0, NULL, '2025-12-26 10:55:21', '2025-12-26 14:40:00', 0, NULL, 0),
+(8, 'Bui', 'Thi My Anh', 'myanhbui811@gmail.com', NULL, NULL, NULL, '$2y$12$gl51UwGS4GbQJBBEv9S9nuY6kVCr74GMreRVTf9Wno4eo8CwjskCK', NULL, 1, 0, NULL, '2025-12-26 15:32:26', '2025-12-26 15:32:26', 0, NULL, 0),
+(9, 'Bui', 'Thi My Anh', 'myanhbui0811@gmail.com', NULL, NULL, NULL, '$2y$12$NE607WaiEOToMYZAsrmYmOIKtZoCsUTfXsKgk6tEjEy3V0ZdaCpLS', NULL, 1, 0, NULL, '2025-12-26 15:54:54', '2025-12-26 15:54:54', 0, NULL, 0),
+(10, 'Bui', 'Thi My', 'myanhbui@gmail.com', NULL, NULL, NULL, '$2y$12$HKCw1lreym5LTl87W3q8D.k/vpaDvp1rKDUdnJc5VVV0MoSK2bA2G', NULL, 1, 0, NULL, '2025-12-26 15:55:29', '2025-12-26 16:38:46', 0, NULL, 0),
+(15, 'Bui', 'Thi My Anh', 'myanhbui811111111111@gmail.com', NULL, NULL, NULL, '$2y$12$YymvgE0Nx3Jn9jyOcZHO0uNbR6a8BthK0lcDBiLaIxJ/R4cJ5Ku8G', NULL, 1, 0, NULL, '2025-12-30 14:58:59', '2025-12-30 14:58:59', 0, NULL, 0),
+(16, 'Bui', 'Thi My Anh', 'myanhbui82222222@gmail.com', NULL, NULL, NULL, '$2y$12$jeyL0O8en9dQXBop.bvpoeA8XQAeGrZbVfHPlA/f1tD9rvmooDxc2', NULL, 1, 0, NULL, '2025-12-30 15:12:01', '2025-12-30 15:12:01', 0, NULL, 0),
+(17, 'Bui', 'Thi My Anh', 'myanhbui811777@gmail.com', NULL, NULL, NULL, '$2y$12$CC8cfQElOSCHhmnkw8aypuFcOAp6TmR2I3YIsJIGuRV4X8HjlkHAu', NULL, 1, 0, NULL, '2025-12-30 15:26:39', '2025-12-30 15:26:39', 0, NULL, 0),
+(18, 'Bui', 'Thi My Anh', 'myanhbui819999991@gmail.com', NULL, NULL, NULL, '$2y$12$mO4wJaIvq5GcjQPLJW7GDOcZADrqAOsokPAEx5pgsc3KKiXyVuu6G', NULL, 1, 0, NULL, '2025-12-30 15:31:05', '2025-12-30 15:31:05', 0, NULL, 0),
+(19, 'Bui', 'Thi My Anh', 'myanhbui811888888888@gmail.com', NULL, NULL, NULL, '$2y$12$B1gxk4Amuy7Dn/iBqA.QQOM/1aauZvpnRLNGXe0VBRXaWgj0Yc1Qm', NULL, 1, 0, NULL, '2025-12-30 15:39:45', '2025-12-30 15:39:45', 0, NULL, 0),
+(20, 'Bui', 'Thi My Anh', 'myanhbui8110000000@gmail.com', NULL, NULL, NULL, '$2y$12$ugF0fjiju7hN6RnqiFfbv.Y4b8eFrg3lmKPdcQ6rbiX9Oq7HA4/6i', NULL, 1, 0, NULL, '2025-12-30 16:12:28', '2025-12-30 16:12:28', 0, NULL, 0),
+(21, 'Bui', 'Thi My Anh', 'myanhbui81177777@gmail.com', NULL, NULL, NULL, '$2y$12$qzywtRCK/v6IQfIuc5jmQOfoNi3DY/oeB2pJicS42gV.nWpn0JtpG', NULL, 1, 0, NULL, '2025-12-30 16:15:03', '2025-12-30 16:15:03', 0, NULL, 0),
+(22, 'Bui', 'Thi My Anh', 'thi-my-anh.bui@sep.fr', NULL, NULL, NULL, '$2y$12$lptPRiOyZ.LsN3eHytlmnu0ZcE00oGRzDAJMaEjPEjZ5eUfkuYc1m', NULL, 1, 0, NULL, '2025-12-31 10:34:07', '2025-12-31 10:34:07', 0, NULL, 0),
+(23, 'Bui', 'Thi My Anh', 'myanhbui8115555@gmail.com', NULL, NULL, NULL, '$2y$12$/MXZnObHq9kxsemZYG9ZJ.FonSUZ/ZgFODTee.44g8nmTPPVz8GG.', NULL, 1, 0, NULL, '2025-12-31 10:35:09', '2025-12-31 10:35:09', 0, NULL, 0),
+(24, 'Bui', 'Thi My Anh', 'myanh@gmail.com', NULL, NULL, NULL, '$2y$12$sBpvQCH1zkQIhqtiHyNtVu8tP6IJ4wa1UhXBKHp9sRy.Ky0qmN7Uq', NULL, 1, 0, NULL, '2025-12-31 14:37:59', '2025-12-31 14:37:59', 0, NULL, 0),
+(25, 'Bui', 'Thi My Anh', 'myanhbui81999991@gmail.com', NULL, NULL, NULL, '$2y$12$.BOLGMpC9x4bBvIYndwVjeP4uSTFr5Or0J3f8i/v9hq/IpKjlAyru', NULL, 1, 0, NULL, '2026-01-01 18:24:14', '2026-01-01 18:24:14', 0, NULL, 0),
+(26, 'Bui', 'Thi My Anh', 'myanhbui8o999911@gmail.com', NULL, NULL, NULL, '$2y$12$g.eQCk0ZXGgo.I34/.4N/ueALv6aDQg4adVjXK4czh6YhQB7Zfsgy', NULL, 1, 0, NULL, '2026-01-05 09:41:04', '2026-01-05 09:41:04', 0, NULL, 0),
+(27, 'Bui', 'Thi My Anh', 'myanhbui80000000011@gmail.com', NULL, NULL, NULL, '$2y$12$LHiv9DsqeJXaYFU4L0FzP.vPMxQVdERx/foAGe4g5so4iTTi6nWQC', NULL, 1, 0, NULL, '2026-01-05 09:42:14', '2026-01-05 09:42:14', 0, NULL, 0),
+(28, 'Bui', 'Thi My Anh', 'myanhbui8111@gmail.com', NULL, NULL, NULL, '$2y$12$pNpbGH/dIW1uOjMD4JbaTuU8JXQA0VIiT3a.6yfYHGi8i9xQLJRQS', NULL, 1, 0, NULL, '2026-01-05 09:43:12', '2026-01-19 11:46:16', 0, NULL, 1),
+(29, 'Bui', 'Thi My Anh', 'myanhbui8333311@gmail.com', NULL, NULL, NULL, '$2y$12$tGW131qLhwoMajoQBM64zerJZ4d63CF1khFkZO0mWGPMJL0NGC8pC', NULL, 1, 0, NULL, '2026-01-07 15:51:07', '2026-01-07 15:51:07', 0, NULL, 0),
+(30, 'jkjbsdlf', 'dzgdzfh', 'myanhbui800000111@gmail.com', NULL, NULL, NULL, '$2y$12$9obD2j41S4rGuyY3PM4DzeB2agFYsBH8AAKIKccYt61rl8sqc8Hii', NULL, 1, 0, NULL, '2026-01-09 08:40:13', '2026-01-09 08:40:13', 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -557,6 +653,12 @@ ALTER TABLE `avis`
   ADD KEY `fk_avis_receiver` (`id_destinataire`);
 
 --
+-- Indexes for table `contact_messages`
+--
+ALTER TABLE `contact_messages`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `conversations`
 --
 ALTER TABLE `conversations`
@@ -570,6 +672,20 @@ ALTER TABLE `conversations`
 ALTER TABLE `documents_utilisateur`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_doc_user` (`id_utilisateur`);
+
+--
+-- Indexes for table `faq_questions`
+--
+ALTER TABLE `faq_questions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `theme_id` (`theme_id`);
+
+--
+-- Indexes for table `faq_themes`
+--
+ALTER TABLE `faq_themes`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nom_theme` (`nom_theme`);
 
 --
 -- Indexes for table `favoris`
@@ -646,6 +762,12 @@ ALTER TABLE `avis`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `contact_messages`
+--
+ALTER TABLE `contact_messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `conversations`
 --
 ALTER TABLE `conversations`
@@ -656,6 +778,18 @@ ALTER TABLE `conversations`
 --
 ALTER TABLE `documents_utilisateur`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `faq_questions`
+--
+ALTER TABLE `faq_questions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `faq_themes`
+--
+ALTER TABLE `faq_themes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `favoris`
@@ -685,7 +819,7 @@ ALTER TABLE `preferences`
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `utilisateurs`
@@ -709,6 +843,12 @@ ALTER TABLE `ville`
 ALTER TABLE `conversations`
   ADD CONSTRAINT `conversations_ibfk_1` FOREIGN KEY (`user1_id`) REFERENCES `utilisateurs` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `conversations_ibfk_2` FOREIGN KEY (`user2_id`) REFERENCES `utilisateurs` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `faq_questions`
+--
+ALTER TABLE `faq_questions`
+  ADD CONSTRAINT `faq_questions_ibfk_1` FOREIGN KEY (`theme_id`) REFERENCES `faq_themes` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `messages`
