@@ -267,6 +267,17 @@ switch ($page) {
         $controller = new c_cgu();
         $controller->afficher();
         break;
+    case 'favoris_annonce':
+        require 'Controleur/c_profil.php';
+        $controller = new c_mes_favoris();
+        if ($action === 'ajouter') {
+            $controller->ajouter();
+        } elseif ($action === 'supprimer') {
+            $controller->supprimer();
+        } else {
+            $controller->afficher();
+        }
+        break;
 }
 
 ?>

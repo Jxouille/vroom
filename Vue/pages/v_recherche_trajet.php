@@ -147,9 +147,11 @@ function toggleFilters() {
                         <div class="col-villes">
                             <div class="ville">
                                 <h4><?= htmlspecialchars($trajet["ville_depart"] ?? '') ?></h4>
+                                <p><?= htmlspecialchars($trajet['adresse_depart'] ?? '') ?></p>
                             </div>
                             <div class="ville">
                                 <h4><?= htmlspecialchars($trajet["ville_arrivee"] ?? '') ?></h4>
+                                <p><?= htmlspecialchars($trajet['adresse_arrivee'] ?? '') ?></p>
                             </div>
                         </div>
                         
@@ -165,7 +167,8 @@ function toggleFilters() {
                         
                         <?php if (isset($_SESSION['user_id'])): ?>
                             <div class="col-favori">
-                                <button class="btn-favori" action="index.php?page=recherche_trajetdata&action=favoris&id_favori="<?= $trajet['id'] ?>>♥</button>
+                                <button class="btn-favori" action="index.php?page=recherche_trajetdata&action=ajouters&id_favori="<?= $trajet['id'] ?>>♥</button>
+
                             </div>
                         <?php endif; ?>
                         
@@ -191,7 +194,10 @@ document.querySelectorAll('.btn-favori').forEach(btn => {
         console.log("Favori cliqué pour trajet :", trajetId);
 
         // PLUS TARD :
-        // fetch('index.php?page=favoris&action=toggle', {...}) 
+        fetch('index.php?page=favoris_annonces&action=ajouter&id=' + trajetId, {
+            method: 'POST',
+        }) 
     });
+    
 });
 </script>

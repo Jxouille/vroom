@@ -19,7 +19,7 @@
 
             <div class="form-group">
                 <label for="holder_name">Nom du titulaire</label>
-                <input type="text" id="holder_name" name="holder_name" placeholder="MANU NU" required>
+                <input type="text" id="holder_name" name="holder_name" placeholder="BUI THI MY ANH" required>
             </div>
 
             <div class="form-row">
