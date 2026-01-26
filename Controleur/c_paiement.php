@@ -52,7 +52,7 @@ class c_paiement {
             Paiements::creer($data);
             Reservations::update($_GET['id'], ['statut' => 'acceptee']);
             Annonces::update($res_info['id_annonce'], ['statut'=> 'complete'] );
-            header("Location: index.php?page=success");
+            header("Location: index.php?page=paiement&action=success");
             exit;
         }
     }

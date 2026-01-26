@@ -18,10 +18,6 @@ class Annonces {
         return $stmt->fetchAll();
     }
 
-   
-    /**
-     * Crée une annonce avec les données fournies
-     */
     public static function creer(array $data): void {
         $db = dbConnect();
         $stmt = $db->prepare("

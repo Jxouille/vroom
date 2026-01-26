@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div class="driver-right">
-                        <div class="price"><?= htmlspecialchars($annonce['prix_par_personne']) ?> $</div>
+                        <div class="price"><?= htmlspecialchars($annonce['prix_par_personne']) ?> €</div>
                         <button class="btn-reserver" id="btnContacter">Contacter</button>
 
 

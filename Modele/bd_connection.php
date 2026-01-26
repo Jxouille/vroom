@@ -1,10 +1,10 @@
 <?php
 const DB_CONFIG = [
-  'host'     => 'localhost',  // 178.33.122.21
+  'host'     => '178.33.122.21',  // 178.33.122.21
   'port'     => '3306',
-  'dbname'   => 'vroom',   // hangardb_axst62997 <- corrigé
-  'username' => 'root',    // axst62997
-  'password' => ''    // lgtSzUiSvt6SOQIiV91pya2w
+  'dbname'   => 'hangardb_axst62997',   // hangardb_axst62997 
+  'username' => 'axst62997',    // axst62997
+  'password' => 'lgtSzUiSvt6SOQIiV91pya2w'    // lgtSzUiSvt6SOQIiV91pya2w
 ];
 
 function dbConnect() {

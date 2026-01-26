@@ -85,18 +85,14 @@ class c_admin {
     // Modification d'un champ
     public function modifier() {
 
-        // 1️⃣ Vérifier l'ID envoyé par le formulaire
         if (!isset($_POST['id']) || empty($_POST['id'])) {
             die('ID manquant');
         }
 
         $id = (int) $_POST['id'];
-
-        // 2️⃣ Récupérer les données du formulaire
         $data = $_POST;
         unset($data['id']); // très important
 
-        // 3️⃣ Savoir quelle page admin est utilisée
         if (!isset($_GET['admin_page'])) {
             die('admin_page manquant');
         }
@@ -120,17 +116,16 @@ class c_admin {
 
         $model = $models[$adminPage];
 
-        // 5️⃣ Nettoyer les valeurs
+        // Nettoyer les valeurs
         foreach ($data as $key => $value) {
             $data[$key] = trim($value);
         }
 
-        // 6️⃣ Mettre à jour
+        // Mettre à jour
         if ($model::update($id, $data)) {
             header('Location: index.php?page=admin&admin_page=' . $adminPage . '&success=1');
             exit;
         }
-
         header('Location: index.php?page=admin&admin_page=' . $adminPage . '&error=1');
         exit;
     }
@@ -150,7 +145,4 @@ class c_admin {
             echo 'Erreur suppression';
         }
     }
-  
-
-   
 }

@@ -10,3 +10,10 @@
 </head>
 
 <body>
+<div class="admin-wrapper">
+<!-- TOPBAR -->
+
+  <div class="topbar-right">
+    <span class="admin-name">Admin</span>
+  </div>
+</div>

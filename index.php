@@ -23,19 +23,17 @@ $id_destinataire = $_GET['id_destinataire'] ?? null;
 
 
 switch ($page) {
+
     case 'admin':
         require 'Controleur/c_admin.php';
         $controller = new c_admin();
-        if ($action === 'surprimer') {
-            // Ajouter la logique de suppression ici si nécessaire
-        } if ($action === 'modifier') {
+        if ($action === 'modifier') {
              $controller->modifier();
         } else {
             $controller->afficher();
         }
         break;
 
-    // Accueil
     case 'accueil':
         require 'Controleur/c_accueil.php';
         $controller = new c_accueil();
@@ -61,10 +59,62 @@ switch ($page) {
             $controller->afficher();
         }
         break;
+
+    case 'annonce':
+        require 'Controleur/c_trajet.php';
+        $controller = new c_publie_trajet();
+        if ($action === 'publier') {
+            $controller->publier();
+        } else {
+            $controller->afficher();
+        }
+        break;
         
     case 'detail_trajet':
         require 'Controleur/c_trajet.php';
         $controller = new c_detail_trajet();
+        $controller->afficher();
+        break;
+    
+     case 'profil':
+        require 'Controleur/c_profil.php';
+        $controller = new c_profil();
+
+        if ($action === 'modifier') {
+            $controller->modifier();
+        } else {
+            $id = isset($_GET['id']) && ctype_digit($_GET['id']) ? (int)$_GET['id'] : null;
+            $controller->afficher($id);
+        }
+        break;
+
+    case 'messagerie':
+        require 'Controleur/c_profil.php';
+        $controller = new c_messagerie();
+
+        if ($action === 'envoyer') {
+            $controller->envoyer();
+        } else {
+            $id_conversation = $_GET['id_conversation'] ?? null;
+            $controller->afficher($id_conversation);
+        }
+        break;
+
+    case 'mes_favoris':
+        require 'Controleur/c_profil.php';
+        $controller = new c_mes_favoris();
+        if ($action === 'ajouter') {
+            $controller->ajouter();
+        } elseif ($action === 'supprimer') {
+            $controller->supprimer();
+        } else {
+            $controller->afficher();
+        }
+        break;
+
+    case 'mes_reservations':
+        require 'Controleur/c_profil.php';
+        $controller = new c_mes_reservations();
         $controller->afficher();
         break;
 
@@ -85,30 +135,15 @@ switch ($page) {
             $controller->afficher();
         }
         break;
+
     case 'mes_paiements':
         require 'Controleur/c_profil.php';
         $controller = new c_mes_paiements();
         $controller->afficher();
         break;
-        
-    // Connexion
-    case 'connexion':
-        require 'Controleur/c_connexion.php';
-        $controller = new c_connexion();
-        if ($action === 'verifier') {
-            $controller->verifier();
-        } 
-        elseif ($action === 'deconnexion') {
-            $controller->deconnexion();
-            break;
-        } else {
-            $controller->afficher();
-        }
-        break;
 
-    // Inscription
     case 'inscription':
-        require 'Controleur/c_inscription.php';
+        require 'Controleur/c_auth.php';
         $controller = new c_inscription();
         if ($action === 'enregistrer') {
             $controller->enregistrer();
@@ -118,7 +153,7 @@ switch ($page) {
         break;
 
     case 'verifier_code':
-        require 'Controleur/c_inscription.php';
+        require 'Controleur/c_auth.php';
         $controller = new c_verifier_code();
         if ($action === 'verifier') {
             $controller->verifier();
@@ -131,105 +166,22 @@ switch ($page) {
         }
         break;
 
-    // Profil
-    case 'profil':
-        require 'Controleur/c_profil.php';
-        $controller = new c_profil();
-
-        if ($action === 'modifier') {
-            $controller->modifier();
-        } else {
-            $id = isset($_GET['id']) && ctype_digit($_GET['id']) ? (int)$_GET['id'] : null;
-            $controller->afficher($id);
-        }
-        break;
-
-    // Messages
-    case 'messagerie':
-        require 'Controleur/c_profil.php';
-        $controller = new c_messagerie();
-
-        if ($action === 'envoyer') {
-            $controller->envoyer();
-        } else {
-            $id_conversation = $_GET['id_conversation'] ?? null;
-            $controller->afficher($id_conversation);
-        }
-        break;
-
-    case 'mes_favoris':
-        require 'Controleur/c_profil.php';
-        $controller = new c_mes_favoris();
-
-        if (isset($_GET['action'])) {
-            if ($_GET['action'] === 'ajouter') {
-                $controller->ajouter();
-            }
-            if ($_GET['action'] === 'supprimer') {
-                $controller->supprimer();
-            }
+    case 'connexion':
+        require 'Controleur/c_auth.php';
+        $controller = new c_connexion();
+        if ($action === 'verifier') {
+            $controller->verifier();
+        } 
+        elseif ($action === 'deconnexion') {
+            $controller->deconnexion();
+            break;
         } else {
             $controller->afficher();
         }
         break;
 
-    // Annonces
-    case 'annonce':
-        require 'Controleur/c_trajet.php';
-        $controller = new c_publie_trajet();
-        if ($action === 'publier') {
-            $controller->publier();
-        } else {
-            $controller->afficher();
-        }
-        break;
-
-    // Favoris
-    case 'favoris':
-        require 'Controleur/c_profil.php';
-        $controller = new c_mes_favoris();
-        if ($action === 'ajouter') {
-            $controller->ajouter();
-        } elseif ($action === 'supprimer') {
-            $controller->supprimer();
-        } else {
-            $controller->afficher();
-        }
-        break;
-
-    case 'mes_reservations':
-        require 'Controleur/c_profil.php';
-        $controller = new c_mes_reservations();
-        $controller->afficher();
-        break;
-
-
-    // Paiements
-    case 'paiement':
-        require 'Controleur/c_paiement.php';
-        $controller = new c_paiement();
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $controller->payer();
-            $controller->paiemnetsucces();
-            exit;
-        } else {
-            $controller->afficher();
-        }
-        break;
-
-    case 'success':
-        require 'Controleur/c_paiement.php';
-        $controller = new c_paiement();
-        $controller->paiemnetsucces();
-        break;
-
-    case 'detail_paiement':
-        require 'Controleur/c_paiement.php';
-        $controller = new c_detail_paiement();
-        $controller->detail_paiement();
-        break;
-    case 'mdp_oblie':
-        require 'Controleur/c_connexion.php';
+        case 'mdp_oblie':
+        require 'Controleur/c_auth.php';
         $controller = new c_mdp_oblie();
         if ($action === 'envoyer'){
             $controller->envoyerLienReset();
@@ -238,16 +190,39 @@ switch ($page) {
             $controller->afficher();  
         }
         break;
+
+    case 'paiement':
+        require 'Controleur/c_paiement.php';
+        $controller = new c_paiement();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $controller->payer();
+            exit;
+        }if ($action === 'success'){
+            $controller->paiemnetsucces();
+            exit;
+        } else {
+            $controller->afficher();
+        }
+        break;
+
+    case 'detail_paiement':
+        require 'Controleur/c_paiement.php';
+        $controller = new c_detail_paiement();
+        $controller->detail_paiement();
+        break;
+    
     case 'mentions_legales':
         require 'Controleur/c_vroom.php';
         $controller = new c_mentions_legales();
         $controller->afficher();
         break;
+
     case 'faq':
         require 'Controleur/c_vroom.php';
         $controller = new c_faq();
         $controller->afficher();
         break;
+
     case 'contact':
         require 'Controleur/c_vroom.php';
         $controller = new c_contact();
@@ -257,11 +232,13 @@ switch ($page) {
             $controller->afficher();  
         }
         break;
+
     case 'rgpd':
         require 'Controleur/c_vroom.php';
         $controller = new c_rgpd();
         $controller->afficher();
         break;
+
     case 'cgu':
         require 'Controleur/c_vroom.php';
         $controller = new c_cgu();
@@ -279,10 +256,4 @@ switch ($page) {
         }
         break;
 }
-
-?>
-<?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 ?>
