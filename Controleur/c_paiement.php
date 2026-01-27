@@ -32,7 +32,7 @@ class c_paiement {
     }
     public function payer(): void {
 
-        /// si paiement dejas fait il faut affiche que le paiement est dejas fait car si non sur la bd va crere un paiement en attent en plus si on fait fait retour 
+        /// si paiement dejas fait il faut affiche "le paiement est dejas fait" car si non sur la bd va crere un paiement en attent en plus si on fait fait retour 
         
         $res_info = Reservations::get($_GET['id']);
 

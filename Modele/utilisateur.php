@@ -58,8 +58,8 @@ class Utilisateur {
             return false;
         }
         $stmt = $db->prepare("
-            INSERT INTO utilisateurs (nom, prenom, email, telephone, mot_de_passe, biographie, avatar)
-            VALUES (:nom, :prenom, :email, :telephone, :mot_de_passe, :biographie, :avatar)
+            INSERT INTO utilisateurs (nom, prenom, email, telephone, mot_de_passe, biographie)
+            VALUES (:nom, :prenom, :email, :telephone, :mot_de_passe, :biographie)
         ");
 
         return $stmt->execute([
@@ -69,7 +69,6 @@ class Utilisateur {
             'telephone' => $data['telephone'] ?? null,
             'mot_de_passe' => $data['mot_de_passe'],
             'biographie' => $data['biographie'] ?? null,
-            'avatar' => $data['avatar'] ?? null
         ]);
     }
     public static function delete(int $id): bool {

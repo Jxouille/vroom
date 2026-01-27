@@ -194,7 +194,7 @@ class Annonces {
             u.id AS conducteur_id,
             u.nom AS conducteur_nom,
             u.note AS conducteur_note,
-            u.avatar,
+        
 
             v.marque,
             v.modele,

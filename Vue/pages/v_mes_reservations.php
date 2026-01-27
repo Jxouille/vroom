@@ -8,7 +8,7 @@
                 <div class="trajet-ligne">
                     <!-- Conducteur -->
                     <div class="col-driver">
-                        <div class="avatar"><?= htmlspecialchars($trajet["avatar"] ?? '') ?></div>
+                        <div class="avatar"><?= htmlspecialchars($trajet["chemin_avatar"] ?? '') ?></div>
                         <div>
                             <div class="driver-name"><?= htmlspecialchars($trajet["conducteur_nom"] ?? '') ?></div>
                             <div class="driver-stars">⭐ <?= htmlspecialchars($trajet["conducteur_note"] ?? 0) ?></div>

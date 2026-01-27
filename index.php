@@ -212,19 +212,19 @@ switch ($page) {
         break;
     
     case 'mentions_legales':
-        require 'Controleur/c_vroom.php';
+        require 'Controleur/c_accueil.php';
         $controller = new c_mentions_legales();
         $controller->afficher();
         break;
 
     case 'faq':
-        require 'Controleur/c_vroom.php';
+        require 'Controleur/c_accueil.php';
         $controller = new c_faq();
         $controller->afficher();
         break;
 
     case 'contact':
-        require 'Controleur/c_vroom.php';
+        require 'Controleur/c_accueil.php';
         $controller = new c_contact();
         if ($action === 'envoyer'){
             $controller->envoyer();
@@ -234,18 +234,18 @@ switch ($page) {
         break;
 
     case 'rgpd':
-        require 'Controleur/c_vroom.php';
+        require 'Controleur/c_accueil.php';
         $controller = new c_rgpd();
         $controller->afficher();
         break;
 
     case 'cgu':
-        require 'Controleur/c_vroom.php';
+        require 'Controleur/c_accueil.php';
         $controller = new c_cgu();
         $controller->afficher();
         break;
     case 'favoris_annonce':
-        require 'Controleur/c_profil.php';
+        require 'Controleur/c_accueil.php';
         $controller = new c_mes_favoris();
         if ($action === 'ajouter') {
             $controller->ajouter();
