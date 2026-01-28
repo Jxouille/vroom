@@ -4,10 +4,10 @@
     <h1>Contactez-nous</h1>
     <p>Une question ? Un problème ? L’équipe Vroom vous répond rapidement.</p>
 
-    <form>
-        <input type="text" placeholder="Nom complet" required>
-        <input type="email" placeholder="Email" required>
-        <textarea rows="6" placeholder="Votre message" required></textarea>
+    <form action="index?page=demande_contact&action=envoyer" methode="POST">
+        <input name="nom" type="text" placeholder="Nom complet" required>
+        <input name="mail" type="email" placeholder="Email" required>
+        <textarea name="contenu" rows="6" placeholder="Votre message" required></textarea>
         <div class="rgpd-checkbox">
             <label>
                 <input type="checkbox" required>

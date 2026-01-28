@@ -1,0 +1,9 @@
+# 1. Prevent folder browsing
+Options -Indexes
+
+# 2. Protect sensitive files
+<FilesMatch "^(wp-config\.php|php\.ini|php\.info|install\.php|\.htaccess|\.htpasswd)">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+

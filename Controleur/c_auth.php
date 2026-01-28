@@ -74,7 +74,11 @@ class c_verifier_code {
     public function afficher(): void {
         $title = "Vérification du code";
         $css = "v_code.css";
+
+        require __DIR__ . '/../Vue/head.php';
+        require __DIR__ . '/../Vue/header.php';
         require __DIR__ . '/../Vue/pages/v_verifier_code.php';
+        require __DIR__ . '/../Vue/footer.php';
     }
 
     public function verifier(): void {

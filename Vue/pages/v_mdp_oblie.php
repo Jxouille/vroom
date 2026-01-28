@@ -1,10 +1,6 @@
 
 <body>
 
-<header class="navbar">
-  <div class="logo">🚗 VROOM</div>
-</header>
-
 <main class="container">
   <h1>Mot de passe oublié</h1>
   <p>Entrez votre email pour recevoir un mot de passe provisoire</p>
