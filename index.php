@@ -223,7 +223,7 @@ switch ($page) {
         $controller->afficher();
         break;
 
-    case 'contact':
+    case 'demande_contact':
         require 'Controleur/c_accueil.php';
         $controller = new c_contact();
         if ($action === 'envoyer'){
@@ -244,6 +244,7 @@ switch ($page) {
         $controller = new c_cgu();
         $controller->afficher();
         break;
+
     case 'favoris_annonce':
         require 'Controleur/c_accueil.php';
         $controller = new c_mes_favoris();

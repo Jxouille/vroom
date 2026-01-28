@@ -82,8 +82,22 @@ class c_contact {
     }
 
     public function envoyer(): void {
-        // Logique pour envoyer le message de contact (ex: envoi d'email)
-        // Pour l'instant, on redirige simplement vers une page de confirmation
+
+        $mail = $_POST['mail'];
+        $nom = $_POST['nom'];
+        $contenu = $_POST['contenu'];
+        
+        if (empty($mail) || empty($nom) || empty($contenu)) {
+            header("Location: index.php?page=contact&error=missing_fields");
+            exit;
+        }
+        // Enregistrement du message dans la base de données
+        ContactMessage::creer([
+            'nom' => $nom,
+            'email' => $mail,
+            'message' => $contenu,
+            'date_creation' => date('Y-m-d H:i:s')
+        ]);
         header("Location: index.php?page=contact&action=envoye");
         exit;
     }
