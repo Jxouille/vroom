@@ -15,6 +15,8 @@
     <?php if (!empty($css)): ?>
         <link rel="stylesheet" href="Ressources/Css/<?= htmlspecialchars($css) ?>">
     <?php endif; ?>
+    <!-- CSS responsive centralisé -->
+    <link rel="stylesheet" href="Ressources/CSS/responsive.css">
     <?php if (!empty($js)): ?>
         <script src="Ressources/JVS/<?= htmlspecialchars($js) ?>" defer></script>
     <?php endif; ?>

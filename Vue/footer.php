@@ -7,10 +7,11 @@
         <div class="footer-section">
             <h4>En savoir plus</h4>
             <ul>
-                    <li><a href="index.php?page=accueil">Aide et contact</a></li>
-                    <li><a href="index.php?page=accueil">FAQ</a></li>
-                    <li><a href="index.php?page=accueil">Presse</a></li>
-                    <li><a href="#">CGU</a></li>
+                    <li><a href="index.php?page=contact">Aide et contact</a></li>
+                    <li><a href="index.php?page=faq">FAQ</a></li>
+                    <li><a href="index.php?page=rgpd">Politique de confidentialité</a></li>
+                    <li><a href="index.php?page=cgu">CGU</a></li>
+                    <li><a href="index.php?page=mentions_legales">Mentions légales</a></li>
             </ul>
         </div>
         <div class="footer-section">

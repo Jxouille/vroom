@@ -1,1 +1,24 @@
 .vscode
+# --- Sécurité ---
+# Ne jamais pousser les identifiants réels
+.env
+Modele/bd_connection.php (si contient des mots de passe en dur)
+
+# --- Dépendances ---
+# Les librairies sont installées via Composer sur le serveur
+vendor/
+
+# --- Uploads ---
+# On ne pousse pas les photos de profil des tests locaux
+upload/*
+!upload/.gitkeep
+
+# --- IDE & OS ---
+# Fichiers de configuration spécifiques à vos outils
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Logs ---
+*.log

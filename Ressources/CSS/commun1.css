@@ -1,0 +1,84 @@
+:root {
+    --green: #2DB24A;
+    --dark: #2C2C2C;
+    --gray: #F5F5F5;
+    --text: #444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--gray);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+
+/* MAIN CONTENT */
+.container {
+    max-width: 1100px;
+    margin: 50px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+h1 {
+    color: var(--green);
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 30px;
+    color: var(--dark);
+}
+
+/* FAQ */
+.faq-item {
+    margin-bottom: 20px;
+}
+
+.faq-item h3 {
+    color: var(--green);
+    margin-bottom: 5px;
+}
+
+/* FORM */
+form {
+    display: grid;
+    gap: 15px;
+}
+
+input, textarea {
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #24963D;
+}
+
+
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    header, footer {
+        padding: 20px;
+    }
+}

@@ -1,0 +1,31 @@
+# 1. Prevent folder browsing
+Options -Indexes
+
+# 2. Protect sensitive files
+<FilesMatch "^(wp-config\.php|php\.ini|php\.info|install\.php|\.htaccess|\.htpasswd)">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Disable directory browsing
+Options -Indexes
+
+# Enable the rewriting engine
+RewriteEngine On
+
+# Set the base path (since your project is in /vroom)
+RewriteBase /vroom/
+
+# 1. Protect internal folders
+# Redirects direct access attempts to the root index.php
+RewriteRule ^(Controller|Modele|Vue|vendor)($|/) index.php [L,NC]
+
+# 2. Allow existing files and directories to be accessed directly
+# (This ensures your CSS, JS, and uploads still load)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# 3. Route everything else to index.php
+# This passes the URL as a 'url' parameter or simply lets your PHP script 
+# parse $_SERVER['REQUEST_URI']
+RewriteRule ^(.*)$ index.php [L,QSA]

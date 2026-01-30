@@ -8,8 +8,11 @@
     --ombreHover: rgba(0, 0, 0, 0.18);
 }
 
+<<<<<<< HEAD
 /* HERO */
 
+=======
+>>>>>>> myanh
 .hero {
     margin-top: -30px;
     width: 100%;
@@ -23,26 +26,54 @@
     filter: brightness(0.8);
 }
 
+<<<<<<< HEAD
 /* BARRE DE RECHERCHE POSITIONNÉE SUR L'IMAGE */
 .search-container {
+=======
+/* BARRE DE RECHERCHE - même style que `recherche_trajet` */
+.search-container {
+    /* chevauche légèrement l'image sur grand écran */
+>>>>>>> myanh
     position: absolute;
     bottom: -55px;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
     max-width: 1100px;
+<<<<<<< HEAD
+=======
+    z-index: 5;
+}
+
+/* Sur petits écrans, on annule le positionnement absolu (voir also responsive.css) */
+@media (max-width: 768px) {
+    .search-container {
+        position: static;
+        transform: none;
+        margin: 12px auto 20px;
+    }
+>>>>>>> myanh
 }
 
 /* BOÎTE PRINCIPALE */
 .search-box {
     background: var(--fondClair);
     width: 100%;
+<<<<<<< HEAD
     padding: 15px 20px;
     border-radius: 20px;
     display: flex;
     align-items: center;
     gap: 20px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+=======
+    padding: 10px 16px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+>>>>>>> myanh
 }
 
 /* FIELDS */
@@ -104,7 +135,15 @@
     background: var(--couleurVerteFonce);
 }
 
+<<<<<<< HEAD
 /* TITRES GÉNÉRAUX */
+=======
+
+
+
+/* TITRES GÉNÉRAUX (harmonisation globale)       */
+
+>>>>>>> myanh
 h2 {
     font-size: 32px;
     color: var(--couleurVerteFonce);
@@ -123,12 +162,28 @@ p {
     line-height: 1.5;
 }
 
+<<<<<<< HEAD
+=======
+
+
+
+/* INTRO                                         */
+
+>>>>>>> myanh
 .texte-intro {
     text-align: center;
     margin-top: 90px;
     margin-bottom: 20px;
 }
 
+<<<<<<< HEAD
+=======
+
+
+
+/* AVANTAGES                                     */
+
+>>>>>>> myanh
 .avantages {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -159,6 +214,14 @@ p {
     margin-bottom: 15px;
 }
 
+<<<<<<< HEAD
+=======
+
+
+
+
+/* SECTION : Comment ça marche */
+>>>>>>> myanh
 .how-it-works {
     text-align: center;
     padding: 60px 20px;
@@ -177,6 +240,10 @@ p {
     margin-bottom: 50px;
 }
 
+<<<<<<< HEAD
+=======
+/* Container des étapes */
+>>>>>>> myanh
 .steps {
     display: flex;
     justify-content: space-between;
@@ -187,6 +254,10 @@ p {
     padding: 0 20px;
 }
 
+<<<<<<< HEAD
+=======
+/* Ligne horizontale reliant les étapes */
+>>>>>>> myanh
 .steps::before {
     content: "";
     position: absolute;
@@ -199,6 +270,10 @@ p {
     z-index: 1;
 }
 
+<<<<<<< HEAD
+=======
+/* Chaque étape */
+>>>>>>> myanh
 .step {
     flex: 1;
     text-align: center;
@@ -206,6 +281,10 @@ p {
     position: relative;
 }
 
+<<<<<<< HEAD
+=======
+/* Icones rondes */
+>>>>>>> myanh
 .step-icon {
     width: 70px;
     height: 70px;
@@ -219,23 +298,40 @@ p {
     transition: 0.3s ease;
 }
 
+<<<<<<< HEAD
+=======
+/* Effet hover */
+>>>>>>> myanh
 .step-icon:hover {
     background: var(--couleurVerteFonce);
     box-shadow: 0 6px 14px var(--ombreHover);
 }
 
+<<<<<<< HEAD
+=======
+/* Titres */
+>>>>>>> myanh
 .step h3 {
     font-size: 1.3rem;
     color: var(--titreNoir);
     margin-bottom: 10px;
 }
 
+<<<<<<< HEAD
+=======
+/* Textes */
+>>>>>>> myanh
 .step p {
     font-size: 0.95rem;
     color: var(--texteGris);
     line-height: 1.5;
 }
 
+<<<<<<< HEAD
+=======
+/* SECTION : Trajets populaires */
+
+>>>>>>> myanh
 .popular-rides {
     padding: 60px 20px;
     text-align: center;
@@ -282,6 +378,10 @@ p {
     gap: 12px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> myanh
 .avatar {
     width: 50px;
     height: 50px;
@@ -368,6 +468,7 @@ p {
 
 .ride-btn {
     margin-top: 10px;
+<<<<<<< HEAD
 
     :root {
         --couleurVerte: #28a745;
@@ -1204,3 +1305,102 @@ p {
             background: var(--couleurVerteFonce);
             color: white;
         }
+=======
+    background: var(--couleurVerte);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.ride-btn:hover {
+    background: var(--couleurVerteFonce);
+}
+
+.all-rides-btn {
+    margin-top: 40px;
+    background: transparent;
+    border: 2px solid var(--couleurVerte);
+    color: var(--couleurVerte);
+    padding: 12px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.all-rides-btn:hover {
+    border: 2px solid var(--couleurVerteFonce);
+    background: var(--couleurVerteFonce);
+    color: white;
+}
+
+
+.cookie-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    display: none;
+    z-index: 9999;
+}
+
+.cookie-banner p {
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.cookie-banner a {
+    color: #2DB24A;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.cookie-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.cookie-actions button {
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.cookie-actions button:first-child {
+    background: #2DB24A;
+    color: white;
+}
+
+.cookie-actions .secondary {
+    background: #e0e0e0;
+    color: #333;
+}
+
+/* ==================== cookies ==================== */
+
+.rgpd-checkbox {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.rgpd-checkbox input {
+    margin-right: 8px;
+}
+
+.rgpd-checkbox a {
+    color: #2DB24A;
+    font-weight: 600;
+}
+>>>>>>> myanh

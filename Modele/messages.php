@@ -59,23 +59,5 @@ class Messages
 
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     }
-
-    /**
-     * Nombre de messages non lus (optionnel)
-     * → à utiliser seulement si tu ajoutes une colonne `is_read`
-     */
-    public static function nbNonLus(int $conversation_id, int $user_id): int
-    {
-        // Si tu veux gérer les messages non lus, il faudra ajouter une colonne `is_read TINYINT(1)` dans messages
-        return 0;
-    }
-
-    /**
-     * Marquer les messages comme lus (optionnel)
-     */
-    public static function marquerCommeLus(int $conversation_id, int $user_id): void
-    {
-        // Idem : besoin d'une colonne `is_read` pour fonctionner
-    }
 }
 ?>

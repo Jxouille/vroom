@@ -2,9 +2,13 @@
 require_once  __DIR__ . '/bd_connection.php';
 
 class Paiements {
+    public static function all(): array {
+        $db = dbConnect();
+        $stmt = $db->query("SELECT * FROM paiements ORDER BY date_creation DESC");
+        return $stmt->fetchAll();
+    }
     public static function mes_paiement(int $id_client): array {
         $db = dbConnect();
-
         $sql = "
             SELECT p.*
             FROM paiements p
@@ -12,7 +16,6 @@ class Paiements {
             WHERE r.id_passager = :id_client
             ORDER BY p.date_creation DESC
         ";
-
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':id_client', $id_client, PDO::PARAM_INT);
         $stmt->execute();
@@ -21,10 +24,10 @@ class Paiements {
     }
 
     public static function get(int $id): ?array {
-    $db = dbConnect();
-    $stmt = $db->prepare("SELECT * FROM paiements WHERE id = ?");
-    $stmt->execute([$id]);
-    return $stmt->fetch() ?: null;
+        $db = dbConnect();
+        $stmt = $db->prepare("SELECT * FROM paiements WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch() ?: null;
     }
     public static function creer(array $data): int {
         $db = dbConnect();
@@ -39,6 +42,26 @@ class Paiements {
             $data['date_paiement']
         ]);
         return (int)$db->lastInsertId();
+    }
+    public static function update(int $id, array $data): bool {
+        $db = dbConnect();
+        $fields = [];
+        $params = [':id' => $id];
+        $map = [
+            'statut',
+            'transaction_id',
+            'receipt_url',
+            'date_paiement'
+        ];
+        foreach ($map as $field) {
+            if (isset($data[$field]) && $data[$field] !== '') {
+                $fields[] = "$field = :$field";
+                $params[":$field"] = $data[$field];
+            }
+        }
+        if (empty($fields)) return false;
+        $sql = "UPDATE paiements SET " . implode(', ', $fields) . " WHERE id = :id";
+        return $db->prepare($sql)->execute($params);
     }
 }
 ?>

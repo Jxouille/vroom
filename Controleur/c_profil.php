@@ -29,12 +29,6 @@ class c_profil {
     // Modification d'un champ
     public function modifier() {
         // Vérifier si l'utilisateur est connecté
-        if (!isset($_SESSION['user_id'])) {
-            http_response_code(403);
-            echo 'Non autorisé';
-            exit;
-        }
-
         $id_utilisateur = $_SESSION['user_id'];
 
         if (!isset($_POST['field'], $_POST['value'])) {
@@ -45,14 +39,6 @@ class c_profil {
 
         $field = $_POST['field'];
         $value = trim($_POST['value']);
-
-        // Champs autorisés
-        $champs_valides = ['prenom', 'nom', 'email', 'telephone', 'biographie'];
-        if (!in_array($field, $champs_valides)) {
-            http_response_code(400);
-            echo 'Champ non autorisé';
-            exit;
-        }
 
         // Mise à jour en base
         $success = Utilisateur::updateField($id_utilisateur, $field, $value);
@@ -164,15 +150,22 @@ class c_messagerie {
         }
 
         $id_user = $_SESSION['user_id'];
-        $id_destinataire = $_GET['id_destinataire'] ?? null;
-        $conversation_id = $_GET['id_conversation'] ?? null;
+        $id_destinataire = $_GET['id'];
+        if (!$id_destinataire ){
+            exit('Destinataire invalide');
+        }
+        
+            // Créer une nouvelle conversation si elle n'existe pas
+        $conversation = Conversations::getOrCreate($id_user, $id_destinataire);
+        $id_conversation = $conversation['id'];
+
         $message = trim($_POST['message'] ?? '');
 
-        if ($message !== '' && $conversation_id) {
-            Messages::envoyer($conversation_id, $id_user, $id_destinataire, $message);
+        if ($message !== '' && $id_conversation) {
+            Messages::envoyer($id_conversation, $id_user, $id_destinataire, $message);
         }
 
-        header("Location: index.php?page=messagerie&id_conversation=" . $conversation_id);
+        header("Location: index.php?page=messagerie&id_conversation=" . $id_conversation);
         exit;
     }
 }

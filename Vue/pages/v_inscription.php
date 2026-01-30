@@ -69,6 +69,9 @@
                 <p class="message-erreur">Captcha incorrect. Veuillez réessayer.</p>
             <?php endif; ?>
 
+            
+
+
             <button type="submit" class="bouton-principal">
                 S'inscrire
             </button>

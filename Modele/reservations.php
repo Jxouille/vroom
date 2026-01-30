@@ -3,6 +3,11 @@ require_once  __DIR__ . '/bd_connection.php';
 
 class Reservations {
 
+    public static function all(): array {
+        $db = dbConnect();
+        $stmt = $db->query("SELECT * FROM reservations ORDER BY date_creation DESC");
+        return $stmt->fetchAll();
+    }
     public static function get(int $id): ?array {
         $db = dbConnect();
         $stmt = $db->prepare("SELECT * FROM reservations WHERE id = ?");
@@ -29,45 +34,38 @@ class Reservations {
     }
 
     public static function update(int $id, array $data): bool {
-    $db = dbConnect();
+        $db = dbConnect();
+        $fields = [];
+        $params = [':id' => $id];
+        $map = [
+            'statut',
+            'prix_total',
+            'id_passager'
+        ];
 
-    $fields = [];
-    $params = [':id' => $id];
+        foreach ($map as $field) {
+            if (isset($data[$field]) && $data[$field] !== '') {
+                $fields[] = "$field = :$field";
+                $params[":$field"] = $data[$field];
+            }
+        }
 
-    // Only update if the field exists in $data
-    if (isset($data['donnees_passager'])) {
-        $fields[] = "donnees_passager = :donnees_passager";
-        $params[':donnees_passager'] = json_encode($data['donnees_passager'], JSON_UNESCAPED_UNICODE);
+        if (isset($data['donnees_passager'])) {
+            $fields[] = "donnees_passager = :donnees_passager";
+            $params[':donnees_passager'] = json_encode($data['donnees_passager']);
+        }
+
+        if (empty($fields)) 
+            return false;
+
+        $sql = "UPDATE reservations SET " . implode(', ', $fields) . " WHERE id = :id";
+        return $db->prepare($sql)->execute($params);
     }
-
-    if (isset($data['statut'])) {
-        $fields[] = "statut = :statut";
-        $params[':statut'] = $data['statut'];
-    }
-
-    if (isset($data['prix_total'])) {
-        $fields[] = "prix_total = :prix_total";
-        $params[':prix_total'] = $data['prix_total'];
-    }
-
-    // Nothing to update
-    if (empty($fields)) {
-        return false;
-    }
-
-    $sql = "UPDATE reservations SET " . implode(', ', $fields) . " WHERE id = :id";
-    $stmt = $db->prepare($sql);
-
-    return $stmt->execute($params);
-    }
-
-
     public static function delete(int $id): bool {
         $db = dbConnect();
         $stmt = $db->prepare("DELETE FROM reservations WHERE id = ?");
         return $stmt->execute([$id]);
     }
-
     public static function allByUser(int $user_id): array {
         $db = dbConnect();
         $stmt = $db->prepare("SELECT * FROM reservations WHERE id_passager = ? ORDER BY date_creation DESC");
@@ -76,7 +74,6 @@ class Reservations {
     }
     public static function trajets_a_venir(int $id_client): ?array {
         $db = dbConnect();
-
         $sql = "
             SELECT *
             FROM reservations r
@@ -90,7 +87,6 @@ class Reservations {
             AND a.date_depart >= CURDATE()
             ORDER BY a.date_depart ASC
         ";
-
         $stmt = $db->prepare($sql);
         $stmt->execute(['id_client' => $id_client]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: null;
@@ -98,7 +94,6 @@ class Reservations {
 
     public static function trajets_effectue(int $id_client): ?array {
         $db = dbConnect();
-
         $sql = "
             SELECT *
             FROM reservations r
@@ -116,6 +111,4 @@ class Reservations {
         $stmt->execute(['id_client' => $id_client]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: null;
     }
-
-
 }

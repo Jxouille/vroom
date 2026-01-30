@@ -6,6 +6,11 @@ class Documents {
     public function __construct() {
         $this->bd = dbConnect();
     }
+    public static function all () {
+        $bd = dbConnect();
+        $stmt = $bd->query("SELECT * FROM documents_utilisateur ORDER BY date_creation DESC");
+        return $stmt->fetchAll();
+    }
     public static function ajouter(
         int $id_utilisateur,
         string $type_document,
@@ -30,6 +35,31 @@ class Documents {
             $taille_fichier
         ]);
     }
+
+    public static function update(int $id, array $data): bool {
+        $db = dbConnect();
+        $fields = [];
+        $params = [':id' => $id];
+
+        $map = [
+            'statut',
+            'date_expiration',
+            'auteur_reponse'
+        ];
+
+        foreach ($map as $field) {
+            if (isset($data[$field]) && $data[$field] !== '') {
+                $fields[] = "$field = :$field";
+                $params[":$field"] = $data[$field];
+            }
+        }
+
+        if (empty($fields)) return false;
+
+        $sql = "UPDATE documents_utilisateur SET " . implode(', ', $fields) . " WHERE id = :id";
+        return $db->prepare($sql)->execute($params);
+    }
+
 
     public static function obtenirDocumentsParUtilisateur(int $id_utilisateur): array {
         $bd = dbConnect();

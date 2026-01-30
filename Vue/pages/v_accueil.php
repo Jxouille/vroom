@@ -194,4 +194,37 @@
         Voir tous les trajets
     </button>
 </section>
+<div id="cookie-banner" class="cookie-banner">
+    <p>
+        🍪 Vroom utilise des cookies pour améliorer votre expérience.
+        Vous pouvez accepter ou refuser les cookies non essentiels.
+        <a href="politique-confidentialite.html">En savoir plus</a>.
+    </p>
+    <div class="cookie-actions">
+        <button id="acceptCookies" type="$_COOKIE">Accepter</button> <!-- à verifier-->
+        <button id="refuseCookies" class="secondary">Refuser</button>
+    </div>
+</div>
+
 </body>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const banner = document.getElementById("cookie-banner");
+
+    if (!localStorage.getItem("cookieConsent")) {
+        banner.style.display = "block";
+    }
+
+    document.getElementById("acceptCookies").onclick = function () {
+        localStorage.setItem("cookieConsent", "accepted");
+        banner.style.display = "none";
+        // 👉 Ici tu peux activer Google Analytics / autres cookies
+    };
+
+    document.getElementById("refuseCookies").onclick = function () {
+        localStorage.setItem("cookieConsent", "refused");
+        banner.style.display = "none";
+    };
+});
+</script>

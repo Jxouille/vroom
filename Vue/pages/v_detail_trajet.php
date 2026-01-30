@@ -1,5 +1,36 @@
 <body>
-    
+<!-- POPUP CONTACT -->
+<div class="modal-overlay" id="contactModal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3>Contacter le conducteur</h3>
+            <span class="modal-close" id="closeModal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p>
+                Votre message sera envoyé à
+                <strong><?= htmlspecialchars($annonce['conducteur_nom']) ?></strong>
+            </p>
+            
+            <form method="POST"
+                action="index.php?page=messagerie&action=envoyer&id=<?= $annonce['conducteur_id'] ?>">
+
+                <textarea id="messageContenu"
+                        name="message"
+                        placeholder="Écrivez votre message ici..."
+                        rows="5"
+                        required></textarea>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" id="cancelModal">Annuler</button>
+                    <button type="submit" class="btn-send" id="">Envoyer</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
     <div class="page-container">
         
         <div class="header-title">Détail trajet</div>
@@ -15,8 +46,8 @@
                 <div class="driver-card">
                     <div class="driver-left">
                         <div class="avatar">
-                            <?php if (!empty($trajet["chemin_avatar"])): ?>
-                                <img src="<?= htmlspecialchars($trajet["chemin_avatar"]) ?>" alt="Avatar">
+                            <?php if (!empty($annonce["chemin_avatar"])): ?>
+                                <img src="<?= htmlspecialchars($annonce["chemin_avatar"]) ?>" alt="Avatar">
                             <?php else: ?>
                                 <img src="Ressources/Image/person_icon.png" alt="Avatar par défaut">
                             <?php endif; ?>
@@ -37,10 +68,9 @@
                         </div>
                     </div>
                     <div class="driver-right">
-                        <div class="price"><?= htmlspecialchars($annonce['prix_par_personne']) ?> $</div>
-                        <button class="btn-reserver"
-                            href="index.php?page=messages&action=nouvelle&id_user=<?= $trajet['conducteur_id'] ?>">
-                            Contacter</button>
+                        <div class="price"><?= htmlspecialchars($annonce['prix_par_personne']) ?> €</div>
+                        <button class="btn-reserver" id="btnContacter">Contacter</button>
+
 
                     </div> <!-- pop up messagerie avec le conducteur en java script à faire -->
                 </div> 
@@ -98,8 +128,16 @@
                     </div>
                 </div>
             </div>
-<!-- ON APPELERA ICI LA PAGE DE PAYEMENT FICTIF -->
-            <!-- Bouton centré et pleine largeur (séparé de la carte) -->
+            <div class="rgpd-checkbox">
+                <label>
+                    <input type="checkbox" required>
+                    J’accepte la
+                    <a href="index?page=rgdp" target="_blank">
+                        politique de confidentialité
+                    </a>
+                </label>
+            </div>
+
             <div class="button-row">
                 <a href="index.php?page=paiement&id=<?= $annonce['id'] ?>"
                 class="confirm-btn"
@@ -111,3 +149,36 @@
     </div>
 
 </body>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const modal = document.getElementById('contactModal');
+    const openBtn = document.getElementById('btnContacter');
+    const closeBtn = document.getElementById('closeModal');
+    const cancelBtn = document.getElementById('cancelModal');
+
+    if (!modal || !openBtn) {
+        console.error('Modal ou bouton introuvable');
+        return;
+    }
+
+    openBtn.addEventListener('click', function () {
+        modal.classList.add('active');
+    });
+
+    [closeBtn, cancelBtn].forEach(btn => {
+        if (btn) {
+            btn.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+        }
+    });
+
+    modal.addEventListener('click', e => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+        }
+    });
+
+});
+</script>

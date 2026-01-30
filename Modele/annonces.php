@@ -18,10 +18,6 @@ class Annonces {
         return $stmt->fetchAll();
     }
 
-   
-    /**
-     * Crée une annonce avec les données fournies
-     */
     public static function creer(array $data): void {
         $db = dbConnect();
         $stmt = $db->prepare("
@@ -62,50 +58,57 @@ class Annonces {
     }
     public static function update(int $id, array $data): bool {
         $db = dbConnect();
-
         $fields = [];
         $params = [':id' => $id];
 
-        if (!empty($data['date_depart'])) {
+        $date = $data['date_depart'] ?? null;
+        $heure = $data['heure_depart'] ?? null;
+
+        if ($date !== null && $date !== '') {
             $fields[] = "date_depart = :date_depart";
-            $params[':date_depart'] = $data['date_depart'];
+            $params[':date_depart'] = $date;
         }
 
-        if (!empty($data['heure_depart'])) {
+        if ($heure !== null && $heure !== '') {
             $fields[] = "heure_depart = :heure_depart";
-            $params[':heure_depart'] = $data['heure_depart'];
+            $params[':heure_depart'] = $heure;
         }
 
-        if (isset($data['prix_par_personne']) && $data['prix_par_personne'] !== '') {
-            $fields[] = "prix_par_personne = :prix_par_personne";
-            $params[':prix_par_personne'] = $data['prix_par_personne'];
+        if ($date || $heure) {
+            $stmt = $db->prepare("SELECT date_depart, heure_depart FROM annonces WHERE id = :id");
+            $stmt->execute([':id' => $id]);
+            $current = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $finalDate = $date ?? $current['date_depart'];
+            $finalHeure = $heure ?? $current['heure_depart'];
+
+            $fields[] = "datetime_depart = :datetime_depart";
+            $params[':datetime_depart'] = "$finalDate $finalHeure";
         }
 
-        if (isset($data['places_disponibles']) && $data['places_disponibles'] !== '') {
-            $fields[] = "places_disponibles = :places_disponibles";
-            $params[':places_disponibles'] = $data['places_disponibles'];
+        $map = [
+            'prix_par_personne',
+            'places_disponibles',
+            'description',
+            'statut',
+            'heure_arrivee',
+            'date_arrivee',
+            'id_vehicule'
+        ];
+
+        foreach ($map as $field) {
+            if (isset($data[$field]) && $data[$field] !== '') {
+                $fields[] = "$field = :$field";
+                $params[":$field"] = $data[$field];
+            }
         }
 
-        if (!empty($data['description'])) {
-            $fields[] = "description = :description";
-            $params[':description'] = $data['description'];
-        }
-
-        if (!empty($data['statut'])) {
-            $fields[] = "statut = :statut";
-            $params[':statut'] = $data['statut'];
-        }
-
-        // Nothing to update
-        if (empty($fields)) {
-            return false;
-        }
+        if (empty($fields)) return false;
 
         $sql = "UPDATE annonces SET " . implode(', ', $fields) . " WHERE id = :id";
-
-        $stmt = $db->prepare($sql);
-        return $stmt->execute($params);
+        return $db->prepare($sql)->execute($params);
     }
+
 
 
     public static function delete(int $id): bool {
@@ -185,10 +188,13 @@ class Annonces {
             a.description,
             a.adresse_depart,
             a.adresse_arrivee,
+           
+     
 
+            u.id AS conducteur_id,
             u.nom AS conducteur_nom,
             u.note AS conducteur_note,
-            u.avatar,
+        
 
             v.marque,
             v.modele,
