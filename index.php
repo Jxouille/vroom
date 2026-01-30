@@ -1,4 +1,6 @@
 <?php
+$request = $_SERVER['REQUEST_URI'];
+// Strip '/vroom' from the start and parse the rest to call your Controllers
 session_start();
 require_once __DIR__ . '/Ressources/PHP/date_en_fr.php';
 
